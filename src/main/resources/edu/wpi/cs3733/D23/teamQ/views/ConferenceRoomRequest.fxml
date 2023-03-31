@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minHeight="700.0" minWidth="1350.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f1f1f1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.ConferenceRoomRequestController">
+   <top>
+      <Label fx:id="ConferenceRoomRequest_Title" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Conference Room Request" textFill="WHITE" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin></Label>
+   </top>
+   <bottom>
+      <HBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" spacing="37.5" translateX="-30.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <MFXButton fx:id="ConferenceRoomRequest_ClearButton" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Clear Fields" textFill="WHITE" HBox.hgrow="ALWAYS" />
+            <MFXButton fx:id="ConferenceRoomRequest_CancelButton" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Cancel Request" textFill="WHITE" HBox.hgrow="ALWAYS" />
+            <MFXButton fx:id="ConferenceRoomRequest_SubmitButton" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Submit Request" textFill="WHITE" HBox.hgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets left="37.5" top="35.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXTextField fx:id="ConferenceRoomRequest_LocationField" prefHeight="20.0" prefWidth="200.0" promptText="Location">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></MFXTextField>
+            <MFXTextField fx:id="ConferenceRoomRequest_ScheduleField" prefHeight="20.0" prefWidth="200.0" promptText="Date/Time" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="100.0" prefWidth="150.0" text="Clean room?" />
+                  <MFXCheckbox fx:id="ConferenceRoomRequest_CleaningField" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="100.0" prefWidth="150.0" text="Food?" />
+                  <ChoiceBox fx:id="ConferenceRoomRequest_FoodField" prefWidth="150.0" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <MFXTextField fx:id="ConferenceRoomRequest_InstructionsField" prefHeight="20.0" prefWidth="200.0" promptText="Special Instructions" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

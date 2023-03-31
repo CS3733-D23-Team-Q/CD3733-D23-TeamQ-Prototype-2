@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
+import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -39,7 +41,7 @@ public class LoginController {
 
   @FXML
   public void loginButtonClicked() {
-    System.out.println("Navigate to a logged in screen or pops up a failed to login screen.");
+    Navigation.navigate(Screen.HOME);
   }
 
   @FXML

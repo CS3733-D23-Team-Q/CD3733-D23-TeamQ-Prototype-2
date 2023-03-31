@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
+import edu.wpi.cs3733.D23.teamQ.db.dao.EdgeDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 
 import java.io.File;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EdgeDaoImpl {
+public class EdgeDaoImpl implements EdgeDao {
     private List<Edge> edges;
 
     EdgeDaoImpl(LinkedList<Edge> edges) {

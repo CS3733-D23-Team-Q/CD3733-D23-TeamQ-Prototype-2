@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
+import edu.wpi.cs3733.D23.teamQ.db.dao.AccountDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 
 import java.io.File;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AccountDaoImpl {
+public class AccountDaoImpl implements AccountDao {
     private List<Account> accounts;
 
     AccountDaoImpl(LinkedList<Account> accounts) {
@@ -77,7 +78,7 @@ public class AccountDaoImpl {
      * @param filename csv file to export to
      * @return true if successfully exported, false otherwise
      */
-    public boolean toCSV(String filename) {
+    public boolean toCSV(String filename){
         try {
             File myObj = new File(filename);
             if (myObj.createNewFile()) {

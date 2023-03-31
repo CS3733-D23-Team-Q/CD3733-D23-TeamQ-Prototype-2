@@ -1,10 +1,11 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
+import edu.wpi.cs3733.D23.teamQ.db.dao.LocationDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 
 import java.util.List;
 
-public class LocationDaoImpl {
+public class LocationDaoImpl implements LocationDao {
     private List<Location> locations;
 
     /**

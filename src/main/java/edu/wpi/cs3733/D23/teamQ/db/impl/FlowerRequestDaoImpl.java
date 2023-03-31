@@ -1,10 +1,11 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
+import edu.wpi.cs3733.D23.teamQ.db.dao.FlowerRequestDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 
 import java.util.List;
 
-public class FlowerRequestDaoImpl {
+public class FlowerRequestDaoImpl implements FlowerRequestDao {
     private List<FlowerRequest> flowerRequests;
 
     /**

@@ -1,10 +1,11 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
+import edu.wpi.cs3733.D23.teamQ.db.dao.ConferenceRequestDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 
 import java.util.List;
 
-public class ConferenceRequestDaoImpl {
+public class ConferenceRequestDaoImpl implements ConferenceRequestDao {
     private List<ConferenceRequest> conferenceRequests;
 
     /**

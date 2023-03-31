@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
+import edu.wpi.cs3733.D23.teamQ.db.dao.NodeDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 
 import java.io.File;
@@ -7,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class NodeDaoImpl {
+public class NodeDaoImpl implements NodeDao {
     private List<Node> nodes;
 
     NodeDaoImpl(List<Node> nodes) {

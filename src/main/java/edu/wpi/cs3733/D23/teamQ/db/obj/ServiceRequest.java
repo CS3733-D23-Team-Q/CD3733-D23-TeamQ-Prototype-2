@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.D23.teamQ.db;
+package edu.wpi.cs3733.D23.teamQ.db.obj;
 
 public class ServiceRequest {
     private int requestID;

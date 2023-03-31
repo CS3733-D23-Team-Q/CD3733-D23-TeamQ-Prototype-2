@@ -1,54 +1,56 @@
-package edu.wpi.cs3733.D23.teamQ.db;
+package edu.wpi.cs3733.D23.teamQ.db.impl;
+
+import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 
 import java.util.List;
 
-public class ConferenceRequestTable {
-    private List<ConferenceRequest> conferenceRequests;
+public class FlowerRequestDaoImpl {
+    private List<FlowerRequest> flowerRequests;
 
     /**
-     * returns a conferenceRequest given a requestID
+     * returns a flowerRequest given a requestID
      *
      * @param requestID of conferenceRequest being retrieved
      * @return a conferenceRequest with the given nodeID
      */
-    public ConferenceRequest retrieveRow(String requestID) {
+    public FlowerRequest retrieveRow(String requestID) {
         int index = this.getIndex(requestID);
-        return conferenceRequests.get(index);
+        return flowerRequests.get(index);
     }
 
     /**
-     * updates conferenceRequest in list with a new conferenceRequest
+     * updates flowerRequest in list with a new flowerRequest
      *
      * @param requestID requestID of conferenceRequest being replaced
      * @param newRequest new conferenceRequest being inserted
      * @return true if successful
      */
-    public boolean updateRow(String requestID, ConferenceRequest newRequest) {
+    public boolean updateRow(String requestID, FlowerRequest newRequest) {
         int index = this.getIndex(requestID);
-        conferenceRequests.set(index, newRequest);
+        flowerRequests.set(index, newRequest);
         return true;
     }
 
     /**
-     * deletes conferenceRequest from list of conferenceRequests
+     * deletes flowerRequest from list of flowerRequests
      *
-     * @param requestID of conferenceRequest being deleted
+     * @param requestID of flowerRequest being deleted
      * @return true if successfully deleted
      */
     public boolean deleteRow(String requestID) {
         int index = this.getIndex(requestID);
-        conferenceRequests.remove(index);
+        flowerRequests.remove(index);
         return true;
     }
 
     /**
-     * adds a conferenceRequest to the list
+     * adds a flowerRequest to the list
      *
-     * @param x conferenceRequest being added
+     * @param x flowerRequest being added
      * @return true if successful
      */
-    public boolean addRow(ConferenceRequest x) {
-        return conferenceRequests.add(x);
+    public boolean addRow(FlowerRequest x) {
+        return flowerRequests.add(x);
     }
 
     /**
@@ -58,8 +60,8 @@ public class ConferenceRequestTable {
      * @return value of index
      */
     private int getIndex(String requestID) {
-        for (int i = 0; i < conferenceRequests.size(); i++) {
-            ConferenceRequest x = conferenceRequests.get(i);
+        for (int i = 0; i < flowerRequests.size(); i++) {
+            FlowerRequest x = flowerRequests.get(i);
 
         }
         throw new RuntimeException("No move found with ID " + requestID);

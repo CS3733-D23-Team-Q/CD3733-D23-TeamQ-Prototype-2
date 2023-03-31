@@ -1,14 +1,16 @@
-package edu.wpi.cs3733.D23.teamQ.db;
+package edu.wpi.cs3733.D23.teamQ.db.impl;
+
+import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class NodeTable {
+public class NodeDaoImpl {
     private List<Node> nodes;
 
-    NodeTable(List<Node> nodes) {
+    NodeDaoImpl(List<Node> nodes) {
         this.nodes = nodes;
     }
 

@@ -65,7 +65,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     private int getIndex(Integer edgeID) {
         for (int i = 0; i < edges.size(); i++) {
             Edge e = edges.get(i);
-            if (e.getEdgeID().equals(edgeID)) {
+            if (e.getEdgeID() == edgeID) {
                 return i;
             }
         }

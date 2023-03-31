@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Edge {
-    private String edgeID;
+    private int edgeID;
     private Node startNode;
     private Node endNode;
 
-    Edge(String edgeID, Node startNode, Node endNode) {
+    Edge(int edgeID, Node startNode, Node endNode) {
         this.edgeID = edgeID;
         this.startNode = startNode;
         this.endNode = endNode;

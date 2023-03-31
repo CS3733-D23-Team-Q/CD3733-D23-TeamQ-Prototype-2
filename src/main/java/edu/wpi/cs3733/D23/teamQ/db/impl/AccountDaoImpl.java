@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AccountDaoImpl implements GenDao<Account> {
+public class AccountDaoImpl implements GenDao<Account, String> {
     private List<Account> accounts;
 
     AccountDaoImpl(LinkedList<Account> accounts) {

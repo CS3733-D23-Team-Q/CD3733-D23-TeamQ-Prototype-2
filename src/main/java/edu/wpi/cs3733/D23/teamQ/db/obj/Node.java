@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Node {
-    private String nodeID;
+    private int nodeID;
     private int xCoord;
     private int yCoord;
     private String floor;
@@ -18,7 +18,7 @@ public class Node {
     private int locID;
 
     Node(
-            String nodeID,
+            int nodeID,
             int xCoord,
             int yCoord,
             String floor,

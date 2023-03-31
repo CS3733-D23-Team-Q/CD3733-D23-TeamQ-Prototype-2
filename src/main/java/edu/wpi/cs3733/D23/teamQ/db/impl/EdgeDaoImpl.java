@@ -1,15 +1,14 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.EdgeDao;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EdgeDaoImpl implements EdgeDao {
+public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     private List<Edge> edges;
 
     EdgeDaoImpl(LinkedList<Edge> edges) {
@@ -21,7 +20,7 @@ public class EdgeDaoImpl implements EdgeDao {
      * @param edgeID of node being retrieved
      * @return a edge with the given edgeID
      */
-    public Edge retrieveRow(String edgeID) {
+    public Edge retrieveRow(Integer edgeID) {
         int index = this.getIndex(edgeID);
         return edges.get(index);
     }
@@ -32,7 +31,7 @@ public class EdgeDaoImpl implements EdgeDao {
      * @param newEdge new edge being inserted
      * @return true if successful
      */
-    public boolean updateRow(String edgeID, Edge newEdge) {
+    public boolean updateRow(Integer edgeID, Edge newEdge) {
         int index = this.getIndex(edgeID);
         edges.set(index, newEdge);
         return true;
@@ -43,7 +42,7 @@ public class EdgeDaoImpl implements EdgeDao {
      * @param edgeID of node being deleted
      * @return true if successfully deleted
      */
-    public boolean deleteRow(String edgeID) {
+    public boolean deleteRow(Integer edgeID) {
         int index = this.getIndex(edgeID);
         edges.remove(index);
         return true;
@@ -63,10 +62,10 @@ public class EdgeDaoImpl implements EdgeDao {
      * @param edgeID edgeID being checked
      * @return value of index
      */
-    private int getIndex(String edgeID) {
+    private int getIndex(Integer edgeID) {
         for (int i = 0; i < edges.size(); i++) {
             Edge e = edges.get(i);
-            if (e.getEdgeID().equals(edgeID)) {
+            if (e.getEdgeID() == edgeID) {
                 return i;
             }
         }
@@ -78,7 +77,7 @@ public class EdgeDaoImpl implements EdgeDao {
      *
      * @return all edges in list
      */
-    public List<Edge> getAllEdges(){
+    public List<Edge> getAllRows(){
         return edges;
     }
 

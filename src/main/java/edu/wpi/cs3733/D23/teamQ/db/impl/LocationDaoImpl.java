@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.LocationDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
-
 import java.util.List;
 
-public class LocationDaoImpl implements LocationDao {
+public class LocationDaoImpl implements GenDao<Location, Integer> {
     private List<Location> locations;
 
     /**
@@ -15,7 +13,7 @@ public class LocationDaoImpl implements LocationDao {
      * @param nodeID of location being retrieved
      * @return a node with the given nodeID
      */
-    public Location retrieveRow(String nodeID) {
+    public Location retrieveRow(Integer nodeID) {
         int index = this.getIndex(nodeID);
         return locations.get(index);
     }
@@ -27,7 +25,7 @@ public class LocationDaoImpl implements LocationDao {
      * @param newLocation new location being inserted
      * @return true if successful
      */
-    public boolean updateRow(String nodeID, Location newLocation) {
+    public boolean updateRow(Integer nodeID, Location newLocation) {
         int index = this.getIndex(nodeID);
         locations.set(index, newLocation);
         return true;
@@ -39,7 +37,7 @@ public class LocationDaoImpl implements LocationDao {
      * @param nodeID of location being deleted
      * @return true if successfully deleted
      */
-    public boolean deleteRow(String nodeID) {
+    public boolean deleteRow(Integer nodeID) {
         int index = this.getIndex(nodeID);
         locations.remove(index);
         return true;
@@ -61,10 +59,10 @@ public class LocationDaoImpl implements LocationDao {
      * @param nodeID nodeID being checked
      * @return value of index
      */
-    private int getIndex(String nodeID) {
+    private int getIndex(Integer nodeID) {
         for (int i = 0; i < locations.size(); i++) {
             Location l = locations.get(i);
-            if (l.getNode().getNodeID().equals(nodeID)) {
+            if (l.getNode().getNodeID() == nodeID) {
                 return i;
             }
         }
@@ -76,7 +74,7 @@ public class LocationDaoImpl implements LocationDao {
      *
      * @return all locations in list
      */
-    public List<Location> getAllLocations(){
+    public List<Location> getAllRows(){
         return locations;
     }
 }

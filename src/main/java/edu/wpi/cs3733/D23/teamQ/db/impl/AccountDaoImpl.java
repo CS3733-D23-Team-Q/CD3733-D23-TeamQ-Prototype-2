@@ -1,16 +1,14 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.AccountDao;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AccountDaoImpl implements AccountDao {
+public class AccountDaoImpl implements GenDao<Account, String> {
     private List<Account> accounts;
 
     AccountDaoImpl(LinkedList<Account> accounts) {
@@ -79,7 +77,7 @@ public class AccountDaoImpl implements AccountDao {
      *
      * @return all accounts in list
      */
-    public List<Account> getAllAccounts(){
+    public List<Account> getAllRows(){
         return accounts;
     }
 

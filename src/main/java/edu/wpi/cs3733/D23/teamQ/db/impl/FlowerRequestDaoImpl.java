@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.FlowerRequestDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
-
 import java.util.List;
 
-public class FlowerRequestDaoImpl implements FlowerRequestDao {
+public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
     private List<FlowerRequest> flowerRequests;
 
     /**
@@ -15,7 +13,7 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
      * @param requestID of conferenceRequest being retrieved
      * @return a conferenceRequest with the given nodeID
      */
-    public FlowerRequest retrieveRow(String requestID) {
+    public FlowerRequest retrieveRow(Integer requestID) {
         int index = this.getIndex(requestID);
         return flowerRequests.get(index);
     }
@@ -27,7 +25,7 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
      * @param newRequest new conferenceRequest being inserted
      * @return true if successful
      */
-    public boolean updateRow(String requestID, FlowerRequest newRequest) {
+    public boolean updateRow(Integer requestID, FlowerRequest newRequest) {
         int index = this.getIndex(requestID);
         flowerRequests.set(index, newRequest);
         return true;
@@ -39,7 +37,7 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
      * @param requestID of flowerRequest being deleted
      * @return true if successfully deleted
      */
-    public boolean deleteRow(String requestID) {
+    public boolean deleteRow(Integer requestID) {
         int index = this.getIndex(requestID);
         flowerRequests.remove(index);
         return true;
@@ -61,9 +59,12 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
      * @param requestID requestID being checked
      * @return value of index
      */
-    private int getIndex(String requestID) {
+    private int getIndex(Integer requestID) {
         for (int i = 0; i < flowerRequests.size(); i++) {
             FlowerRequest x = flowerRequests.get(i);
+            if (x.getRequestID() == requestID) {
+                return i;
+            }
         }
         throw new RuntimeException("No move found with ID " + requestID);
     }
@@ -73,7 +74,7 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
      *
      * @return all flower requests in list
      */
-    public List<FlowerRequest> getAllFlowerRequests(){
+    public List<FlowerRequest> getAllRows(){
         return flowerRequests;
     }
 

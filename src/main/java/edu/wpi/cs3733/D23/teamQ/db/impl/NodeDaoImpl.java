@@ -1,15 +1,13 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.NodeDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class NodeDaoImpl implements NodeDao {
+public class NodeDaoImpl implements GenDao<Node, Integer> {
     private List<Node> nodes;
 
     NodeDaoImpl(List<Node> nodes) {
@@ -22,7 +20,7 @@ public class NodeDaoImpl implements NodeDao {
      * @param nodeID of node being retrieved
      * @return a node with the given nodeID
      */
-    public Node retrieveRow(String nodeID) {
+    public Node retrieveRow(Integer nodeID) {
         int index = this.getIndex(nodeID);
         return nodes.get(index);
     }
@@ -34,7 +32,7 @@ public class NodeDaoImpl implements NodeDao {
      * @param newNode new node being inserted
      * @return true if successful
      */
-    public boolean updateRow(String nodeID, Node newNode) {
+    public boolean updateRow(Integer nodeID, Node newNode) {
         int index = this.getIndex(nodeID);
         nodes.set(index, newNode);
         return true;
@@ -46,7 +44,7 @@ public class NodeDaoImpl implements NodeDao {
      * @param nodeID of node being deleted
      * @return true if successfully deleted
      */
-    public boolean deleteRow(String nodeID) {
+    public boolean deleteRow(Integer nodeID) {
         int index = this.getIndex(nodeID);
         nodes.remove(index);
         return true;
@@ -68,10 +66,10 @@ public class NodeDaoImpl implements NodeDao {
      * @param nodeID nodeID being checked
      * @return value of index
      */
-    private int getIndex(String nodeID) {
+    private int getIndex(Integer nodeID) {
         for (int i = 0; i < nodes.size(); i++) {
             Node n = nodes.get(i);
-            if (n.getNodeID().equals(nodeID)) {
+            if (n.getNodeID() == nodeID) {
                 return i;
             }
         }
@@ -83,7 +81,7 @@ public class NodeDaoImpl implements NodeDao {
      *
      * @return all nodes in list
      */
-    public List<Node> getAllNodes(){
+    public List<Node> getAllRows(){
         return nodes;
     }
 

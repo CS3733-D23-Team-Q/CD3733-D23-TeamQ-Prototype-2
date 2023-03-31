@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.MoveDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
-
 import java.util.List;
 
-public class MoveDaoImpl implements MoveDao {
+public class MoveDaoImpl implements GenDao<Move, Integer> {
     private List<Move> moves;
 
     /**
@@ -15,7 +13,7 @@ public class MoveDaoImpl implements MoveDao {
      * @param nodeID of move being retrieved
      * @return a move with the given nodeID
      */
-    public Move retrieveRow(String nodeID) {
+    public Move retrieveRow(Integer nodeID) {
         int index = this.getIndex(nodeID);
         return moves.get(index);
     }
@@ -27,7 +25,7 @@ public class MoveDaoImpl implements MoveDao {
      * @param newMove new location being inserted
      * @return true if successful
      */
-    public boolean updateRow(String nodeID, Move newMove) {
+    public boolean updateRow(Integer nodeID, Move newMove) {
         int index = this.getIndex(nodeID);
         moves.set(index, newMove);
         return true;
@@ -39,7 +37,7 @@ public class MoveDaoImpl implements MoveDao {
      * @param nodeID of move being deleted
      * @return true if successfully deleted
      */
-    public boolean deleteRow(String nodeID) {
+    public boolean deleteRow(Integer nodeID) {
         int index = this.getIndex(nodeID);
         moves.remove(index);
         return true;
@@ -61,10 +59,10 @@ public class MoveDaoImpl implements MoveDao {
      * @param nodeID nodeID being checked
      * @return value of index
      */
-    private int getIndex(String nodeID) {
+    private int getIndex(Integer nodeID) {
         for (int i = 0; i < moves.size(); i++) {
             Move m = moves.get(i);
-            if (m.getNode().getNodeID().equals(nodeID)) {
+            if (m.getNode().getNodeID() == nodeID) {
                 return i;
             }
         }
@@ -76,7 +74,7 @@ public class MoveDaoImpl implements MoveDao {
      *
      * @return all moves in list
      */
-    public List<Move> getAllMoves(){
+    public List<Move> getAllRows(){
         return moves;
     }
 }

@@ -73,7 +73,7 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
      *
      * @return all flower requests in list
      */
-    public List<FlowerRequest> getFlowerRequests(){
+    public List<FlowerRequest> getAllFlowerRequests(){
         return flowerRequests;
     }
 

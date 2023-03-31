@@ -62,7 +62,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     private int getIndex(Integer nodeID) {
         for (int i = 0; i < moves.size(); i++) {
             Move m = moves.get(i);
-            if (m.getNode().getNodeID().equals(nodeID)) {
+            if (m.getNode().getNodeID() == nodeID) {
                 return i;
             }
         }

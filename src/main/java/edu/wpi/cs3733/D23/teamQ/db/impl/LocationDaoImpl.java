@@ -62,7 +62,7 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
     private int getIndex(Integer nodeID) {
         for (int i = 0; i < locations.size(); i++) {
             Location l = locations.get(i);
-            if (l.getNode().getNodeID().equals(nodeID)) {
+            if (l.getNode().getNodeID() == nodeID) {
                 return i;
             }
         }

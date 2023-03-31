@@ -20,9 +20,9 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <MFXButton fx:id="backButton" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Back" textFill="WHITE" GridPane.columnIndex="1" />
-            <MFXButton fx:id="resetButton" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Reset" textFill="WHITE" />
-            <MFXButton fx:id="submitButton" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Submit" textFill="WHITE" GridPane.columnIndex="2" />
+            <MFXButton fx:id="backButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Back" textFill="WHITE" GridPane.columnIndex="1" />
+            <MFXButton fx:id="resetButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Reset" textFill="WHITE" />
+            <MFXButton fx:id="submitButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Submit" textFill="WHITE" GridPane.columnIndex="2" />
          </children>
          <BorderPane.margin>
             <Insets bottom="20.0" />

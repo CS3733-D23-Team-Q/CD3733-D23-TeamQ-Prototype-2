@@ -6,24 +6,11 @@ public class ServiceRequestData {
   private String roomNumber;
   private String specialInstructions;
 
-  public ServiceRequestData(String assignee, String roomNumber, String specialInstructions) {
+  public ServiceRequestData(
+      String requester, String assignee, String roomNumber, String specialInstructions) {
+    this.requester = requester;
     this.assignee = assignee;
     this.roomNumber = roomNumber;
     this.specialInstructions = specialInstructions;
-  }
-
-  @Override
-  public String toString() {
-    return "ServiceRequestData{"
-        + "assignee='"
-        + assignee
-        + '\''
-        + ", roomNumber='"
-        + roomNumber
-        + '\''
-        + ", specialInstructions='"
-        + specialInstructions
-        + '\''
-        + '}';
   }
 }

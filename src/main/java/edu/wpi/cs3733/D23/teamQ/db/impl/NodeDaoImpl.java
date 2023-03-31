@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.NodeDao;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 
 import java.io.File;
@@ -75,6 +76,15 @@ public class NodeDaoImpl implements NodeDao {
             }
         }
         throw new RuntimeException("No node found with ID " + nodeID);
+    }
+
+    /**
+     * function that gets all nodes in the list
+     *
+     * @return all nodes in list
+     */
+    public List<Node> getAllNodes(){
+        return nodes;
     }
 
     /**

@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.AccountDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -72,6 +73,16 @@ public class AccountDaoImpl implements AccountDao {
         }
         throw new RuntimeException("No username found matching " + username);
     }
+
+    /**
+     * function that gets all accounts in the list
+     *
+     * @return all accounts in list
+     */
+    public List<Account> getAllAccounts(){
+        return accounts;
+    }
+
     /**
      * function that exports account table into given csv file
      *

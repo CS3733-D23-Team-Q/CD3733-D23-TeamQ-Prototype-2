@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.LocationDao;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 
 import java.util.List;
@@ -68,5 +69,14 @@ public class LocationDaoImpl implements LocationDao {
             }
         }
         throw new RuntimeException("No location found with ID " + nodeID);
+    }
+
+    /**
+     * function that gets all locations in the list
+     *
+     * @return all locations in list
+     */
+    public List<Location> getAllLocations(){
+        return locations;
     }
 }

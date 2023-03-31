@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.FlowerRequestDao;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 
 import java.util.List;
@@ -63,8 +64,17 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
     private int getIndex(String requestID) {
         for (int i = 0; i < flowerRequests.size(); i++) {
             FlowerRequest x = flowerRequests.get(i);
-
         }
         throw new RuntimeException("No move found with ID " + requestID);
     }
+
+    /**
+     * function that gets all flower requests in the list
+     *
+     * @return all flower requests in list
+     */
+    public List<FlowerRequest> getFlowerRequests(){
+        return flowerRequests;
+    }
+
 }

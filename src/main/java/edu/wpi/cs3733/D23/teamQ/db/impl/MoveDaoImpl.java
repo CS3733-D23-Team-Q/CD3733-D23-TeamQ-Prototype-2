@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.MoveDao;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
 
 import java.util.List;
@@ -68,5 +69,14 @@ public class MoveDaoImpl implements MoveDao {
             }
         }
         throw new RuntimeException("No move found with ID " + nodeID);
+    }
+
+    /**
+     * function that gets all moves in the list
+     *
+     * @return all moves in list
+     */
+    public List<Move> getAllMoves(){
+        return moves;
     }
 }

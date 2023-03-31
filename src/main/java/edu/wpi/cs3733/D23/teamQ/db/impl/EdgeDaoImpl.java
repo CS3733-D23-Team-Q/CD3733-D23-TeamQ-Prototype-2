@@ -72,6 +72,16 @@ public class EdgeDaoImpl implements EdgeDao {
         }
         throw new RuntimeException("No edge found with ID " + edgeID);
     }
+
+    /**
+     * function that gets all edges in the list
+     *
+     * @return all edges in list
+     */
+    public List<Edge> getAllEdges(){
+        return edges;
+    }
+
     /**
      * function that exports edge table into given csv file
      *

@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.ConferenceRequestDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 
 import java.util.List;
 
@@ -66,5 +67,14 @@ public class ConferenceRequestDaoImpl implements ConferenceRequestDao {
 
         }
         throw new RuntimeException("No move found with ID " + requestID);
+    }
+
+    /**
+     * function that gets all conference requests in the list
+     *
+     * @return all conference requests in list
+     */
+    public List<ConferenceRequest> getAllConferenceRequests(){
+        return conferenceRequests;
     }
 }

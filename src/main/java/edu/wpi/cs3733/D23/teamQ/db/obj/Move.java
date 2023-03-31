@@ -8,12 +8,12 @@ import lombok.Setter;
 public class Move {
     private Node node;
     private String longName;
-    private String shortName;
+    private String date;
 
-    public Move(Node node, String longName, String shortName) {
+    public Move(Node node, String longName, String date) {
         this.node = node;
         this.longName = longName;
-        this.shortName = shortName;
+        this.date = date;
     }
 
     public String toString(){
@@ -21,7 +21,7 @@ public class Move {
                 + this.node.getNodeID()
                 + ", longName: "
                 + this.longName
-                + ", shortName: "
-                + this.shortName;
+                + ", date: "
+                + this.date;
     }
 }

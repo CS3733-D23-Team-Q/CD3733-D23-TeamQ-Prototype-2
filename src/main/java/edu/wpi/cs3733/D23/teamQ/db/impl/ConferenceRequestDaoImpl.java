@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.ConferenceRequestDao;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
-
 import java.util.List;
 
-public class ConferenceRequestDaoImpl implements ConferenceRequestDao {
+public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest> {
     private List<ConferenceRequest> conferenceRequests;
 
     /**
@@ -74,7 +72,7 @@ public class ConferenceRequestDaoImpl implements ConferenceRequestDao {
      *
      * @return all conference requests in list
      */
-    public List<ConferenceRequest> getAllConferenceRequests(){
+    public List<ConferenceRequest> getAllRows(){
         return conferenceRequests;
     }
 }

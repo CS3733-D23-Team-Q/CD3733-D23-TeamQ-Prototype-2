@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.FlowerRequestDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
-
 import java.util.List;
 
-public class FlowerRequestDaoImpl implements FlowerRequestDao {
+public class FlowerRequestDaoImpl implements GenDao<FlowerRequest> {
     private List<FlowerRequest> flowerRequests;
 
     /**
@@ -73,7 +71,7 @@ public class FlowerRequestDaoImpl implements FlowerRequestDao {
      *
      * @return all flower requests in list
      */
-    public List<FlowerRequest> getAllFlowerRequests(){
+    public List<FlowerRequest> getAllRows(){
         return flowerRequests;
     }
 

@@ -1,15 +1,14 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.EdgeDao;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EdgeDaoImpl implements EdgeDao {
+public class EdgeDaoImpl implements GenDao<Edge> {
     private List<Edge> edges;
 
     EdgeDaoImpl(LinkedList<Edge> edges) {
@@ -78,7 +77,7 @@ public class EdgeDaoImpl implements EdgeDao {
      *
      * @return all edges in list
      */
-    public List<Edge> getAllEdges(){
+    public List<Edge> getAllRows(){
         return edges;
     }
 

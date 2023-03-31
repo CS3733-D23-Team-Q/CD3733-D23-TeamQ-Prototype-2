@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.MoveDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
-
 import java.util.List;
 
-public class MoveDaoImpl implements MoveDao {
+public class MoveDaoImpl implements GenDao<Move> {
     private List<Move> moves;
 
     /**
@@ -76,7 +74,7 @@ public class MoveDaoImpl implements MoveDao {
      *
      * @return all moves in list
      */
-    public List<Move> getAllMoves(){
+    public List<Move> getAllRows(){
         return moves;
     }
 }

@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
-import edu.wpi.cs3733.D23.teamQ.db.dao.LocationDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
-
 import java.util.List;
 
-public class LocationDaoImpl implements LocationDao {
+public class LocationDaoImpl implements GenDao<Location> {
     private List<Location> locations;
 
     /**
@@ -76,7 +74,7 @@ public class LocationDaoImpl implements LocationDao {
      *
      * @return all locations in list
      */
-    public List<Location> getAllLocations(){
+    public List<Location> getAllRows(){
         return locations;
     }
 }

@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 
-<StackPane fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.ServiceRequestController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <MFXButton fx:id="backButton" text="Back">
-         <font>
-            <Font name="Nunito Sans Regular" size="16.0" />
-         </font>
-      </MFXButton>
-   </children>
-</StackPane>
+<BorderPane minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.ServiceRequestController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <MFXButton fx:id="resetButton" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Reset" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Regular" size="24.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="backButton" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Regular" size="24.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="submitButton" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Submit" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Regular" size="24.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

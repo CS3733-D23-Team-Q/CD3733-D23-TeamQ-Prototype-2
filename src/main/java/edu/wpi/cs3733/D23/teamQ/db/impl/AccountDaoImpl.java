@@ -21,7 +21,7 @@ public class AccountDaoImpl implements AccountDao {
      * @param username of node being retrieved
      * @return an account with the given username
      */
-    public Account retrieveRonString (String username) {
+    public Account retrieveRow (String username) {
         int index = this.getIndex(username);
         return accounts.get(index);
     }

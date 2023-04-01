@@ -3,6 +3,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,6 +15,8 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -22,12 +26,42 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MFXButton fx:id="goToFrDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Flower Delivery" textFill="WHITE" GridPane.rowIndex="1" />
-            <MFXButton fx:id="resetButton1" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="TEMP" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <MFXButton fx:id="goToFeDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Furniture Delivery" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <MFXButton fx:id="goToMDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Meal Delivery" textFill="WHITE" GridPane.columnIndex="1" />
-            <MFXButton fx:id="goToOSPButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Office Supplies Purchase" textFill="WHITE" GridPane.rowIndex="2" />
-            <MFXButton fx:id="goToCCRButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Conference Room Reservation" textFill="WHITE" />
+            <MFXButton fx:id="goToFrDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Flower Delivery" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <MFXButton fx:id="resetButton1" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="TEMP" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <MFXButton fx:id="goToFeDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Furniture Delivery" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <MFXButton fx:id="goToMDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Meal Delivery" textFill="WHITE" GridPane.columnIndex="3" />
+            <MFXButton fx:id="goToOSPButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Office Supplies Purchase" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <MFXButton fx:id="goToCCRButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Conference Room Reservation" textFill="WHITE" GridPane.columnIndex="1" />
+            <ImageView fx:id="mealImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../../../../../../Flower.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="confImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Handshake.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="flowerImage2" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../Flower.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="suppliesImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../../../../../../Flower.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="furnImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../Flower.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tempImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../../../../../../Flower.png" />
+               </image>
+            </ImageView>
          </children>
          <BorderPane.margin>
             <Insets left="20.0" />
@@ -42,9 +76,9 @@
       </MFXButton>
    </right>
    <top>
-      <Label alignment="CENTER" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Service Request Hub" textFill="WHITE" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Service Request Hub" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
-            <Font name="Open Sans Regular" size="12.0" />
+            <Font name="Open Sans Regular" size="24.0" />
          </font>
          <BorderPane.margin>
             <Insets top="20.0" />

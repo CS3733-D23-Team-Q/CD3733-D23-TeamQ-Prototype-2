@@ -45,9 +45,9 @@ public class ServiceRequestController {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-
     // load in the form
     this.serviceBorderPane.setCenter(srPage);
+
     this.resetButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     this.backButton.setOnMouseClicked(
         event -> {
@@ -65,20 +65,21 @@ public class ServiceRequestController {
           }
           Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR);
         });
-    this.submitButton.setOnMouseClicked(event -> {
-      switch (srNum) {
-        case 1:
-          break;
-        case 2:
-          break;
-        case 3:
-          break;
-        case 4:
-          break;
-        case 5:
-          break;
-      }
-      Navigation.navigate(Screen.HOME);
-    });
+    this.submitButton.setOnMouseClicked(
+        event -> {
+          switch (srNum) {
+            case 1:
+              break;
+            case 2:
+              break;
+            case 3:
+              break;
+            case 4:
+              break;
+            case 5:
+              break;
+          }
+          Navigation.navigate(Screen.HOME);
+        });
   }
 }

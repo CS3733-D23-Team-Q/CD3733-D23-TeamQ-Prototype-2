@@ -1,4 +1,4 @@
-
+package edu.wpi.cs3733.D23.teamQ.controllers;
 
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -32,13 +32,13 @@ public class HomeController {
   /** Navigate to the conference room request page when the CRReservationButton is clicked. */
   @FXML
   public void CRReservationButtonClicked() {
-    Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST);
+    Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR);
   }
 
   /** Navigate to the flower delivery request page when the FDRequestButton is clicked. */
   @FXML
   public void FDRequestButtonClicked() {
-    Navigation.navigate(Screen.FLOWER_REQUEST);
+    Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR);
   }
 
   /** Navigate to the signage page when the SPButton is clicked. */

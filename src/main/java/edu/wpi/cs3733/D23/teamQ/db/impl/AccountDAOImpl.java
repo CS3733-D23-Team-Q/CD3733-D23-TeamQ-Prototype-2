@@ -200,4 +200,22 @@ public class AccountDAOImpl {
     }
     return result;
   }
+
+  public int getQuestionId(String question) {
+    int q = 0;
+    Connection con = connect();
+    try {
+      String query = "SELECT id FROM security_question WHERE question = ?";
+      PreparedStatement pst = con.prepareStatement(query);
+      pst.setString(1, question);
+      ResultSet rs = pst.executeQuery();
+      rs.next();
+      q = rs.getInt(1);
+      con.close();
+      pst.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return q;
+  }
 }

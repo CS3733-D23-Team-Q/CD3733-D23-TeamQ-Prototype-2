@@ -66,6 +66,7 @@ public class LoginController {
         Navigation.navigate(Screen.HOME);
       } else {
         passwordField.setStyle("-fx-text-box-border: red;");
+        usernameField.setStyle(null);
         alert.display("Failed to login", "Wrong password.");
       }
     } else if (dao.emailExist(username)) {
@@ -75,11 +76,13 @@ public class LoginController {
           Navigation.navigate(Screen.HOME);
         } else {
           passwordField.setStyle("-fx-text-box-border: red;");
+          usernameField.setStyle(null);
           alert.display("Failed to login", "Wrong password.");
         }
       }
     } else {
-      passwordField.setStyle("-fx-text-box-border: red;");
+      usernameField.setStyle("-fx-text-box-border: red;");
+      passwordField.setStyle(null);
       alert.display("Failed to login", "Username doesn't exist.");
     }
   }
@@ -90,7 +93,7 @@ public class LoginController {
   }
 
   @FXML
-  public void CreatAccountButtonClicked() {
-    System.out.println("Create Account");
+  public void CAButtonClicked() {
+    Navigation.navigate(Screen.CREATE_ACCOUNT);
   }
 }

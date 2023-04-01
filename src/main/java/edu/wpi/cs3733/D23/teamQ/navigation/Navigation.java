@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Navigation {
 
-  public static void navigate(final edu.wpi.cs3733.D23.teamQ.navigation.Screen screen) {
+  public static void navigate(final Screen screen) {
     final String filename = screen.getFilename();
     final String title = screen.getTitle();
 

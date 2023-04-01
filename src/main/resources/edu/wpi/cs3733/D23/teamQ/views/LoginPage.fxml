@@ -40,13 +40,13 @@
                </VBox.margin>
             </PasswordField>
             <HBox alignment="CENTER" prefHeight="20.0" prefWidth="120.0" spacing="70.0" />
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #002d59;" styleClass="button-login" stylesheets="@../../../../../../../../../../CS3733-D23-Team-Q-Prototype-1/src/main/resources/edu/wpi/teamname/views/styles/Home.css" text="Login" textFill="WHITE" VBox.vgrow="ALWAYS" />
-            <Button fx:id="CAButton" mnemonicParsing="false" onAction="#CreatAccountButtonClicked" styleClass="button-forgot" stylesheets="@../../../../../../../../../../CS3733-D23-Team-Q-Prototype-1/src/main/resources/edu/wpi/teamname/views/styles/Home.css" text="Create Account" underline="true">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #002d59;" styleClass="button-login" stylesheets="@styles/Home.css" text="Login" textFill="WHITE" VBox.vgrow="ALWAYS" />
+            <Button fx:id="CAButton" mnemonicParsing="false" onAction="#CAButtonClicked" styleClass="button-forgot" stylesheets="@styles/Home.css" text="Create Account" underline="true">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button fx:id="FPButton" mnemonicParsing="false" onAction="#FPButtonClicked" styleClass="button-forgot" stylesheets="@../../../../../../../../../../CS3733-D23-Team-Q-Prototype-1/src/main/resources/edu/wpi/teamname/views/styles/Home.css" text="Forgot Password?" underline="true">
+            <Button fx:id="FPButton" mnemonicParsing="false" onAction="#FPButtonClicked" styleClass="button-forgot" stylesheets="@styles/Home.css" text="Forgot Password?" underline="true">
                <font>
                   <Font size="9.0" />
                </font>

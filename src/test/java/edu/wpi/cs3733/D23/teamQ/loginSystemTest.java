@@ -88,4 +88,10 @@ public class loginSystemTest {
     boolean actual = dao.emailExist("liukelu@gmail.com");
     assertEquals(false, actual);
   }
+
+  @Test
+  public void testGetQuestionId() {
+    int actual = dao.getQuestionId("What is your favorite color?");
+    assertEquals(2, actual);
+  }
 }

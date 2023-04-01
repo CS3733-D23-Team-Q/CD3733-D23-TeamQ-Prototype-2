@@ -57,16 +57,17 @@ public class CreateAccountController {
             dao.getQuestionId(question2),
             answer1,
             answer2);
-        Navigation.navigate(Screen.HOME);
+        Navigation.navigate(Screen.LOGIN);
         alert.display("Confirmation", "Account created successful!");
       } else {
         passwordField.setStyle("-fx-text-box-border: red;");
+        repasswordField.setStyle("-fx-text-box-border: red;");
         usernameField.setStyle(null);
         alert.display("Failed to create an account", "Password doesn't match.");
       }
     } else {
       usernameField.setStyle("-fx-text-box-border: red;");
-      usernameField.setStyle(null);
+      passwordField.setStyle(null);
       alert.display("Failed to create an account", "Username already exist. Try another one.");
     }
   }

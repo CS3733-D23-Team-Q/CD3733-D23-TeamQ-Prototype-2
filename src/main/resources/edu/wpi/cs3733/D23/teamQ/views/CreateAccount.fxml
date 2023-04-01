@@ -30,10 +30,10 @@
         <Label text="Email" />
         <TextField fx:id="emailField" />
         <Label text="Security Question 1" />
-        <ChoiceBox fx:id="questionChoice1" prefWidth="150.0" />
+        <ChoiceBox fx:id="questionChoice1" prefHeight="25.0" prefWidth="200.0" />
         <TextField fx:id="answer1Field" />
         <Label text="Security Question 2" />
-        <ChoiceBox fx:id="questionChoice2" prefWidth="150.0" />
+        <ChoiceBox fx:id="questionChoice2" prefHeight="25.0" prefWidth="200.0" />
         <TextField fx:id="answer2Field" />
         <HBox alignment="CENTER" prefHeight="30.0" prefWidth="590.0">
             <children>

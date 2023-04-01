@@ -29,7 +29,7 @@
       </StackPane>
       <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="843.0" prefWidth="250.0" spacing="3.0" style="-fx-background-color: #B3BBC0;" HBox.hgrow="NEVER">
          <children>
-            <TextField fx:id="usernameField" onKeyPressed="#usernameFieldEntered" promptText="Username" VBox.vgrow="ALWAYS">
+            <TextField fx:id="usernameField" onKeyPressed="#usernameFieldEntered" promptText="Username or Email" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets left="40.0" right="40.0" />
                </VBox.margin>

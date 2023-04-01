@@ -83,13 +83,13 @@ public class LoginController {
     } else {
       usernameField.setStyle("-fx-text-box-border: red;");
       passwordField.setStyle(null);
-      alert.display("Failed to login", "Username doesn't exist.");
+      alert.display("Failed to login", "User doesn't exist.");
     }
   }
 
   @FXML
   public void FPButtonClicked() {
-    System.out.println("Pops up a screen for resetting password.");
+    Navigation.navigate(Screen.FORGOT_PASSWORD);
   }
 
   @FXML

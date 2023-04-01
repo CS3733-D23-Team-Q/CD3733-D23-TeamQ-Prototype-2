@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -16,8 +17,13 @@ public class LoginController {
 
   @FXML Button CAButton;
 
-  @FXML
+  @FXML Label IncorrectPasswordLabel;
+
   public void initialize() {}
+
+  // To Be implemented later
+  //Call this line when incorrect password is entered
+  //IncorrectPasswordLabel.setOpacity(1);
 
   @FXML
   public void passwordFieldEntered(KeyEvent e) {

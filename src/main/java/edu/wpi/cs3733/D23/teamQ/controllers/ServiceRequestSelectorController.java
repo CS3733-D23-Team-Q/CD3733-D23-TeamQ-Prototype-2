@@ -43,7 +43,7 @@ public class ServiceRequestSelectorController {
         });
     this.homeButton.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.SERVICE_REQUEST);
+          Navigation.navigate(Screen.HOME);
         });
   }
 }

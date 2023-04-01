@@ -1,14 +1,26 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
-import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 
-public class ConferenceRoomRequestController extends ServiceRequestController {
-  @FXML private MFXButton navigateFromConfButton;
+public class ConferenceRoomRequestController {
+  ObservableList<String> foodOptionsList =
+      FXCollections.observableArrayList(
+          "Brunch spread", "Dinner spread", "Snack spread", "No food");
+  @FXML private MFXTextField roomNumberField;
+  @FXML private MFXTextField dateTimeField;
+  @FXML private MFXCheckbox cleanRoomField;
+  private boolean cleanRoom = false;
+  @FXML private ChoiceBox foodField;
+  @FXML private MFXTextField specialInstructionsField;
 
+  @FXML
   public void initialize() {
-    this.navigateFromConfButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    this.foodField.setValue("Select Food Option");
+    this.foodField.setItems(foodOptionsList);
   }
 }

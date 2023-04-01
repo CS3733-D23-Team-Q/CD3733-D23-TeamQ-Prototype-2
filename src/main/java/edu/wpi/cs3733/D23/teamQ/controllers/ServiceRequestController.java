@@ -16,11 +16,13 @@ public class ServiceRequestController {
   @FXML private MFXButton backButton;
   @FXML private MFXButton submitButton;
 
+  private int srNum = 0;
+
   @FXML
   public void initialize() throws IOException {
-    System.out.println("SRC init");
+    srNum = ServiceRequestSelectorController.getSrNum();
     FXMLLoader loader = new FXMLLoader();
-    switch (ServiceRequestSelectorController.getSrNum()) {
+    switch (srNum) {
       case 1:
         loader = new FXMLLoader(App.class.getResource("views/ConferenceRoomRequest.fxml"));
         break;
@@ -48,7 +50,22 @@ public class ServiceRequestController {
     this.serviceBorderPane.setCenter(srPage);
     this.resetButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     this.backButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
+        event -> {
+          switch (srNum) {
+            case 1:
+              System.out.println("test");
+              break;
+            case 2:
+              break;
+            case 3:
+              break;
+            case 4:
+              break;
+            case 5:
+              break;
+          }
+          Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR);
+        });
     this.submitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }

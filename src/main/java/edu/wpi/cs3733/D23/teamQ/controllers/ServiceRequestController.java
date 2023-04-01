@@ -21,73 +21,33 @@ public class ServiceRequestController {
 
   @FXML
   public void initialize() throws IOException {
+    FXMLLoader loader = new FXMLLoader();
     switch (ServiceRequestSelectorController.getSrNum()) {
       case 1:
-        final FXMLLoader loader1 =
-            new FXMLLoader(App.class.getResource("views/ConferenceRoomRequest.fxml"));
-        final BorderPane srPage1;
-        try {
-          srPage1 = loader1.load();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-
-        // load in the form
-        this.serviceBorderPane.setCenter(srPage1);
+        loader = new FXMLLoader(App.class.getResource("views/ConferenceRoomRequest.fxml"));
         break;
       case 2:
-        final FXMLLoader loader2 =
-            new FXMLLoader(App.class.getResource("views/MealDeliveryRequest.fxml"));
-        final BorderPane srPage2;
-        try {
-          srPage2 = loader2.load();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-
-        // load in the form
-        this.serviceBorderPane.setCenter(srPage2);
+        loader = new FXMLLoader(App.class.getResource("views/MealDeliveryRequest.fxml"));
         break;
       case 3:
-        final FXMLLoader loader3 =
-            new FXMLLoader(App.class.getResource("views/FlowerRequest.fxml"));
-        final BorderPane srPage3;
-        try {
-          srPage3 = loader3.load();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-
-        // load in the form
-        this.serviceBorderPane.setCenter(srPage3);
+        loader = new FXMLLoader(App.class.getResource("views/FlowerRequest.fxml"));
         break;
       case 4:
-        final FXMLLoader loader4 =
-            new FXMLLoader(App.class.getResource("views/FurnitureDeliveryRequest.fxml"));
-        final BorderPane srPage4;
-        try {
-          srPage4 = loader4.load();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-
-        // load in the form
-        this.serviceBorderPane.setCenter(srPage4);
+        loader = new FXMLLoader(App.class.getResource("views/FurnitureDeliveryRequest.fxml"));
         break;
       case 5:
-        final FXMLLoader loader5 =
-            new FXMLLoader(App.class.getResource("views/OfficeSuppliesRequest.fxml"));
-        final BorderPane srPage5;
-        try {
-          srPage5 = loader5.load();
-        } catch (IOException e) {
-          throw new RuntimeException(e);
-        }
-
-        // load in the form
-        this.serviceBorderPane.setCenter(srPage5);
+        loader = new FXMLLoader(App.class.getResource("views/OfficeSuppliesRequest.fxml"));
         break;
     }
+    final BorderPane srPage;
+    try {
+      srPage = loader.load();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    // load in the form
+    this.serviceBorderPane.setCenter(srPage);
     //    this.ClearButton.setOnMouseClicked(
     //        event -> {
     //          Assignee.clear();

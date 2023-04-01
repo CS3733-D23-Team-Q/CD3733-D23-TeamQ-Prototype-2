@@ -11,9 +11,6 @@ import javafx.scene.layout.BorderPane;
 
 public class ServiceRequestController {
   @FXML private BorderPane serviceBorderPane;
-  //  @FXML private MFXTextField Assignee;
-  //  @FXML private MFXTextField RoomNumber;
-  //  @FXML private MFXTextField SpecialInstructions;
 
   @FXML private MFXButton resetButton;
   @FXML private MFXButton backButton;
@@ -21,6 +18,7 @@ public class ServiceRequestController {
 
   @FXML
   public void initialize() throws IOException {
+    System.out.println("SRC init");
     FXMLLoader loader = new FXMLLoader();
     switch (ServiceRequestSelectorController.getSrNum()) {
       case 1:
@@ -48,12 +46,6 @@ public class ServiceRequestController {
 
     // load in the form
     this.serviceBorderPane.setCenter(srPage);
-    //    this.ClearButton.setOnMouseClicked(
-    //        event -> {
-    //          Assignee.clear();
-    //          RoomNumber.clear();
-    //          SpecialInstructions.clear();
-    //        });
     this.resetButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
     this.backButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));

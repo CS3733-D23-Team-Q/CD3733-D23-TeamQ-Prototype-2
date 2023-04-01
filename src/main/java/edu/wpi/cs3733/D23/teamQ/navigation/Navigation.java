@@ -10,6 +10,7 @@ public class Navigation {
 
   public static void navigate(final edu.wpi.cs3733.D23.teamQ.navigation.Screen screen) {
     final String filename = screen.getFilename();
+    final String title = screen.getTitle();
 
     try {
       final var resource = App.class.getResource(filename);
@@ -25,6 +26,7 @@ public class Navigation {
                   .toExternalForm());
       primaryStage.setScene(scene);
       primaryStage.centerOnScreen();
+      primaryStage.setTitle(title);
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

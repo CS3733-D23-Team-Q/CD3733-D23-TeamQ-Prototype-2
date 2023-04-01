@@ -53,7 +53,6 @@ public class ServiceRequestController {
         event -> {
           switch (srNum) {
             case 1:
-              System.out.println("test");
               break;
             case 2:
               break;
@@ -66,6 +65,20 @@ public class ServiceRequestController {
           }
           Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR);
         });
-    this.submitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    this.submitButton.setOnMouseClicked(event -> {
+      switch (srNum) {
+        case 1:
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+        case 4:
+          break;
+        case 5:
+          break;
+      }
+      Navigation.navigate(Screen.HOME);
+    });
   }
 }

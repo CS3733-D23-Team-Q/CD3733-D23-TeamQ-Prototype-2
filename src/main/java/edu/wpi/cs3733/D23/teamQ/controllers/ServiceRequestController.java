@@ -21,6 +21,73 @@ public class ServiceRequestController {
 
   @FXML
   public void initialize() throws IOException {
+    switch (ServiceRequestSelectorController.getSrNum()) {
+      case 1:
+        final FXMLLoader loader1 =
+            new FXMLLoader(App.class.getResource("views/ConferenceRoomRequest.fxml"));
+        final BorderPane srPage1;
+        try {
+          srPage1 = loader1.load();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+
+        // load in the form
+        this.serviceBorderPane.setCenter(srPage1);
+        break;
+      case 2:
+        final FXMLLoader loader2 =
+            new FXMLLoader(App.class.getResource("views/MealDeliveryRequest.fxml"));
+        final BorderPane srPage2;
+        try {
+          srPage2 = loader2.load();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+
+        // load in the form
+        this.serviceBorderPane.setCenter(srPage2);
+        break;
+      case 3:
+        final FXMLLoader loader3 =
+            new FXMLLoader(App.class.getResource("views/FlowerRequest.fxml"));
+        final BorderPane srPage3;
+        try {
+          srPage3 = loader3.load();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+
+        // load in the form
+        this.serviceBorderPane.setCenter(srPage3);
+        break;
+      case 4:
+        final FXMLLoader loader4 =
+            new FXMLLoader(App.class.getResource("views/FurnitureDeliveryRequest.fxml"));
+        final BorderPane srPage4;
+        try {
+          srPage4 = loader4.load();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+
+        // load in the form
+        this.serviceBorderPane.setCenter(srPage4);
+        break;
+      case 5:
+        final FXMLLoader loader5 =
+            new FXMLLoader(App.class.getResource("views/OfficeSuppliesRequest.fxml"));
+        final BorderPane srPage5;
+        try {
+          srPage5 = loader5.load();
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+
+        // load in the form
+        this.serviceBorderPane.setCenter(srPage5);
+        break;
+    }
     //    this.ClearButton.setOnMouseClicked(
     //        event -> {
     //          Assignee.clear();
@@ -28,20 +95,8 @@ public class ServiceRequestController {
     //          SpecialInstructions.clear();
     //        });
     this.resetButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    this.backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-    this.submitButton.setOnMouseClicked(
-        event -> {
-          final FXMLLoader loader =
-              new FXMLLoader(App.class.getResource("views/ConferenceRoomRequest.fxml"));
-          final BorderPane srPage;
-          try {
-            srPage = loader.load();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
-
-          // load in the form
-          this.serviceBorderPane.setCenter(srPage);
-        });
+    this.backButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
+    this.submitButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }

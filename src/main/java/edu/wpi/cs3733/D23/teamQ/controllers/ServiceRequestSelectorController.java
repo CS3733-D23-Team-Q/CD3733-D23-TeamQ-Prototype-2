@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
+import lombok.Getter;
 
 public class ServiceRequestSelectorController {
   @FXML private MFXButton goToCCRButton;
@@ -12,31 +13,37 @@ public class ServiceRequestSelectorController {
   @FXML private MFXButton goToFeDButton;
   @FXML private MFXButton goToOSPButton;
   @FXML private MFXButton homeButton;
+  @Getter private static int srNum = 0;
 
   public void initialize() {
     this.goToCCRButton.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST);
+          srNum = 1;
+          Navigation.navigate(Screen.SERVICE_REQUEST);
         });
     this.goToMDButton.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.HOME);
+          srNum = 2;
+          Navigation.navigate(Screen.SERVICE_REQUEST);
         });
     this.goToFrDButton.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.FLOWER_REQUEST);
+          srNum = 3;
+          Navigation.navigate(Screen.SERVICE_REQUEST);
         });
     this.goToFeDButton.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.HOME);
+          srNum = 4;
+          Navigation.navigate(Screen.SERVICE_REQUEST);
         });
     this.goToOSPButton.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.HOME);
+          srNum = 5;
+          Navigation.navigate(Screen.SERVICE_REQUEST);
         });
     this.homeButton.setOnMouseClicked(
         event -> {
-          Navigation.navigate(Screen.HOME);
+          Navigation.navigate(Screen.SERVICE_REQUEST);
         });
   }
 }

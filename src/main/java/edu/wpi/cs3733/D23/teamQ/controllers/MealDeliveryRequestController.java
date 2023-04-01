@@ -5,10 +5,10 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
-public class FlowerRequestController extends ServiceRequestController {
-  @FXML private MFXButton navigateFromFlowButton;
+public class MealDeliveryRequestController extends ServiceRequestController {
+  @FXML private MFXButton navigateFromMealButton;
 
   public void initialize() {
-    this.navigateFromFlowButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    this.navigateFromMealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }

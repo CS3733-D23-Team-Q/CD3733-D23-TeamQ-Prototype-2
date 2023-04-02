@@ -60,6 +60,11 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
     return nodes.add(n);
   }
 
+  @Override
+  public boolean populate() {
+    return false;
+  }
+
   /**
    * gets index of given nodeID in the list of nodes
    *

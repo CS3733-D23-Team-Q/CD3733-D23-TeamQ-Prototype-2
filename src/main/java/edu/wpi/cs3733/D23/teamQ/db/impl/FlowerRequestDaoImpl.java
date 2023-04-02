@@ -2,10 +2,12 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
-  private List<FlowerRequest> flowerRequests;
+  private List<FlowerRequest> flowerRequests = new ArrayList<FlowerRequest>();
 
   /**
    * returns a flowerRequest given a requestID
@@ -26,6 +28,8 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
    * @return true if successful
    */
   public boolean updateRow(Integer requestID, FlowerRequest newRequest) {
+    deleteRow(requestID);
+    addRow(newRequest);
     int index = this.getIndex(requestID);
     flowerRequests.set(index, newRequest);
     return true;
@@ -38,6 +42,14 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
    * @return true if successfully deleted
    */
   public boolean deleteRow(Integer requestID) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement("DELETE FROM \"flowerRequest\" WHERE \"requestID\" = ?")) {
+      stmt.setInt(1, requestID);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     int index = this.getIndex(requestID);
     flowerRequests.remove(index);
     return true;
@@ -46,11 +58,55 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
   /**
    * adds a flowerRequest to the list
    *
-   * @param x flowerRequest being added
+   * @param request flowerRequest being added
    * @return true if successful
    */
-  public boolean addRow(FlowerRequest x) {
-    return flowerRequests.add(x);
+  public boolean addRow(FlowerRequest request) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO \"flowerRequest\"(\"requestID\", \"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+      stmt.setInt(1, request.getRequestID());
+      stmt.setString(2, request.getRequester());
+      stmt.setString(3, request.getProgress());
+      stmt.setString(4, request.getAssignee());
+      stmt.setString(5, request.getSpecialInstructions());
+      stmt.setString(6, request.getNote());
+      stmt.setString(7, request.getTypeOfFlower());
+      stmt.setString(8, request.getBouquetSize());
+      stmt.setString(9, request.getRoomNumber());
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return flowerRequests.add(request);
+  }
+
+  @Override
+  public boolean populate() {
+    try {
+      Connection conn = GenDao.connect();
+      PreparedStatement pst = conn.prepareStatement("SELECT * FROM \"flowerRequest\"");
+      ResultSet rs = pst.executeQuery();
+      while (rs.next()) {
+        flowerRequests.add(
+            new FlowerRequest(
+                rs.getInt("requestID"),
+                rs.getString("requester"),
+                rs.getString("progress"),
+                rs.getString("assignee"),
+                rs.getString("specialInstructions"),
+                rs.getString("note"),
+                rs.getString("typeOfFlower"),
+                rs.getString("bouquetSize"),
+                rs.getString("roomNum")));
+      }
+      conn.close();
+      return true;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return false;
   }
 
   /**
@@ -76,5 +132,41 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
    */
   public List<FlowerRequest> getAllRows() {
     return flowerRequests;
+  }
+
+  public List<FlowerRequest> listFlowerRequests(String assignerUsername) {
+    List<FlowerRequest> requests = new ArrayList<>();
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement("SELECT * FROM flowerRequest WHERE requester = ?")) {
+      stmt.setString(1, assignerUsername);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        int requestID = rs.getInt("requestID");
+        String requester = rs.getString("requester");
+        String progress = rs.getString("progress");
+        String assignee = rs.getString("assignee");
+        String specialInstructions = rs.getString("specialInstructions");
+        String note = rs.getString("note");
+        String typeOfFlower = rs.getString("typeOfFlower");
+        String bouquetSize = rs.getString("bouquetSize");
+        String roomNum = rs.getString("roomNum");
+        FlowerRequest request =
+            new FlowerRequest(
+                requestID,
+                requester,
+                progress,
+                assignee,
+                specialInstructions,
+                note,
+                typeOfFlower,
+                bouquetSize,
+                roomNum);
+        requests.add(request);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return requests;
   }
 }

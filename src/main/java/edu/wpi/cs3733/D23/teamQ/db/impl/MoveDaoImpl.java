@@ -53,6 +53,11 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     return moves.add(m);
   }
 
+  @Override
+  public boolean populate() {
+    return false;
+  }
+
   /**
    * gets index of given nodeID in the list of moves
    *

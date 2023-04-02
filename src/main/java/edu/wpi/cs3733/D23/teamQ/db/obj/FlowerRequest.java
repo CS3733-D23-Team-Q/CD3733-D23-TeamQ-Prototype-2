@@ -13,18 +13,34 @@ public class FlowerRequest extends ServiceRequest {
 
   public FlowerRequest(
       int requestID,
-      String username,
-      String enumeration,
-      String staffMember,
+      String requester,
+      String progress,
+      String assignee,
       String roomNumber,
-      String instructions,
+      String specialInstructions,
       String note,
       String typeOfFlower,
       String bouquetSize) {
-    super(requestID, username, enumeration, staffMember, roomNumber, instructions);
+    super(requestID, requester, progress, assignee, roomNumber, specialInstructions);
     this.requestID = requestID;
     this.note = note;
     this.typeOfFlower = typeOfFlower;
     this.bouquetSize = bouquetSize;
+  }
+
+  public int getRequestID() {
+    return requestID;
+  }
+
+  public String getNote() {
+    return note;
+  }
+
+  public String getTypeOfFlower() {
+    return typeOfFlower;
+  }
+
+  public String getBouquetSize() {
+    return bouquetSize;
   }
 }

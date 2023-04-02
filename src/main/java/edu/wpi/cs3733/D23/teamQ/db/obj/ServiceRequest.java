@@ -2,24 +2,48 @@ package edu.wpi.cs3733.D23.teamQ.db.obj;
 
 public class ServiceRequest {
   private int requestID;
-  private String username;
-  private String enumeration;
-  private String staffMember;
+  private String requester;
+  private String progress;
+  private String assignee;
   private String roomNumber;
-  private String instructions;
+  private String specialInstructions;
 
   public ServiceRequest(
       int requestID,
-      String username,
-      String enumeration,
-      String staffMember,
+      String requester,
+      String progress,
+      String assignee,
       String roomNumber,
-      String instructions) {
+      String specialInstructions) {
     this.requestID = requestID;
-    this.username = username;
-    this.enumeration = enumeration;
-    this.staffMember = staffMember;
+    this.requester = requester;
+    this.progress = progress;
+    this.assignee = assignee;
     this.roomNumber = roomNumber;
-    this.instructions = instructions;
+    this.specialInstructions = specialInstructions;
+  }
+
+  public int getRequestID() {
+    return requestID;
+  }
+
+  public String getRequester() {
+    return requester;
+  }
+
+  public String getProgress() {
+    return progress;
+  }
+
+  public String getAssignee() {
+    return assignee;
+  }
+
+  public String getRoomNumber() {
+    return roomNumber;
+  }
+
+  public String getSpecialInstructions() {
+    return specialInstructions;
   }
 }

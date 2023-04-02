@@ -44,6 +44,7 @@ public class HomeController {
   /** Navigate to the signage page when the SPButton is clicked. */
   @FXML
   public void SPButtonClicked() {
+
     Navigation.navigate(Screen.SIGNAGE);
   }
 

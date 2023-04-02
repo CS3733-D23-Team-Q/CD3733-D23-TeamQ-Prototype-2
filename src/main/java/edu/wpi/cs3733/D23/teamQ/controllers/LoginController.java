@@ -21,14 +21,10 @@ public class LoginController {
 
   public void initialize() {}
 
-  // To Be implemented later
-  //Call this line when incorrect password is entered
-  //IncorrectPasswordLabel.setOpacity(1);
-
   @FXML
   public void passwordFieldEntered(KeyEvent e) {
     if (e.getCode().equals(KeyCode.ENTER)) {
-      System.out.println("Navigate to a logged in screen or pops up a failed to login screen.");
+      loginButtonClicked();
     }
   }
 
@@ -42,12 +38,15 @@ public class LoginController {
   public void usernameFieldEntered(KeyEvent e) {
     if (e.getCode().equals(KeyCode.ENTER)) {
       passwordField.requestFocus();
+      loginButtonClicked();
     }
   }
 
   @FXML
   public void loginButtonClicked() {
-    Navigation.navigate(Screen.HOME);
+    if ((usernameField.getText().toLowerCase().equals("will"))
+        && passwordField.getText().equals("Password")) Navigation.navigate(Screen.HOME);
+    else IncorrectPasswordLabel.setOpacity(1);
   }
 
   @FXML

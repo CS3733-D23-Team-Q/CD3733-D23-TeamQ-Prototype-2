@@ -100,6 +100,31 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
             e.printStackTrace();
         }
     }
+
+    public List<FlowerRequest> listFlowerRequests(String assignerUsername) {
+        List<FlowerRequest> requests = new ArrayList<>();
+        try(Connection conn = GenDao.connect();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM flowerRequest WHERE requester = ?")) {
+            stmt.setString(1, assignerUsername);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                int requestID = rs.getInt("requestID");
+                String requester = rs.getString("requester");
+                String progress = rs.getString("progress");
+                String assignee = rs.getString("assignee");
+                String specialInstructions = rs.getString("specialInstructions");
+                String note = rs.getString("note");
+                String typeOfFlower = rs.getString("typeOfFlower");
+                String bouquetSize = rs.getString("bouquetSize");
+                String roomNum = rs.getString("roomNum");
+                FlowerRequest request = new FlowerRequest(requestID, requester, progress, assignee, specialInstructions, note, typeOfFlower, bouquetSize, roomNum);
+                requests.add(request);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return requests;
+    }
 }
 
 

@@ -11,6 +11,7 @@ public class ServiceRequestSelectorController {
   @FXML private MFXButton goToFrDButton;
   @FXML private MFXButton goToFeDButton;
   @FXML private MFXButton goToOSPButton;
+  @FXML private MFXButton goToPTButton;
   @FXML private MFXButton homeButton;
 
   public void initialize() {
@@ -33,6 +34,10 @@ public class ServiceRequestSelectorController {
     this.goToOSPButton.setOnMouseClicked(
         event -> {
           Navigation.navigate(Screen.OFFICE_SUPPLIES_REQUEST);
+        });
+    this.goToPTButton.setOnMouseClicked(
+        event -> {
+          Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST);
         });
     this.homeButton.setOnMouseClicked(
         event -> {

@@ -27,7 +27,7 @@
         </rowConstraints>
          <children>
             <MFXButton fx:id="goToFrDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Flower Delivery" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <MFXButton fx:id="resetButton1" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="TEMP" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <MFXButton fx:id="goToPTButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Patient Transport" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <MFXButton fx:id="goToFeDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Furniture Delivery" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <MFXButton fx:id="goToMDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Meal Delivery" textFill="WHITE" GridPane.columnIndex="3" />
             <MFXButton fx:id="goToOSPButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Office Supplies Purchase" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />

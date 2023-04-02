@@ -4,7 +4,6 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import edu.wpi.cs3733.D23.teamQ.servicerequestdata.ConferenceRoomRequestData;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,7 +44,8 @@ public class ConferenceRoomRequestController {
                   "temp user",
                   "temp assignee",
                   roomNumberField.getText(),
-                  specialInstructionsField.getText());
+                  specialInstructionsField.getText(),
+                  (String) foodField.getValue());
           System.out.println(newCCR);
           Navigation.navigate(Screen.HOME);
         });

@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import edu.wpi.cs3733.D23.teamQ.userData.accountDAO;
 import org.junit.jupiter.api.Test;
 
-import java.sql.ResultSet;
-
 public class loginSystemTest {
 
   enum question {

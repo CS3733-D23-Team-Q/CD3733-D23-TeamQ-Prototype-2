@@ -4,163 +4,169 @@ import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
-    private List<FlowerRequest> flowerRequests;
+  private List<FlowerRequest> flowerRequests = new ArrayList<FlowerRequest>();
 
+  /**
+   * returns a flowerRequest given a requestID
+   *
+   * @param requestID of conferenceRequest being retrieved
+   * @return a conferenceRequest with the given nodeID
+   */
+  public FlowerRequest retrieveRow(Integer requestID) {
+    int index = this.getIndex(requestID);
+    return flowerRequests.get(index);
+  }
 
-    /**
-     * returns a flowerRequest given a requestID
-     *
-     * @param requestID of conferenceRequest being retrieved
-     * @return a conferenceRequest with the given nodeID
-     */
-    public FlowerRequest retrieveRow(Integer requestID) {
-        int index = this.getIndex(requestID);
-        return flowerRequests.get(index);
+  /**
+   * updates flowerRequest in list with a new flowerRequest
+   *
+   * @param requestID requestID of conferenceRequest being replaced
+   * @param newRequest new conferenceRequest being inserted
+   * @return true if successful
+   */
+  public boolean updateRow(Integer requestID, FlowerRequest newRequest) {
+    deleteRow(requestID);
+    addRow(newRequest);
+    int index = this.getIndex(requestID);
+    flowerRequests.set(index, newRequest);
+    return true;
+  }
+
+  /**
+   * deletes flowerRequest from list of flowerRequests
+   *
+   * @param requestID of flowerRequest being deleted
+   * @return true if successfully deleted
+   */
+  public boolean deleteRow(Integer requestID) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement("DELETE FROM \"flowerRequest\" WHERE \"requestID\" = ?")) {
+      stmt.setInt(1, requestID);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    int index = this.getIndex(requestID);
+    flowerRequests.remove(index);
+    return true;
+  }
 
-    /**
-     * updates flowerRequest in list with a new flowerRequest
-     *
-     * @param requestID requestID of conferenceRequest being replaced
-     * @param newRequest new conferenceRequest being inserted
-     * @return true if successful
-     */
-    public boolean updateRow(Integer requestID, FlowerRequest newRequest) {
-        deleteRow(requestID);
-        addRow(newRequest);
-        int index = this.getIndex(requestID);
-        flowerRequests.set(index, newRequest);
-        return true;
+  /**
+   * adds a flowerRequest to the list
+   *
+   * @param request flowerRequest being added
+   * @return true if successful
+   */
+  public boolean addRow(FlowerRequest request) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO \"flowerRequest\"(\"requestID\", \"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+      stmt.setInt(1, request.getRequestID());
+      stmt.setString(2, request.getRequester());
+      stmt.setString(3, request.getProgress());
+      stmt.setString(4, request.getAssignee());
+      stmt.setString(5, request.getSpecialInstructions());
+      stmt.setString(6, request.getNote());
+      stmt.setString(7, request.getTypeOfFlower());
+      stmt.setString(8, request.getBouquetSize());
+      stmt.setString(9, request.getRoomNumber());
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    return flowerRequests.add(request);
+  }
 
-    /**
-     * deletes flowerRequest from list of flowerRequests
-     *
-     * @param requestID of flowerRequest being deleted
-     * @return true if successfully deleted
-     */
-    public boolean deleteRow(Integer requestID) {
-        try(Connection conn = GenDao.connect();
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM flowerRequest WHERE requestID = ?")) {
-            stmt.setInt(1, requestID);
-            stmt.executeUpdate();
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        int index = this.getIndex(requestID);
-        flowerRequests.remove(index);
-        return true;
+  @Override
+  public boolean populate() {
+    try {
+      Connection conn = GenDao.connect();
+      PreparedStatement pst = conn.prepareStatement("SELECT * FROM \"flowerRequest\"");
+      ResultSet rs = pst.executeQuery();
+      while (rs.next()) {
+        flowerRequests.add(
+            new FlowerRequest(
+                rs.getInt("requestID"),
+                rs.getString("requester"),
+                rs.getString("progress"),
+                rs.getString("assignee"),
+                rs.getString("specialInstructions"),
+                rs.getString("note"),
+                rs.getString("typeOfFlower"),
+                rs.getString("bouquetSize"),
+                rs.getString("roomNum")));
+      }
+      conn.close();
+      return true;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
+    return false;
+  }
 
-    /**
-     * adds a flowerRequest to the list
-     *
-     * @param request flowerRequest being added
-     * @return true if successful
-     */
-    public boolean addRow(FlowerRequest request) {
-        try(Connection conn = GenDao.connect();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, note, typeOfFlower, bouquetSize, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-            stmt.setInt(1, request.getRequestID());
-            stmt.setString(2, request.getRequester());
-            stmt.setString(3, request.getProgress());
-            stmt.setString(4, request.getAssignee());
-            stmt.setString(5, request.getSpecialInstructions());
-            stmt.setString(6, request.getNote());
-            stmt.setString(7, request.getTypeOfFlower());
-            stmt.setString(8, request.getBouquetSize());
-            stmt.setString(9, request.getRoomNumber());
-            stmt.executeUpdate();
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return flowerRequests.add(request);
+  /**
+   * gets index of given request in the list of requests
+   *
+   * @param requestID requestID being checked
+   * @return value of index
+   */
+  private int getIndex(Integer requestID) {
+    for (int i = 0; i < flowerRequests.size(); i++) {
+      FlowerRequest x = flowerRequests.get(i);
+      if (x.getRequestID() == requestID) {
+        return i;
+      }
     }
+    throw new RuntimeException("No move found with ID " + requestID);
+  }
 
-    @Override
-    public boolean populate() {
-        try {
-            Connection conn = GenDao.connect();
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM flowerRequest");
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                flowerRequests.add(
-                        new FlowerRequest(
-                                rs.getInt("requestID"),
-                                rs.getString("requester"),
-                                rs.getString("progress"),
-                                rs.getString("assignee"),
-                                rs.getString("specialInstructions"),
-                                rs.getString("note"),
-                                rs.getString("typeOfFlower"),
-                                rs.getString("bouquetSize"),
-                                rs.getString("roomNum")));
-            }
-            conn.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return false;
-    }
+  /**
+   * function that gets all flower requests in the list
+   *
+   * @return all flower requests in list
+   */
+  public List<FlowerRequest> getAllRows() {
+    return flowerRequests;
+  }
 
-    /**
-     * gets index of given request in the list of requests
-     *
-     * @param requestID requestID being checked
-     * @return value of index
-     */
-    private int getIndex(Integer requestID) {
-        for (int i = 0; i < flowerRequests.size(); i++) {
-            FlowerRequest x = flowerRequests.get(i);
-            if (x.getRequestID() == requestID) {
-                return i;
-            }
-        }
-        throw new RuntimeException("No move found with ID " + requestID);
+  public List<FlowerRequest> listFlowerRequests(String assignerUsername) {
+    List<FlowerRequest> requests = new ArrayList<>();
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement("SELECT * FROM flowerRequest WHERE requester = ?")) {
+      stmt.setString(1, assignerUsername);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        int requestID = rs.getInt("requestID");
+        String requester = rs.getString("requester");
+        String progress = rs.getString("progress");
+        String assignee = rs.getString("assignee");
+        String specialInstructions = rs.getString("specialInstructions");
+        String note = rs.getString("note");
+        String typeOfFlower = rs.getString("typeOfFlower");
+        String bouquetSize = rs.getString("bouquetSize");
+        String roomNum = rs.getString("roomNum");
+        FlowerRequest request =
+            new FlowerRequest(
+                requestID,
+                requester,
+                progress,
+                assignee,
+                specialInstructions,
+                note,
+                typeOfFlower,
+                bouquetSize,
+                roomNum);
+        requests.add(request);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
-
-    /**
-     * function that gets all flower requests in the list
-     *
-     * @return all flower requests in list
-     */
-    public List<FlowerRequest> getAllRows(){
-        return flowerRequests;
-    }
-
-    public List<FlowerRequest> listFlowerRequests(String assignerUsername) {
-        List<FlowerRequest> requests = new ArrayList<>();
-        try(Connection conn = GenDao.connect();
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM flowerRequest WHERE requester = ?")) {
-            stmt.setString(1, assignerUsername);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                int requestID = rs.getInt("requestID");
-                String requester = rs.getString("requester");
-                String progress = rs.getString("progress");
-                String assignee = rs.getString("assignee");
-                String specialInstructions = rs.getString("specialInstructions");
-                String note = rs.getString("note");
-                String typeOfFlower = rs.getString("typeOfFlower");
-                String bouquetSize = rs.getString("bouquetSize");
-                String roomNum = rs.getString("roomNum");
-                FlowerRequest request = new FlowerRequest(requestID, requester, progress, assignee, specialInstructions, note, typeOfFlower, bouquetSize, roomNum);
-                requests.add(request);
-            }
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return requests;
-    }
+    return requests;
+  }
 }
-
-
-
-
-
-

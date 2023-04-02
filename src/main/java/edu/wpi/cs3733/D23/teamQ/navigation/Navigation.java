@@ -27,6 +27,8 @@ public class Navigation {
       primaryStage.setScene(scene);
       primaryStage.centerOnScreen();
       primaryStage.setTitle(title);
+      primaryStage.setMaximized(false);
+      primaryStage.setMaximized(true);
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

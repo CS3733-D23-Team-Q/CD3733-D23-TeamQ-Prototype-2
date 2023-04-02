@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -22,13 +23,19 @@
             <AnchorPane opacity="0.5" prefHeight="493.0" prefWidth="588.0" style="-fx-background-color: #002d59;" />
             <ImageView fitHeight="806.0" fitWidth="1031.0" opacity="0.27" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../../../../../../../../../../Desktop/international-bwh-1428x1110.jpeg" />
+                  <Image url="@../../../../../../Login-background.jpeg" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="843.0" prefWidth="250.0" spacing="3.0" style="-fx-background-color: #B3BBC0;" HBox.hgrow="NEVER">
+      <VBox fx:id="InvalidLoginLabel" alignment="CENTER" minWidth="-Infinity" prefHeight="843.0" prefWidth="250.0" spacing="3.0" style="-fx-background-color: #ffffffff;" HBox.hgrow="NEVER">
          <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="-250.0" VBox.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../../../../../../logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="IncorrectPasswordLabel" opacity="0.0" style="-fx-text-fill: #d61111;" text="Invalid Login - Please try again" translateY="-25.0" />
             <TextField fx:id="usernameField" onKeyPressed="#usernameFieldEntered" promptText="Username or Email" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets left="40.0" right="40.0" />
@@ -40,13 +47,13 @@
                </VBox.margin>
             </PasswordField>
             <HBox alignment="CENTER" prefHeight="20.0" prefWidth="120.0" spacing="70.0" />
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #002d59;" styleClass="button-login" stylesheets="@styles/Home.css" text="Login" textFill="WHITE" VBox.vgrow="ALWAYS" />
-            <Button fx:id="CAButton" mnemonicParsing="false" onAction="#CAButtonClicked" styleClass="button-forgot" stylesheets="@styles/Home.css" text="Create Account" underline="true">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #0f3d99ff;" styleClass="button-login" stylesheets="@styles/Home.css" text="Login" textFill="WHITE" VBox.vgrow="ALWAYS" />
+            <Button fx:id="CAButton" mnemonicParsing="false" onAction="#CAButtonClicked" style="-fx-background-color: ffffffff;" styleClass="button-forgot" stylesheets="@styles/Home.css" text="Create Account" underline="true">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button fx:id="FPButton" mnemonicParsing="false" onAction="#FPButtonClicked" styleClass="button-forgot" stylesheets="@styles/Home.css" text="Forgot Password?" underline="true">
+            <Button fx:id="FPButton" mnemonicParsing="false" onAction="#FPButtonClicked" style="-fx-background-color: ffffffff;" styleClass="button-forgot" stylesheets="@styles/Home.css" text="Forgot Password?" underline="true">
                <font>
                   <Font size="9.0" />
                </font>

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -22,14 +23,17 @@ public class LoginController {
   @FXML Button FPButton;
   @FXML Button CAButton;
 
-  @FXML
+  @FXML Label IncorrectPasswordLabel;
+
   public void initialize() {}
 
   @FXML
   public void passwordFieldEntered(KeyEvent e) {
+    /*
     if (e.getCode().equals(KeyCode.ENTER)) {
-      System.out.println("Navigate to a logged in screen or pops up a failed to login screen.");
+      loginButtonClicked();
     }
+    */
   }
 
   /**
@@ -42,6 +46,7 @@ public class LoginController {
   public void usernameFieldEntered(KeyEvent e) {
     if (e.getCode().equals(KeyCode.ENTER)) {
       passwordField.requestFocus();
+      // loginButtonClicked();
     }
   }
 
@@ -76,6 +81,14 @@ public class LoginController {
       alert.display("Failed to login", "User doesn't exist.");
     }
   }
+
+  /*
+  public void loginButtonClicked() {
+    if ((usernameField.getText().toLowerCase().equals("")) && passwordField.getText().equals(""))
+      Navigation.navigate(Screen.HOME);
+    else IncorrectPasswordLabel.setOpacity(1);
+  }
+     */
 
   @FXML
   public void FPButtonClicked() throws IOException {

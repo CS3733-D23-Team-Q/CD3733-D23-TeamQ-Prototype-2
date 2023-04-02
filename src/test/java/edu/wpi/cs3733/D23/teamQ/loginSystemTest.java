@@ -2,6 +2,7 @@ package edu.wpi.cs3733.D23.teamQ;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.wpi.cs3733.D23.teamQ.controllers.CreateAccountController;
 import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import java.util.List;
@@ -94,4 +95,35 @@ public class loginSystemTest {
     int actual = dao.getQuestionId("What is your favorite color?");
     assertEquals(2, actual);
   }
+
+  CreateAccountController cac = new CreateAccountController();
+
+  // public boolean isEmail(String uname) {
+  //    boolean email = false;
+  //    Pattern pattern = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+");
+  //    if (pattern.matcher(uname).matches()) {
+  //      email = true;
+  //    }
+  //    return email;
+  //  }
+
+  /*
+  @Test
+  public void testValidEmailEmpty() {
+    int actual = cac.validEmail("");
+    assertEquals(0, actual);
+  }
+
+  @Test
+  public void testValidEmailTrue() {
+    int actual = cac.validEmail("this@is.email");
+    assertEquals(1, actual);
+  }
+
+  @Test
+  public void testValidEmailFalse() {
+    int actual = cac.validEmail("liu");
+    assertEquals(2, actual);
+  }
+   */
 }

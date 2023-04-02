@@ -17,7 +17,9 @@ public interface AccountDao {
 
   public boolean usernameExist(String uname);
 
-  boolean emailExist(String uname);
+  public boolean emailExist(String uname);
 
-  int getQuestionId(String question);
+  public int getQuestionId(String question);
+
+  public List<String> getQuestions();
 }

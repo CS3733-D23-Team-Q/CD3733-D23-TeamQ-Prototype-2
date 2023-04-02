@@ -7,7 +7,6 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -15,12 +14,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class LoginController {
+  AccountDAOImpl dao = new AccountDAOImpl();
   AlertBox alert = new AlertBox();
   @FXML TextField usernameField;
   @FXML TextField passwordField;
   @FXML Button loginButton;
   @FXML Button FPButton;
-
   @FXML Button CAButton;
 
   @FXML
@@ -46,54 +45,45 @@ public class LoginController {
     }
   }
 
-  public boolean isEmail(String uname) {
-    boolean email = false;
-    Pattern pattern = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+");
-    if (pattern.matcher(uname).matches()) {
-      email = true;
-    }
-    return email;
-  }
-
   @FXML
   public void loginButtonClicked() throws IOException {
     String username = usernameField.getText();
     String password = passwordField.getText();
-    AccountDAOImpl dao = new AccountDAOImpl();
     if (dao.usernameExist(username)) {
+      usernameField.setStyle(null);
       Account a = dao.getAccountFromUsername(username);
       if (a.getPassword().equals(password)) {
+        passwordField.setStyle(null);
         Navigation.navigate(Screen.HOME);
       } else {
         passwordField.setStyle("-fx-text-box-border: red;");
-        usernameField.setStyle(null);
         alert.display("Failed to login", "Wrong password.");
       }
     } else if (dao.emailExist(username)) {
+      usernameField.setStyle(null);
       List<Account> as = dao.getAccountFromEmail(username);
       for (Account a : as) {
         if (a.getPassword().equals(password)) {
+          passwordField.setStyle(null);
           Navigation.navigate(Screen.HOME);
         } else {
           passwordField.setStyle("-fx-text-box-border: red;");
-          usernameField.setStyle(null);
           alert.display("Failed to login", "Wrong password.");
         }
       }
     } else {
       usernameField.setStyle("-fx-text-box-border: red;");
-      passwordField.setStyle(null);
       alert.display("Failed to login", "User doesn't exist.");
     }
   }
 
   @FXML
-  public void FPButtonClicked() {
-    Navigation.navigate(Screen.FORGOT_PASSWORD);
+  public void FPButtonClicked() throws IOException {
+    ForgotPasswordController.display();
   }
 
   @FXML
-  public void CAButtonClicked() {
-    Navigation.navigate(Screen.CREATE_ACCOUNT);
+  public void CAButtonClicked() throws IOException {
+    CreateAccountController.display();
   }
 }

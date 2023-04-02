@@ -218,4 +218,21 @@ public class AccountDAOImpl {
     }
     return q;
   }
+
+  public List<String> getQuestions() {
+    List<String> questions = new ArrayList<String>();
+    Connection con = connect();
+    try {
+      String query = "SELECT * FROM security_question";
+      Statement st = con.createStatement();
+      ResultSet rs = st.executeQuery(query);
+      while (rs.next()) {
+        String question = rs.getString("question");
+        questions.add(question);
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return questions;
+  }
 }

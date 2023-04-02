@@ -1,41 +1,49 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class ServiceRequest {
-  public enum ProgressStatus {
-    notStarted,
-    processing,
-    done
-  };
-
   private int requestID;
-  public static final String notStarted = "Not started";
-  public static final String processing = "Processing";
-  public static final String done = "Done";
-  private String progress;
   private String requester;
+  private String progress;
   private String assignee;
   private String roomNumber;
   private String specialInstructions;
 
   public ServiceRequest(
-          int requestID,
-          int progress,
-          String requester,
-          String assignee,
-          String roomNumber,
-          String specialInstructions) {
+      int requestID,
+      String requester,
+      String progress,
+      String assignee,
+      String roomNumber,
+      String specialInstructions) {
     this.requestID = requestID;
-    if (progress == 0) this.progress = notStarted;
-    else if (progress == 1) this.progress = processing;
-    else if (progress == 2) this.progress = done;
     this.requester = requester;
+    this.progress = progress;
     this.assignee = assignee;
     this.roomNumber = roomNumber;
     this.specialInstructions = specialInstructions;
+  }
+
+  public int getRequestID() {
+    return requestID;
+  }
+
+  public String getRequester() {
+    return requester;
+  }
+
+  public String getProgress() {
+    return progress;
+  }
+
+  public String getAssignee() {
+    return assignee;
+  }
+
+  public String getRoomNumber() {
+    return roomNumber;
+  }
+
+  public String getSpecialInstructions() {
+    return specialInstructions;
   }
 }

@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import edu.wpi.cs3733.D23.teamQ.servicerequestdata.ConferenceRoomRequestData;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
@@ -38,9 +38,8 @@ public class ConferenceRoomRequestController {
         event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
     this.submitButton.setOnMouseClicked(
         event -> {
-          ConferenceRequest newCCR =
-              new ConferenceRequest(
-                  0,
+          ConferenceRoomRequestData newCCR =
+              new ConferenceRoomRequestData(
                   0,
                   "temp user",
                   "temp assignee",

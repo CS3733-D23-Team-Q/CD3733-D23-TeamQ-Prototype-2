@@ -38,8 +38,8 @@ public class star extends Edge {
       }
 
       for (Edge edge : n.getNeighbors()) {
-        Node m = edge.node;
-        double totalWeight = n.g + edge.weight;
+        Node m = edge.getNode();
+        double totalWeight = n.g + edge.getWeight();
 
         if (!openList.contains(m) && !closedList.contains(m)) {
           m.parent = n;

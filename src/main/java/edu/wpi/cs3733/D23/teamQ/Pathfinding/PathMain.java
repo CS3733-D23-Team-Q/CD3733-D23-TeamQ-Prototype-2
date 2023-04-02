@@ -66,7 +66,6 @@ public class PathMain {
     n13.addBranch(1, n7);
     n13.addBranch(7, n12);
 
-
     Node res = aStar(head, n8);
     printPath((nodeMethods) res);
   }

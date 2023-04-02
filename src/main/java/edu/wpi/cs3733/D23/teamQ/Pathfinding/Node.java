@@ -3,9 +3,6 @@ package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 import java.util.List;
 
 public class Node implements Comparable<Node> {
-  private static int idCounter = 0;
-  private int id;
-
   Node parent = null;
 
   private List<Edge> neighbors;
@@ -19,7 +16,7 @@ public class Node implements Comparable<Node> {
     this.xCoord = xCoord;
     this.yCoord = yCoord;
   }
-  //
+
   public List<Edge> getNeighbors() {
     return neighbors;
   }

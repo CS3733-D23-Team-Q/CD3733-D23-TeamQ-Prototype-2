@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
 public class Edge {
-  public int weight;
-  public Node node;
+  private int weight;
+  private Node node;
 
   Edge(int weight, Node node) {
     super();

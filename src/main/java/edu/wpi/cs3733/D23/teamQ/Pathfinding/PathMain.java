@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
-import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Node.aStar;
-import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Node.printPath;
+import static edu.wpi.cs3733.D23.teamQ.Pathfinding.star.aStar;
+import static edu.wpi.cs3733.D23.teamQ.Pathfinding.star.printPath;
 
 public class PathMain {
   public static void main(String[] args) {

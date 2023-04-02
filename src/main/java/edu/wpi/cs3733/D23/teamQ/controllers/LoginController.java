@@ -17,13 +17,12 @@ import javafx.scene.input.KeyEvent;
 public class LoginController {
   AccountDAOImpl dao = new AccountDAOImpl();
   AlertBox alert = new AlertBox();
+  @FXML Label loginAlert;
   @FXML TextField usernameField;
   @FXML TextField passwordField;
   @FXML Button loginButton;
   @FXML Button FPButton;
   @FXML Button CAButton;
-
-  @FXML Label IncorrectPasswordLabel;
 
   public void initialize() {}
 
@@ -55,30 +54,44 @@ public class LoginController {
     String username = usernameField.getText();
     String password = passwordField.getText();
     if (dao.usernameExist(username)) {
-      usernameField.setStyle(null);
+      // usernameField.setStyle(null);
+      loginAlert.setText("");
+      loginAlert.setStyle(null);
       Account a = dao.getAccountFromUsername(username);
       if (a.getPassword().equals(password)) {
-        passwordField.setStyle(null);
+        // passwordField.setStyle(null);
+        loginAlert.setText("");
+        loginAlert.setStyle(null);
         Navigation.navigate(Screen.HOME);
       } else {
-        passwordField.setStyle("-fx-text-box-border: red;");
-        alert.display("Failed to login", "Wrong password.");
+        // passwordField.setStyle("-fx-text-box-border: red;");
+        // alert.display("Failed to login", "Wrong password.");
+        loginAlert.setText("Wrong password");
+        loginAlert.setStyle("-fx-text-fill: red");
       }
     } else if (dao.emailExist(username)) {
-      usernameField.setStyle(null);
+      // usernameField.setStyle(null);
+      loginAlert.setText("");
+      loginAlert.setStyle(null);
       List<Account> as = dao.getAccountFromEmail(username);
       for (Account a : as) {
         if (a.getPassword().equals(password)) {
-          passwordField.setStyle(null);
+          // passwordField.setStyle(null);
+          loginAlert.setText("");
+          loginAlert.setStyle(null);
           Navigation.navigate(Screen.HOME);
         } else {
-          passwordField.setStyle("-fx-text-box-border: red;");
-          alert.display("Failed to login", "Wrong password.");
+          // passwordField.setStyle("-fx-text-box-border: red;");
+          // alert.display("Failed to login", "Wrong password.");
+          loginAlert.setText("Wrong password");
+          loginAlert.setStyle("-fx-text-fill: red");
         }
       }
     } else {
-      usernameField.setStyle("-fx-text-box-border: red;");
-      alert.display("Failed to login", "User doesn't exist.");
+      // usernameField.setStyle("-fx-text-box-border: red;");
+      // alert.display("Failed to login", "User doesn't exist.");
+      loginAlert.setText("User doesn't exist");
+      loginAlert.setStyle("-fx-text-fill: red");
     }
   }
 

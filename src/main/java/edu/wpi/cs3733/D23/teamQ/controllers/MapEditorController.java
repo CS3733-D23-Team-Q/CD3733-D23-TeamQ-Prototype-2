@@ -1,15 +1,19 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.NodeDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MapEditorController {
 
@@ -37,46 +41,40 @@ public class MapEditorController {
 
   @FXML private TableColumn<Node, Number> Ycoord;
 
-  @FXML private TableView<TableColumn> editor;
+  @FXML private TableView<Node> node;
 
   @FXML
   public void initialize() {
     /** Navigate to homepage after click on the button */
     BackHomeBTN.setOnMouseClicked((event -> Navigation.navigate(Screen.HOME)));
 
-    /**
-     * ObservableList<Node> list = FXCollections.observableArrayList(); for (int i = 0; i <
-     * getNodes().size(); i++) { list.add(getNodes().get(i)); } editor = new TableView<Node>(list);
-     *
-     * <p>//get building Building.setCellValueFactory( new
-     * Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() { @Override
-     * public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
-     * SimpleStringProperty building = new SimpleStringProperty(param.getValue().getBuilding());
-     * return building; } });
-     *
-     * <p>//get Xcoord Xcoord.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node,
-     * Number>, ObservableValue<Number>>() { @Override public ObservableValue<Number>
-     * call(TableColumn.CellDataFeatures<Node, Number> param) { SimpleIntegerProperty xcoord = new
-     * SimpleIntegerProperty(param.getValue().getXCoord()); return xcoord; } });
-     *
-     * <p>//get Ycoord Ycoord.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node,
-     * Number>, ObservableValue<Number>>() { @Override public ObservableValue<Number>
-     * call(TableColumn.CellDataFeatures<Node, Number> param) { SimpleIntegerProperty ycoord = new
-     * SimpleIntegerProperty(param.getValue().getYCoord()); return ycoord; } });
-     *
-     * <p>editor.getColumns().add(Building); editor.getColumns().add(Xcoord);
-     */
+    /*
+     ObservableList<Node> list = FXCollections.observableArrayList(); for (int i = 0; i < NodeDaoImpl.getAllRows().size(); i++)
+     { list.add(NodeDaoImpl.getAllRows().get(i)); }
 
-    /**
-     * Building.setCellValueFactory(new PropertyValueFactory<Node, String>("Building"));
-     * Xcoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Xcoord"));
-     * Ycoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Ycoord"));
-     *
-     * <p>editor.setItems(nodes()); }
-     *
-     * <p>public ObservableList<Node> nodes() { ObservableList<Node> node =
-     * FXCollections.observableArrayList(); for (int i = 0; i < NodeDaoImpl.getAllRows().size();
-     * i++) { node.add(NodeDaoImpl.getAllRows().get(i)); } return node; }
-     */
+    node= new TableView<Node>(list);
+
+     //get building
+    Building.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
+      @Override
+      public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+        SimpleStringProperty building = new SimpleStringProperty(param.getValue().getBuilding);
+        return null;
+      }
+    });
+    */
+
+    Building.setCellValueFactory(new PropertyValueFactory<Node, String>("Building"));
+    Xcoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Xcoord"));
+    Ycoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Ycoord"));
+    node.setItems(nodes());
+  }
+
+  public ObservableList<Node> nodes() {
+    ObservableList<Node> node = FXCollections.observableArrayList();
+    for (int i = 0; i < NodeDaoImpl.getAllRows().size(); i++) {
+      node.add(NodeDaoImpl.getAllRows().get(i));
+    }
+    return node;
   }
 }

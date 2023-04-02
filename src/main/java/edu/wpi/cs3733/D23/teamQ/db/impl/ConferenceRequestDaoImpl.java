@@ -57,6 +57,11 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
         return conferenceRequests.add(x);
     }
 
+    @Override
+    public boolean populate() {
+        return false;
+    }
+
     /**
      * gets index of given request in the list of requests
      *

@@ -56,6 +56,12 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     public boolean addRow(Edge e) {
         return edges.add(e);
     }
+
+    @Override
+    public boolean populate() {
+        return false;
+    }
+
     /**
      * gets index of given edgeID in the list of edges
      *

@@ -5,6 +5,7 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,10 +21,24 @@ public class AccountDaoImpl implements GenDao<Account, String> {
      * @param username of node being retrieved
      * @return an account with the given username
      */
-    public Account retrieveRow (String username) {
+    public Account retrieveRow (String username) throws SQLException {
         int index = this.getIndex(username);
         return accounts.get(index);
+
+        //Populate from database
+
     }
+
+    public static Connection connect() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return conn;
+    }
+
     /**
      * updates account in list with a new account
      *
@@ -56,6 +71,12 @@ public class AccountDaoImpl implements GenDao<Account, String> {
     public boolean addRow(Account a) {
         return accounts.add(a);
     }
+
+    @Override
+    public boolean populate() {
+        return false;
+    }
+
     /**
      * gets index of given account in the list of accounts
      *

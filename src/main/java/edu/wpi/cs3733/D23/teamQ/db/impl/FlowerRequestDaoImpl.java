@@ -58,6 +58,11 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
         return flowerRequests.add(x);
     }
 
+    @Override
+    public boolean populate() {
+        return false;
+    }
+
     /**
      * gets index of given request in the list of requests
      *

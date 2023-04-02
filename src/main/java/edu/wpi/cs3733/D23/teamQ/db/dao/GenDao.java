@@ -20,8 +20,9 @@ public interface GenDao<T, G> {
         return conn;
     }
     public List<T> getAllRows();
-    public T retrieveRow(G ID);
+    public T retrieveRow(G ID) throws SQLException;
     public boolean updateRow(G ID, T x);
     public boolean deleteRow(G ID);
     public boolean addRow(T x);
+    public boolean populate();
 }

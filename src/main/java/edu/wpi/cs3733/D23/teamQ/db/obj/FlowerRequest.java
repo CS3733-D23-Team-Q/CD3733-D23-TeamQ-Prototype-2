@@ -6,41 +6,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FlowerRequest extends ServiceRequest {
-  private int requestID;
-  private String note;
-  private String typeOfFlower;
-  private String bouquetSize;
+  private String flowerType;
+  private int numberOfBouquets;
 
   public FlowerRequest(
-      int requestID,
-      String requester,
-      String progress,
-      String assignee,
-      String roomNumber,
-      String specialInstructions,
-      String note,
-      String typeOfFlower,
-      String bouquetSize) {
-    super(requestID, requester, progress, assignee, roomNumber, specialInstructions);
-    this.requestID = requestID;
-    this.note = note;
-    this.typeOfFlower = typeOfFlower;
-    this.bouquetSize = bouquetSize;
-  }
-
-  public int getRequestID() {
-    return requestID;
-  }
-
-  public String getNote() {
-    return note;
-  }
-
-  public String getTypeOfFlower() {
-    return typeOfFlower;
-  }
-
-  public String getBouquetSize() {
-    return bouquetSize;
+          int requestID,
+          int progress,
+          String requester,
+          String assignee,
+          String roomNumber,
+          String specialInstructions,
+          String flowerType,
+          int numberOfBouquets) {
+    super(requestID, progress, requester, assignee, roomNumber, specialInstructions);
+    this.flowerType = flowerType;
+    this.numberOfBouquets = numberOfBouquets;
   }
 }

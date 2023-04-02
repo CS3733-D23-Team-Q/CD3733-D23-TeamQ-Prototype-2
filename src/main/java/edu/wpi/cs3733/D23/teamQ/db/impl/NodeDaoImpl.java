@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class NodeDaoImpl implements GenDao<Node, Integer> {
-  private static List<Node> nodes;
+  private List<Node> nodes;
 
   NodeDaoImpl(List<Node> nodes) {
     this.nodes = nodes;
@@ -81,7 +81,7 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    *
    * @return all nodes in list
    */
-  public static List<Node> getAllRows() {
+  public List<Node> getAllRows() {
     return nodes;
   }
 

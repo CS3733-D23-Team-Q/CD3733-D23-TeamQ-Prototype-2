@@ -1,19 +1,15 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.db.impl.NodeDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MapEditorController {
 
@@ -43,38 +39,36 @@ public class MapEditorController {
 
   @FXML private TableView<Node> node;
 
-  @FXML
-  public void initialize() {
-    /** Navigate to homepage after click on the button */
-    BackHomeBTN.setOnMouseClicked((event -> Navigation.navigate(Screen.HOME)));
-
-    /*
-     ObservableList<Node> list = FXCollections.observableArrayList(); for (int i = 0; i < NodeDaoImpl.getAllRows().size(); i++)
-     { list.add(NodeDaoImpl.getAllRows().get(i)); }
-
-    node= new TableView<Node>(list);
-
-     //get building
-    Building.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
-      @Override
-      public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
-        SimpleStringProperty building = new SimpleStringProperty(param.getValue().getBuilding);
-        return null;
-      }
-    });
-    */
-
-    Building.setCellValueFactory(new PropertyValueFactory<Node, String>("Building"));
-    Xcoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Xcoord"));
-    Ycoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Ycoord"));
-    node.setItems(nodes());
-  }
-
-  public ObservableList<Node> nodes() {
+  /*
+   public ObservableList<Node> nodes() {
     ObservableList<Node> node = FXCollections.observableArrayList();
     for (int i = 0; i < NodeDaoImpl.getAllRows().size(); i++) {
       node.add(NodeDaoImpl.getAllRows().get(i));
     }
     return node;
+  }
+  */
+
+  @FXML
+  public void initialize() {
+    /** Navigate to homepage after click on the button */
+    BackHomeBTN.setOnMouseClicked((event -> Navigation.navigate(Screen.HOME)));
+
+    // node = new TableView<Node>(nodes());
+    /*
+        Building.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
+          @Override
+          public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+            return new SimpleStringProperty(param.getValue().getBuilding());
+          }
+        });
+    */
+
+    /*  Building.setCellValueFactory(new PropertyValueFactory<Node, String>("Building"));
+      Xcoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Xcoord"));
+      Ycoord.setCellValueFactory(new PropertyValueFactory<Node, Number>("Ycoord"));
+      node.setItems(nodes());
+    }*/
+
   }
 }

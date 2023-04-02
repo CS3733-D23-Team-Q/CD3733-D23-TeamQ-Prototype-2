@@ -5,7 +5,7 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
 import java.util.List;
 
 public class MoveDaoImpl implements GenDao<Move, Integer> {
-  private List<Move> moves;
+  private static List<Move> moves;
 
   /**
    * returns a move given a nodeID

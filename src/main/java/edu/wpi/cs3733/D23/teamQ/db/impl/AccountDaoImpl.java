@@ -132,4 +132,6 @@ public class AccountDaoImpl implements GenDao<Account, String> {
             return false;
         }
     }
+
+
 }

@@ -10,7 +10,7 @@
 
 <BorderPane prefHeight="675.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.ProfilePageController">
    <top>
-      <ImageView fitHeight="116.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" translateY="5.0" BorderPane.alignment="TOP_CENTER">
+      <ImageView fx:id="ProfilePage_Profile_Image" fitHeight="116.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" translateY="5.0" BorderPane.alignment="TOP_CENTER">
          <image>
             <Image url="@../../../../../../../../../../OneDrive/Desktop/download.png" />
          </image>
@@ -23,42 +23,42 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
                      <children>
-                        <MFXButton style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Change Profile Picture" textFill="WHITE" />
+                        <MFXButton fx:id="ProfilePage_ChangePic_Button" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Change Profile Picture" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <MFXTextField prefHeight="49.0" prefWidth="141.0" promptText="Title" />
+                        <MFXTextField fx:id="ProfilePage_Title_TextField" prefHeight="49.0" prefWidth="141.0" promptText="Title" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXTextField prefHeight="49.0" prefWidth="140.0" promptText="ID Number" />
+                        <MFXTextField fx:id="ProfilePage_IDNumber_TextField" prefHeight="49.0" prefWidth="140.0" promptText="ID Number" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXTextField prefHeight="49.0" prefWidth="140.0" promptText="First Name" />
+                        <MFXTextField fx:id="ProfilePage_FirstName_TextField" prefHeight="49.0" prefWidth="140.0" promptText="First Name" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXTextField prefHeight="49.0" prefWidth="140.0" promptText="Last Name" />
+                        <MFXTextField fx:id="ProfilePage_LastName_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Last Name" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXTextField prefHeight="49.0" prefWidth="140.0" promptText="Username" />
+                        <MFXTextField fx:id="ProfilePage_Username_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Username" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXTextField prefHeight="49.0" prefWidth="140.0" promptText="Email" />
+                        <MFXTextField fx:id="ProfilePage_Email_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Email" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXTextField prefHeight="49.0" prefWidth="140.0" promptText="Phone Number" />
+                        <MFXTextField fx:id="ProfilePage_PhoneNumber_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Phone Number" />
                      </children>
                   </HBox>
                </children>
@@ -73,7 +73,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MFXButton style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Button" textFill="WHITE" />
+                        <MFXButton fx:id="ProfilePage_Done_Button" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Done" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>

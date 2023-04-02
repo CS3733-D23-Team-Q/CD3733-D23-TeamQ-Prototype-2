@@ -3,6 +3,8 @@ package edu.wpi.cs3733.D23.teamQ.navigation;
 import edu.wpi.cs3733.D23.teamQ.App;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class Navigation {
 

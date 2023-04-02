@@ -28,14 +28,14 @@
             </ImageView>
          </children>
       </StackPane>
-      <VBox fx:id="InvalidLoginLabel" alignment="CENTER" minWidth="-Infinity" prefHeight="843.0" prefWidth="250.0" spacing="3.0" style="-fx-background-color: #ffffffff;" HBox.hgrow="NEVER">
+      <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="843.0" prefWidth="250.0" spacing="3.0" style="-fx-background-color: #ffffffff;" HBox.hgrow="NEVER">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateY="-250.0" VBox.vgrow="ALWAYS">
                <image>
                   <Image url="@../../../../../../logo.png" />
                </image>
             </ImageView>
-            <Label fx:id="IncorrectPasswordLabel" opacity="0.0" style="-fx-text-fill: #d61111;" text="Invalid Login - Please try again" translateY="-25.0" />
+            <Label fx:id="loginAlert" style="-fx-text-fill: #d61111;" translateY="-25.0" />
             <TextField fx:id="usernameField" onKeyPressed="#usernameFieldEntered" promptText="Username or Email" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets left="40.0" right="40.0" />

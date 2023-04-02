@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integer> {
-  private List<ConferenceRequest> conferenceRequests;
+  private List<ConferenceRequest> conferenceRequests = new ArrayList<ConferenceRequest>();
 
   /**
    * returns a conferenceRequest given a requestID
@@ -45,17 +45,19 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
    * @return true if successfully deleted
    */
   public boolean deleteRow(Integer requestID) throws SQLException {
-    int index = this.getIndex(requestID);
-    conferenceRequests.remove(index);
     try (Connection connection = GenDao.connect();
         PreparedStatement st =
             connection.prepareStatement(
                 "DELETE FROM \"conferenceRequest\" WHERE \"requestID\" = ?")) {;
       st.setInt(1, requestID);
       st.executeUpdate();
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+
+    int index = this.getIndex(requestID);
+    conferenceRequests.remove(index);
+
     return true;
   }
 
@@ -69,7 +71,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     try (Connection conn = GenDao.connect();
         PreparedStatement stmt =
             conn.prepareStatement(
-                "INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, time, cleanRoom, foodChoice, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                "INSERT INTO \"conferenceRequest\"(\"requestID\", requester, progress, assignee, \"specialInstructions\", time, \"cleanRoom\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setInt(1, x.getRequestID());
       stmt.setString(2, x.getRequester());
       stmt.setString(3, x.getProgress());
@@ -122,6 +124,9 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   private int getIndex(Integer requestID) {
     for (int i = 0; i < conferenceRequests.size(); i++) {
       ConferenceRequest x = conferenceRequests.get(i);
+      if (x.getRequestID() == requestID) {
+        return i;
+      }
     }
     throw new RuntimeException("No move found with ID " + requestID);
   }
@@ -135,58 +140,37 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     return conferenceRequests;
   }
   /*
-  public void addConferenceRequest(ConferenceRequest request) {
+  public List<ConferenceRequest> listConferenceRequests(String assignerUsername) {
+      List<ConferenceRequest> requests = new ArrayList<>();
       try(Connection conn = GenDao.connect();
-          PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, time, cleanRoom, foodChoice, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-          stmt.setInt(1, request.getRequestID());
-          stmt.setString(2, request.getRequester());
-          stmt.setString(3, request.getProgress());
-          stmt.setString(4, request.getAssignee());
-          stmt.setString(5, request.getSpecialInstructions());
-          stmt.setString(6, request.getTime());
-          stmt.setBoolean(7, request.isCleanRoom());
-          stmt.setString(8, request.getFoodChoice());
-          stmt.setString(9, request.getRoomNumber());
-          stmt.executeUpdate();
+          PreparedStatement stmt = conn.prepareStatement("SELECT * FROM conferenceRequest WHERE requester = ?")) {
+          stmt.setString(1, assignerUsername);
+          ResultSet rs = stmt.executeQuery();
+          while(rs.next()) {
+              int requestID = rs.getInt("requestID");
+              String requester = rs.getString("requester");
+              String progress = rs.getString("progress");
+              String assignee = rs.getString("assignee");
+              String specialInstructions = rs.getString("specialInstructions");
+              String time = rs.getString("time");
+              boolean cleanRoom = rs.getBoolean("cleanRoom");
+              String foodChoice = rs.getString("foodChoice");
+              String roomNum = rs.getString("roomNum");
+              ConferenceRequest request = new ConferenceRequest(requestID, requester, progress, assignee, roomNum, specialInstructions, time, cleanRoom, foodChoice);
+              requests.add(request);
+          }
       } catch(SQLException e) {
           e.printStackTrace();
       }
+      return requests;
   }
    */
 
-  public List<ConferenceRequest> listConferenceRequests(String assignerUsername) {
-    List<ConferenceRequest> requests = new ArrayList<>();
-    try (Connection conn = GenDao.connect();
-        PreparedStatement stmt =
-            conn.prepareStatement("SELECT * FROM conferenceRequest WHERE requester = ?")) {
-      stmt.setString(1, assignerUsername);
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()) {
-        int requestID = rs.getInt("requestID");
-        String requester = rs.getString("requester");
-        String progress = rs.getString("progress");
-        String assignee = rs.getString("assignee");
-        String specialInstructions = rs.getString("specialInstructions");
-        String time = rs.getString("time");
-        boolean cleanRoom = rs.getBoolean("cleanRoom");
-        String foodChoice = rs.getString("foodChoice");
-        String roomNum = rs.getString("roomNum");
-        ConferenceRequest request =
-            new ConferenceRequest(
-                requestID,
-                requester,
-                progress,
-                assignee,
-                roomNum,
-                specialInstructions,
-                time,
-                cleanRoom,
-                foodChoice);
-        requests.add(request);
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
+  public List<ConferenceRequest> listConferenceRequests(String username) {
+    List<ConferenceRequest> list = new ArrayList<ConferenceRequest>();
+    for (ConferenceRequest request : conferenceRequests) {
+      if (request.getRequester().equals(username)) {}
     }
-    return requests;
+    return list;
   }
 }

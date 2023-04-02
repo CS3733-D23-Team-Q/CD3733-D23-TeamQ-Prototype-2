@@ -46,6 +46,7 @@ public class ConferenceRoomRequestController {
                   "temp assignee",
                   roomNumberField.getText(),
                   specialInstructionsField.getText(),
+                  dateTimeField.getText(),
                   (String) foodField.getValue());
           System.out.println(newCCR);
           Navigation.navigate(Screen.HOME);

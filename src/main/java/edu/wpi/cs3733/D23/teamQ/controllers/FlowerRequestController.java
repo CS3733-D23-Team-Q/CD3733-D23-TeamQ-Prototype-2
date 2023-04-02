@@ -54,6 +54,7 @@ public class FlowerRequestController extends ServiceRequestController {
                   "temp assignee",
                   roomNumberField.getText(),
                   specialInstructionsField.getText(),
+                  noteField.getText(),
                   (String) flowerChoiceField.getValue(),
                   (int) bouquetChoiceField.getValue());
           System.out.println(newFR);

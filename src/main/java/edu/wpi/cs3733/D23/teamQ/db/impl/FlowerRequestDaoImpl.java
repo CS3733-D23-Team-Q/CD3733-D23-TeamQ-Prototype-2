@@ -68,12 +68,12 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
                 "INSERT INTO \"flowerRequest\"(\"requestID\", \"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setInt(1, request.getRequestID());
       stmt.setString(2, request.getRequester());
-      stmt.setString(3, request.getProgress());
+      stmt.setInt(3, request.getProgress());
       stmt.setString(4, request.getAssignee());
       stmt.setString(5, request.getSpecialInstructions());
       stmt.setString(6, request.getNote());
-      stmt.setString(7, request.getTypeOfFlower());
-      stmt.setString(8, request.getBouquetSize());
+      stmt.setString(7, request.getFlowerType());
+      stmt.setInt(8, request.getNumberOfBouquets());
       stmt.setString(9, request.getRoomNumber());
       stmt.executeUpdate();
     } catch (SQLException e) {
@@ -92,14 +92,14 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
         flowerRequests.add(
             new FlowerRequest(
                 rs.getInt("requestID"),
+                rs.getInt("progress"),
                 rs.getString("requester"),
-                rs.getString("progress"),
                 rs.getString("assignee"),
+                rs.getString("roomNum"),
                 rs.getString("specialInstructions"),
                 rs.getString("note"),
                 rs.getString("typeOfFlower"),
-                rs.getString("bouquetSize"),
-                rs.getString("roomNum")));
+                rs.getInt("bouquetSize")));
       }
       conn.close();
       return true;
@@ -144,24 +144,24 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
       while (rs.next()) {
         int requestID = rs.getInt("requestID");
         String requester = rs.getString("requester");
-        String progress = rs.getString("progress");
+        int progress = rs.getInt("progress");
         String assignee = rs.getString("assignee");
         String specialInstructions = rs.getString("specialInstructions");
         String note = rs.getString("note");
         String typeOfFlower = rs.getString("typeOfFlower");
-        String bouquetSize = rs.getString("bouquetSize");
+        int bouquetSize = rs.getInt("bouquetSize");
         String roomNum = rs.getString("roomNum");
         FlowerRequest request =
             new FlowerRequest(
                 requestID,
-                requester,
                 progress,
+                requester,
                 assignee,
+                roomNum,
                 specialInstructions,
                 note,
                 typeOfFlower,
-                bouquetSize,
-                roomNum);
+                bouquetSize);
         requests.add(request);
       }
     } catch (SQLException e) {

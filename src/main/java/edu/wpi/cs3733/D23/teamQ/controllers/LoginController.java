@@ -44,8 +44,8 @@ public class LoginController {
 
   @FXML
   public void loginButtonClicked() {
-    if ((usernameField.getText().toLowerCase().equals("will"))
-        && passwordField.getText().equals("Password")) Navigation.navigate(Screen.HOME);
+    if ((usernameField.getText().toLowerCase().equals("")) && passwordField.getText().equals(""))
+      Navigation.navigate(Screen.HOME);
     else IncorrectPasswordLabel.setOpacity(1);
   }
 

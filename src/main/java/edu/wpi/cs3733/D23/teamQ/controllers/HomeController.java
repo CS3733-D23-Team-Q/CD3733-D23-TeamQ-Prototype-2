@@ -83,39 +83,4 @@ public class HomeController {
       System.out.println("Navigate to a specific page according to the text being entered.");
     }
   }
-
-  @FXML
-  public void passwordFieldEntered(KeyEvent e) {
-    if (e.getCode().equals(KeyCode.ENTER)) {
-      System.out.println("Navigate to a logged in screen or pops up a failed to login screen.");
-    }
-  }
-
-  /**
-   * Whenever the Enter key is pressed inside the username textfield, change the focus to the
-   * password textfield.
-   *
-   * @param e A key pressed event received from the username textfield.
-   */
-  @FXML
-  public void usernameFieldEntered(KeyEvent e) {
-    if (e.getCode().equals(KeyCode.ENTER)) {
-      passwordField.requestFocus();
-    }
-  }
-
-  @FXML
-  public void loginButtonClicked() {
-    System.out.println("Navigate to a logged in screen or pops up a failed to login screen.");
-  }
-
-  @FXML
-  public void FUButtonClicked() {
-    System.out.println("Pops up a screen for retrieving username.");
-  }
-
-  @FXML
-  public void FPButtonClicked() {
-    System.out.println("Pops up a screen for resetting password.");
-  }
 }

@@ -25,6 +25,7 @@ public class Navigation {
                   .toExternalForm());
       primaryStage.setScene(scene);
       primaryStage.centerOnScreen();
+      primaryStage.setMaximized(false);
       primaryStage.setMaximized(true);
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();

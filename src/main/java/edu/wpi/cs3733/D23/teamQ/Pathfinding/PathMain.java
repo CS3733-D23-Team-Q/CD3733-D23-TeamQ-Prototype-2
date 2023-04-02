@@ -6,6 +6,8 @@ import static edu.wpi.cs3733.D23.teamQ.Pathfinding.star.printPath;
 public class PathMain {
   public static void main(String[] args) {
 
+    //test 
+
     TestNode head = new TestNode(0, 0);
     head.g = 0;
 

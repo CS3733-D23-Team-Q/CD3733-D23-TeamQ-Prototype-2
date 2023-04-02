@@ -22,12 +22,12 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #f1f1f1;" BorderPane.alignment="CENTER">
          <children>
-            <MFXTextField fx:id="roomNumberField" prefHeight="20.0" prefWidth="200.0" promptText="Room Number">
+            <MFXTextField fx:id="roomNumberField" prefHeight="20.0" prefWidth="250.0" promptText="Room Number">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></MFXTextField>
-            <MFXTextField fx:id="dateTimeField" prefHeight="20.0" prefWidth="200.0" promptText="Date/Time" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <MFXTextField fx:id="dateTimeField" prefHeight="20.0" prefWidth="250.0" promptText="Date/Time" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" translateX="-30.0">
                <children>
                   <Label alignment="CENTER" prefHeight="100.0" prefWidth="150.0" text="Food?" />
                   <ChoiceBox fx:id="foodField" prefWidth="150.0" />
@@ -36,12 +36,12 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <MFXTextField fx:id="specialInstructionsField" prefHeight="20.0" prefWidth="200.0" promptText="Special Instructions" />
+            <MFXTextField fx:id="specialInstructionsField" prefHeight="20.0" prefWidth="250.0" promptText="Special Instructions" />
          </children>
       </VBox>
    </center>
    <bottom>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane translateY="-30.0" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.HomeController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="629.6666870117188" minWidth="10.0" prefWidth="500.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.3333129882812" minWidth="10.0" prefWidth="500.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="563.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1000.0" spacing="380.0" style="-fx-background-color: #142A53;" GridPane.columnSpan="10" />
+      <MenuBar prefHeight="25.0" prefWidth="122.0" styleClass="button-menu" stylesheets="@styles/Home.css">
+         <menus>
+            <Menu mnemonicParsing="false" text="Menu">
+               <items>
+                  <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exitMenuClicked" text="Exit" />
+               </items>
+               <graphic>
+                  <ImageView fx:id="menuImage" fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Menu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <MenuBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="99.0" styleClass="button-menu" stylesheets="@styles/Home.css" GridPane.columnIndex="1">
+        <menus>
+          <Menu mnemonicParsing="false">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Profile" />
+            </items>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+        </menus>
+         <GridPane.margin>
+            <Insets bottom="2.0" />
+         </GridPane.margin>
+      </MenuBar>
+   </children>
+</GridPane>

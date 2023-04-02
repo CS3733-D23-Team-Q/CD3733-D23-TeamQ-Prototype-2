@@ -37,7 +37,7 @@ public class star extends Edge {
         return n;
       }
 
-      for (Edge edge : n.neighbors) {
+      for (Edge edge : n.getNeighbors()) {
         Node m = edge.node;
         double totalWeight = n.g + edge.weight;
 
@@ -66,18 +66,18 @@ public class star extends Edge {
     return null;
   }
 
-  public static void printPath(Node target) {
-    Node n = target;
+  public static void printPath(nodeMethods target) {
+    nodeMethods n = target;
 
     if (n == null) return;
 
     List<Integer> ids = new ArrayList<>();
 
     while (n.parent != null) {
-      ids.add(n.id);
-      n = n.parent;
+      ids.add(n.getId());
+      n = (nodeMethods) n.parent;
     }
-    ids.add(n.id);
+    ids.add(n.getId());
     Collections.reverse(ids);
 
     for (int id : ids) {

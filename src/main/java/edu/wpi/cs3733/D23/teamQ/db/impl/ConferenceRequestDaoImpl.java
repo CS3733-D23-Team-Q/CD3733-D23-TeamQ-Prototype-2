@@ -29,9 +29,13 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
      * @param newRequest new conferenceRequest being inserted
      * @return true if successful
      */
-    public boolean updateRow(Integer requestID, ConferenceRequest newRequest) {
+    public boolean updateRow(Integer requestID, ConferenceRequest newRequest) throws SQLException {
         int index = this.getIndex(requestID);
         conferenceRequests.set(index, newRequest);
+
+        deleteRow(requestID);
+        addRow(newRequest);
+
         return true;
     }
 
@@ -41,10 +45,17 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
      * @param requestID of conferenceRequest being deleted
      * @return true if successfully deleted
      */
-    public boolean deleteRow(Integer requestID) {
+    public boolean deleteRow(Integer requestID) throws SQLException {
         int index = this.getIndex(requestID);
         conferenceRequests.remove(index);
+
+        Connection connection = GenDao.connect();
+        PreparedStatement st = connection.prepareStatement("DELETE FROM \"conferenceRequest\" WHERE \"requestID\" = ?");
+        st.setInt(1, requestID);
+        st.executeUpdate();
+
         return true;
+
     }
 
     /**
@@ -54,12 +65,35 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
      * @return true if successful
      */
     public boolean addRow(ConferenceRequest x) {
+        try(Connection conn = GenDao.connect();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, time, cleanRoom, foodChoice, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+            stmt.setInt(1, x.getRequestID());
+            stmt.setString(2, x.getRequester());
+            stmt.setString(3, x.getProgress());
+            stmt.setString(4, x.getAssignee());
+            stmt.setString(5, x.getSpecialInstructions());
+            stmt.setString(6, x.getTime());
+            stmt.setBoolean(7, x.isCleanRoom());
+            stmt.setString(8, x.getFoodChoice());
+            stmt.setString(9, x.getRoomNumber());
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
         return conferenceRequests.add(x);
     }
 
     @Override
-    public boolean populate() {
-        return false;
+    public boolean populate() throws SQLException {
+        Connection conn = GenDao.connect();
+        Statement stm = conn.createStatement();
+        String sql = "Select * From \"conferenceRequest\"";
+        ResultSet rst = stm.executeQuery(sql);
+        while(rst.next()) {
+            ConferenceRequest conferenceRequest = new ConferenceRequest(rst.getInt("requestID"), rst.getString("requester"), rst.getString("progress"), rst.getString("assignee"), rst.getString("roomNum"), rst.getString("specialInstructions"), rst.getString("time"), rst.getBoolean("cleanRoom"), rst.getString("foodChoice"));
+            conferenceRequests.add(conferenceRequest);
+        }
+        return true;
     }
 
     /**
@@ -83,7 +117,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     public List<ConferenceRequest> getAllRows(){
         return conferenceRequests;
     }
-
+    /*
     public void addConferenceRequest(ConferenceRequest request) {
         try(Connection conn = GenDao.connect();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, time, cleanRoom, foodChoice, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
@@ -101,6 +135,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
             e.printStackTrace();
         }
     }
+     */
 
     public List<ConferenceRequest> listConferenceRequests(String assignerUsername) {
         List<ConferenceRequest> requests = new ArrayList<>();
@@ -126,6 +161,11 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
         }
         return requests;
     }
+
+
+
+
+
 
 
 }

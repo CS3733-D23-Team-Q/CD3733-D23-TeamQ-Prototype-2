@@ -28,6 +28,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
      * @return true if successful
      */
     public boolean updateRow(Integer requestID, ConferenceRequest newRequest) throws SQLException {
+
         int index = this.getIndex(requestID);
         conferenceRequests.set(index, newRequest);
 
@@ -46,12 +47,13 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     public boolean deleteRow(Integer requestID) throws SQLException {
         int index = this.getIndex(requestID);
         conferenceRequests.remove(index);
-
-        Connection connection = GenDao.connect();
-        PreparedStatement st = connection.prepareStatement("DELETE FROM \"conferenceRequest\" WHERE \"requestID\" = ?");
-        st.setInt(1, requestID);
-        st.executeUpdate();
-
+        try (Connection connection = GenDao.connect();
+            PreparedStatement st = connection.prepareStatement("DELETE FROM \"conferenceRequest\" WHERE \"requestID\" = ?")){;
+            st.setInt(1, requestID);
+            st.executeUpdate();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         return true;
 
     }
@@ -83,13 +85,17 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
 
     @Override
     public boolean populate() throws SQLException {
-        Connection conn = GenDao.connect();
-        Statement stm = conn.createStatement();
-        String sql = "Select * From \"conferenceRequest\"";
-        ResultSet rst = stm.executeQuery(sql);
-        while(rst.next()) {
-            ConferenceRequest conferenceRequest = new ConferenceRequest(rst.getInt("requestID"), rst.getString("requester"), rst.getString("progress"), rst.getString("assignee"), rst.getString("roomNum"), rst.getString("specialInstructions"), rst.getString("time"), rst.getBoolean("cleanRoom"), rst.getString("foodChoice"));
-            conferenceRequests.add(conferenceRequest);
+        try {
+            Connection conn = GenDao.connect();
+            Statement stm = conn.createStatement();
+            String sql = "Select * From \"conferenceRequest\"";
+            ResultSet rst = stm.executeQuery(sql);
+            while (rst.next()) {
+                ConferenceRequest conferenceRequest = new ConferenceRequest(rst.getInt("requestID"), rst.getString("requester"), rst.getString("progress"), rst.getString("assignee"), rst.getString("roomNum"), rst.getString("specialInstructions"), rst.getString("time"), rst.getBoolean("cleanRoom"), rst.getString("foodChoice"));
+                conferenceRequests.add(conferenceRequest);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return true;
     }

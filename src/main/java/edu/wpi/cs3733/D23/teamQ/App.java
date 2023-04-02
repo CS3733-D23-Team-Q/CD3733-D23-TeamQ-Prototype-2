@@ -27,10 +27,11 @@ public class App extends Application {
   public void start(Stage primaryStage) throws IOException {
     /* primaryStage is generally only used if one of your components require the stage to display */
     App.primaryStage = primaryStage;
-    primaryStage.setTitle("Login");
+    primaryStage.setTitle("Home Page");
 
     final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
     final BorderPane root = loader.load();
+
     App.rootPane = root;
     final Scene scene = new Scene(root);
     primaryStage.setScene(scene);
@@ -41,7 +42,7 @@ public class App extends Application {
                 .getResource("/edu/wpi/cs3733/D23/teamQ/views/styles/Home.css")
                 .toExternalForm());
     primaryStage.show();
-    Navigation.navigate(Screen.LOGIN);
+    Navigation.navigate(Screen.HOME);
     primaryStage.centerOnScreen();
   }
 

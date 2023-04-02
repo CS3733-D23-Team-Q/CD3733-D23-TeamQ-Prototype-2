@@ -13,8 +13,17 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.HomeController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="629.6666870117188" minWidth="10.0" prefWidth="500.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.3333129882812" minWidth="10.0" prefWidth="500.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="629.6666870117188" minWidth="10.0" prefWidth="137.33332570393878" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="792.3333333333334" minWidth="10.0" prefWidth="792.3333333333334" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.3333129882812" minWidth="10.0" prefWidth="77.33333333333337" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -38,7 +47,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <MenuBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="99.0" styleClass="button-menu" stylesheets="@styles/Home.css" GridPane.columnIndex="1">
+      <MenuBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="99.0" styleClass="button-menu" stylesheets="@styles/Home.css" GridPane.columnIndex="2">
         <menus>
           <Menu mnemonicParsing="false">
             <items>

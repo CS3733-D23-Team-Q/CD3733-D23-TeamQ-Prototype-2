@@ -26,7 +26,7 @@
         <RowConstraints maxHeight="344.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-      <TableView prefHeight="552.0" prefWidth="393.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+      <TableView fx:id="edge" prefHeight="552.0" prefWidth="393.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
         <columns>
                   <TableColumn fx:id="StartNode" prefWidth="75.0" text="StartNode" />
                   <TableColumn fx:id="EndNode" prefWidth="75.0" text="EndNode" />
@@ -35,7 +35,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView prefHeight="552.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <TableView fx:id="move" prefHeight="552.0" prefWidth="166.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
         <columns>
                   <TableColumn fx:id="Date" prefWidth="75.0" text="Date" />
         </columns>
@@ -43,7 +43,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView prefHeight="562.0" prefWidth="368.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+      <TableView fx:id="node" prefHeight="562.0" prefWidth="368.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
         <columns>
                   <TableColumn fx:id="NodeID" prefWidth="75.0" text="NodeID" />
                   <TableColumn fx:id="Xcoord" prefWidth="75.0" text="X-coord" />
@@ -58,7 +58,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TableView>
-      <TableView prefHeight="562.0" prefWidth="524.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <TableView fx:id="locationname" prefHeight="562.0" prefWidth="524.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
         <columns>
                   <TableColumn fx:id="LongName" prefWidth="75.0" text="LongName" />
                   <TableColumn fx:id="ShortName" prefWidth="75.0" text="ShortName" />

@@ -2,10 +2,15 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
+import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
     private List<FlowerRequest> flowerRequests;
+
 
     /**
      * returns a flowerRequest given a requestID
@@ -78,4 +83,27 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
         return flowerRequests;
     }
 
+    public void addFlowerRequest(FlowerRequest request) {
+        try(Connection conn = GenDao.connect();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, note, typeOfFlower, bouquetSize, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+            stmt.setInt(1, request.getRequestID());
+            stmt.setString(2, request.getRequester());
+            stmt.setString(3, request.getProgress());
+            stmt.setString(4, request.getAssignee());
+            stmt.setString(5, request.getSpecialInstructions());
+            stmt.setString(6, request.getNote());
+            stmt.setString(7, request.getTypeOfFlower());
+            stmt.setString(8, request.getBouquetSize());
+            stmt.setString(9, request.getRoomNumber());
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
+
+
+
+

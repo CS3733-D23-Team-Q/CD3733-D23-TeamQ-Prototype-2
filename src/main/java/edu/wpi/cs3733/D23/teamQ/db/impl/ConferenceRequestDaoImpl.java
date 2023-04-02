@@ -2,6 +2,12 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
+import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integer> {
@@ -73,5 +79,23 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
      */
     public List<ConferenceRequest> getAllRows(){
         return conferenceRequests;
+    }
+
+    public void addConferenceRequest(ConferenceRequest request) {
+        try(Connection conn = GenDao.connect();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, time, cleanRoom, foodChoice, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+            stmt.setInt(1, request.getRequestID());
+            stmt.setString(2, request.getRequester());
+            stmt.setString(3, request.getProgress());
+            stmt.setString(4, request.getAssignee());
+            stmt.setString(5, request.getSpecialInstructions());
+            stmt.setString(6, request.getTime());
+            stmt.setBoolean(7, request.isCleanRoom());
+            stmt.setString(8, request.getFoodChoice());
+            stmt.setString(9, request.getRoomNumber());
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

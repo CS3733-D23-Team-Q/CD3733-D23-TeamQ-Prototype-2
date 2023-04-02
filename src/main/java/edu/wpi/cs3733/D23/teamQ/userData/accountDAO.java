@@ -20,6 +20,7 @@ public class accountDAO {
     }
     return con;
   }
+  // test
 
   public boolean addUser(
       String uname, String pass, String email, int q1, int q2, String a1, String a2) {

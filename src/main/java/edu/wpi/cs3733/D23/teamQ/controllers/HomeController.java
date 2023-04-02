@@ -9,8 +9,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class HomeController {
-  @FXML Button CRReservationButton;
-  @FXML Button FDRequestButton;
+  @FXML Button ServiceHubButton;
+  @FXML Button ViewRequestsButton;
   @FXML Button SPButton;
   @FXML Button LMButton;
 
@@ -31,13 +31,13 @@ public class HomeController {
 
   /** Navigate to the conference room request page when the CRReservationButton is clicked. */
   @FXML
-  public void CRReservationButtonClicked() {
+  public void ServiceHubButtonClicked() {
     Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR);
   }
 
   /** Navigate to the flower delivery request page when the FDRequestButton is clicked. */
   @FXML
-  public void FDRequestButtonClicked() {
+  public void ViewRequestsButtonClicked() {
     Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR);
   }
 

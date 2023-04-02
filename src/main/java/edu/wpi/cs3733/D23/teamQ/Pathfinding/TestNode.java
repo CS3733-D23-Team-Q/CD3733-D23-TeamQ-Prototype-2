@@ -3,13 +3,13 @@ package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node implements Comparable<Node> {
-  // Id for readability of result purposes
+public class TestNode implements Comparable<TestNode>, Inode {
+  // ID for readability of result purposes
   private static int idCounter = 0;
   public int id;
 
   // Parent in the path
-  public Node parent = null;
+  public TestNode parent = null;
 
   public List<Edge> neighbors;
 
@@ -23,7 +23,7 @@ public class Node implements Comparable<Node> {
   // Hardcoded heuristic
   //    public double h;
 
-  Node(int xCoord, int yCoord) {
+  TestNode(int xCoord, int yCoord) {
     //        this.h = h;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
@@ -32,23 +32,30 @@ public class Node implements Comparable<Node> {
   }
 
   @Override
-  public int compareTo(Node n) {
+  public int compareTo(TestNode n) {
     return Double.compare(this.f, n.f);
   }
 
-  public void addBranch(int weight, Node node) {
+  public void addBranch(int weight, TestNode node) {
     Edge newEdge = new Edge(weight, node);
     Edge inverseEdge = new Edge(weight, this);
     neighbors.add(newEdge);
     neighbors.add(inverseEdge);
   }
 
-  public int getxCoord() {
-    return xCoord;
+  @Override
+  public int getNodeID() {
+    return this.getNodeID();
   }
 
-  public int getyCoord() {
-    return yCoord;
+  @Override
+  public int getX() {
+    return this.getX();
+  }
+
+  @Override
+  public int getY() {
+    return this.getY();
   }
 
   //        int dx = Math.abs(n.getxCoord() - goal.getxCoord());

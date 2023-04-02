@@ -6,39 +6,39 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class star extends Edge {
-  star(int weight, Node node) {
+  star(int weight, TestNode node) {
     super(weight, node);
   }
 
-  public int getWeight(Node n, Node goal) {
-    int xDist = goal.getxCoord() - n.getxCoord();
-    int yDist = goal.getyCoord() - n.getyCoord();
+  public int getWeight(TestNode n, TestNode goal) {
+    int xDist = goal.getX() - n.getX();
+    int yDist = goal.getY() - n.getY();
     double trueDist = Math.sqrt(xDist * xDist + yDist * yDist);
     return (int) trueDist;
   }
 
-  public static double calculateHeuristic(Node n, Node target) {
-    int dx = Math.abs(n.getxCoord() - target.getxCoord());
-    int dy = Math.abs(n.getyCoord() - target.getyCoord());
+  public static double calculateHeuristic(TestNode n, TestNode target) {
+    int dx = Math.abs(n.getX() - target.getX());
+    int dy = Math.abs(n.getY() - target.getY());
     int D = Math.abs(dx + dy);
     return D;
   }
 
-  public static Node aStar(Node start, Node target) {
-    PriorityQueue<Node> closedList = new PriorityQueue<>();
-    PriorityQueue<Node> openList = new PriorityQueue<>();
+  public static TestNode aStar(TestNode start, TestNode target) {
+    PriorityQueue<TestNode> closedList = new PriorityQueue<>();
+    PriorityQueue<TestNode> openList = new PriorityQueue<>();
 
     start.f = start.g + calculateHeuristic(start, target);
     openList.add(start);
 
     while (!openList.isEmpty()) {
-      Node n = openList.peek();
+      TestNode n = openList.peek();
       if (n == target) {
         return n;
       }
 
       for (Edge edge : n.neighbors) {
-        Node m = edge.node;
+        TestNode m = edge.node;
         double totalWeight = n.g + edge.weight;
 
         if (!openList.contains(m) && !closedList.contains(m)) {
@@ -66,8 +66,8 @@ public class star extends Edge {
     return null;
   }
 
-  public static void printPath(Node target) {
-    Node n = target;
+  public static void printPath(TestNode target) {
+    TestNode n = target;
 
     if (n == null) return;
 

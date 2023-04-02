@@ -1,12 +1,13 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
+import edu.wpi.cs3733.D23.teamQ.Pathfinding.Inode;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Node {
+public class Node implements Inode {
   private int nodeID;
   private int xCoord;
   private int yCoord;
@@ -53,5 +54,17 @@ public class Node {
         + this.edges
         + ", location: "
         + this.location;
+  }
+
+  public int getX() {
+    return this.getXCoord();
+  }
+
+  public int getY() {
+    return this.getYCoord();
+  }
+
+  public int getNodeID(Node Anode) {
+    return this.getNodeID();
   }
 }

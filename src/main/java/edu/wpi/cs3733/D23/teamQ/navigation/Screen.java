@@ -6,9 +6,12 @@ public enum Screen {
   SIGNAGE("views/Signage.fxml"),
   HELP("views/Help.fxml"),
   SERVICE_REQUEST_SELECTOR("views/ServiceRequestSelector.fxml"),
-  SERVICE_REQUEST("views/ServiceRequestRoot.fxml"),
   CONFERENCE_ROOM_REQUEST("views/ConferenceRoomRequest.fxml"),
-  FLOWER_REQUEST("views/FlowerRequest.fxml");
+  FLOWER_REQUEST("views/FlowerRequest.fxml"),
+  FLOWER_REQUEST_SUBMISSION("views.FlowerRequestSubmission.fxml"),
+  MEAL_REQUEST("views/MealDeliveryRequest.fxml"),
+  OFFICE_SUPPLIES_REQUEST("views/OfficeSuppliesRequest.fxml"),
+  FURNITURE_REQUEST("views/FurnitureDeliveryRequest.fxml");
 
   private final String filename;
 

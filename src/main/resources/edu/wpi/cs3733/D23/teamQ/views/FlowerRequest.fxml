@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -51,4 +55,21 @@
          </children>
       </HBox>
    </center>
+   <bottom>
+      <GridPane BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <MFXButton fx:id="backButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Back" textFill="WHITE" GridPane.columnIndex="1" />
+            <MFXButton fx:id="resetButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Reset" textFill="WHITE" />
+            <MFXButton fx:id="submitButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Submit" textFill="WHITE" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+   </bottom>
 </BorderPane>

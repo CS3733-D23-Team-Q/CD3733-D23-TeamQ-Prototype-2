@@ -1,5 +1,9 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.servicerequestdata.FlowerRequestData;
+import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
+import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +20,9 @@ public class FlowerRequestController extends ServiceRequestController {
   @FXML private ChoiceBox bouquetChoiceField;
   ObservableList<String> NumOfBouquets = FXCollections.observableArrayList("1", "2", "3", "4", "5");
 
+  @FXML private MFXButton resetButton;
+  @FXML private MFXButton backButton;
+  @FXML private MFXButton submitButton;
   /**
    * Initializes the Flower Request Choice Box's Switches screens to the Home page when Cancel
    * Button is pressed Clears fields when Clears Filters is pressed Switches screens to Flower
@@ -27,5 +34,27 @@ public class FlowerRequestController extends ServiceRequestController {
     this.flowerChoiceField.setItems(TypeOfFlowers);
     this.bouquetChoiceField.setValue("Number of Bouquets");
     this.bouquetChoiceField.setItems(NumOfBouquets);
+    this.resetButton.setOnMouseClicked(
+        event -> {
+          roomNumberField.clear();
+          noteField.clear();
+          specialInstructionsField.clear();
+          flowerChoiceField.setValue("Select Flower");
+          bouquetChoiceField.setValue("Number of Bouquets");
+        });
+    this.backButton.setOnMouseClicked(
+        event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
+    this.submitButton.setOnMouseClicked(
+        event -> {
+          FlowerRequestData newFR =
+              new FlowerRequestData(
+                  0,
+                  "temp user",
+                  "temp assignee",
+                  roomNumberField.getText(),
+                  specialInstructionsField.getText());
+          System.out.println(newFR);
+          Navigation.navigate(Screen.FLOWER_REQUEST_SUBMISSION);
+        });
   }
 }

@@ -14,7 +14,6 @@ public class HomeController {
   @FXML Button SPButton;
   @FXML Button LMButton;
 
-  @FXML Button previousButton;
   @FXML Button nextButton;
 
   @FXML MenuItem exit;
@@ -60,17 +59,12 @@ public class HomeController {
     Platform.exit();
   }
 
-  /** Features might be added in the future. */
-  @FXML
-  public void previousButtonClicked() {
-    System.out.println("Go to the previous slide page.");
-  }
-
   @FXML
   public void nextButtonClicked() {
-    System.out.println("Go to the next slide page.");
+    Navigation.navigate(Screen.HOME2);
   }
 
+  /** Features might be added in the future. */
   @FXML
   public void settingButtonClicked() {
     System.out.println("Pops up a setting screen.");

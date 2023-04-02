@@ -2,10 +2,9 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
-import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
-
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
@@ -31,6 +30,8 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
      * @return true if successful
      */
     public boolean updateRow(Integer requestID, FlowerRequest newRequest) {
+        deleteRow(requestID);
+        addRow(newRequest);
         int index = this.getIndex(requestID);
         flowerRequests.set(index, newRequest);
         return true;
@@ -43,6 +44,13 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
      * @return true if successfully deleted
      */
     public boolean deleteRow(Integer requestID) {
+        try(Connection conn = GenDao.connect();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM flowerRequest WHERE requestID = ?")) {
+            stmt.setInt(1, requestID);
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
         int index = this.getIndex(requestID);
         flowerRequests.remove(index);
         return true;
@@ -51,15 +59,52 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
     /**
      * adds a flowerRequest to the list
      *
-     * @param x flowerRequest being added
+     * @param request flowerRequest being added
      * @return true if successful
      */
-    public boolean addRow(FlowerRequest x) {
-        return flowerRequests.add(x);
+    public boolean addRow(FlowerRequest request) {
+        try(Connection conn = GenDao.connect();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, note, typeOfFlower, bouquetSize, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+            stmt.setInt(1, request.getRequestID());
+            stmt.setString(2, request.getRequester());
+            stmt.setString(3, request.getProgress());
+            stmt.setString(4, request.getAssignee());
+            stmt.setString(5, request.getSpecialInstructions());
+            stmt.setString(6, request.getNote());
+            stmt.setString(7, request.getTypeOfFlower());
+            stmt.setString(8, request.getBouquetSize());
+            stmt.setString(9, request.getRoomNumber());
+            stmt.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return flowerRequests.add(request);
     }
 
     @Override
     public boolean populate() {
+        try {
+            Connection conn = GenDao.connect();
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM flowerRequest");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                flowerRequests.add(
+                        new FlowerRequest(
+                                rs.getInt("requestID"),
+                                rs.getString("requester"),
+                                rs.getString("progress"),
+                                rs.getString("assignee"),
+                                rs.getString("specialInstructions"),
+                                rs.getString("note"),
+                                rs.getString("typeOfFlower"),
+                                rs.getString("bouquetSize"),
+                                rs.getString("roomNum")));
+            }
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return false;
     }
 
@@ -86,24 +131,6 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
      */
     public List<FlowerRequest> getAllRows(){
         return flowerRequests;
-    }
-
-    public void addFlowerRequest(FlowerRequest request) {
-        try(Connection conn = GenDao.connect();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO flowerRequest(requestID, requester, progress, assignee, specialInstructions, note, typeOfFlower, bouquetSize, roomNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-            stmt.setInt(1, request.getRequestID());
-            stmt.setString(2, request.getRequester());
-            stmt.setString(3, request.getProgress());
-            stmt.setString(4, request.getAssignee());
-            stmt.setString(5, request.getSpecialInstructions());
-            stmt.setString(6, request.getNote());
-            stmt.setString(7, request.getTypeOfFlower());
-            stmt.setString(8, request.getBouquetSize());
-            stmt.setString(9, request.getRoomNumber());
-            stmt.executeUpdate();
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public List<FlowerRequest> listFlowerRequests(String assignerUsername) {

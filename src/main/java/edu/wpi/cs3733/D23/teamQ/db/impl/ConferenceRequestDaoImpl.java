@@ -2,8 +2,6 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
-import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

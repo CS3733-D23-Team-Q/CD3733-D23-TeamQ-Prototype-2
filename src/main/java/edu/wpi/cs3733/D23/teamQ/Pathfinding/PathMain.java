@@ -30,11 +30,14 @@ public class PathMain {
 
     n5.addBranch(1, n6);
     n5.addBranch(1, n7);
+    n6.addBranch(1, n6);
+    n7.addBranch(1, n5);
 
     nodeMethods n8 = new nodeMethods(4, 0);
     n6.addBranch(1, n8);
     n7.addBranch(1, n8);
     n8.addBranch(1, n7);
+    n8.addBranch(1, n6);
 
     nodeMethods n9 = new nodeMethods(0, 2);
     n2.addBranch(1, n9);
@@ -59,9 +62,9 @@ public class PathMain {
 
     nodeMethods n13 = new nodeMethods(4, 2);
     n7.addBranch(1, n13);
-    n12.addBranch(2, n13);
+    n12.addBranch(1, n13);
     n13.addBranch(1, n7);
-    n13.addBranch(1, n12);
+    n13.addBranch(7, n12);
     //
     //        head.addBranch(1, n1);
     //        head.addBranch(5, n2);

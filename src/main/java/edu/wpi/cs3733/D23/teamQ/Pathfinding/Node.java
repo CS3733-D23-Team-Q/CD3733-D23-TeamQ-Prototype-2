@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Node implements Comparable<Node> {
   // Id for readability of result purposes
-  //  private static int idCounter = 0;
-  //  private int id;
+  private static int idCounter = 0;
+  private int id;
 
   // Parent in the path
   Node parent = null;

@@ -10,10 +10,6 @@ public class nodeMethods extends Node {
 
   private List<Edge> neighbors;
 
-  // Evaluation functions
-  double f = Double.MAX_VALUE;
-  double g = Double.MAX_VALUE;
-
   nodeMethods(int xCoord, int yCoord) {
     super(xCoord, yCoord);
     this.id = idCounter++;
@@ -47,8 +43,8 @@ public class nodeMethods extends Node {
 
   public void addBranch(int weight, Node node) {
     Edge newEdge = new Edge(weight, node);
-    Edge inverseEdge = new Edge(weight, this);
+    //    Edge inverseEdge = new Edge(weight, this);
     neighbors.add(newEdge);
-    neighbors.add(inverseEdge);
+    //    neighbors.add(inverseEdge);
   }
 }

@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.servicerequestdata.ConferenceRoomRequestData;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import edu.wpi.cs3733.D23.teamQ.servicerequestdata.ConferenceRoomRequestData;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -17,8 +17,6 @@ public class ConferenceRoomRequestController {
           "Brunch spread", "Dinner spread", "Snack spread", "No food");
   @FXML private MFXTextField roomNumberField;
   @FXML private MFXTextField dateTimeField;
-  @FXML private MFXCheckbox cleanRoomField;
-  private boolean cleanRoom = false;
   @FXML private ChoiceBox foodField;
   @FXML private MFXTextField specialInstructionsField;
 
@@ -36,9 +34,6 @@ public class ConferenceRoomRequestController {
           dateTimeField.clear();
           specialInstructionsField.clear();
           foodField.setValue("No food");
-          cleanRoomField.setSelected(false);
-          cleanRoomField.setIndeterminate(false);
-          cleanRoom = false;
         });
     this.backButton.setOnMouseClicked(
         event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
@@ -53,10 +48,6 @@ public class ConferenceRoomRequestController {
                   specialInstructionsField.getText());
           System.out.println(newCCR);
           Navigation.navigate(Screen.HOME);
-        });
-    this.cleanRoomField.setOnMouseClicked(
-        event -> {
-          cleanRoom = !cleanRoom;
         });
   }
 }

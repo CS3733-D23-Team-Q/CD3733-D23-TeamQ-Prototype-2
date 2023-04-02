@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -21,19 +20,13 @@
          </BorderPane.margin></Label>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #f1f1f1;" BorderPane.alignment="CENTER">
          <children>
             <MFXTextField fx:id="roomNumberField" prefHeight="20.0" prefWidth="200.0" promptText="Room Number">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></MFXTextField>
             <MFXTextField fx:id="dateTimeField" prefHeight="20.0" prefWidth="200.0" promptText="Date/Time" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="100.0" prefWidth="150.0" text="Clean room?" />
-                  <MFXCheckbox fx:id="cleanRoomField" style="-fx-background-color: FFFFFF;" />
-               </children>
-            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label alignment="CENTER" prefHeight="100.0" prefWidth="150.0" text="Food?" />

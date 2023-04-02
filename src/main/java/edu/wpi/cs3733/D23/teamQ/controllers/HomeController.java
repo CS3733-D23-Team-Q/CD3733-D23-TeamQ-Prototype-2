@@ -18,6 +18,7 @@ public class HomeController {
   @FXML Button nextButton;
 
   @FXML MenuItem exit;
+  @FXML MenuItem logout;
   @FXML Button settingButton;
   @FXML TextField searchField;
   @FXML TextField usernameField;
@@ -82,5 +83,11 @@ public class HomeController {
     if (e.getCode().equals(KeyCode.ENTER)) {
       System.out.println("Navigate to a specific page according to the text being entered.");
     }
+  }
+
+  @FXML
+  public void logout() {
+    Navigation.navigate(Screen.LOGIN);
+    //Add code to reset user
   }
 }

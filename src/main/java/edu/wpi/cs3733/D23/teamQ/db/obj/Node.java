@@ -38,6 +38,11 @@ public class Node {
     this.locID = Integer.parseInt(xy);
   }
 
+  public Node(int x, int y) {
+    this.xCoord = x;
+    this.yCoord = y;
+  }
+
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID

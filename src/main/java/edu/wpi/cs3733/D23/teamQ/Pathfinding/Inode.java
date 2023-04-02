@@ -2,9 +2,9 @@ package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
 public interface Inode {
 
-  public int getNodeID(Node Anode);
+  public int getNodeID(newNode anode);
 
-  public int getX(Node Anode);
+  public int getX(newNode anode);
 
-  public int getY(Node Anode);
+  public int getY(newNode anode);
 }

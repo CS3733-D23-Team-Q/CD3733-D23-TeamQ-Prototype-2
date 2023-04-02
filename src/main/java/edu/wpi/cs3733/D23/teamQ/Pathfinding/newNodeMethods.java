@@ -3,14 +3,14 @@ package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class nodeMethods extends Node {
+public class newNodeMethods extends newNode {
 
   private static int idCounter = 0;
   private int id;
 
   private List<Edge> neighbors;
 
-  nodeMethods(int xCoord, int yCoord) {
+  newNodeMethods(int xCoord, int yCoord) {
     super(xCoord, yCoord);
     this.id = idCounter++;
     this.neighbors = new ArrayList<>();
@@ -28,7 +28,7 @@ public class nodeMethods extends Node {
     return id;
   }
 
-  public Node getParent() {
+  public newNode getParent() {
     return parent;
   }
 
@@ -37,12 +37,12 @@ public class nodeMethods extends Node {
   }
 
   @Override
-  public int compareTo(Node n) {
+  public int compareTo(newNode n) {
     return Double.compare(this.f, n.f);
   }
 
-  public void addBranch(int weight, Node node) {
-    Edge newEdge = new Edge(weight, node);
+  public void addBranch(int weight, newNode newNode) {
+    Edge newEdge = new Edge(weight, newNode);
     //    Edge inverseEdge = new Edge(weight, this);
     neighbors.add(newEdge);
     //    neighbors.add(inverseEdge);

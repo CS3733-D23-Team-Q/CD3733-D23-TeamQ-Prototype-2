@@ -1,9 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
+import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import java.util.List;
 
-public class Node implements Comparable<Node> {
-  Node parent = null;
+public class newNode extends Node implements Comparable<newNode> {
+  newNode parent = null;
 
   private List<Edge> neighbors;
   //  // Evaluation functions
@@ -12,9 +13,8 @@ public class Node implements Comparable<Node> {
   private int xCoord;
   private int yCoord;
 
-  Node(int xCoord, int yCoord) {
-    this.xCoord = xCoord;
-    this.yCoord = yCoord;
+  newNode(int xCoord, int yCoord) {
+    super(xCoord, yCoord);
   }
 
   public List<Edge> getNeighbors() {
@@ -26,7 +26,7 @@ public class Node implements Comparable<Node> {
   }
 
   //  @Override
-  public int compareTo(Node n) {
+  public int compareTo(newNode n) {
     return Double.compare(this.f, n.f);
   }
 

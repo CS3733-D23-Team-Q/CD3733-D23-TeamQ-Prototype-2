@@ -2,12 +2,11 @@ package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
 public class Edge {
   private int weight;
-  private Node node;
+  private newNode newNode;
 
-  Edge(int weight, Node node) {
-    super();
+  Edge(int weight, newNode newNode) {
     this.weight = weight;
-    this.node = node;
+    this.newNode = newNode;
   }
 
   public int getWeight() {
@@ -18,11 +17,11 @@ public class Edge {
     this.weight = weight;
   }
 
-  public Node getNode() {
-    return node;
+  public newNode getNode() {
+    return newNode;
   }
 
-  public void setNode(Node node) {
-    this.node = node;
+  public void setNode(newNode newNode) {
+    this.newNode = newNode;
   }
 }

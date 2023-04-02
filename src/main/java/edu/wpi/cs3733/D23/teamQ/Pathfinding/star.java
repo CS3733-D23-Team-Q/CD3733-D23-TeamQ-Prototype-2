@@ -6,39 +6,39 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class star extends Edge {
-  star(int weight, Node node) {
-    super(weight, node);
+  star(int weight, newNode newNode) {
+    super(weight, newNode);
   }
 
-  public int getWeight(Node n, Node goal) {
+  public int getWeight(newNode n, newNode goal) {
     int xDist = goal.getxCoord() - n.getxCoord();
     int yDist = goal.getyCoord() - n.getyCoord();
     double trueDist = Math.sqrt(xDist * xDist + yDist * yDist);
     return (int) trueDist;
   }
 
-  public static double calculateHeuristic(Node n, Node target) {
+  public static double calculateHeuristic(newNode n, newNode target) {
     int dx = Math.abs(n.getxCoord() - target.getxCoord());
     int dy = Math.abs(n.getyCoord() - target.getyCoord());
     int D = Math.abs(dx + dy);
     return D;
   }
 
-  public static Node aStar(Node start, Node target) {
-    PriorityQueue<Node> closedList = new PriorityQueue<>();
-    PriorityQueue<Node> openList = new PriorityQueue<>();
+  public static newNode aStar(newNode start, newNode target) {
+    PriorityQueue<newNode> closedList = new PriorityQueue<>();
+    PriorityQueue<newNode> openList = new PriorityQueue<>();
 
     start.f = start.g + calculateHeuristic(start, target);
     openList.add(start);
 
     while (!openList.isEmpty()) {
-      Node n = openList.peek();
+      newNode n = openList.peek();
       if (n == target) {
         return n;
       }
 
       for (Edge edge : n.getNeighbors()) {
-        Node m = edge.getNode();
+        newNode m = edge.getNode();
         double totalWeight = n.g + edge.getWeight();
 
         if (!openList.contains(m) && !closedList.contains(m)) {
@@ -66,8 +66,8 @@ public class star extends Edge {
     return null;
   }
 
-  public static void printPath(nodeMethods target) {
-    nodeMethods n = target;
+  public static void printPath(newNodeMethods target) {
+    newNodeMethods n = target;
 
     if (n == null) return;
 
@@ -75,7 +75,7 @@ public class star extends Edge {
 
     while (n.parent != null) {
       ids.add(n.getId());
-      n = (nodeMethods) n.parent;
+      n = (newNodeMethods) n.parent;
     }
     ids.add(n.getId());
     Collections.reverse(ids);

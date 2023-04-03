@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceDaoSingleton;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -47,7 +48,7 @@ public class ConferenceRoomRequestController {
                   specialInstructionsField.getText(),
                   dateTimeField.getText(),
                   (String) foodField.getValue());
-          System.out.println(newCCR);
+          ConferenceDaoSingleton.Connection.getDaoCCR().addRow(newCCR);
           Navigation.navigate(Screen.HOME);
         });
   }

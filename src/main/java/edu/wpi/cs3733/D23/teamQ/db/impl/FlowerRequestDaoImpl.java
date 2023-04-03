@@ -13,7 +13,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
   public FlowerRequestDaoImpl() throws SQLException {
     populate();
     if (flowerRequests.size() != 0) {
-      nextID = flowerRequests.get(-1).getRequestID() + 1;
+      nextID = flowerRequests.get(flowerRequests.size() - 1).getRequestID() + 1;
     }
   }
 
@@ -78,7 +78,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
     try (Connection conn = GenDao.connect();
         PreparedStatement stmt =
             conn.prepareStatement(
-                "INSERT INTO \"flowerRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                "INSERT INTO \"flowerRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setString(1, request.getRequester());
       stmt.setInt(2, request.getProgress());
       stmt.setString(3, request.getAssignee());

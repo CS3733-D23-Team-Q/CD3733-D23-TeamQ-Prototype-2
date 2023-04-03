@@ -56,7 +56,6 @@ public class FlowerRequestController extends ServiceRequestController {
                   noteField.getText(),
                   (String) flowerChoiceField.getValue(),
                   (int) bouquetChoiceField.getValue());
-          System.out.println(newFR);
           Navigation.navigate(Screen.FLOWER_REQUEST_SUBMISSION);
         });
   }

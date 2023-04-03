@@ -47,7 +47,6 @@ public class ConferenceRoomRequestController {
                   specialInstructionsField.getText(),
                   dateTimeField.getText(),
                   (String) foodField.getValue());
-          System.out.println(newCCR);
           Navigation.navigate(Screen.HOME);
         });
   }

@@ -29,12 +29,12 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    * updates node in linked list with a new node
    *
    * @param nodeID nodeID of node being replaced
-   * @param node new node being inserted
+   * @param newNode new node being inserted
    * @return true if successful
    */
-  public boolean updateRow(Integer nodeID, Node node) {
+  public boolean updateRow(Integer nodeID, Node newNode) {
     int index = this.getIndex(nodeID);
-    nodes.set(index, node);
+    nodes.set(index, newNode);
     return true;
   }
 
@@ -58,6 +58,11 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    */
   public boolean addRow(Node n) {
     return nodes.add(n);
+  }
+
+  @Override
+  public boolean populate() {
+    return false;
   }
 
   /**

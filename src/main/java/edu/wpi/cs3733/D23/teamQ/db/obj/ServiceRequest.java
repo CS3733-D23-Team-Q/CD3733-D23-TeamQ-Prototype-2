@@ -1,25 +1,31 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ServiceRequest {
+
   private int requestID;
-  private String username;
-  private String enumeration;
-  private String staffMember;
+  private int progress;
+  private String requester;
+  private String assignee;
   private String roomNumber;
-  private String instructions;
+  private String specialInstructions;
 
   public ServiceRequest(
       int requestID,
-      String username,
-      String enumeration,
-      String staffMember,
+      int progress,
+      String requester,
+      String assignee,
       String roomNumber,
-      String instructions) {
+      String specialInstructions) {
     this.requestID = requestID;
-    this.username = username;
-    this.enumeration = enumeration;
-    this.staffMember = staffMember;
+    this.progress = progress;
+    this.requester = requester;
+    this.assignee = assignee;
     this.roomNumber = roomNumber;
-    this.instructions = instructions;
+    this.specialInstructions = specialInstructions;
   }
 }

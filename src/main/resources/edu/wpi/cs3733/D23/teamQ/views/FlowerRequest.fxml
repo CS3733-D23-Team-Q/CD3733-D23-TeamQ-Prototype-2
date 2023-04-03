@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="700.0" minWidth="1350.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.FlowerRequestController">
+   <top>
+      <Label fx:id="FlowerRequest_Title" alignment="CENTER" prefHeight="35.0" prefWidth="350.0" style="-fx-background-color: #002d59; -fx-background-radius: 15;" text="Flower Request Delivery Form" textAlignment="CENTER" textFill="WHITE" translateY="20.0" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" translateX="-200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ChoiceBox fx:id="flowerChoiceField" minWidth="-Infinity" prefHeight="49.0" prefWidth="157.0" translateX="200.0" translateY="30.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ChoiceBox fx:id="bouquetChoiceField" prefHeight="49.0" prefWidth="173.0" translateX="200.0" translateY="30.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="roomNumberField" alignment="CENTER" prefHeight="49.0" prefWidth="173.0" promptText="Room Number" translateX="200.0" translateY="30.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="noteField" alignment="CENTER" prefHeight="49.0" prefWidth="173.0" promptText="Note on Flower" translateX="200.0" translateY="30.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="specialInstructionsField" alignment="CENTER" prefHeight="60.0" prefWidth="173.0" promptText="Special Instructions" translateX="200.0" translateY="30.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <GridPane BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <MFXButton fx:id="backButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Back" textFill="WHITE" GridPane.columnIndex="1" />
+            <MFXButton fx:id="resetButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Reset" textFill="WHITE" />
+            <MFXButton fx:id="submitButton" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Submit" textFill="WHITE" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+   </bottom>
+</BorderPane>

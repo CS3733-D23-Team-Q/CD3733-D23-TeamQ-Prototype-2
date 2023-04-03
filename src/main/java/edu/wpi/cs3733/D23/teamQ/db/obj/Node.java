@@ -1,13 +1,12 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
-import edu.wpi.cs3733.D23.teamQ.Pathfinding.Inode;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Node implements Inode {
+public class Node {
   private int nodeID;
   private int xCoord;
   private int yCoord;
@@ -39,13 +38,6 @@ public class Node implements Inode {
     this.locID = Integer.parseInt(xy);
   }
 
-  public Node(int x, int y) {
-    this.xCoord = x;
-    this.yCoord = y;
-  }
-
-  public Node() {}
-
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID
@@ -61,17 +53,5 @@ public class Node implements Inode {
         + this.edges
         + ", location: "
         + this.location;
-  }
-
-  public int getX() {
-    return this.getXCoord();
-  }
-
-  public int getY() {
-    return this.getYCoord();
-  }
-
-  public int getNodeID(Node Anode) {
-    return this.getNodeID();
   }
 }

@@ -10,12 +10,25 @@ public class Navigation {
 
   public static void navigate(final Screen screen) {
     final String filename = screen.getFilename();
+    final String title = screen.getTitle();
 
     try {
       final var resource = App.class.getResource(filename);
       final FXMLLoader loader = new FXMLLoader(resource);
 
-      App.getRootPane().setCenter(loader.load());
+      Stage primaryStage = App.getPrimaryStage();
+      final Scene scene = new Scene(loader.load());
+      scene
+          .getStylesheets()
+          .add(
+              Navigation.class
+                  .getResource("/edu/wpi/cs3733/D23/teamQ/views/styles/Home.css")
+                  .toExternalForm());
+      primaryStage.setScene(scene);
+      primaryStage.centerOnScreen();
+      primaryStage.setTitle(title);
+      primaryStage.setFullScreen(true);
+      primaryStage.setFullScreenExitHint("");
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

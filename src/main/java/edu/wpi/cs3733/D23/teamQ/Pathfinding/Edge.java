@@ -3,11 +3,20 @@ package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 public class Edge extends newNode {
   //  private int weight;
   private newNode newNode;
+  private int weight;
 
   Edge(int weight, newNode newNode) {
 
-    this.setWeight(weight);
+    this.weight = weight;
     this.newNode = newNode;
+  }
+
+  public newNode getStartNode() {
+    return this;
+  }
+
+  public void setWeight(int weight) {
+    this.weight = weight;
   }
 
   //  public int getWeight() {
@@ -38,19 +47,18 @@ public class Edge extends newNode {
   //    return please;
   //  }
 
-  //  public int getWeight() {
-  //    return weight;
-  //  }
+  //    public int getWeight() {
+  //      return weight;
+  //    }
 
   //  formula: xDist = target.getX() - source.getX();
   // *          yDist = target.getY() - source.getY()
   //          *          trueDist =  Math.sqrt(xDist * xDist + yDist * yDist);
 
-  //  public void setWeight(newNode n) {
-  //    int w = calculateWeight();
-  //    this.weight = w;
-  //  }
-  //
+  //    public void setWeight(newNode n) {
+  //      int w = calculateWeight();
+  //      this.weight = w;
+  //    }
 
   //  public void setWeight(int weight) {
   //    this.weight = weight;
@@ -61,16 +69,17 @@ public class Edge extends newNode {
   //    System.out.println("please please please: " + temp);
   //  }
 
-  //  public int calculateWeight() {
-  //    newNode pleaseEndmMe = new newNode(12, 15);
-  //    System.out.println(pleaseEndmMe.getYCoord());
-  //    pleaseEndmMe.setGoal();
-  //    int yDist2 = getGoal().getYCoord();
-
-  //    int yDist2 = getGoal().getYCoord();
-  //    int yDist2 = pleaseEndmMe.getyCoord();
-  //    return yDist2;
-  //  }
+  public int calculateWeight() {
+    //    newNode pleaseEndmMe = new newNode(12, 15);
+    //    System.out.println(pleaseEndmMe.getYCoord());
+    //    pleaseEndmMe.setGoal();
+    //    int yDist2 = getGoal().getYCoord();
+    //
+    //      int yDist2 = getGoal().getYCoord();
+    //      int yDist2 = pleaseEndmMe.getyCoord();
+    //      return yDist2;
+    return 1;
+  }
 
   public newNode getNode() {
     return newNode;

@@ -82,11 +82,20 @@ public class newNode extends Node implements Comparable<newNode> {
   ////    System.out.println("please please please: " + temp);
   //  }
 
-  public int getWeight() {
-    return weight;
-  }
+  //  public int getWeight() {
+  //    return weight;
+  //  }
 
-  public void setWeight(int weight) {
-    this.weight = weight;
+  //  public void setWeight(int weight) {
+  //    this.weight = weight;
+  //  }
+
+  public void generateWeight(List<Edge> neighbors) {
+    for (Edge e : neighbors) {
+      int i = e.getNode().getxCoord();
+      int i2 = e.getStartNode().getxCoord();
+      int w = i2 - i;
+      e.setWeight(w);
+    }
   }
 }

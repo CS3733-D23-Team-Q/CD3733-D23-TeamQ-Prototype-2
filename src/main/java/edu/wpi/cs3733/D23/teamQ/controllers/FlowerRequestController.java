@@ -42,8 +42,7 @@ public class FlowerRequestController extends ServiceRequestController {
           flowerChoiceField.setValue("Select Flower");
           bouquetChoiceField.setValue("Number of Bouquets");
         });
-    this.backButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
+    this.backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST_HUB));
     this.submitButton.setOnMouseClicked(
         event -> {
           FlowerRequest newFR =

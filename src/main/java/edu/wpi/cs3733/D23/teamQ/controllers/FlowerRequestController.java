@@ -1,6 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerDoaSingleton;
+import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerDaoSingleton;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -59,7 +59,7 @@ public class FlowerRequestController extends ServiceRequestController {
                   (int) bouquetChoiceField.getValue());
           System.out.println(newFR);
           Navigation.navigate(Screen.FLOWER_REQUEST_SUBMISSION);
-            FlowerDoaSingleton.Connection.getDoaFR().addRow(newFR);
+            FlowerDaoSingleton.Connection.getDoaFR().addRow(newFR);
         });
   }
 }

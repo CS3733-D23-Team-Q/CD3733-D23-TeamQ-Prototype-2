@@ -13,7 +13,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   public ConferenceRequestDaoImpl() throws SQLException {
     populate();
     if (conferenceRequests.size() != 0) {
-      nextID = conferenceRequests.get(-1).getRequestID() + 1;
+      nextID = conferenceRequests.get(conferenceRequests.size() - 1).getRequestID() + 1;
     }
   }
   /**

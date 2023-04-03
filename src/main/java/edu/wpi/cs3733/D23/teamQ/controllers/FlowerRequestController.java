@@ -55,7 +55,7 @@ public class FlowerRequestController {
                   specialInstructionsField.getText(),
                   noteField.getText(),
                   (String) flowerChoiceField.getValue(),
-                  (int) bouquetChoiceField.getValue());
+                  Integer.parseInt((String) bouquetChoiceField.getValue()));
           FlowerDaoSingleton.Connection.getDaoFR().addRow(newFR);
           Navigation.navigate(Screen.HOME);
         });

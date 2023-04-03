@@ -72,13 +72,13 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
         PreparedStatement stmt =
             conn.prepareStatement(
                 "INSERT INTO \"conferenceRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
-      stmt.setString(2, x.getRequester());
-      stmt.setInt(3, x.getProgress());
-      stmt.setString(4, x.getAssignee());
-      stmt.setString(5, x.getSpecialInstructions());
-      stmt.setString(6, x.getDateTime());
-      stmt.setString(7, x.getFoodChoice());
-      stmt.setString(8, x.getRoomNumber());
+      stmt.setString(1, x.getRequester());
+      stmt.setInt(2, x.getProgress());
+      stmt.setString(3, x.getAssignee());
+      stmt.setString(4, x.getSpecialInstructions());
+      stmt.setString(5, x.getDateTime());
+      stmt.setString(6, x.getFoodChoice());
+      stmt.setString(7, x.getRoomNumber());
       stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

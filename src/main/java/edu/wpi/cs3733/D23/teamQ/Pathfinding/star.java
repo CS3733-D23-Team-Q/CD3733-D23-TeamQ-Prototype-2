@@ -10,12 +10,12 @@ public class star extends Edge {
     super(weight, newNode);
   }
 
-  public int getWeight(newNode n, newNode goal) {
-    int xDist = goal.getxCoord() - n.getxCoord();
-    int yDist = goal.getyCoord() - n.getyCoord();
-    double trueDist = Math.sqrt(xDist * xDist + yDist * yDist);
-    return (int) trueDist;
-  }
+  //  public int getWeight(newNode n, newNode goal) {
+  //    int xDist = goal.getxCoord() - n.getxCoord();
+  //    int yDist = goal.getyCoord() - n.getyCoord();
+  //    int trueDist = (int) Math.sqrt(xDist * xDist + yDist * yDist);
+  //    return trueDist;
+  //  }
 
   public static double calculateHeuristic(newNode n, newNode target) {
     int dx = Math.abs(n.getxCoord() - target.getxCoord());
@@ -66,8 +66,8 @@ public class star extends Edge {
     return null;
   }
 
-  public static void printPath(newNodeMethods target) {
-    newNodeMethods n = target;
+  public static void printPath(newNode target) {
+    newNode n = target;
 
     if (n == null) return;
 
@@ -75,7 +75,7 @@ public class star extends Edge {
 
     while (n.parent != null) {
       ids.add(n.getId());
-      n = (newNodeMethods) n.parent;
+      n = (newNode) n.parent;
     }
     ids.add(n.getId());
     Collections.reverse(ids);

@@ -43,6 +43,8 @@ public class Node {
     this.yCoord = y;
   }
 
+  public Node() {}
+
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID

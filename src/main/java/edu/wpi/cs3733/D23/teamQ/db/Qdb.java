@@ -8,14 +8,12 @@ public class Qdb {
   public static void main(String[] args) throws SQLException {
     ConferenceRequestDaoImpl request = new ConferenceRequestDaoImpl();
     ConferenceRequest conferenceRequest =
-        new ConferenceRequest(5, 0, "test", "test", "test", "test", "test", "test");
+        new ConferenceRequest(5, "test", 0, "test", "test", "test", "test", "test");
 
     request.addRow(conferenceRequest);
 
-    // request.populate();
-
     // List<ConferenceRequest> list = request.getAllRows();
 
-    request.deleteRow(5);
+    // request.deleteRow(5);
   }
 }

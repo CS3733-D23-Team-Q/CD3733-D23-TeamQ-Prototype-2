@@ -48,8 +48,8 @@ public class FlowerRequestController extends ServiceRequestController {
           FlowerRequest newFR =
               new FlowerRequest(
                   0,
-                  0,
                   "temp user",
+                  0,
                   "temp assignee",
                   roomNumberField.getText(),
                   specialInstructionsField.getText(),

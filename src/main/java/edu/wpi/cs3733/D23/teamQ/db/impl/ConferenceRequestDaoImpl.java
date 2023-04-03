@@ -137,32 +137,6 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   public List<ConferenceRequest> getAllRows() {
     return conferenceRequests;
   }
-  /*
-  public List<ConferenceRequest> listConferenceRequests(String assignerUsername) {
-      List<ConferenceRequest> requests = new ArrayList<>();
-      try(Connection conn = GenDao.connect();
-          PreparedStatement stmt = conn.prepareStatement("SELECT * FROM conferenceRequest WHERE requester = ?")) {
-          stmt.setString(1, assignerUsername);
-          ResultSet rs = stmt.executeQuery();
-          while(rs.next()) {
-              int requestID = rs.getInt("requestID");
-              String requester = rs.getString("requester");
-              String progress = rs.getString("progress");
-              String assignee = rs.getString("assignee");
-              String specialInstructions = rs.getString("specialInstructions");
-              String time = rs.getString("time");
-              boolean cleanRoom = rs.getBoolean("cleanRoom");
-              String foodChoice = rs.getString("foodChoice");
-              String roomNum = rs.getString("roomNum");
-              ConferenceRequest request = new ConferenceRequest(requestID, requester, progress, assignee, roomNum, specialInstructions, time, cleanRoom, foodChoice);
-              requests.add(request);
-          }
-      } catch(SQLException e) {
-          e.printStackTrace();
-      }
-      return requests;
-  }
-   */
 
   public List<ConferenceRequest> listConferenceRequests(String username) {
     List<ConferenceRequest> list = new ArrayList<ConferenceRequest>();

@@ -25,4 +25,18 @@ public class FlowerRequest extends ServiceRequest {
     this.flowerType = flowerType;
     this.numberOfBouquets = numberOfBouquets;
   }
+  public FlowerRequest(
+          int progress,
+          String requester,
+          String assignee,
+          String roomNumber,
+          String specialInstructions,
+          String note,
+          String flowerType,
+          int numberOfBouquets) {
+    super(0, progress, requester, assignee, roomNumber, specialInstructions);
+    this.note = note;
+    this.flowerType = flowerType;
+    this.numberOfBouquets = numberOfBouquets;
+  }
 }

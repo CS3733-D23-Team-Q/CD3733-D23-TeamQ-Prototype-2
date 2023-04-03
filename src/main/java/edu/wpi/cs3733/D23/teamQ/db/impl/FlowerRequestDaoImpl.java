@@ -62,11 +62,12 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
    * @return true if successful
    */
   public boolean addRow(FlowerRequest request) {
+
     try (Connection conn = GenDao.connect();
         PreparedStatement stmt =
             conn.prepareStatement(
-                "INSERT INTO \"flowerRequest\"(\"requestID\", \"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-      stmt.setInt(1, request.getRequestID());
+                "INSERT INTO \"flowerRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+
       stmt.setString(2, request.getRequester());
       stmt.setInt(3, request.getProgress());
       stmt.setString(4, request.getAssignee());

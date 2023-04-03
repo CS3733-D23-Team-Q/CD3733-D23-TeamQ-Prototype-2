@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.ServiceRequestDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -12,11 +13,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ListServiceRequestController {
-
   @FXML Button homeButton;
   @FXML MenuItem homeItem;
   @FXML MenuItem exitItem;
-
   @FXML TableView<ServiceRequest> tableView;
   @FXML TableColumn<ServiceRequest, Integer> requestID;
   @FXML TableColumn<ServiceRequest, Integer> progress;
@@ -24,6 +23,8 @@ public class ListServiceRequestController {
   @FXML TableColumn<ServiceRequest, String> assignee;
   @FXML TableColumn<ServiceRequest, String> roomNumber;
   @FXML TableColumn<ServiceRequest, String> specialInstructions;
+
+  ServiceRequestDaoImpl serviceRequestDao = new ServiceRequestDaoImpl();
 
   @FXML
   public void initialize() {
@@ -34,6 +35,8 @@ public class ListServiceRequestController {
     roomNumber.setCellValueFactory(new PropertyValueFactory<ServiceRequest, String>("roomNumber"));
     specialInstructions.setCellValueFactory(
         new PropertyValueFactory<ServiceRequest, String>("specialInstructions"));
+
+    tableView.setItems(serviceRequestDao.getAllRows());
   }
 
   @FXML

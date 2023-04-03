@@ -43,6 +43,7 @@ public class App extends Application {
     primaryStage.show();
     Navigation.navigate(Screen.LOGIN);
     primaryStage.centerOnScreen();
+
   }
 
   @Override

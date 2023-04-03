@@ -12,8 +12,8 @@ public class FlowerRequest extends ServiceRequest {
 
   public FlowerRequest(
       int requestID,
-      int progress,
       String requester,
+      int progress,
       String assignee,
       String roomNumber,
       String specialInstructions,

@@ -19,8 +19,13 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
    * @return a conferenceRequest with the given nodeID
    */
   public ConferenceRequest retrieveRow(Integer requestID) {
-    int index = this.getIndex(requestID);
-    return conferenceRequests.get(index);
+    try {
+      int index = this.getIndex(requestID);
+      return conferenceRequests.get(index);
+    } catch (Exception e) {
+      System.out.println("No request found with ID: " + requestID);
+    }
+    return null;
   }
 
   /**
@@ -71,24 +76,29 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
    * @return true if successful
    */
   public boolean addRow(ConferenceRequest x) {
-    try (Connection conn = GenDao.connect();
-        PreparedStatement stmt =
-            conn.prepareStatement(
-                "INSERT INTO \"conferenceRequest\"(\"requestID\", requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
-      stmt.setInt(1, x.getRequestID());
-      stmt.setString(2, x.getRequester());
-      stmt.setInt(3, x.getProgress());
-      stmt.setString(4, x.getAssignee());
-      stmt.setString(5, x.getSpecialInstructions());
-      stmt.setString(6, x.getDateTime());
-      stmt.setString(7, x.getFoodChoice());
-      stmt.setString(8, x.getRoomNumber());
-      stmt.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
+    if (retrieveRow(x.getRequestID()) != null) {
+      try (Connection conn = GenDao.connect();
+          PreparedStatement stmt =
+              conn.prepareStatement(
+                  "INSERT INTO \"conferenceRequest\"(\"requestID\", requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+        stmt.setInt(1, x.getRequestID());
+        stmt.setString(2, x.getRequester());
+        stmt.setInt(3, x.getProgress());
+        stmt.setString(4, x.getAssignee());
+        stmt.setString(5, x.getSpecialInstructions());
+        stmt.setString(6, x.getDateTime());
+        stmt.setString(7, x.getFoodChoice());
+        stmt.setString(8, x.getRoomNumber());
+        stmt.executeUpdate();
+      } catch (SQLException ex) {
+        ex.printStackTrace();
+      }
+      conferenceRequests.add(x);
+      return true;
+    } else {
+      System.out.println("There is already a request with ID: " + x.getRequestID());
+      return false;
     }
-    conferenceRequests.add(x);
-    return true;
   }
 
   @Override
@@ -96,10 +106,9 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     try {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();
-      String sql = "Select * From \"conferenceRequest\"";
-      ResultSet rst = stm.executeQuery(sql);
+      ResultSet rst = stm.executeQuery("Select * From \"conferenceRequest\"");
       while (rst.next()) {
-        ConferenceRequest conferenceRequest =
+        conferenceRequests.add(
             new ConferenceRequest(
                 rst.getInt("requestID"),
                 rst.getString("progress"),
@@ -108,8 +117,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
                 rst.getString("roomNum"),
                 rst.getString("specialInstructions"),
                 rst.getString("date/time"),
-                rst.getString("foodChoice"));
-        conferenceRequests.add(conferenceRequest);
+                rst.getString("foodChoice")));
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());

@@ -1,8 +1,12 @@
+package edu.wpi.cs3733.D23.teamQ.controllers;
+
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -12,10 +16,10 @@ public class HomeController {
   @FXML Button SPButton;
   @FXML Button LMButton;
 
-  @FXML Button previousButton;
   @FXML Button nextButton;
 
   @FXML MenuItem exit;
+  @FXML MenuItem logout;
   @FXML Button settingButton;
   @FXML TextField searchField;
   @FXML TextField usernameField;
@@ -42,6 +46,7 @@ public class HomeController {
   /** Navigate to the signage page when the SPButton is clicked. */
   @FXML
   public void SPButtonClicked() {
+
     Navigation.navigate(Screen.SIGNAGE);
   }
 
@@ -58,17 +63,12 @@ public class HomeController {
     Platform.exit();
   }
 
-  /** Features might be added in the future. */
-  @FXML
-  public void previousButtonClicked() {
-    System.out.println("Go to the previous slide page.");
-  }
-
   @FXML
   public void nextButtonClicked() {
-    System.out.println("Go to the next slide page.");
+    Navigation.navigate(Screen.HOME2);
   }
 
+  /** Features might be added in the future. */
   @FXML
   public void settingButtonClicked() {
     System.out.println("Pops up a setting screen.");
@@ -82,37 +82,7 @@ public class HomeController {
   }
 
   @FXML
-  public void passwordFieldEntered(KeyEvent e) {
-    if (e.getCode().equals(KeyCode.ENTER)) {
-      System.out.println("Navigate to a logged in screen or pops up a failed to login screen.");
-    }
-  }
-
-  /**
-   * Whenever the Enter key is pressed inside the username textfield, change the focus to the
-   * password textfield.
-   *
-   * @param e A key pressed event received from the username textfield.
-   */
-  @FXML
-  public void usernameFieldEntered(KeyEvent e) {
-    if (e.getCode().equals(KeyCode.ENTER)) {
-      passwordField.requestFocus();
-    }
-  }
-
-  @FXML
-  public void loginButtonClicked() {
-    System.out.println("Navigate to a logged in screen or pops up a failed to login screen.");
-  }
-
-  @FXML
-  public void FUButtonClicked() {
-    System.out.println("Pops up a screen for retrieving username.");
-  }
-
-  @FXML
-  public void FPButtonClicked() {
-    System.out.println("Pops up a screen for resetting password.");
+  public void logout() {
+    Navigation.navigate(Screen.LOGIN);
   }
 }

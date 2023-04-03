@@ -1,37 +1,25 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ConferenceRequest extends ServiceRequest {
-  private int requestID;
-  private String time;
-  private boolean cleanRoom;
+  private String dateTime;
   private String foodChoice;
 
   public ConferenceRequest(
       int requestID,
+      int progress,
       String requester,
-      String progress,
       String assignee,
       String roomNumber,
       String specialInstructions,
-      String time,
-      boolean cleanRoom,
+      String dateTime,
       String foodChoice) {
-    super(requestID, requester, progress, assignee, roomNumber, specialInstructions);
-    this.requestID = requestID;
-    this.time = time;
-    this.cleanRoom = cleanRoom;
+    super(requestID, progress, requester, assignee, roomNumber, specialInstructions);
+    this.dateTime = dateTime;
     this.foodChoice = foodChoice;
-  }
-
-  public String getTime() {
-    return time;
-  }
-
-  public boolean isCleanRoom() {
-    return cleanRoom;
-  }
-
-  public String getFoodChoice() {
-    return foodChoice;
   }
 }

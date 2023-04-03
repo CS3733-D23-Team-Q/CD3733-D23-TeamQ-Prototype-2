@@ -11,7 +11,7 @@ public class FlowerRequestSubmissionController {
 
   /** Switches screens to the Home page when the Home Button is pressed */
   @FXML
-  private void initialize() {
+  public void initialize() {
     this.FlowerRequestSubmission_HomeButton.setOnMouseClicked(
         event -> {
           Navigation.navigate(Screen.HOME);

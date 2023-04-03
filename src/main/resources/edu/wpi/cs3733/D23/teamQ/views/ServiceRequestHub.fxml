@@ -1,48 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.ServiceRequestHubController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1F1F1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.HomeController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.0" minWidth="10.0" prefWidth="135.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="792.3333333333334" minWidth="10.0" prefWidth="792.3333333333334" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.0" minWidth="10.0" prefWidth="135.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="533.9999694824219" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="56.000030517578125" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <BorderPane fx:id="serviceBorderPane" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #;">
-         <center>
-            <GridPane BorderPane.alignment="CENTER">
-              <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1000.0" spacing="380.0" style="-fx-background-color: #142A53;" GridPane.columnSpan="10">
+         <children>
+            <Label text="Service Request Hub" textFill="#f1f1f1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <MenuBar prefHeight="25.0" prefWidth="122.0" styleClass="button-menu" stylesheets="@styles/Home.css">
+         <menus>
+            <Menu mnemonicParsing="false" text="Menu">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Home" />
+                  <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exitMenuClicked" text="Exit" />
+               </items>
+               <graphic>
+                  <ImageView fx:id="menuImage" fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Menu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <MenuBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="99.0" styleClass="button-menu" stylesheets="@styles/Home.css" GridPane.columnIndex="2">
+        <menus>
+          <Menu mnemonicParsing="false">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Profile" />
+            </items>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+        </menus>
+         <GridPane.margin>
+            <Insets bottom="2.0" />
+         </GridPane.margin>
+      </MenuBar>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <GridPane prefHeight="492.0" prefWidth="772.0" HBox.hgrow="ALWAYS">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="187.66665649414062" minWidth="10.0" prefWidth="167.33331298828125" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="218.66668701171875" minWidth="10.0" prefWidth="218.66668701171875" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+               </rowConstraints>
                <children>
-                  <MFXButton fx:id="goToFrDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Flower Delivery" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <MFXButton fx:id="goToPTButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Patient Transport" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <MFXButton fx:id="goToFeDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Furniture Delivery" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <MFXButton fx:id="goToMDButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Meal Delivery" textFill="WHITE" GridPane.columnIndex="3" />
-                  <MFXButton fx:id="goToOSPButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Office Supplies Purchase" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <MFXButton fx:id="goToCCRButton" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Conference Room Reservation" textFill="WHITE" GridPane.columnIndex="1" />
                   <ImageView fx:id="mealImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
-                        <Image url="@../../../../../../Flower.png" />
+                        <Image url="@../../../../../../Meal.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="flowerImage2" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
@@ -52,47 +105,66 @@
                   </ImageView>
                   <ImageView fx:id="suppliesImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                      <image>
-                        <Image url="@../../../../../../Flower.png" />
+                        <Image url="@../../../../../../Supply.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="furnImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <image>
-                        <Image url="@../../../../../../Flower.png" />
+                        <Image url="@../../../../../../Chair.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="tempImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <image>
-                        <Image url="@../../../../../../Flower.png" />
+                        <Image url="@../../../../../../Stretcher.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="mealImage1" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Flower.png" />
+                        <Image url="@../../../../../../Handshake.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="goToCCRButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Conference Room Request" textFill="#3966af" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goToCCRButton1" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Flower Delivery" textFill="#3966af" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goToCCRButton2" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Office Supply Purchase" textFill="#3966af" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goToCCRButton3" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Meal Delivery" textFill="#3966af" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goToCCRButton4" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Furniture Delivery" textFill="#3966af" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goToCCRButton5" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="36.0" prefWidth="149.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Patient Transport" textFill="#3966af" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
                </children>
-               <BorderPane.margin>
-                  <Insets left="20.0" />
-               </BorderPane.margin>
             </GridPane>
-         </center>
-         <right>
-            <MFXButton fx:id="homeButton" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Home" textFill="WHITE" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets right="20.0" />
-               </BorderPane.margin>
-            </MFXButton>
-         </right>
-         <top>
-            <Label alignment="CENTER" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #012d5a; -fx-background-radius: 10;" text="Service Request Hub" textFill="WHITE" BorderPane.alignment="CENTER">
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="10.0" prefWidth="771.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+         <children>
+            <Button fx:id="goToCCRButton31" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Home" textFill="#3966af" HBox.hgrow="ALWAYS">
                <font>
-                  <Font name="Open Sans Regular" size="24.0" />
+                  <Font size="16.0" />
                </font>
-               <BorderPane.margin>
-                  <Insets top="20.0" />
-               </BorderPane.margin>
-            </Label>
-         </top>
-      </BorderPane>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </GridPane>

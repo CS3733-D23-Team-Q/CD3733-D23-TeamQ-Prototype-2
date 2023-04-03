@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerDaoSingleton;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -47,7 +48,6 @@ public class FlowerRequestController {
         event -> {
           FlowerRequest newFR =
               new FlowerRequest(
-                  0,
                   "temp user",
                   0,
                   "temp assignee",
@@ -56,7 +56,8 @@ public class FlowerRequestController {
                   noteField.getText(),
                   (String) flowerChoiceField.getValue(),
                   (int) bouquetChoiceField.getValue());
-          Navigation.navigate(Screen.FLOWER_REQUEST_SUBMISSION);
+          FlowerDaoSingleton.Connection.getDaoFR().addRow(newFR);
+          Navigation.navigate(Screen.HOME);
         });
   }
 }

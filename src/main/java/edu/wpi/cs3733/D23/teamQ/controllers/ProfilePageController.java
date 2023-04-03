@@ -50,30 +50,30 @@ public class ProfilePageController {
     //                    });
   }
 
-//  public void changeProfileImage(ActionEvent event) {
-//    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // find a different way to do this
-//
-//    fileChooser = new FileChooser();
-//    fileChooser.setTitle("Open image");
-//
-//    String userDirectoryString = System.getProperty("user.home") + "\\Pictures";
-//    File userDirectory = new File(userDirectoryString);
-//
-//    if(!userDirectory.canRead())
-//      userDirectory = new File("c:/");
-//
-//    fileChooser.setInitialDirectory(userDirectory);
-//    this.filePath = fileChooser.showOpenDialog(stage);
-//
-//    try {
-//      BufferedImage bufferedImage = ImageIO.read(filePath);
-//      Image image = SwingFXUtils.toFXImage(bufferedImage,null);
-//      ProfilePage_Profile_Image.setImage(image);
-//      photo.setImage(ProfilePage_Profile_Image.getImage());
-//    } catch (IOException e)
-//    {
-//      System.err.println(e.getMessage());
-//    }
-//
-//  }
+    public void changeProfileImage(ActionEvent event) {
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+      fileChooser = new FileChooser();
+      fileChooser.setTitle("Open image");
+
+      String userDirectoryString = System.getProperty("user.home") + "\\Pictures";
+      File userDirectory = new File(userDirectoryString);
+
+      if(!userDirectory.canRead())
+        userDirectory = new File("c:/");
+
+      fileChooser.setInitialDirectory(userDirectory);
+      this.filePath = fileChooser.showOpenDialog(stage);
+
+      try {
+        BufferedImage bufferedImage = ImageIO.read(filePath);
+        Image image = SwingFXUtils.toFXImage(bufferedImage,null);
+        ProfilePage_Profile_Image.setImage(image);
+        photo.setImage(ProfilePage_Profile_Image.getImage());
+      } catch (IOException e)
+      {
+        System.err.println(e.getMessage());
+      }
+
+    }
 }

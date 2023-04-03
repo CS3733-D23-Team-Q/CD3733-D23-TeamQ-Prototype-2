@@ -36,8 +36,7 @@ public class ConferenceRoomRequestController {
           specialInstructionsField.clear();
           foodField.setValue("No food");
         });
-    this.backButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
+    this.backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST_HUB));
     this.submitButton.setOnMouseClicked(
         event -> {
           ConferenceRequest newCCR =

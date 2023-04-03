@@ -8,9 +8,13 @@ import java.util.List;
 
 public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integer> {
   private List<ConferenceRequest> conferenceRequests = new ArrayList<ConferenceRequest>();
+  private int nextID = 0;
 
   public ConferenceRequestDaoImpl() throws SQLException {
     populate();
+    if (conferenceRequests.size() != 0) {
+      nextID = conferenceRequests.get(-1).getRequestID() + 1;
+    }
   }
   /**
    * returns a conferenceRequest given a requestID
@@ -72,33 +76,29 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   /**
    * adds a conferenceRequest to the list
    *
-   * @param x conferenceRequest being added
+   * @param request conferenceRequest being added
    * @return true if successful
    */
-  public boolean addRow(ConferenceRequest x) {
-    if (retrieveRow(x.getRequestID()) != null) {
-      try (Connection conn = GenDao.connect();
-          PreparedStatement stmt =
-              conn.prepareStatement(
-                  "INSERT INTO \"conferenceRequest\"(\"requestID\", requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
-        stmt.setInt(1, x.getRequestID());
-        stmt.setString(2, x.getRequester());
-        stmt.setInt(3, x.getProgress());
-        stmt.setString(4, x.getAssignee());
-        stmt.setString(5, x.getSpecialInstructions());
-        stmt.setString(6, x.getDateTime());
-        stmt.setString(7, x.getFoodChoice());
-        stmt.setString(8, x.getRoomNumber());
-        stmt.executeUpdate();
-      } catch (SQLException ex) {
-        ex.printStackTrace();
-      }
-      conferenceRequests.add(x);
-      return true;
-    } else {
-      System.out.println("There is already a request with ID: " + x.getRequestID());
-      return false;
+  public boolean addRow(ConferenceRequest request) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO \"conferenceRequest\"(requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+      stmt.setString(1, request.getRequester());
+      stmt.setInt(2, request.getProgress());
+      stmt.setString(3, request.getAssignee());
+      stmt.setString(4, request.getSpecialInstructions());
+      stmt.setString(5, request.getDateTime());
+      stmt.setString(6, request.getFoodChoice());
+      stmt.setString(7, request.getRoomNumber());
+      stmt.executeUpdate();
+    } catch (SQLException ex) {
+      ex.printStackTrace();
     }
+    request.setRequestID(nextID);
+    nextID++;
+    conferenceRequests.add(request);
+    return true;
   }
 
   @Override

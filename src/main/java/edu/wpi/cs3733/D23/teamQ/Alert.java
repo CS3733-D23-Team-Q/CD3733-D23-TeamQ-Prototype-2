@@ -24,7 +24,7 @@ public class Alert extends SecondaryStage {
     alertImage.setOpacity(0);
   }
 
-  //create a fxml to modify its UI and make it to be consistent with the SecondaryStage super class
+  // create a fxml to modify its UI and make it to be consistent with the SecondaryStage super class
   public static void alertBox(String title, String message) throws IOException {
     Stage secondaryStage = new Stage();
     secondaryStage.initModality(Modality.APPLICATION_MODAL);

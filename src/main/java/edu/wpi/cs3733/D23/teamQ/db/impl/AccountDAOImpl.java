@@ -22,6 +22,7 @@ public class AccountDAOImpl {
     return con;
   }
 
+  /*
   public Account retrieveRow(String uname){
     int index = this.getIndex(uname);
     return accounts.get(index);
@@ -138,8 +139,7 @@ public class AccountDAOImpl {
     }
     throw new RuntimeException("No move found with username " + uname);
   }
-
-  /*
+   */
   public boolean addUser(
       String uname, String pass, String email, int q1, int q2, String a1, String a2) {
     boolean result = false;
@@ -163,6 +163,28 @@ public class AccountDAOImpl {
         System.out.println("Account created successful!");
       } else {
         System.out.println("Failed to create your account.");
+      }
+      con.close();
+      pst.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return result;
+  }
+
+  public boolean deleteUser(String uname) {
+    boolean result = false;
+    Connection con = connect();
+    try {
+      String query = "DELETE FROM account WHERE username = ?";
+      PreparedStatement pst = con.prepareStatement(query);
+      pst.setString(1, uname);
+      int rs = pst.executeUpdate();
+      if (rs == 1) {
+        result = true;
+        System.out.println("Account deleted successful!");
+      } else {
+        System.out.println("Failed to delete your account.");
       }
       con.close();
       pst.close();
@@ -332,5 +354,4 @@ public class AccountDAOImpl {
     }
     return questions;
   }
-   */
 }

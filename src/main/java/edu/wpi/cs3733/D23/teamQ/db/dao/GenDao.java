@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.D23.teamQ.db.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.List;
 
 public interface GenDao<T, G> {

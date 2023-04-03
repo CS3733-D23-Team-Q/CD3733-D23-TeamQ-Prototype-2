@@ -9,7 +9,8 @@ public class PathMain {
     newNode head = new newNode(0, 0);
     head.g = 0;
 
-    newNode n1 = new newNode(1, 0);
+    newNode n1 = new newNode(0, 0);
+    //    newNode n1 = new newNode(1, 0);
     newNode n2 = new newNode(0, 1);
 
     head.addBranch(1, n1);
@@ -23,7 +24,7 @@ public class PathMain {
     n3.addBranch(1, n4);
 
     newNode n5 = new newNode(3, 1);
-    n4.addBranch(7, n5);
+    n4.addBranch(5, n5);
 
     newNode n6 = new newNode(3, 0);
     newNode n7 = new newNode(4, 1);
@@ -64,11 +65,11 @@ public class PathMain {
     n7.addBranch(1, n13);
     n12.addBranch(1, n13);
     n13.addBranch(1, n7);
-    n13.addBranch(7, n12);
+    n13.addBranch(1, n12);
 
     newNode goal = n8;
 
-    goal.setGoal();
+    //    goal.setGoal();
 
     //    end goal = new end(temp.getxCoord(), temp.getYCoord());
     //    n8.getXCoord(), n8.getYCoord();
@@ -77,9 +78,13 @@ public class PathMain {
     //    System.out.println("here " + goal.getClass());
     //    System.out.println("here " + goal);
 
+    //    Edge why = new Edge();
+    //    newNode iBegYou = new newNode(7, 22);
+    //    iBegYou.setWeight();
+
     newNode res = aStar(head, goal);
     printPath((newNode) res);
 
-    System.out.println("y test" + res.getyCoord());
+    //    System.out.println("y test" + res.getyCoord());
   }
 }

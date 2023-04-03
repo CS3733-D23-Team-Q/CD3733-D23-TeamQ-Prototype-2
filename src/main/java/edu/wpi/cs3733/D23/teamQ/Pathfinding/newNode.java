@@ -10,21 +10,19 @@ public class newNode extends Node implements Comparable<newNode> {
 
   private static int idCounter = 0;
   private int id;
-
+  private int weight;
   private List<Edge> neighbors;
-
-  //  // Evaluation functions
   double f = Double.MAX_VALUE;
   double g = Double.MAX_VALUE;
   private int xCoord;
   private int yCoord;
-
   private newNode goal;
 
   newNode(int xCoord, int yCoord) {
     super(xCoord, yCoord);
     this.id = idCounter++;
     this.neighbors = new ArrayList<>();
+    this.weight = weight;
   }
 
   public newNode() {
@@ -77,5 +75,18 @@ public class newNode extends Node implements Comparable<newNode> {
     //    Edge inverseEdge = new Edge(weight, this);
     neighbors.add(newEdge);
     //    neighbors.add(inverseEdge);
+  }
+
+  //  public void setWeight() {
+  //    int temp = this.getxCoord();
+  ////    System.out.println("please please please: " + temp);
+  //  }
+
+  public int getWeight() {
+    return weight;
+  }
+
+  public void setWeight(int weight) {
+    this.weight = weight;
   }
 }

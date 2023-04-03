@@ -10,13 +10,6 @@ public class star extends Edge {
     super(weight, newNode);
   }
 
-  //  public int getWeight(newNode n, newNode goal) {
-  //    int xDist = goal.getxCoord() - n.getxCoord();
-  //    int yDist = goal.getyCoord() - n.getyCoord();
-  //    int trueDist = (int) Math.sqrt(xDist * xDist + yDist * yDist);
-  //    return trueDist;
-  //  }
-
   public static double calculateHeuristic(newNode n, newNode target) {
     int dx = Math.abs(n.getxCoord() - target.getxCoord());
     int dy = Math.abs(n.getyCoord() - target.getyCoord());

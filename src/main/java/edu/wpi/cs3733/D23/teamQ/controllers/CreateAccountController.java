@@ -1,25 +1,20 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.AlertBox;
-import edu.wpi.cs3733.D23.teamQ.App;
+import edu.wpi.cs3733.D23.teamQ.Alert;
+import edu.wpi.cs3733.D23.teamQ.Confirm;
+import edu.wpi.cs3733.D23.teamQ.SecondaryStage;
 import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
-import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
-import io.github.palexdev.materialfx.controls.*;
+import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class CreateAccountController {
-  static Stage secondaryStage;
+public class CreateAccountController extends SecondaryStage {
   AccountDAOImpl dao = new AccountDAOImpl();
-  AlertBox alert = new AlertBox();
+  Alert alert = new Alert();
+  Confirm confirm = new Confirm();
   @FXML ChoiceBox<String> questionChoice1 = new ChoiceBox<>();
   @FXML ChoiceBox<String> questionChoice2 = new ChoiceBox<>();
   @FXML TextField usernameField;
@@ -42,24 +37,7 @@ public class CreateAccountController {
   @FXML ImageView a2AlertImage;
 
   public static void display() throws IOException {
-    secondaryStage = new Stage();
-    secondaryStage.initModality(Modality.APPLICATION_MODAL);
-    secondaryStage.setTitle("Create Account");
-
-    final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/CreateAccount.fxml"));
-    final VBox root = loader.load();
-
-    final Scene scene = new Scene(root);
-
-    scene
-        .getStylesheets()
-        .add(
-            Navigation.class
-                .getResource("/edu/wpi/cs3733/D23/teamQ/views/styles/Home.css")
-                .toExternalForm());
-
-    secondaryStage.setScene(scene);
-    secondaryStage.show();
+    display(Screen.CREATE_ACCOUNT);
   }
 
   @FXML
@@ -132,25 +110,21 @@ public class CreateAccountController {
       throws IOException {
     switch (validUsername(username)) {
       case 0:
-        usernameAlert.setText("Please enter a username");
-        usernameAlert.setStyle("-fx-text-fill: #AA3A47;");
-        usernameAlertImage.setOpacity(1);
+        alert.setLabelAlert("Please enter a username", usernameAlert, usernameAlertImage);
         break;
       case 1:
-        usernameAlert.setText("");
-        usernameAlert.setStyle(null);
-        usernameAlertImage.setOpacity(0);
+        alert.clearLabelAlert(usernameAlert, usernameAlertImage);
         emailReact(username, email, password, repassword, question1, question2, answer1, answer2);
         break;
       case 2:
-        usernameAlert.setText("Please enter a username within the range 3-15");
-        usernameAlert.setStyle("-fx-text-fill: #AA3A47;");
-        usernameAlertImage.setOpacity(1);
+        alert.setLabelAlert(
+            "Please enter a username within the range 3-15", usernameAlert, usernameAlertImage);
         break;
       case 3:
-        usernameAlert.setText("Invalid username. (special characters allowed: _ and - only)");
-        usernameAlert.setStyle("-fx-text-fill: #AA3A47;");
-        usernameAlertImage.setOpacity(1);
+        alert.setLabelAlert(
+            "Invalid username. (special characters allowed: _ and - only)",
+            usernameAlert,
+            usernameAlertImage);
         break;
     }
   }
@@ -167,21 +141,15 @@ public class CreateAccountController {
       throws IOException {
     switch (validEmail(email)) {
       case 0:
-        emailAlert.setText("Please enter a email");
-        emailAlert.setStyle("-fx-text-fill: #AA3A47;");
-        emailAlertImage.setOpacity(1);
+        alert.setLabelAlert("Please enter a email", emailAlert, emailAlertImage);
         break;
       case 1:
-        emailAlert.setText("");
-        emailAlert.setStyle(null);
-        emailAlertImage.setOpacity(0);
+        alert.clearLabelAlert(emailAlert, emailAlertImage);
         passwordReact(
             username, email, password, repassword, question1, question2, answer1, answer2);
         break;
       case 2:
-        emailAlert.setText("Invalid email address");
-        emailAlert.setStyle("-fx-text-fill: #AA3A47;");
-        emailAlertImage.setOpacity(1);
+        alert.setLabelAlert("Invalid email address", emailAlert, emailAlertImage);
         break;
     }
   }
@@ -198,23 +166,18 @@ public class CreateAccountController {
       throws IOException {
     switch (validPassword(password)) {
       case 0:
-        passwordAlert.setText("Please enter a password");
-        passwordAlert.setStyle("-fx-text-fill: #AA3A47;");
-        passwordAlertImage.setOpacity(1);
+        alert.setLabelAlert("Please enter a password", passwordAlert, passwordAlertImage);
         break;
       case 1:
-        // passwordField.setStyle(null);
-        passwordAlert.setText("");
-        passwordAlert.setStyle(null);
-        passwordAlertImage.setOpacity(0);
+        alert.clearLabelAlert(passwordAlert, passwordAlertImage);
         repasswordReact(
             username, email, password, repassword, question1, question2, answer1, answer2);
         break;
       case 2:
-        passwordAlert.setText(
-            "Please enter a password within the range 7-15 with at least one uppercase letter and one special character");
-        passwordAlert.setStyle("-fx-text-fill: #AA3A47;");
-        passwordAlertImage.setOpacity(1);
+        alert.setLabelAlert(
+            "Please enter a password within the range 7-15 with at least one uppercase letter and one special character",
+            passwordAlert,
+            passwordAlertImage);
         break;
     }
   }
@@ -230,15 +193,11 @@ public class CreateAccountController {
       String answer2)
       throws IOException {
     if (password.equals(repassword)) {
-      CPAlert.setText("");
-      CPAlert.setStyle(null);
-      CPAlertImage.setOpacity(0);
+      alert.clearLabelAlert(CPAlert, CPAlertImage);
       securityQReact1(
           username, email, password, repassword, question1, question2, answer1, answer2);
     } else {
-      CPAlert.setText("Password doesn't match");
-      CPAlert.setStyle("-fx-text-fill: #AA3A47;");
-      CPAlertImage.setOpacity(1);
+      alert.setLabelAlert("Password doesn't match", CPAlert, CPAlertImage);
     }
   }
 
@@ -253,7 +212,7 @@ public class CreateAccountController {
       String answer2)
       throws IOException {
     if (questionChoice1.getSelectionModel().isEmpty()) {
-      alert.display("Failed to create an account", "Please select a question.");
+      alert.alertBox("Failed to create an account", "Please select a question.");
     } else {
       securityAReact1(
           username, email, password, repassword, question1, question2, answer1, answer2);
@@ -271,13 +230,9 @@ public class CreateAccountController {
       String answer2)
       throws IOException {
     if (answer1.length() < 1) {
-      a1Alert.setText("Please enter a answer");
-      a1Alert.setStyle("-fx-text-fill: #AA3A47;");
-      a1AlertImage.setOpacity(1);
+      alert.setLabelAlert("Please enter a answer", a1Alert, a1AlertImage);
     } else {
-      a1Alert.setText("");
-      a1Alert.setStyle(null);
-      a1AlertImage.setOpacity(0);
+      alert.clearLabelAlert(a1Alert, a1AlertImage);
       securityQReact2(
           username, email, password, repassword, question1, question2, answer1, answer2);
     }
@@ -294,9 +249,9 @@ public class CreateAccountController {
       String answer2)
       throws IOException {
     if (questionChoice2.getSelectionModel().isEmpty()) {
-      alert.display("Failed to create an account", "Please select a question.");
+      alert.alertBox("Failed to create an account", "Please select a question.");
     } else if (question2.equals(question1)) {
-      alert.display("Failed to create an account", "Please choose a different question.");
+      alert.alertBox("Failed to create an account", "Please choose a different question.");
     } else {
       securityAReact2(
           username, email, password, repassword, question1, question2, answer1, answer2);
@@ -314,13 +269,9 @@ public class CreateAccountController {
       String answer2)
       throws IOException {
     if (answer2.length() < 1) {
-      a2Alert.setText("Please enter a answer");
-      a2Alert.setStyle("-fx-text-fill: #AA3A47;");
-      a2AlertImage.setOpacity(1);
+      alert.setLabelAlert("Please enter a answer", a2Alert, a2AlertImage);
     } else {
-      a2Alert.setText("");
-      a2Alert.setStyle(null);
-      a2AlertImage.setOpacity(0);
+      alert.clearLabelAlert(a2Alert, a2AlertImage);
       dao.addUser(
           username,
           password,
@@ -329,9 +280,8 @@ public class CreateAccountController {
           dao.getQuestionId(question2),
           answer1,
           answer2);
-      secondaryStage.setScene(
-          alert.getScene(secondaryStage, "Confirmation", "Account created successful!"));
-      secondaryStage.centerOnScreen();
+      super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
+      stage.centerOnScreen();
     }
   }
 
@@ -347,14 +297,11 @@ public class CreateAccountController {
     String answer2 = answer2Field.getText();
 
     if (!dao.usernameExist(username)) {
-      usernameAlert.setText("");
-      usernameAlert.setStyle(null);
-      usernameAlertImage.setOpacity(0);
+      alert.clearLabelAlert(usernameAlert, usernameAlertImage);
       usernameReact(username, email, password, repassword, question1, question2, answer1, answer2);
     } else {
-      usernameAlert.setText("Username already exist, try another one");
-      usernameAlert.setStyle("-fx-text-fill: #AA3A47;");
-      usernameAlertImage.setOpacity(1);
+      alert.setLabelAlert(
+          "Username already exist, try another one", usernameAlert, usernameAlertImage);
     }
   }
 }

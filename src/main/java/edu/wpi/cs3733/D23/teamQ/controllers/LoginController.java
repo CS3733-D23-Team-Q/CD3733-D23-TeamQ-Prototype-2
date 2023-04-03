@@ -1,11 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.AlertBox;
+import edu.wpi.cs3733.D23.teamQ.Alert;
 import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
-import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -18,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 
 public class LoginController {
   AccountDAOImpl dao = new AccountDAOImpl();
-  AlertBox alert = new AlertBox();
+  Alert alert = new Alert();
   @FXML Label loginAlert;
   @FXML ImageView alertImage;
   @FXML TextField usernameField;
@@ -49,55 +48,34 @@ public class LoginController {
     }
   }
 
+  public void passwordReact(String enteredPassword, String actualPassword) {
+    if (enteredPassword.equals(actualPassword)) {
+      alert.clearLabelAlert(loginAlert, alertImage);
+      Navigation.navigate(Screen.HOME);
+    } else {
+      alert.setLabelAlert("Wrong password", loginAlert, alertImage);
+    }
+  }
+
   @FXML
   public void loginButtonClicked() throws IOException {
     String username = usernameField.getText();
-    String password = passwordField.getText();
+    String enteredPassword = passwordField.getText();
+    String actualPassword = "";
     if (dao.usernameExist(username)) {
-      // usernameField.setStyle(null);
-      loginAlert.setText("");
-      loginAlert.setStyle(null);
-      alertImage.setOpacity(0);
+      alert.clearLabelAlert(loginAlert, alertImage);
       Account a = dao.getAccountFromUsername(username);
-      if (a.getPassword().equals(password)) {
-        // passwordField.setStyle(null);
-        loginAlert.setText("");
-        loginAlert.setStyle(null);
-        alertImage.setOpacity(0);
-        Navigation.navigate(Screen.HOME);
-      } else {
-        // passwordField.setStyle("-fx-text-box-border: red;");
-        // alert.display("Failed to login", "Wrong password.");
-        loginAlert.setText("Wrong password");
-        loginAlert.setStyle("-fx-text-fill: #AA3A47");
-        alertImage.setOpacity(1);
-      }
+      actualPassword = a.getPassword();
+      passwordReact(enteredPassword, actualPassword);
     } else if (dao.emailExist(username)) {
-      // usernameField.setStyle(null);
-      loginAlert.setText("");
-      loginAlert.setStyle(null);
+      alert.clearLabelAlert(loginAlert, alertImage);
       List<Account> as = dao.getAccountFromEmail(username);
       for (Account a : as) {
-        if (a.getPassword().equals(password)) {
-          // passwordField.setStyle(null);
-          loginAlert.setText("");
-          loginAlert.setStyle(null);
-          alertImage.setOpacity(0);
-          Navigation.navigate(Screen.HOME);
-        } else {
-          // passwordField.setStyle("-fx-text-box-border: red;");
-          // alert.display("Failed to login", "Wrong password.");
-          loginAlert.setText("Wrong password");
-          loginAlert.setStyle("-fx-text-fill: #AA3A47");
-          alertImage.setOpacity(1);
-        }
+        actualPassword = a.getPassword();
+        passwordReact(enteredPassword, actualPassword);
       }
     } else {
-      // usernameField.setStyle("-fx-text-box-border: red;");
-      // alert.display("Failed to login", "User doesn't exist.");
-      loginAlert.setText("User doesn't exist");
-      loginAlert.setStyle("-fx-text-fill: #AA3A47");
-      alertImage.setOpacity(1);
+      alert.setLabelAlert("User doesn't exist", loginAlert, alertImage);
     }
   }
 

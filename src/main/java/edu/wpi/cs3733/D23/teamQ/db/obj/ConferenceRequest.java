@@ -35,16 +35,16 @@ public class ConferenceRequest extends ServiceRequest {
     this.dateTime = dateTime;
     this.foodChoice = foodChoice;
   }
+
   public ConferenceRequest(
-          int progress,
-          String requester,
-          String assignee,
-          String roomNumber,
-          String specialInstructions,
-          String dateTime,
-          String foodChoice)
-  {
-    super(0,progress,requester,assignee,roomNumber,specialInstructions);
+      int progress,
+      String requester,
+      String assignee,
+      String roomNumber,
+      String specialInstructions,
+      String dateTime,
+      String foodChoice) {
+    super(0, requester, progress, assignee, roomNumber, specialInstructions);
     this.dateTime = dateTime;
     this.foodChoice = foodChoice;
   }

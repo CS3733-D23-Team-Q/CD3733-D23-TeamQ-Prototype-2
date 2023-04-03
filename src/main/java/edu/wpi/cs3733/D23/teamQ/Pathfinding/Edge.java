@@ -39,10 +39,6 @@ public class Edge extends newNode {
     //    return please;
   }
 
-  public int getWeight() {
-    return weight;
-  }
-
   //  public int getWeight() {
   //    return weight;
   //  }

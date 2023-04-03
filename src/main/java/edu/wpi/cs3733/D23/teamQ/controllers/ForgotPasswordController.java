@@ -1,26 +1,22 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.AlertBox;
-import edu.wpi.cs3733.D23.teamQ.App;
+import edu.wpi.cs3733.D23.teamQ.Alert;
+import edu.wpi.cs3733.D23.teamQ.Confirm;
+import edu.wpi.cs3733.D23.teamQ.SecondaryStage;
 import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class ForgotPasswordController {
-  static Stage secondaryStage;
+public class ForgotPasswordController extends SecondaryStage {
   AccountDAOImpl dao = new AccountDAOImpl();
-  CreateAccountController cac = new CreateAccountController();
-  AlertBox alert = new AlertBox();
+  CreateAccountController CAController = new CreateAccountController();
+  Alert alert = new Alert();
+  Confirm confirm = new Confirm();
   @FXML ChoiceBox questionChoice1;
   @FXML ChoiceBox questionChoice2;
   @FXML TextField usernameField;
@@ -37,24 +33,7 @@ public class ForgotPasswordController {
   @FXML Button CPButton;
 
   public static void display() throws IOException {
-    secondaryStage = new Stage();
-    secondaryStage.initModality(Modality.APPLICATION_MODAL);
-    secondaryStage.setTitle("Forgot Password");
-
-    final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/ForgotPassword.fxml"));
-    final VBox root = loader.load();
-
-    final Scene scene = new Scene(root);
-
-    scene
-        .getStylesheets()
-        .add(
-            Navigation.class
-                .getResource("/edu/wpi/cs3733/D23/teamQ/views/styles/Home.css")
-                .toExternalForm());
-
-    secondaryStage.setScene(scene);
-    secondaryStage.show();
+    display(Screen.FORGOT_PASSWORD);
   }
 
   @FXML
@@ -83,13 +62,10 @@ public class ForgotPasswordController {
     Account a = dao.getAccountFromUsername(username);
     String oldPassword = a.getPassword();
     if (oldPassword.equals(newPassword)) {
-      NPAlert.setText("Please enter a different password from the old one");
-      NPAlert.setStyle("-fx-text-fill: #AA3A47;");
-      NPAlertImage.setOpacity(1);
+      alert.setLabelAlert(
+          "Please enter a different password from the old one", NPAlert, NPAlertImage);
     } else {
-      NPAlert.setText("");
-      NPAlert.setStyle(null);
-      NPAlertImage.setOpacity(0);
+      alert.clearLabelAlert(NPAlert, NPAlertImage);
       passwordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     }
   }
@@ -103,23 +79,19 @@ public class ForgotPasswordController {
       String answer1,
       String answer2)
       throws IOException {
-    switch (cac.validPassword(newPassword)) {
+    switch (CAController.validPassword(newPassword)) {
       case 0:
-        NPAlert.setText("Please enter a password");
-        NPAlert.setStyle("-fx-text-fill: #AA3A47;");
-        NPAlertImage.setOpacity(1);
+        alert.setLabelAlert("Please enter a password", NPAlert, NPAlertImage);
         break;
       case 1:
-        NPAlert.setText("");
-        NPAlert.setStyle(null);
-        NPAlertImage.setOpacity(0);
+        alert.clearLabelAlert(NPAlert, NPAlertImage);
         repasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
         break;
       case 2:
-        NPAlert.setText(
-            "Please enter a password within the range 7-15 with at least one uppercase letter and one special character");
-        NPAlert.setStyle("-fx-text-fill: #AA3A47;");
-        NPAlertImage.setOpacity(1);
+        alert.setLabelAlert(
+            "Please enter a password within the range 7-15 with at least one uppercase letter and one special character",
+            NPAlert,
+            NPAlertImage);
         break;
     }
   }
@@ -134,14 +106,10 @@ public class ForgotPasswordController {
       String answer2)
       throws IOException {
     if (newPassword.equals(repassword)) {
-      CPAlert.setText("");
-      CPAlert.setStyle(null);
-      CPAlertImage.setOpacity(0);
+      alert.clearLabelAlert(CPAlert, CPAlertImage);
       securityQAReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {
-      CPAlert.setText("Password doesn't match");
-      CPAlert.setStyle("-fx-text-fill: #AA3A47;");
-      CPAlertImage.setOpacity(1);
+      alert.setLabelAlert("Password doesn't match", CPAlert, CPAlertImage);
     }
   }
 
@@ -167,13 +135,13 @@ public class ForgotPasswordController {
       answer2Field.setStyle(null);
       dao.updatePassword(username, newPassword);
       Navigation.navigate(Screen.LOGIN);
-      secondaryStage.setScene(
-          alert.getScene(secondaryStage, "Confirmation", "Password reset successful!"));
-      secondaryStage.centerOnScreen();
+      super.stage.setScene(
+          confirm.getScene(super.stage, "Confirmation", "Password reset successful!"));
+      super.stage.centerOnScreen();
     } else {
       answer1Field.setStyle("-fx-text-box-border: #AA3A47;");
       answer2Field.setStyle("-fx-text-box-border: #AA3A47;");
-      alert.display("Failed to reset password", "One or more answers are wrong.");
+      alert.alertBox("Failed to reset password", "One or more answers are wrong.");
     }
   }
 
@@ -186,14 +154,10 @@ public class ForgotPasswordController {
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
     if (dao.usernameExist(username)) {
-      usernameAlert.setText("");
-      usernameAlert.setStyle(null);
-      usernameAlertImage.setOpacity(0);
+      alert.clearLabelAlert(usernameAlert, usernameAlertImage);
       newPasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {
-      usernameAlert.setText("Username doesn't exist");
-      usernameAlert.setStyle("-fx-text-fill: #AA3A47;");
-      usernameAlertImage.setOpacity(1);
+      alert.setLabelAlert("Username doesn't exist", usernameAlert, usernameAlertImage);
     }
   }
 }

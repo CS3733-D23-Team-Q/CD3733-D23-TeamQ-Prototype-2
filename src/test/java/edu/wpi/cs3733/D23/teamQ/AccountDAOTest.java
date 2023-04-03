@@ -8,7 +8,7 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class loginSystemTest {
+public class AccountDAOTest {
   AccountDAOImpl dao = new AccountDAOImpl();
 
   public boolean samePropertyValueAs(Account a) {

@@ -58,8 +58,8 @@ public class FlowerRequestController extends ServiceRequestController {
                   (String) flowerChoiceField.getValue(),
                   (int) bouquetChoiceField.getValue());
           System.out.println(newFR);
-          Navigation.navigate(Screen.FLOWER_REQUEST_SUBMISSION);
             FlowerDaoSingleton.Connection.getDoaFR().addRow(newFR);
+          Navigation.navigate(Screen.FLOWER_REQUEST_SUBMISSION);
         });
   }
 }

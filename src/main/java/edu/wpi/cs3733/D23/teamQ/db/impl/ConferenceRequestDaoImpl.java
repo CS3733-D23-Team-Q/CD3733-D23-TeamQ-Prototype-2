@@ -71,8 +71,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     try (Connection conn = GenDao.connect();
         PreparedStatement stmt =
             conn.prepareStatement(
-                "INSERT INTO \"conferenceRequest\"(\"requestID\", requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-      stmt.setInt(1, x.getRequestID());
+                "INSERT INTO \"conferenceRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setString(2, x.getRequester());
       stmt.setInt(3, x.getProgress());
       stmt.setString(4, x.getAssignee());

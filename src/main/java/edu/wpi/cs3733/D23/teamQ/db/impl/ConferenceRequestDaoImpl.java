@@ -9,6 +9,9 @@ import java.util.List;
 public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integer> {
   private List<ConferenceRequest> conferenceRequests = new ArrayList<ConferenceRequest>();
 
+  public ConferenceRequestDaoImpl() throws SQLException {
+    populate();
+  }
   /**
    * returns a conferenceRequest given a requestID
    *
@@ -71,7 +74,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     try (Connection conn = GenDao.connect();
         PreparedStatement stmt =
             conn.prepareStatement(
-                "INSERT INTO \"conferenceRequest\"(\"requestID\", requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                "INSERT INTO \"conferenceRequest\"(\"requestID\", requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setInt(1, x.getRequestID());
       stmt.setString(2, x.getRequester());
       stmt.setInt(3, x.getProgress());
@@ -84,7 +87,8 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return conferenceRequests.add(x);
+    conferenceRequests.add(x);
+    return true;
   }
 
   @Override
@@ -98,8 +102,8 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
         ConferenceRequest conferenceRequest =
             new ConferenceRequest(
                 rst.getInt("requestID"),
-                rst.getInt("requester"),
                 rst.getString("progress"),
+                rst.getInt("requester"),
                 rst.getString("assignee"),
                 rst.getString("roomNum"),
                 rst.getString("specialInstructions"),
@@ -122,11 +126,11 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   private int getIndex(Integer requestID) {
     for (int i = 0; i < conferenceRequests.size(); i++) {
       ConferenceRequest x = conferenceRequests.get(i);
-      if (x.getRequestID() == requestID) {
+      if (x.getRequestID() == (Integer) requestID) {
         return i;
       }
     }
-    throw new RuntimeException("No move found with ID " + requestID);
+    throw new RuntimeException("No request found with ID " + requestID);
   }
 
   /**

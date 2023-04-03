@@ -11,8 +11,8 @@ public class ConferenceRequest extends ServiceRequest {
 
   public ConferenceRequest(
       int requestID,
-      int progress,
       String requester,
+      int progress,
       String assignee,
       String roomNumber,
       String specialInstructions,

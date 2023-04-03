@@ -39,6 +39,13 @@ public class Node implements Inode {
     this.locID = Integer.parseInt(xy);
   }
 
+  public Node(int x, int y) {
+    this.xCoord = x;
+    this.yCoord = y;
+  }
+
+  public Node() {}
+
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID

@@ -6,40 +6,33 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class star extends Edge {
-  star(int weight, TestNode node) {
-    super(weight, node);
+  star(int weight, newNode newNode) {
+    super(weight, newNode);
   }
 
-  public int getWeight(TestNode n, TestNode goal) {
-    int xDist = goal.getX() - n.getX();
-    int yDist = goal.getY() - n.getY();
-    double trueDist = Math.sqrt(xDist * xDist + yDist * yDist);
-    return (int) trueDist;
-  }
-
-  public static double calculateHeuristic(TestNode n, TestNode target) {
-    int dx = Math.abs(n.getX() - target.getX());
-    int dy = Math.abs(n.getY() - target.getY());
+  public static double calculateHeuristic(newNode n, newNode target) {
+    int dx = Math.abs(n.getxCoord() - target.getxCoord());
+    int dy = Math.abs(n.getyCoord() - target.getyCoord());
     int D = Math.abs(dx + dy);
     return D;
   }
 
-  public static TestNode aStar(TestNode start, TestNode target) {
-    PriorityQueue<TestNode> closedList = new PriorityQueue<>();
-    PriorityQueue<TestNode> openList = new PriorityQueue<>();
+  public static newNode aStar(newNode start, newNode target) {
+    PriorityQueue<newNode> closedList = new PriorityQueue<>();
+    PriorityQueue<newNode> openList = new PriorityQueue<>();
 
     start.f = start.g + calculateHeuristic(start, target);
     openList.add(start);
 
     while (!openList.isEmpty()) {
-      TestNode n = openList.peek();
+      newNode n = openList.peek();
       if (n == target) {
         return n;
       }
 
-      for (Edge edge : n.neighbors) {
-        TestNode m = edge.node;
-        double totalWeight = n.g + edge.weight;
+      for (Edge edge : n.getNeighbors()) {
+        newNode m = edge.getNode();
+        double totalWeight = n.g + edge.getWeight();
 
         if (!openList.contains(m) && !closedList.contains(m)) {
           m.parent = n;
@@ -66,18 +59,18 @@ public class star extends Edge {
     return null;
   }
 
-  public static void printPath(TestNode target) {
-    TestNode n = target;
+  public static void printPath(newNode target) {
+    newNode n = target;
 
     if (n == null) return;
 
     List<Integer> ids = new ArrayList<>();
 
     while (n.parent != null) {
-      ids.add(n.id);
-      n = n.parent;
+      ids.add(n.getId());
+      n = (newNode) n.parent;
     }
-    ids.add(n.id);
+    ids.add(n.getId());
     Collections.reverse(ids);
 
     for (int id : ids) {

@@ -6,19 +6,20 @@ public class Edge extends newNode {
 
   Edge(int weight, newNode newNode) {
 
-    this.weight = weight;
+    this.setWeight(weight);
     this.newNode = newNode;
   }
 
   public int getWeight() {
-    //    int xDist = getGoal().getXCoord() - this.getNode().getXCoord();
-    //    int yDist = getGoal().getYCoord() - this.getNode().getyCoord();
-    //    int yDist = getGoal().getYCoord() - this.getyCoord();
-    //    int yDist2 = getGoal().getYCoord();
-    //    System.out.println("here: " + yDist2);
-    //    newNode please = getGoal();
-    //    please.getyCoord();
-    //    System.out.println(please.getYCoord());
+    int xDist = this.getNode().getNeighbors().get(0).getXCoord() - this.getNode().getXCoord();
+    int yDist = this.getNode().getNeighbors().get(0).getXCoord() - this.getNode().getyCoord();
+    // int yDist = getGoal().getYCoord() - this.getyCoord();
+    // int yDist2 = getGoal().getYCoord();
+    // System.out.println("here: " + yDist2);
+    // newNode please = getGoal();
+    // please.getyCoord();
+    // System.out.println(please.getYCoord());
+    int weight = (int) Math.sqrt(xDist * xDist + yDist * yDist);
     return weight;
 
     //  int xDist = getGoal().getXCoord() - this.getXCoord();

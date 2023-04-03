@@ -19,6 +19,10 @@ public class Edge extends newNode {
     this.weight = weight;
   }
 
+  public int getWeight() {
+    return weight;
+  }
+
   //  public int getWeight() {
   //    //    int xDist = getGoal().getXCoord() - this.getNode().getXCoord();
   //    //    int yDist = getGoal().getYCoord() - this.getNode().getyCoord();

@@ -30,7 +30,7 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="533.9999694824219" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="507.66666412353516" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="56.000030517578125" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
@@ -159,7 +159,12 @@
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="10.0" prefWidth="771.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
          <children>
-            <Button fx:id="goToCCRButton31" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Home" textFill="#3966af" HBox.hgrow="ALWAYS">
+            <ImageView fitHeight="53.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Screenshot_2023-04-03_152312-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="goToCCRButton31" graphicTextGap="17.0" mnemonicParsing="false" onAction="#goToCCRButton" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Home" textFill="#3966af" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="16.0" />
                </font>

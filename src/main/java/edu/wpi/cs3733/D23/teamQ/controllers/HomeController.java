@@ -82,6 +82,5 @@ public class HomeController {
   @FXML
   public void logout() {
     Navigation.navigate(Screen.LOGIN);
-    // Add code to reset user
   }
 }

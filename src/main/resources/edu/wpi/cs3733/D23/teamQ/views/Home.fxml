@@ -65,7 +65,7 @@
       </HBox>
       <Button fx:id="settingButton" mnemonicParsing="false" onAction="#settingButtonClicked" prefHeight="15.0" prefWidth="36.0" styleClass="button-menu" stylesheets="@styles/Home.css" GridPane.columnIndex="9" GridPane.halignment="RIGHT" GridPane.rowIndex="13" GridPane.valignment="BOTTOM">
          <graphic>
-            <ImageView fx:id="settingImage" fitHeight="19.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingImage" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../Setting.png" />
                </image>

@@ -6,11 +6,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" spacing="3.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.CreateAccountController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="600.0" spacing="3.0" style="-fx-background-color: #F1F1F1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.CreateAccountController">
     <children>
       <HBox alignment="CENTER" prefHeight="30.0" prefWidth="590.0">
          <children>
@@ -23,25 +25,73 @@
       </HBox>
         <Label text="Username" />
         <TextField fx:id="usernameField" />
-      <Label fx:id="usernameAlert" />
+      <Label fx:id="usernameAlert">
+         <graphic>
+            <ImageView fx:id="usernameAlertImage" fitHeight="13.0" fitWidth="16.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Alert.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
         <Label text="Email" />
       <TextField fx:id="emailField" />
-      <Label fx:id="emailAlert" />
+      <Label fx:id="emailAlert">
+         <graphic>
+            <ImageView fx:id="emailAlertImage" fitHeight="13.0" fitWidth="16.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Alert.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
         <Label text="Password" />
       <PasswordField fx:id="passwordField" />
-      <Label fx:id="passwordAlert" />
+      <Label fx:id="passwordAlert">
+         <graphic>
+            <ImageView fx:id="passwordAlertImage" fitHeight="13.0" fitWidth="16.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Alert.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
         <Label text="Confirm Password" />
       <PasswordField fx:id="repasswordField" />
-      <Label fx:id="CPAlert" />
+      <Label fx:id="CPAlert">
+         <graphic>
+            <ImageView fx:id="CPAlertImage" fitHeight="13.0" fitWidth="16.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Alert.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
         <Label text="Security Question 1" />
         <ChoiceBox fx:id="questionChoice1" prefHeight="25.0" prefWidth="200.0" />
         <TextField fx:id="answer1Field" />
-      <Label fx:id="a1Alert" />
+      <Label fx:id="a1Alert">
+         <graphic>
+            <ImageView fx:id="a1AlertImage" fitHeight="13.0" fitWidth="16.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Alert.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
         <Label text="Security Question 2" />
         <ChoiceBox fx:id="questionChoice2" prefHeight="25.0" prefWidth="200.0" />
         <TextField fx:id="answer2Field" />
-      <Label fx:id="a2Alert" />
-        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="590.0">
+      <Label fx:id="a2Alert">
+         <graphic>
+            <ImageView fx:id="a2AlertImage" fitHeight="13.0" fitWidth="16.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Alert.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="590.0">
             <children>
                 <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#SUButtonClicked" text="Sign Up" />
             </children>

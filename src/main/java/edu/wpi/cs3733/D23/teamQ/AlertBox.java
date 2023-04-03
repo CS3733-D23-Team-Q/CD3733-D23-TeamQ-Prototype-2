@@ -14,6 +14,7 @@ public class AlertBox {
     stage.setTitle(title);
     Label label = new Label();
     label.setText(message);
+    label.setStyle("-fx-font-weight: bold");
     Button okButton = new Button("Ok");
     okButton.setOnAction(e -> stage.close());
     VBox layout = new VBox(5);
@@ -29,7 +30,7 @@ public class AlertBox {
     secondaryStage.setTitle(title);
     Label label = new Label();
     label.setText(message);
-    label.setStyle("-fx-text-fill: Red;");
+    label.setStyle("-fx-text-fill: #AA3A47;");
     Button okButton = new Button("Ok");
     okButton.setOnAction(e -> secondaryStage.close());
     VBox layout = new VBox(5);

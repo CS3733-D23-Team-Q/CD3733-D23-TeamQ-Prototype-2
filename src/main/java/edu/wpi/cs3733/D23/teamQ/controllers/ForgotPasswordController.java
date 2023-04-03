@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,12 +25,15 @@ public class ForgotPasswordController {
   @FXML ChoiceBox questionChoice2;
   @FXML TextField usernameField;
   @FXML Label usernameAlert;
+  @FXML ImageView usernameAlertImage;
   @FXML TextField answer1Field;
   @FXML TextField answer2Field;
   @FXML PasswordField NPField;
   @FXML Label NPAlert;
+  @FXML ImageView NPAlertImage;
   @FXML PasswordField CPField;
   @FXML Label CPAlert;
+  @FXML ImageView CPAlertImage;
   @FXML Button CPButton;
 
   public static void display() throws IOException {
@@ -79,15 +83,13 @@ public class ForgotPasswordController {
     Account a = dao.getAccountFromUsername(username);
     String oldPassword = a.getPassword();
     if (oldPassword.equals(newPassword)) {
-      // NPField.setStyle("-fx-text-box-border: red;");
-      // alert.display("Failed to reset password", "Please enter a different password from the old
-      // one.");
       NPAlert.setText("Please enter a different password from the old one");
-      NPAlert.setStyle("-fx-text-fill: red;");
+      NPAlert.setStyle("-fx-text-fill: #AA3A47;");
+      NPAlertImage.setOpacity(1);
     } else {
-      // NPField.setStyle(null);
       NPAlert.setText("");
       NPAlert.setStyle(null);
+      NPAlertImage.setOpacity(0);
       passwordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     }
   }
@@ -103,21 +105,21 @@ public class ForgotPasswordController {
       throws IOException {
     switch (cac.validPassword(newPassword)) {
       case 0:
-        // NPField.setStyle("-fx-text-box-border: red;");
-        // alert.display("Failed to create an account", "Please enter a password.");
         NPAlert.setText("Please enter a password");
-        NPAlert.setStyle("-fx-text-fill: red;");
+        NPAlert.setStyle("-fx-text-fill: #AA3A47;");
+        NPAlertImage.setOpacity(1);
         break;
       case 1:
-        // NPField.setStyle(null);
         NPAlert.setText("");
         NPAlert.setStyle(null);
+        NPAlertImage.setOpacity(0);
         repasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
         break;
       case 2:
         NPAlert.setText(
             "Please enter a password within the range 7-15 with at least one uppercase letter and one special character");
-        NPAlert.setStyle("-fx-text-fill: red;");
+        NPAlert.setStyle("-fx-text-fill: #AA3A47;");
+        NPAlertImage.setOpacity(1);
         break;
     }
   }
@@ -132,15 +134,14 @@ public class ForgotPasswordController {
       String answer2)
       throws IOException {
     if (newPassword.equals(repassword)) {
-      // CPField.setStyle(null);
       CPAlert.setText("");
       CPAlert.setStyle(null);
+      CPAlertImage.setOpacity(0);
       securityQAReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {
-      // CPField.setStyle("-fx-text-box-border: red;");
-      // alert.display("Failed to reset password", "Password doesn't match.");
       CPAlert.setText("Password doesn't match");
-      CPAlert.setStyle("-fx-text-fill: red;");
+      CPAlert.setStyle("-fx-text-fill: #AA3A47;");
+      CPAlertImage.setOpacity(1);
     }
   }
 
@@ -170,8 +171,8 @@ public class ForgotPasswordController {
           alert.getScene(secondaryStage, "Confirmation", "Password reset successful!"));
       secondaryStage.centerOnScreen();
     } else {
-      answer1Field.setStyle("-fx-text-box-border: red;");
-      answer2Field.setStyle("-fx-text-box-border: red;");
+      answer1Field.setStyle("-fx-text-box-border: #AA3A47;");
+      answer2Field.setStyle("-fx-text-box-border: #AA3A47;");
       alert.display("Failed to reset password", "One or more answers are wrong.");
     }
   }
@@ -185,15 +186,14 @@ public class ForgotPasswordController {
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
     if (dao.usernameExist(username)) {
-      // usernameField.setStyle(null);
       usernameAlert.setText("");
       usernameAlert.setStyle(null);
+      usernameAlertImage.setOpacity(0);
       newPasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {
-      // usernameField.setStyle("-fx-text-box-border: red;");
-      // alert.display("Failed to reset password", "Username doesn't exist.");
       usernameAlert.setText("Username doesn't exist");
-      usernameAlert.setStyle("-fx-text-fill: red;");
+      usernameAlert.setStyle("-fx-text-fill: #AA3A47;");
+      usernameAlertImage.setOpacity(1);
     }
   }
 }

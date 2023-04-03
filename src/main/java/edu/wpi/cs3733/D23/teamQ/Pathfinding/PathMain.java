@@ -67,10 +67,19 @@ public class PathMain {
     n13.addBranch(7, n12);
 
     newNode goal = n8;
-    goal.setGoal(n8);
-    System.out.println("here " + goal.getClass());
+
+    goal.setGoal();
+
+    //    end goal = new end(temp.getxCoord(), temp.getYCoord());
+    //    n8.getXCoord(), n8.getYCoord();
+
+    //    goal.setGoal(n8);
+    //    System.out.println("here " + goal.getClass());
+    //    System.out.println("here " + goal);
 
     newNode res = aStar(head, goal);
     printPath((newNode) res);
+
+    System.out.println("y test" + res.getyCoord());
   }
 }

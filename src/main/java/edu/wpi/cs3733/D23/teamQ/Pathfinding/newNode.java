@@ -6,7 +6,7 @@ import java.util.List;
 
 public class newNode extends Node implements Comparable<newNode> {
   newNode parent = null;
-  Node goal = null;
+  //  Node goal = null;
 
   private static int idCounter = 0;
   private int id;
@@ -18,6 +18,8 @@ public class newNode extends Node implements Comparable<newNode> {
   double g = Double.MAX_VALUE;
   private int xCoord;
   private int yCoord;
+
+  private newNode goal;
 
   newNode(int xCoord, int yCoord) {
     super(xCoord, yCoord);
@@ -33,11 +35,11 @@ public class newNode extends Node implements Comparable<newNode> {
     return neighbors;
   }
 
-  public Node getGoal() {
+  public newNode getGoal() {
     return goal;
   }
 
-  public void setGoal(Node goal) {
+  public void setGoal() {
     this.goal = goal;
   }
 

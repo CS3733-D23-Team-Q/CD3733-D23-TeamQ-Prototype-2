@@ -34,7 +34,7 @@ public class HomeController {
   /** Navigate to the conference room request page when the CRReservationButton is clicked. */
   @FXML
   public void CRReservationButtonClicked() {
-    Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST);
+    Navigation.navigate(Screen.SERVICE_REQUEST_HUB);
   }
 
   /** Navigate to the flower delivery request page when the FDRequestButton is clicked. */

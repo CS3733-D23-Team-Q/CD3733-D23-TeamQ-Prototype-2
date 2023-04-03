@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDAOImpl {
+  private List<Account> accounts = new ArrayList<Account>();
   private static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
   private static final String user = "teamq";
   private static final String password = "teamq140";
@@ -21,6 +22,124 @@ public class AccountDAOImpl {
     return con;
   }
 
+  public Account retrieveRow(String uname){
+    int index = this.getIndex(uname);
+    return accounts.get(index);
+  }
+
+  public boolean updateRow(String uname, String newPassword) throws SQLException{
+    int index = this.getIndex(uname);
+    String oldPassword = accounts.get(index).getPassword();
+    oldPassword = newPassword;
+    return true;
+  }
+
+  public boolean deleteRow(String uname) {
+    boolean result = false;
+    Connection con = connect();
+    try {
+      String query = "DELETE FROM account WHERE username = ?";
+      PreparedStatement pst = con.prepareStatement(query);
+      pst.setString(1, uname);
+      int rs = pst.executeUpdate();
+      if (rs == 1) {
+        result = true;
+        System.out.println("Account deleted successful!");
+      } else {
+        System.out.println("Failed to delete your account.");
+      }
+      con.close();
+      pst.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    if(result) {
+      int index = this.getIndex(uname);
+      accounts.remove(index);
+    }
+    return result;
+  }
+
+  public boolean addRow(Account a){
+    String uname = a.getUsername();
+    String pass = a.getPassword();
+    String email = a.getEmail();
+    int q1 = a.getSecurityQuestion1();
+    int q2 = a.getSecurityQuestion2();
+    String a1 = a.getSecurityAnswer1();
+    String a2 = a.getSecurityAnswer2();
+    boolean result = false;
+    Connection con = connect();
+    try {
+      String query =
+              "INSERT INTO account"
+                      + "(username, password, email, security_question_1, security_question_2, security_answer_1, security_answer_2)"
+                      + "VALUES(?,?,?,?,?,?,?)";
+      PreparedStatement pst = con.prepareStatement(query);
+      pst.setString(1, uname);
+      pst.setString(2, pass);
+      pst.setString(3, email);
+      pst.setInt(4, q1);
+      pst.setInt(5, q2);
+      pst.setString(6, a1);
+      pst.setString(7, a2);
+      int rs = pst.executeUpdate();
+      if (rs == 1) {
+        result = true;
+        System.out.println("Account created successful!");
+      } else {
+        System.out.println("Failed to create your account.");
+      }
+      con.close();
+      pst.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    if(result){
+      accounts.add(a);
+    }
+    return result;
+  }
+
+  public boolean populate(){
+    Connection con = connect();
+    try {
+      String query = "SELECT * FROM account";
+      Statement st = con.createStatement();
+      ResultSet rs = st.executeQuery(query);
+      while (rs.next()) {
+        Account a;
+        a = new Account(
+                rs.getString("username"),
+                rs.getString("password"),
+                rs.getString("email"),
+                rs.getInt("security_question_1"),
+                rs.getInt("security_question_2"),
+                rs.getString("security_answer_1"),
+                rs.getString("security_answer_2")
+        );
+        accounts.add(a);
+      }
+      con.close();
+      st.close();
+      return true;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return false;
+  }
+
+  public int getIndex(String uname){
+    for(int i = 0; i < accounts.size(); i++){
+      Account a = accounts.get(i);
+      if(a.getUsername().equals(uname)){
+        return i;
+      }
+    }
+    throw new RuntimeException("No move found with username " + uname);
+  }
+
+  /*
   public boolean addUser(
       String uname, String pass, String email, int q1, int q2, String a1, String a2) {
     boolean result = false;
@@ -44,28 +163,6 @@ public class AccountDAOImpl {
         System.out.println("Account created successful!");
       } else {
         System.out.println("Failed to create your account.");
-      }
-      con.close();
-      pst.close();
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-    return result;
-  }
-
-  public boolean deleteUser(String uname) {
-    boolean result = false;
-    Connection con = connect();
-    try {
-      String query = "DELETE FROM account WHERE username = ?";
-      PreparedStatement pst = con.prepareStatement(query);
-      pst.setString(1, uname);
-      int rs = pst.executeUpdate();
-      if (rs == 1) {
-        result = true;
-        System.out.println("Account deleted successful!");
-      } else {
-        System.out.println("Failed to delete your account.");
       }
       con.close();
       pst.close();
@@ -235,4 +332,5 @@ public class AccountDAOImpl {
     }
     return questions;
   }
+   */
 }

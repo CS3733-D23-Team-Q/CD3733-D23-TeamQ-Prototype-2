@@ -42,7 +42,7 @@ public class App extends Application {
                 .getResource("/edu/wpi/cs3733/D23/teamQ/views/styles/Home.css")
                 .toExternalForm());
     primaryStage.show();
-    Navigation.navigate(Screen.HOME);
+    Navigation.navigate(Screen.LOGIN);
     primaryStage.centerOnScreen();
   }
 

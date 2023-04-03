@@ -74,7 +74,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
    * @param request flowerRequest being added
    * @return true if successful
    */
-  public boolean addRow(FlowerRequest request) {
+  public boolean addRow(FlowerRequest request){
     try (Connection conn = GenDao.connect();
         PreparedStatement stmt =
             conn.prepareStatement(

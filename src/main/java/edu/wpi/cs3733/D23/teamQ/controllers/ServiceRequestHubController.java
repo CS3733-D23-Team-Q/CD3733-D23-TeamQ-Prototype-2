@@ -2,61 +2,69 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
-import java.awt.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 
 public class ServiceRequestHubController {
-  @FXML private Button goToCCRButton;
-  @FXML private Button goToMDButton;
-  @FXML private Button goToFRDButton;
-  @FXML private Button goToFEDButton;
-  @FXML private Button goToOSPButton;
-  @FXML private Button goToPTButton;
-  @FXML private Button homeButton;
-  @FXML MenuItem exit;
-  @FXML MenuItem home;
+  @FXML Button ccrButton;
+  @FXML Button mdButton;
+  @FXML Button frdButton;
+  @FXML Button fedButton;
+  @FXML Button ospButton;
+  @FXML Button ptButton;
+
+  @FXML Button homeButton;
+
+  @FXML MenuItem homeItem;
+  @FXML MenuItem exitItem;
 
   @FXML
-  public void initialize() {}
+  public void initialize() {};
 
   @FXML
-  public void exitMenuClicked() {
-    Platform.exit();
-  }
-
-  @FXML
-  public void CCRButton() {
+  public void ccrButtonClicked() {
     Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST);
   }
 
   @FXML
-  public void MDButton() {
+  public void mdButtonClicked() {
     Navigation.navigate(Screen.MEAL_REQUEST);
   }
 
   @FXML
-  public void FRDButton() {
+  public void frdButtonClicked() {
     Navigation.navigate(Screen.FLOWER_REQUEST);
   }
 
   @FXML
-  public void FEDButton() {
+  public void fedButtonClicked() {
     Navigation.navigate(Screen.FURNITURE_REQUEST);
   }
 
   @FXML
-  public void OSPButton() {
+  public void ospButtonClicked() {
     Navigation.navigate(Screen.OFFICE_SUPPLIES_REQUEST);
   }
 
   @FXML
-  public void PTButton() {
+  public void ptButtonClicked() {
     Navigation.navigate(Screen.PATIENT_TRANSPORT_REQUEST);
   }
 
   @FXML
-  public void home() {
+  public void homeButtonClicked() {
     Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void homeItemClicked() {
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void exitItemClicked() {
+    Platform.exit();
   }
 }

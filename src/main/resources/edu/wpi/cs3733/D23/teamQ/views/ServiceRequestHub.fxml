@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1F1F1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.HomeController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1F1F1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.ServiceRequestHubController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.0" minWidth="10.0" prefWidth="135.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="792.3333333333334" minWidth="10.0" prefWidth="792.3333333333334" />
@@ -46,8 +46,8 @@
          <menus>
             <Menu mnemonicParsing="false" text="Menu">
                <items>
-                  <MenuItem fx:id="home" mnemonicParsing="false" text="Home" />
-                  <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exitMenuClicked" text="Exit" />
+                  <MenuItem fx:id="homeItem" mnemonicParsing="false" onAction="#homeItemClicked" text="Home" />
+                  <MenuItem fx:id="exitItem" mnemonicParsing="false" onAction="#exitItemClicked" text="Exit" />
                </items>
                <graphic>
                   <ImageView fx:id="menuImage" fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
@@ -123,32 +123,32 @@
                         <Image url="@../../../../../../Handshake.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="goToCCRButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#CCRButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Conference Room Request" textFill="#3966af" GridPane.columnIndex="1">
+                  <Button fx:id="ccrButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ccrButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Conference Room Request" textFill="#3966af" GridPane.columnIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="goToFRDButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#FRDButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Flower Delivery" textFill="#3966af" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="frdButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#frdButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Flower Delivery" textFill="#3966af" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="goToOSPButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#OSPButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Office Supply Purchase" textFill="#3966af" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="ospButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ospButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Office Supply Purchase" textFill="#3966af" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="goToMDButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#MDButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Meal Delivery" textFill="#3966af" GridPane.columnIndex="3">
+                  <Button fx:id="mdButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#mdButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Meal Delivery" textFill="#3966af" GridPane.columnIndex="3">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="goToFEDButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#FEDButton" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Furniture Delivery" textFill="#3966af" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Button fx:id="fedButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#fedButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Furniture Delivery" textFill="#3966af" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="goToPTButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#PTButton" prefHeight="36.0" prefWidth="149.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Patient Transport" textFill="#3966af" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <Button fx:id="ptButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ptButtonClicked" prefHeight="36.0" prefWidth="149.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Patient Transport" textFill="#3966af" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -161,10 +161,10 @@
          <children>
             <ImageView fitHeight="53.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Screenshot_2023-04-03_152312-removebg-preview.png" />
+                  <Image url="@../../../../../../Home.png" />
                </image>
             </ImageView>
-            <Button fx:id="homeButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#home" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Home" textFill="#3966af" HBox.hgrow="ALWAYS">
+            <Button fx:id="homeButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Home" textFill="#3966af" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="16.0" />
                </font>

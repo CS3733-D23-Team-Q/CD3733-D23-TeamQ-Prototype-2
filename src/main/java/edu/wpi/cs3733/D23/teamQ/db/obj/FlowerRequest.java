@@ -20,7 +20,22 @@ public class FlowerRequest extends ServiceRequest {
       String note,
       String flowerType,
       int numberOfBouquets) {
-    super(requestID, progress, requester, assignee, roomNumber, specialInstructions);
+    super(requestID, requester, progress, assignee, roomNumber, specialInstructions);
+    this.note = note;
+    this.flowerType = flowerType;
+    this.numberOfBouquets = numberOfBouquets;
+  }
+
+  public FlowerRequest(
+      String requester,
+      int progress,
+      String assignee,
+      String roomNumber,
+      String specialInstructions,
+      String note,
+      String flowerType,
+      int numberOfBouquets) {
+    super(0, requester, progress, assignee, roomNumber, specialInstructions);
     this.note = note;
     this.flowerType = flowerType;
     this.numberOfBouquets = numberOfBouquets;

@@ -8,9 +8,13 @@ import java.util.List;
 
 public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
   private List<FlowerRequest> flowerRequests = new ArrayList<FlowerRequest>();
+  int nextID = 0;
 
   public FlowerRequestDaoImpl() throws SQLException {
     populate();
+    if (flowerRequests.size() != 0) {
+      nextID = flowerRequests.get(-1).getRequestID() + 1;
+    }
   }
 
   /**
@@ -71,29 +75,25 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
    * @return true if successful
    */
   public boolean addRow(FlowerRequest request) {
-    if (retrieveRow(request.getRequestID()) == null) {
-      try (Connection conn = GenDao.connect();
-          PreparedStatement stmt =
-              conn.prepareStatement(
-                  "INSERT INTO \"flowerRequest\"(\"requestID\", \"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-        stmt.setInt(1, request.getRequestID());
-        stmt.setString(2, request.getRequester());
-        stmt.setInt(3, request.getProgress());
-        stmt.setString(4, request.getAssignee());
-        stmt.setString(5, request.getSpecialInstructions());
-        stmt.setString(6, request.getNote());
-        stmt.setString(7, request.getFlowerType());
-        stmt.setInt(8, request.getNumberOfBouquets());
-        stmt.setString(9, request.getRoomNumber());
-        stmt.executeUpdate();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-      return flowerRequests.add(request);
-    } else {
-      System.out.println("There is already a request with ID: " + request.getRequestID());
-      return false;
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO \"flowerRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+      stmt.setString(1, request.getRequester());
+      stmt.setInt(2, request.getProgress());
+      stmt.setString(3, request.getAssignee());
+      stmt.setString(4, request.getSpecialInstructions());
+      stmt.setString(5, request.getNote());
+      stmt.setString(6, request.getFlowerType());
+      stmt.setInt(7, request.getNumberOfBouquets());
+      stmt.setString(8, request.getRoomNumber());
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    request.setRequestID(nextID);
+    nextID++;
+    return flowerRequests.add(request);
   }
 
   @Override

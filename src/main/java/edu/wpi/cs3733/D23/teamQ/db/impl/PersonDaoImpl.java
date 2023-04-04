@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonDaoImpl implements GenDao<Account, String>{
+public class PersonDaoImpl implements GenDao<Person, Integer>{
     static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
     static final String user = "teamq";
     static final String password = "teamq140";
@@ -25,7 +25,7 @@ public class PersonDaoImpl implements GenDao<Account, String>{
 
     private List<Person> People = new ArrayList<Person>();
 
-    public Person retrieveRow(int IDNum) {
+    public Person retrieveRow(Integer IDNum) {
         populate();
         int index = this.getIndex(IDNum);
         return People.get(index);
@@ -33,7 +33,7 @@ public class PersonDaoImpl implements GenDao<Account, String>{
 
 
 
-    public boolean updateRow(int IDNum, Person personWithNewChanges) {
+    public boolean updateRow(Integer IDNum, Person personWithNewChanges) {
         populate();
         boolean result = false;
         Connection con = GenDao.connect();
@@ -74,7 +74,7 @@ public class PersonDaoImpl implements GenDao<Account, String>{
         return result;
     }
 
-    public boolean deleteRow(int IDNum) {
+    public boolean deleteRow(Integer IDNum) {
         populate();
         boolean result = false;
         Connection con = GenDao.connect();

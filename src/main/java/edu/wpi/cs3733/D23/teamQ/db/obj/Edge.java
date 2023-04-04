@@ -28,8 +28,8 @@ public class Edge {
   }
 
   public int getWeight() {
-    int xDist = this.getStartNode().getXCoord() - this.getEndNode().getXCoord();
-    int yDist = this.getStartNode().getYCoord() - this.getEndNode().getYCoord();
+    int xDist = Math.abs(this.getStartNode().getXCoord() - this.getEndNode().getXCoord());
+    int yDist = Math.abs(this.getStartNode().getYCoord() - this.getEndNode().getYCoord());
     int weight = (int) Math.sqrt(xDist * xDist + yDist * yDist);
     return weight;
   }

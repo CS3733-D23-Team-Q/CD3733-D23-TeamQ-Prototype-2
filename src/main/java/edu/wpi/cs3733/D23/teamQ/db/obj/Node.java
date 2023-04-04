@@ -16,6 +16,7 @@ public class Node {
   private List<Edge> edges;
   private Location location;
   private int locID;
+
   private double f = Double.MAX_VALUE;
   private double g = Double.MAX_VALUE;
   private static int idCounter = 0;

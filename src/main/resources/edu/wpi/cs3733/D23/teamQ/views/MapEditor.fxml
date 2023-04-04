@@ -13,10 +13,10 @@
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.MapEditorController">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="614.0" minWidth="10.0" prefWidth="52.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="577.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="667.0" minWidth="10.0" prefWidth="336.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="3.0" prefWidth="123.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="244.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="528.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="667.0" minWidth="10.0" prefWidth="316.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="3.0" prefWidth="137.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="266.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="54.0" />
     </columnConstraints>
     <rowConstraints>
@@ -73,7 +73,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="363.0" text="LocationName" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="363.0" text="Location" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -88,7 +88,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" text="Back" translateX="250.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" text="Back" translateX="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

@@ -33,19 +33,20 @@ public class MapEditorController{
 
   @FXML private TableColumn<Node, String> Floor;
 
-  @FXML private TableColumn<Location, String> LongName;
+  @FXML private TableColumn<Node, String> LongName;
 
   @FXML private TableColumn<Node, Number> NodeID;
 
-  @FXML private TableColumn<Location, String> NodeType;
+  @FXML private TableColumn<Node, String> NodeType;
 
-  @FXML private TableColumn<Location, String> ShortName;
+  @FXML private TableColumn<Node, String> ShortName;
 
   @FXML private TableColumn<Edge, Number> StartNode;
 
   @FXML private TableColumn<Node, Number> Xcoord;
 
   @FXML private TableColumn<Node, Number> Ycoord;
+
 
   @FXML
   private TableView<Edge> edge;
@@ -64,8 +65,10 @@ public class MapEditorController{
    * used to get Nodes from database
    */
 
+
    public ObservableList<Node> nodes() {
     ObservableList<Node> node = FXCollections.observableArrayList();
+
     for (int i = 0; i < NodeDaoImpl.getAllRows().size(); i++) {
       node.add(NodeDaoImpl.getAllRows().get(i));
     }
@@ -183,10 +186,10 @@ public class MapEditorController{
     /**
      * import the long-name from location
      */
-    LongName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Location, String>, ObservableValue<String>>() {
+    LongName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
       @Override
-      public ObservableValue<String> call(TableColumn.CellDataFeatures<Location, String> param) {
-        SimpleStringProperty longnames = new SimpleStringProperty(param.getValue().getLongName());
+      public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+        SimpleStringProperty longnames = new SimpleStringProperty(param.getValue().getLocation().getLongName());
         return longnames;
       }
     });
@@ -194,10 +197,10 @@ public class MapEditorController{
     /**
      * import the short-name from location
      */
-    ShortName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Location, String>, ObservableValue<String>>() {
+    ShortName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
       @Override
-      public ObservableValue<String> call(TableColumn.CellDataFeatures<Location, String> param) {
-        SimpleStringProperty shortnames = new SimpleStringProperty(param.getValue().getShortName());
+      public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+        SimpleStringProperty shortnames = new SimpleStringProperty(param.getValue().getLocation().getShortName());
         return shortnames;
       }
     });
@@ -205,10 +208,10 @@ public class MapEditorController{
     /**
      * import the node_type
      */
-    NodeType.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Location, String>, ObservableValue<String>>() {
+    NodeType.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
       @Override
-      public ObservableValue<String> call(TableColumn.CellDataFeatures<Location, String> param) {
-        SimpleStringProperty nodetype = new SimpleStringProperty(param.getValue().getNodeType());
+      public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+        SimpleStringProperty nodetype = new SimpleStringProperty(param.getValue().getLocation().getNodeType());
         return nodetype;
       }
     });

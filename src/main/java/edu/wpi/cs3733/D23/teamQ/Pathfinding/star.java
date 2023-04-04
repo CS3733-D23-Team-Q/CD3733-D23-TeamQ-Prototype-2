@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
+import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 
 import java.util.ArrayList;
@@ -8,9 +9,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class star extends Node {
-  star(int weight, Node Node) {
-    super(weight, Node);
-  }
+
 
   public static double calculateHeuristic(Node n, Node target) {
     int dx = Math.abs(n.getXCoord() - target.getYCoord());
@@ -33,7 +32,7 @@ public class star extends Node {
       }
 
       for (Edge edge : n.getEdges()) {
-        Node m = edge.getNode();
+        Node m = edge.getStartNode();
         double totalWeight = n.getG() + edge.getWeight();
 
         if (!openList.contains(m) && !closedList.contains(m)) {

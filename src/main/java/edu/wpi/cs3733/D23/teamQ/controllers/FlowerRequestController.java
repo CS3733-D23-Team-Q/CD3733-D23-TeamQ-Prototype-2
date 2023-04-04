@@ -4,12 +4,14 @@ import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerDaoSingleton;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.MenuItem;
 
 public class FlowerRequestController {
   @FXML private MFXTextField roomNumberField;
@@ -21,9 +23,13 @@ public class FlowerRequestController {
   @FXML private ChoiceBox bouquetChoiceField;
   ObservableList<String> NumOfBouquets = FXCollections.observableArrayList("1", "2", "3", "4", "5");
 
-  @FXML private MFXButton resetButton;
-  @FXML private MFXButton backButton;
-  @FXML private MFXButton submitButton;
+  @FXML Button resetButton;
+  @FXML Button backButton;
+  @FXML Button submitButton;
+
+  @FXML MenuItem homeItem;
+  @FXML MenuItem exitItem;
+
   /**
    * Initializes the Flower Request Choice Box's Switches screens to the Home page when Cancel
    * Button is pressed Clears fields when Clears Filters is pressed Switches screens to Flower
@@ -35,29 +41,45 @@ public class FlowerRequestController {
     this.flowerChoiceField.setItems(TypeOfFlowers);
     this.bouquetChoiceField.setValue("Number of Bouquets");
     this.bouquetChoiceField.setItems(NumOfBouquets);
-    this.resetButton.setOnMouseClicked(
-        event -> {
-          roomNumberField.clear();
-          noteField.clear();
-          specialInstructionsField.clear();
-          flowerChoiceField.setValue("Select Flower");
-          bouquetChoiceField.setValue("Number of Bouquets");
-        });
-    this.backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST_HUB));
-    this.submitButton.setOnMouseClicked(
-        event -> {
-          FlowerRequest newFR =
-              new FlowerRequest(
-                  "temp user",
-                  0,
-                  "temp assignee",
-                  roomNumberField.getText(),
-                  specialInstructionsField.getText(),
-                  noteField.getText(),
-                  (String) flowerChoiceField.getValue(),
-                  Integer.parseInt((String) bouquetChoiceField.getValue()));
-          FlowerDaoSingleton.Connection.getDaoFR().addRow(newFR);
-          Navigation.navigate(Screen.HOME);
-        });
+  }
+
+  @FXML
+  public void resetButtonClicked() {
+    roomNumberField.clear();
+    noteField.clear();
+    specialInstructionsField.clear();
+    flowerChoiceField.setValue("Select Flower");
+    bouquetChoiceField.setValue("Number of Bouquets");
+  }
+
+  @FXML
+  public void backButtonClicked() {
+    Navigation.navigate(Screen.SERVICE_REQUEST_HUB);
+  }
+
+  @FXML
+  public void submitButtonClicked() {
+    FlowerRequest newFR =
+        new FlowerRequest(
+            "temp user",
+            0,
+            "temp assignee",
+            roomNumberField.getText(),
+            specialInstructionsField.getText(),
+            noteField.getText(),
+            (String) flowerChoiceField.getValue(),
+            Integer.parseInt((String) bouquetChoiceField.getValue()));
+    FlowerDaoSingleton.Connection.getDaoFR().addRow(newFR);
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void homeItemClicked() {
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void exitItemClicked() {
+    Platform.exit();
   }
 }

@@ -99,35 +99,31 @@ public class PersonDaoImpl implements GenDao<Account, String>{
         return result;
     }
 
-    public boolean addRow(Account a) {
+    public boolean addRow(Person a) {
         populate();
-        String uname = a.getUsername();
-        String pass = a.getPassword();
-        String email = a.getEmail();
-        int q1 = a.getSecurityQuestion1();
-        int q2 = a.getSecurityQuestion2();
-        String a1 = a.getSecurityAnswer1();
-        String a2 = a.getSecurityAnswer2();
+        int IDNum = a.getIDNum();
+        String FirstName = a.getFirstName();
+        String LastName = a.getLastName();
+        String Title = a.getTitle();
+        int PhoneNumber = a.getPhoneNumber();
         boolean result = false;
         Connection con = GenDao.connect();
         try {
             String query =
-                    "INSERT INTO account (username, password, email, security_question_1, security_question_2, security_answer_1, security_answer_2) VALUES(?,?,?,?,?,?,?)";
+                    "INSERT INTO person (IDNum, FirstName, LastName, Title, PhoneNumber) VALUES(?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, uname);
-            pst.setString(2, pass);
-            pst.setString(3, email);
-            pst.setInt(4, q1);
-            pst.setInt(5, q2);
-            pst.setString(6, a1);
-            pst.setString(7, a2);
+            pst.setInt(1, IDNum);
+            pst.setString(2, FirstName);
+            pst.setString(3, LastName);
+            pst.setString(4, Title);
+            pst.setInt(5, PhoneNumber);
             int rs = pst.executeUpdate();
             if (rs == 1) {
                 result = true;
-                accounts.add(a);
-                System.out.println("Account created successful!");
+                People.add(a);
+                System.out.println("Person created successful!");
             } else {
-                System.out.println("Failed to create your account.");
+                System.out.println("Failed to create your person.");
             }
             con.close();
             pst.close();

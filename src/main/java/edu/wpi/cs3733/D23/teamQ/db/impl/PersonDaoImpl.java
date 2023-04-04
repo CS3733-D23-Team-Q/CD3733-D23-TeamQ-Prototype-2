@@ -33,40 +33,35 @@ public class PersonDaoImpl implements GenDao<Account, String>{
 
 
 
-    public boolean updateRow(String uname, Account accountWithNewChanges) {
+    public boolean updateRow(String uname, Person personWithNewChanges) {
         populate();
         boolean result = false;
         Connection con = GenDao.connect();
-        String newPass = accountWithNewChanges.getPassword();
-        String newEmail = accountWithNewChanges.getEmail();
-        int newq1 = accountWithNewChanges.getSecurityQuestion1();
-        int newq2 = accountWithNewChanges.getSecurityQuestion2();
-        String newa1 = accountWithNewChanges.getSecurityAnswer1();
-        String newa2 = accountWithNewChanges.getSecurityAnswer2();
+        String newFN = personWithNewChanges.getFirstName();
+        String newLN = personWithNewChanges.getLastName();
+        String newTitle = personWithNewChanges.getTitle();
+        int newPN = personWithNewChanges.getPhoneNumber();
+
         try {
             String query =
-                    "UPDATE account SET password = ?, email = ?, security_question_1 = ?, security_question_2 = ?, security_answer_1 = ?, security_answer_2 = ? WHERE username = ?";
+                    "UPDATE person SET firstName = ?, lastName = ?, title = ?, phoneNumber= ? WHERE username = ?";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, newPass);
-            pst.setString(2, newEmail);
-            pst.setInt(3, newq1);
-            pst.setInt(4, newq2);
-            pst.setString(5, newa1);
-            pst.setString(6, newa2);
-            pst.setString(7, uname);
+            pst.setString(1, newFN);
+            pst.setString(2, newLN);
+            pst.setString(3, newTitle);
+            pst.setInt(4, newPN);
+
             int rs = pst.executeUpdate();
             if (rs == 1) {
                 result = true;
                 int index = this.getIndex(uname);
-                accounts.get(index).setPassword(newPass);
-                accounts.get(index).setEmail(newEmail);
-                accounts.get(index).setSecurityQuestion1(newq1);
-                accounts.get(index).setSecurityQuestion2(newq2);
-                accounts.get(index).setSecurityAnswer1(newa1);
-                accounts.get(index).setSecurityAnswer1(newa2);
-                System.out.println("Password updated successful!");
+                People.get(index).setFirstName(newFN);
+                People.get(index).setLastName(newLN);
+                People.get(index).setTitle(newTitle);
+                People.get(index).setPhone(newPN);
+                System.out.println("Updated successfully!");
             } else {
-                System.out.println("Failed to update your password.");
+                System.out.println("Failed to update.");
             }
             con.close();
             pst.close();

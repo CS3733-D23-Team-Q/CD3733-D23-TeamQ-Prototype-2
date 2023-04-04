@@ -76,22 +76,22 @@ public class PersonDaoImpl implements GenDao<Account, String>{
         return result;
     }
 
-    public boolean deleteRow(String uname) {
+    public boolean deleteRow(int IDNum) {
         populate();
         boolean result = false;
         Connection con = GenDao.connect();
         try {
-            String query = "DELETE FROM account WHERE username = ?";
+            String query = "DELETE FROM person WHERE IDNum = ?";
             PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, uname);
+            pst.setInt(1, IDNum);
             int rs = pst.executeUpdate();
             if (rs == 1) {
                 result = true;
-                int index = this.getIndex(uname);
-                accounts.remove(index);
-                System.out.println("Account deleted successful!");
+                int index = this.getIndex(IDNum);
+                People.remove(index);
+                System.out.println("Person deleted successful!");
             } else {
-                System.out.println("Failed to delete your account.");
+                System.out.println("Failed to delete your Person.");
             }
             con.close();
             pst.close();

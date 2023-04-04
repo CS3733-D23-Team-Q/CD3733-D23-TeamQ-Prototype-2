@@ -6,6 +6,7 @@ public class Person {
     private String LastName;
     private String Title;
     private int PhoneNumber;
+    private String username;
 
     public Person(int IDNum, String Firstname, String LastName, String Title, int PhoneNumber)
     {
@@ -54,6 +55,14 @@ public class Person {
     public void setPhone(int PhoneNumber)
     {
         this.PhoneNumber = PhoneNumber;
+    }
+    public String getUsername()
+    {
+        return username;
+    }
+    public void setUsername(String UN)
+    {
+        this.username = UN;
     }
 
 

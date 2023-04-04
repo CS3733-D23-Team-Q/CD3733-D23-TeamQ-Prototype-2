@@ -25,7 +25,7 @@ public class PersonDaoImpl implements GenDao<Account, String>{
 
     private List<Person> People = new ArrayList<Person>();
 
-    public Person retrieveRow(String IDNum) {
+    public Person retrieveRow(int IDNum) {
         populate();
         int index = this.getIndex(IDNum);
         return People.get(index);
@@ -33,7 +33,7 @@ public class PersonDaoImpl implements GenDao<Account, String>{
 
 
 
-    public boolean updateRow(String uname, Person personWithNewChanges) {
+    public boolean updateRow(int IDNum, Person personWithNewChanges) {
         populate();
         boolean result = false;
         Connection con = GenDao.connect();
@@ -41,24 +41,27 @@ public class PersonDaoImpl implements GenDao<Account, String>{
         String newLN = personWithNewChanges.getLastName();
         String newTitle = personWithNewChanges.getTitle();
         int newPN = personWithNewChanges.getPhoneNumber();
+        String newUN = personWithNewChanges.getUsername();
 
         try {
             String query =
-                    "UPDATE person SET firstName = ?, lastName = ?, title = ?, phoneNumber= ? WHERE username = ?";
+                    "UPDATE person SET firstName = ?, lastName = ?, title = ?, phoneNumber= ?, username=? WHERE IDNum = ?";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, newFN);
             pst.setString(2, newLN);
             pst.setString(3, newTitle);
             pst.setInt(4, newPN);
+            pst.setString(5, newUN);
 
             int rs = pst.executeUpdate();
             if (rs == 1) {
                 result = true;
-                int index = this.getIndex(uname);
+                int index = this.getIndex(IDNum);
                 People.get(index).setFirstName(newFN);
                 People.get(index).setLastName(newLN);
                 People.get(index).setTitle(newTitle);
                 People.get(index).setPhone(newPN);
+                People.get(index).setUsername(newUN);
                 System.out.println("Updated successfully!");
             } else {
                 System.out.println("Failed to update.");
@@ -135,29 +138,27 @@ public class PersonDaoImpl implements GenDao<Account, String>{
     }
 
     @Override
-    public List<Account> getAllRows() {
+    public List<Person> getAllRows() {
         populate();
-        return accounts;
+        return People;
     }
 
     public boolean populate() {
         Connection con = GenDao.connect();
         try {
-            String query = "SELECT * FROM account";
+            String query = "SELECT * FROM person";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                Account a;
+                Person a;
                 a =
-                        new Account(
-                                rs.getString("username"),
-                                rs.getString("password"),
-                                rs.getString("email"),
-                                rs.getInt("security_question_1"),
-                                rs.getInt("security_question_2"),
-                                rs.getString("security_answer_1"),
-                                rs.getString("security_answer_2"));
-                accounts.add(a);
+                        new Person(
+                                rs.getString("FirstName"),
+                                rs.getString("LastName"),
+                                rs.getString("Title"),
+                                rs.getInt("PhoneNumber"),
+                                rs.getInt("username");
+                People.add(a);
             }
             con.close();
             st.close();

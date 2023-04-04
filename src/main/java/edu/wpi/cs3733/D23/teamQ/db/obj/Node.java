@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,8 +44,8 @@ public class Node {
   }
 
   public Node(int xCoord, int yCoord) {
-    this.nodeID = idCounter++;
-    this.edges = new ArrayList<>();
+    this.setXCoord(xCoord);
+    this.setYCoord(yCoord);
   }
 
   public String nodeToString() {
@@ -70,7 +69,7 @@ public class Node {
     Edge branch = new Edge(targetID, this, target);
     //    Edge inverseEdge = new Edge(weight, this);
 
-    edges.add(branch);
+    this.edges.add(branch);
     //    neighbors.add(inverseEdge);
   }
 }

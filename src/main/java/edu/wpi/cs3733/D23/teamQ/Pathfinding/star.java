@@ -33,7 +33,8 @@ public class star extends Edge {
       }
 
       for (Edge edge : n.getEdges()) {
-        Node m = edge.getStartNode();
+        Node m = edge.getStartNode(); // "current node"
+        Node next = edge.getEndNode();
         // double totalWeight = n.getG() + edge.getWeight();
         int totalWeight = edge.getWeight();
 

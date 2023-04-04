@@ -1,49 +1,51 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
+import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class star extends Edge {
-  star(int weight, newNode newNode) {
-    super(weight, newNode);
+public class star extends Node {
+  star(int weight, Node Node) {
+    super(weight, Node);
   }
 
-  public static double calculateHeuristic(newNode n, newNode target) {
-    int dx = Math.abs(n.getxCoord() - target.getxCoord());
-    int dy = Math.abs(n.getyCoord() - target.getyCoord());
+  public static double calculateHeuristic(Node n, Node target) {
+    int dx = Math.abs(n.getXCoord() - target.getYCoord());
+    int dy = Math.abs(n.getYCoord() - target.getYCoord());
     int D = Math.abs(dx + dy);
     return D;
   }
 
-  public static newNode aStar(newNode start, newNode target) {
-    PriorityQueue<newNode> closedList = new PriorityQueue<>();
-    PriorityQueue<newNode> openList = new PriorityQueue<>();
+  public static Node aStar(Node start, Node target) {
+    PriorityQueue<Node> closedList = new PriorityQueue<>();
+    PriorityQueue<Node> openList = new PriorityQueue<>();
 
-    start.f = start.g + calculateHeuristic(start, target);
+    start.setF(start.getG() + calculateHeuristic(start, target));
     openList.add(start);
 
     while (!openList.isEmpty()) {
-      newNode n = openList.peek();
+      Node n = openList.peek();
       if (n == target) {
         return n;
       }
 
-      for (Edge edge : n.getNeighbors()) {
-        newNode m = edge.getNode();
-        double totalWeight = n.g + edge.getWeight();
+      for (Edge edge : n.getEdges()) {
+        Node m = edge.getNode();
+        double totalWeight = n.getG() + edge.getWeight();
 
         if (!openList.contains(m) && !closedList.contains(m)) {
           m.parent = n;
-          m.g = totalWeight;
-          m.f = m.g + calculateHeuristic(m, target);
+          m.setG(totalWeight);
+          m.setF(m.getG() + calculateHeuristic(m, target));
           openList.add(m);
         } else {
-          if (totalWeight < m.g) {
-            m.parent = n;
-            m.g = totalWeight;
-            m.f = m.g + calculateHeuristic(m, target);
+          if (totalWeight < m.getG()) {
+            m.setParent(n);
+            m.setG(totalWeight);
+            m.setF(m.getG() + calculateHeuristic(m, target));
 
             if (closedList.contains(m)) {
               closedList.remove(m);
@@ -59,16 +61,16 @@ public class star extends Edge {
     return null;
   }
 
-  public static void printPath(newNode target) {
-    newNode n = target;
+  public static void printPath(Node target) {
+    Node n = target;
 
     if (n == null) return;
 
     List<Integer> ids = new ArrayList<>();
 
-    while (n.parent != null) {
+    while (n.getParent() != null) {
       ids.add(n.getId());
-      n = (newNode) n.parent;
+      n = (Node) n.parent;
     }
     ids.add(n.getId());
     Collections.reverse(ids);

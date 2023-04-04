@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
+import edu.wpi.cs3733.D23.teamQ.Pathfinding.newNode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,11 +10,18 @@ public class Edge {
   private int edgeID;
   private Node startNode;
   private Node endNode;
+  private Node node;
+  private int weight;
 
   Edge(int edgeID, Node startNode, Node endNode) {
     this.edgeID = edgeID;
     this.startNode = startNode;
     this.endNode = endNode;
+  }
+  Edge(int weight, newNode newNode) {
+
+    this.setWeight(weight);
+    this.node = newNode;
   }
 
   public String edgeToString() {
@@ -24,4 +32,18 @@ public class Edge {
         + ", endNode: "
         + this.endNode;
   }
+
+  public int getWeight() {
+    int xDist = this.getNode().getEdges().get(0).getXCoord() - this.getNode().getXCoord();
+    int yDist = this.getNode().getEdges().get(0).getXCoord() - this.getNode().getyCoord();
+    // int yDist = getGoal().getYCoord() - this.getyCoord();
+    // int yDist2 = getGoal().getYCoord();
+    // System.out.println("here: " + yDist2);
+    // newNode please = getGoal();
+    // please.getyCoord();
+    // System.out.println(please.getYCoord());
+    int weight = (int) Math.sqrt(xDist * xDist + yDist * yDist);
+    return weight;
+  }
+
 }

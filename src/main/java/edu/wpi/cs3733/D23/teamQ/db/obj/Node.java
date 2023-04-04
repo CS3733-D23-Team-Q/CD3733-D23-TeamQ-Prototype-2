@@ -1,6 +1,9 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
+import java.util.ArrayList;
 import java.util.List;
+
+//import edu.wpi.cs3733.D23.teamQ.Pathfinding.newNode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +18,11 @@ public class Node {
   private List<Edge> edges;
   private Location location;
   private int locID;
+  private double f = Double.MAX_VALUE;
+  private double g = Double.MAX_VALUE;
+  private static int idCounter = 0;
+  private int weight;
+  Node parent = null;
 
   Node(
       int nodeID,
@@ -32,16 +40,19 @@ public class Node {
     this.edges = edges;
     this.location = location;
 
+
     String x = Integer.toString(xCoord);
     String y = Integer.toString(yCoord);
     String xy = x + y;
     this.locID = Integer.parseInt(xy);
   }
 
-  public Node(int x, int y) {
-    this.xCoord = x;
-    this.yCoord = y;
+  Node(int xCoord, int yCoord) {
+    this.nodeID = idCounter++;
+    this.edges = new ArrayList<>();
+    this.weight = weight;
   }
+
 
   public Node() {}
 
@@ -60,5 +71,15 @@ public class Node {
         + this.edges
         + ", location: "
         + this.location;
+  }
+  public int compareTo(Node n) {
+    return Double.compare(this.f, n.f);
+  }
+
+  public void addBranch(int weight, Node node) {
+    Edge newEdge = new Edge(weight, node);
+    //    Edge inverseEdge = new Edge(weight, this);
+    edges.add(newEdge);
+    //    neighbors.add(inverseEdge);
   }
 }

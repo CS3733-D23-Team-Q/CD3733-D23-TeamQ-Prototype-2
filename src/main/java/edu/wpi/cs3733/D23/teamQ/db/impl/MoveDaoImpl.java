@@ -94,10 +94,11 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();
       ResultSet rst = stm.executeQuery("Select * From move");
+      NodeDaoImpl nodeDao = new NodeDaoImpl();
 
       while(rst.next()) {
         moves.add(new Move(
-                NodeDaoImpl.retrieveRow(rst.getInt("nodeID")),
+                nodeDao.retrieveRow(rst.getInt("nodeID")),
                 rst.getString("longName"),
                 rst.getString("date")));
       }
@@ -164,6 +165,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
   }
 
   public boolean importCSV(String filename) {
+    NodeDaoImpl nodeDao = new NodeDaoImpl();
     try {
       File f = new File(filename);
       Scanner myReader = new Scanner(f);
@@ -172,8 +174,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
         String[] vars = row.split(",");
         Move m =
                 new Move(
-                        Integer.parseInt(vars[0]),
-                        NodeDaoImpl.retrieveRow(Integer.parseInt(vars[1])),
+                        nodeDao.retrieveRow(Integer.parseInt(vars[1])),
                         vars[2],
                         vars[3]);
         addRow(m);

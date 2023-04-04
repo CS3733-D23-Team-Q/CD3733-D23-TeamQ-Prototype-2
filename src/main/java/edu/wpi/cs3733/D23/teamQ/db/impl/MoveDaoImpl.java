@@ -15,9 +15,13 @@ import java.util.Scanner;
 
 public class MoveDaoImpl implements GenDao<Move, Integer> {
   private List<Move> moves;
+  private int nextID = 0;
 
   public MoveDaoImpl() throws SQLException {
     populate();
+    if(moves.size() != 0) {
+      nextID = moves.get(moves.size() - 1).getMoveID() + 1;
+    }
   }
 
   /**
@@ -85,6 +89,8 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
+    m.setMoveID(nextID);
+    nextID++;
     return moves.add(m);
   }
 

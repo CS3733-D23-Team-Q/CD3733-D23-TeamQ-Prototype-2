@@ -8,13 +8,14 @@ public class Person {
     private int PhoneNumber;
     private String username;
 
-    public Person(int IDNum, String Firstname, String LastName, String Title, int PhoneNumber)
+    public Person(int IDNum, String Firstname, String LastName, String Title, int PhoneNumber, String username)
     {
         this.IDNum = IDNum;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.Title = Title;
         this. PhoneNumber = PhoneNumber;
+        this.username = username;
     }
     public int getIDNum()
     {

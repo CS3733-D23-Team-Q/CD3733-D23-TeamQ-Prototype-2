@@ -59,7 +59,7 @@ public class ForgotPasswordController extends SecondaryStage {
       String answer1,
       String answer2)
       throws IOException {
-    Account a = dao.getAccountFromUsername(username);
+    Account a = dao.retrieveRow(username);
     String oldPassword = a.getPassword();
     if (oldPassword.equals(newPassword)) {
       alert.setLabelAlert(
@@ -122,7 +122,7 @@ public class ForgotPasswordController extends SecondaryStage {
       String answer1,
       String answer2)
       throws IOException {
-    Account a = dao.getAccountFromUsername(username);
+    Account a = dao.retrieveRow(username);
     int actualq1 = a.getSecurityQuestion1();
     int actualq2 = a.getSecurityQuestion2();
     String actuala1 = a.getSecurityAnswer1();
@@ -133,7 +133,8 @@ public class ForgotPasswordController extends SecondaryStage {
         && answer2.equals(actuala2)) {
       answer1Field.setStyle(null);
       answer2Field.setStyle(null);
-      dao.updatePassword(username, newPassword);
+      a.setPassword(newPassword);
+      dao.updateRow(username, a);
       Navigation.navigate(Screen.LOGIN);
       super.stage.setScene(
           confirm.getScene(super.stage, "Confirmation", "Password reset successful!"));
@@ -153,7 +154,7 @@ public class ForgotPasswordController extends SecondaryStage {
     int question2 = dao.getQuestionId((String) questionChoice2.getValue());
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
-    if (dao.usernameExist(username)) {
+    if (dao.getIndex(username) != -1) {
       alert.clearLabelAlert(usernameAlert, usernameAlertImage);
       newPasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {

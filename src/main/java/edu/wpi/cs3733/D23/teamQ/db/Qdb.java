@@ -18,7 +18,7 @@ public class Qdb {
     requestC.addRow(conferenceRequest);
     requestF.addRow(flowerRequest);
 
-    System.out.println(request.getAllRows().size());
+    // System.out.println(request.getAllRows().size());
 
     // List<ConferenceRequest> list = request.getAllRows();
 

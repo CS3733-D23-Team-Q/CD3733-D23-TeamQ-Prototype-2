@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D23.teamQ.Alert;
 import edu.wpi.cs3733.D23.teamQ.Confirm;
 import edu.wpi.cs3733.D23.teamQ.SecondaryStage;
 import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -57,7 +58,7 @@ public class CreateAccountController extends SecondaryStage {
     questionChoice2.getItems().add(dao.getQuestions().get(4));
   }
 
-  public int validEmail(String email) {
+  public static int validEmail(String email) {
     int result = 0;
     Pattern pattern = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+");
     if (email.length() < 1) {
@@ -275,14 +276,16 @@ public class CreateAccountController extends SecondaryStage {
       alert.setLabelAlert("Please enter a answer", a2Alert, a2AlertImage);
     } else {
       alert.clearLabelAlert(a2Alert, a2AlertImage);
-      dao.addUser(
-          username,
-          password,
-          email,
-          dao.getQuestionId(question1),
-          dao.getQuestionId(question2),
-          answer1,
-          answer2);
+      Account a =
+          new Account(
+              username,
+              password,
+              email,
+              dao.getQuestionId(question1),
+              dao.getQuestionId(question2),
+              answer1,
+              answer2);
+      dao.addRow(a);
       super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
       stage.centerOnScreen();
     }
@@ -299,7 +302,7 @@ public class CreateAccountController extends SecondaryStage {
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
 
-    if (!dao.usernameExist(username)) {
+    if (dao.getIndex(username) == -1) {
       alert.clearLabelAlert(usernameAlert, usernameAlertImage);
       usernameReact(username, email, password, repassword, question1, question2, answer1, answer2);
     } else {

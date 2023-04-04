@@ -15,13 +15,13 @@ public class SecondaryStage {
   public static void display(final Screen screen) throws IOException {
     final String filename = screen.getFilename();
     final String title = screen.getTitle();
+
     stage = new Stage();
     stage.initModality(Modality.APPLICATION_MODAL);
     stage.setTitle(title);
 
     final FXMLLoader loader = new FXMLLoader(App.class.getResource(filename));
     final VBox root = loader.load();
-
     final Scene scene = new Scene(root);
 
     scene

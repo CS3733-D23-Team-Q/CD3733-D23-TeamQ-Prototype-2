@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Edge {
+public class Edge{
   private int edgeID;
   private Node startNode;
   private Node endNode;
@@ -37,6 +37,14 @@ public class Edge {
     // System.out.println(please.getYCoord());
     int weight = (int) Math.sqrt(xDist * xDist + yDist * yDist);
     return weight;
+  }
+
+  public void addBranch(Node node1, Node node2) {
+    Edge branch = new Edge(this.getEdgeID(), node1, node2);
+    //    Edge inverseEdge = new Edge(weight, this);
+    branch.set
+    edges.add(branch);
+    //    neighbors.add(inverseEdge);
   }
 
 }

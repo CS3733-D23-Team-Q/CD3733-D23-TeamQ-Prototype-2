@@ -47,7 +47,7 @@ public class Node {
     this.locID = Integer.parseInt(xy);
   }
 
-  Node(int xCoord, int yCoord) {
+  public Node(int xCoord, int yCoord) {
     this.nodeID = idCounter++;
     this.edges = new ArrayList<>();
     this.weight = weight;
@@ -75,6 +75,5 @@ public class Node {
   public int compareTo(Node n) {
     return Double.compare(this.f, n.f);
   }
-
 
 }

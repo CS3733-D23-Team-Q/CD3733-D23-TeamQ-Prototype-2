@@ -77,19 +77,6 @@ public class newNode extends Node implements Comparable<newNode> {
     //    neighbors.add(inverseEdge);
   }
 
-  //  public void setWeight() {
-  //    int temp = this.getxCoord();
-  ////    System.out.println("please please please: " + temp);
-  //  }
-
-  //  public int getWeight() {
-  //    return weight;
-  //  }
-
-  //  public void setWeight(int weight) {
-  //    this.weight = weight;
-  //  }
-
   public void generateWeight(List<Edge> neighbors) {
     for (Edge e : neighbors) {
       int i = e.getNode().getxCoord();

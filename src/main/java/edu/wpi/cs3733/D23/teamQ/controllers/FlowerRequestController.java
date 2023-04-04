@@ -59,6 +59,9 @@ public class FlowerRequestController {
 
   @FXML
   public void submitButtonClicked() {
+    if (((String) bouquetChoiceField.getValue()).equals("Number of Bouquets")) {
+      bouquetChoiceField.setValue("0");
+    }
     FlowerRequest newFR =
         new FlowerRequest(
             "temp user",

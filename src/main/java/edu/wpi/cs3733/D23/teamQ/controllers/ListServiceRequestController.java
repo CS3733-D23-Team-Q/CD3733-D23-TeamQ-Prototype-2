@@ -1,9 +1,12 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceRequestDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerRequestDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.ServiceRequestDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import java.sql.SQLException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,7 +27,15 @@ public class ListServiceRequestController {
   @FXML TableColumn<ServiceRequest, String> roomNumber;
   @FXML TableColumn<ServiceRequest, String> specialInstructions;
 
+  @FXML Button selectButton;
+
   ServiceRequestDaoImpl serviceRequestDao = new ServiceRequestDaoImpl();
+
+  FlowerRequestDaoImpl flowerRequestDao = new FlowerRequestDaoImpl();
+
+  ConferenceRequestDaoImpl conferenceRequestDao = new ConferenceRequestDaoImpl();
+
+  public ListServiceRequestController() throws SQLException {}
 
   @FXML
   public void initialize() {
@@ -42,6 +53,19 @@ public class ListServiceRequestController {
   @FXML
   public void homeButtonClicked() {
     Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void selectButtonClicked() {
+    if (flowerRequestDao.retrieveRow(
+            tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
+        != null) {
+
+    } else if (conferenceRequestDao.retrieveRow(
+            tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
+        != null) {
+
+    }
   }
 
   @FXML

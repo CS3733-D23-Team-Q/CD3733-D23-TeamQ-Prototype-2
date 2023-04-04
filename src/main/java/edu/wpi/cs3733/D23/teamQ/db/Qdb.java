@@ -18,6 +18,8 @@ public class Qdb {
     requestC.addRow(conferenceRequest);
     requestF.addRow(flowerRequest);
 
+    // System.out.println(request.getAllRows().size());
+
     // List<ConferenceRequest> list = request.getAllRows();
 
     // request.deleteRow(5);

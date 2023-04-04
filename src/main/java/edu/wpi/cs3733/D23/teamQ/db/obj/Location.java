@@ -1,11 +1,8 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
-import edu.wpi.cs3733.D23.teamQ.db.impl.LocationDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.NodeDaoImpl;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.sql.SQLException;
 
 @Getter
 @Setter

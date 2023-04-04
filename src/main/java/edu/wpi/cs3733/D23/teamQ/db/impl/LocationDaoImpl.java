@@ -1,9 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
-
 import java.sql.*;
 import java.util.List;
 
@@ -47,11 +45,11 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
    * @param nodeID of location being deleted
    * @return true if successfully deleted
    */
-  public boolean deleteRow(Integer nodeID){
+  public boolean deleteRow(Integer nodeID) {
     try (Connection connection = GenDao.connect();
-         PreparedStatement st =
-                 connection.prepareStatement(
-                         "DELETE FROM \"conferenceRequest\" WHERE \"requestID\" = ?")) {;
+        PreparedStatement st =
+            connection.prepareStatement(
+                "DELETE FROM \"conferenceRequest\" WHERE \"requestID\" = ?")) {;
       st.setInt(1, nodeID);
       st.executeUpdate();
     } catch (SQLException e) {
@@ -72,9 +70,9 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
    */
   public boolean addRow(Location l) {
     try (Connection conn = GenDao.connect();
-         PreparedStatement stmt =
-                 conn.prepareStatement(
-                         "INSERT INTO \"conferenceRequest\"(\"nodeID\", \"longName\", \"shortName\", \"nodeType\") VALUES (?, ?, ?, ?)")) {
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO \"conferenceRequest\"(\"nodeID\", \"longName\", \"shortName\", \"nodeType\") VALUES (?, ?, ?, ?)")) {
       stmt.setInt(1, l.getNode().getNodeID());
       stmt.setString(2, l.getLongName());
       stmt.setString(3, l.getShortName());
@@ -93,11 +91,11 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
       ResultSet rst = stm.executeQuery("Select * From \"locationName\"");
       while (rst.next()) {
         locations.add(
-                new Location(
-                        rst.getInt("nodeID"),
-                        rst.getString("longName"),
-                        rst.getString("shortName"),
-                        rst.getString("nodeType")));
+            new Location(
+                rst.getInt("nodeID"),
+                rst.getString("longName"),
+                rst.getString("shortName"),
+                rst.getString("nodeType")));
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());

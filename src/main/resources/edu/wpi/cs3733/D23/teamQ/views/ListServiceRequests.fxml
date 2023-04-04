@@ -83,7 +83,7 @@
          </GridPane.margin>
       </MenuBar>
       <HBox prefHeight="19.0" prefWidth="790.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="10.0" prefWidth="771.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="10.0" prefWidth="771.0" translateX="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <ImageView fitHeight="53.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -91,6 +91,16 @@
                </image>
             </ImageView>
             <Button fx:id="homeButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Home" textFill="#3966af" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="53.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../ServicesList.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="selectButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#selectButtonClicked" prefHeight="43.0" prefWidth="272.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="View Selected Service Request" textFill="#3966af">
                <font>
                   <Font size="16.0" />
                </font>

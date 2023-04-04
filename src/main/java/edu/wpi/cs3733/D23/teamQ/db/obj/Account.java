@@ -9,6 +9,13 @@ public class Account {
   private String securityAnswer1;
   private String securityAnswer2;
 
+  private String firstName;
+  private String lastName;
+  private String title;
+  private int IDNum;
+  private int phoneNumber;
+
+
   public Account(
       String username,
       String password,
@@ -16,7 +23,12 @@ public class Account {
       int securityQuestion1,
       int securityQuestion2,
       String securityAnswer1,
-      String securityAnswer2) {
+      String securityAnswer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber) {
     this.username = username;
     this.password = password;
     this.email = email;
@@ -24,6 +36,11 @@ public class Account {
     this.securityQuestion2 = securityQuestion2;
     this.securityAnswer1 = securityAnswer1;
     this.securityAnswer2 = securityAnswer2;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.title = title;
+    this.IDNum = IDNum;
+    this.phoneNumber = phoneNumber;
   }
 
   public String getUsername() {
@@ -81,4 +98,15 @@ public class Account {
   public void setSecurityAnswer2(String securityAnswer2) {
     this.securityAnswer2 = securityAnswer2;
   }
+  public String getFirstName(){return firstName;}
+  public void setFirstName(String FN){this.firstName = FN;}
+  public String getLastName(){return lastName;}
+  public void setLastName(String LN){this.lasttName = LN;}
+  public String getTitle(){return title;}
+  public void setTitle(String title){this.title = title;}
+  public int getIDNum(){return IDNum;}
+  public void setIDNum(int ID){this.IDNum = ID;}
+  public int getPhoneNumber(){return phoneNumber;}
+  public void setPhoneNumber(int PN){this.phoneNumber = PN;}
 }
+

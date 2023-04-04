@@ -149,11 +149,12 @@ public class PersonDaoImpl implements GenDao<Account, String>{
                 Person a;
                 a =
                         new Person(
+                                rs.getInt("IDNumber"),
                                 rs.getString("FirstName"),
                                 rs.getString("LastName"),
                                 rs.getString("Title"),
                                 rs.getInt("PhoneNumber"),
-                                rs.getInt("username");
+                                rs.getString("username"));
                 People.add(a);
             }
             con.close();

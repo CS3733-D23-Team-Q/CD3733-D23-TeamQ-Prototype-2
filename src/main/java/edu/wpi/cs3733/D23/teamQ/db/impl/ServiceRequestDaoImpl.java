@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 
 public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
 
-  public List<ServiceRequest> getAllRows() {
+  public ObservableList<ServiceRequest> getAllRows() {
     try {
       ObservableList<ServiceRequest> srL = FXCollections.observableArrayList();
       FlowerRequestDaoImpl requestF = new FlowerRequestDaoImpl();

@@ -17,6 +17,7 @@ public enum Screen {
   MEAL_REQUEST("views/MealDeliveryRequest.fxml", "Meal Request"),
   OFFICE_SUPPLIES_REQUEST("views/OfficeSuppliesRequest.fxml", "Office Supplies Request"),
   FURNITURE_REQUEST("views/FurnitureDeliveryRequest.fxml", "Furniture Request"),
+  LIST_REQUESTS("views/ListServiceRequests.fxml", "List of Service Requests"),
   PATIENT_TRANSPORT_REQUEST("views/PatientTransportRequest.fxml", "Patient Transport Request");
 
   private final String filename;

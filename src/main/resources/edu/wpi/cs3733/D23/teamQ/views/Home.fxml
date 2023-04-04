@@ -65,7 +65,7 @@
       </HBox>
       <Button fx:id="settingButton" mnemonicParsing="false" onAction="#settingButtonClicked" prefHeight="15.0" prefWidth="36.0" styleClass="button-menu" stylesheets="@styles/Home.css" GridPane.columnIndex="9" GridPane.halignment="RIGHT" GridPane.rowIndex="13" GridPane.valignment="BOTTOM">
          <graphic>
-            <ImageView fx:id="settingImage" fitHeight="19.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingImage" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../Setting.png" />
                </image>
@@ -75,7 +75,7 @@
             <Insets bottom="5.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previousButtonClicked" styleClass="button-slider" stylesheets="@styles/Home.css" GridPane.rowIndex="6">
+      <Button disable="true" mnemonicParsing="false" styleClass="button-slider" stylesheets="@styles/Home.css" GridPane.rowIndex="6">
          <graphic>
             <ImageView fx:id="previousImage" fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -98,24 +98,24 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </TextField>
-      <Button fx:id="CRReservationButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#CRReservationButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Conference Room Reservation" textFill="#3966af" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <Button fx:id="ServiceHubButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ServiceHubButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Service Request Hub" textFill="#3966af" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <ImageView fx:id="CRImage" fitHeight="82.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <ImageView fx:id="servicesImage" fitHeight="82.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <image>
-            <Image url="@../../../../../../Conference%20Room.png" />
+            <Image url="@../../../../../../Services.png" />
          </image>
       </ImageView>
-      <Button fx:id="FDRequestButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#FDRequestButtonClicked" prefHeight="44.0" prefWidth="213.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Flower Delivery Request" textFill="#3966af" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <Button fx:id="ListRequestsButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ListRequestsButtonClicked" prefHeight="44.0" prefWidth="213.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="List Service Requests" textFill="#3966af" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <ImageView fx:id="flowerImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <ImageView fx:id="listImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <image>
-            <Image url="@../../../../../../Flower.png" />
+            <Image url="@../../../../../../ServicesList.png" />
          </image>
       </ImageView>
       <Button fx:id="SPButton" graphicTextGap="7.0" mnemonicParsing="false" onAction="#SPButtonClicked" prefHeight="44.0" prefWidth="145.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Signage Page" textFill="#3966af" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8" GridPane.rowSpan="2">
@@ -164,6 +164,7 @@
           <Menu mnemonicParsing="false">
             <items>
               <MenuItem mnemonicParsing="false" text="Profile" />
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#logout" text="Logout" />
             </items>
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

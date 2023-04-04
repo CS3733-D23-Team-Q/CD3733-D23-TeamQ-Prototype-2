@@ -5,10 +5,11 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NodeDaoImpl implements GenDao<Node, Integer> {
-  private List<Node> nodes;
+  private List<Node> nodes = new ArrayList<>();
 
   public NodeDaoImpl() {
     populate();

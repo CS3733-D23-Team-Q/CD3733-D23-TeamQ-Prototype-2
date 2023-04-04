@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.db.impl.LocationDaoImpl;
-import edu.wpi.cs3733.D23.teamQ.db.impl.MoveDaoImpl;
-import edu.wpi.cs3733.D23.teamQ.db.impl.NodeDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.Qdb;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
@@ -32,13 +30,13 @@ public class MapEditorController {
 
   @FXML private TableColumn<Node, String> Floor;
 
-  @FXML private TableColumn<Node, String> LongName;
+  @FXML private TableColumn<Location, String> LongName;
 
   @FXML private TableColumn<Node, Number> NodeID;
 
-  @FXML private TableColumn<Node, String> NodeType;
+  @FXML private TableColumn<Location, String> NodeType;
 
-  @FXML private TableColumn<Node, String> ShortName;
+  @FXML private TableColumn<Location, String> ShortName;
 
   @FXML private TableColumn<Edge, Number> StartNode;
 
@@ -58,11 +56,8 @@ public class MapEditorController {
   /** used to get Nodes from database */
   public ObservableList<Node> nodes() {
     ObservableList<Node> node = FXCollections.observableArrayList();
-
-    NodeDaoImpl nodelist = new NodeDaoImpl();
-
-    for (int i = 0; i < nodelist.getAllRows().size(); i++) {
-      node.add(nodelist.getAllRows().get(i));
+    for (int i = 0; i < Qdb.getInstance().nodeTable.getAllRows().size(); i++) {
+      node.add(Qdb.getInstance().nodeTable.getAllRows().get(i));
     }
     return node;
   }
@@ -70,10 +65,8 @@ public class MapEditorController {
   /** used to get Locations from database */
   public ObservableList<Location> locations() {
     ObservableList<Location> location = FXCollections.observableArrayList();
-
-    LocationDaoImpl locationlist = new LocationDaoImpl();
-    for (int i = 0; i < locationlist.getAllRows().size(); i++) {
-      location.add(locationlist.getAllRows().get(i));
+    for (int i = 0; i < Qdb.getInstance().locationTable.getAllRows().size(); i++) {
+      location.add(Qdb.getInstance().locationTable.getAllRows().get(i));
     }
     return location;
   }
@@ -81,28 +74,20 @@ public class MapEditorController {
   /** used to get Move from database */
   public ObservableList<Move> moves() {
     ObservableList<Move> move = FXCollections.observableArrayList();
-
-    MoveDaoImpl movelist = new MoveDaoImpl();
-    for (int i = 0; i < movelist.getAllRows().size(); i++) {
-      move.add(movelist.getAllRows().get(i));
+    for (int i = 0; i < Qdb.getInstance().moveTable.getAllRows().size(); i++) {
+      move.add(Qdb.getInstance().moveTable.getAllRows().get(i));
     }
     return move;
   }
 
   /** used to get Edge from database */
-
-  /*
   public ObservableList<Edge> edges() {
     ObservableList<Edge> edge = FXCollections.observableArrayList();
-
-    EdgeDaoImpl edgelist = new EdgeDaoImpl();
-    for (int i = 0; i < edgelist.getAllRows().size(); i++) {
-      edge.add(edgelist.getAllRows().get(i));
+    for (int i = 0; i < Qdb.getInstance().edgeTable.getAllRows().size(); i++) {
+      edge.add(Qdb.getInstance().edgeTable.getAllRows().get(i));
     }
     return edge;
   }
-
-   */
 
   @FXML
   public void initialize() {
@@ -169,33 +154,36 @@ public class MapEditorController {
 
     /** import the long-name from location */
     LongName.setCellValueFactory(
-        new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
+        new Callback<TableColumn.CellDataFeatures<Location, String>, ObservableValue<String>>() {
           @Override
-          public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+          public ObservableValue<String> call(
+              TableColumn.CellDataFeatures<Location, String> param) {
             SimpleStringProperty longnames =
-                new SimpleStringProperty(param.getValue().getLocation().getLongName());
+                new SimpleStringProperty(param.getValue().getLongName());
             return longnames;
           }
         });
 
     /** import the short-name from location */
     ShortName.setCellValueFactory(
-        new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
+        new Callback<TableColumn.CellDataFeatures<Location, String>, ObservableValue<String>>() {
           @Override
-          public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+          public ObservableValue<String> call(
+              TableColumn.CellDataFeatures<Location, String> param) {
             SimpleStringProperty shortnames =
-                new SimpleStringProperty(param.getValue().getLocation().getShortName());
+                new SimpleStringProperty(param.getValue().getShortName());
             return shortnames;
           }
         });
 
     /** import the node_type */
     NodeType.setCellValueFactory(
-        new Callback<TableColumn.CellDataFeatures<Node, String>, ObservableValue<String>>() {
+        new Callback<TableColumn.CellDataFeatures<Location, String>, ObservableValue<String>>() {
           @Override
-          public ObservableValue<String> call(TableColumn.CellDataFeatures<Node, String> param) {
+          public ObservableValue<String> call(
+              TableColumn.CellDataFeatures<Location, String> param) {
             SimpleStringProperty nodetype =
-                new SimpleStringProperty(param.getValue().getLocation().getNodeType());
+                new SimpleStringProperty(param.getValue().getNodeType());
             return nodetype;
           }
         });
@@ -243,6 +231,6 @@ public class MapEditorController {
         });
 
     /** set the edge tableview */
-    //   edge.setItems(edges());
+    edge.setItems(edges());
   }
 }

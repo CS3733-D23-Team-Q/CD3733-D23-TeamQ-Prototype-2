@@ -24,6 +24,8 @@ public class ListServiceRequestController {
   @FXML TableColumn<ServiceRequest, String> roomNumber;
   @FXML TableColumn<ServiceRequest, String> specialInstructions;
 
+  @FXML Button selectButton;
+
   ServiceRequestDaoImpl serviceRequestDao = new ServiceRequestDaoImpl();
 
   @FXML
@@ -43,6 +45,12 @@ public class ListServiceRequestController {
   public void homeButtonClicked() {
     Navigation.navigate(Screen.HOME);
   }
+
+  @FXML
+  public void selectButtonClicked() {
+    System.out.println(tableView.getSelectionModel().getSelectedItems().get(0));
+
+  };
 
   @FXML
   public void homeItemClicked() {

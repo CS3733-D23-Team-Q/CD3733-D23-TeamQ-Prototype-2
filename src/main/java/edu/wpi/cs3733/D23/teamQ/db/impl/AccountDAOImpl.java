@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountDAOImpl implements GenDao<Account, String> {
+public class AccountDaoImpl implements GenDao<Account, String> {
   static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
   static final String user = "teamq";
   static final String password = "teamq140";

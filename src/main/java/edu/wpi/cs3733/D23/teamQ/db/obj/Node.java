@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +29,7 @@ public class Node {
       int yCoord,
       String floor,
       String building,
-      List<Edge> edges,
+      ArrayList<Edge> edges,
       Location location) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
@@ -47,6 +48,7 @@ public class Node {
   public Node(int xCoord, int yCoord) {
     this.setXCoord(xCoord);
     this.setYCoord(yCoord);
+    this.edges = new ArrayList<Edge>();
   }
 
   public String nodeToString() {

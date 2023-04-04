@@ -16,14 +16,14 @@ public class Node {
   private Location location;
   private int locID;
 
-  Node(
-      int nodeID,
-      int xCoord,
-      int yCoord,
-      String floor,
-      String building,
-      List<Edge> edges,
-      Location location) {
+  public Node(
+          int nodeID,
+          int xCoord,
+          int yCoord,
+          String floor,
+          String building,
+          List<Edge> edges,
+          Location location) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;

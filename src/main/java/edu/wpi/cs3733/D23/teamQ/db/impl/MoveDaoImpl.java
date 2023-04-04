@@ -191,14 +191,13 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       while (myReader.hasNextLine()) {
         String row = myReader.nextLine();
         String[] vars = row.split(",");
-        Move m = new Move(nodeDao.retrieveRow(Integer.parseInt(vars[1])), vars[2], vars[3]);
+        Move m = new Move(nodeDao.retrieveRow(Integer.parseInt(vars[0])), vars[1], vars[2]);
         addRow(m);
-        return true;
       }
       myReader.close();
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    return false;
+    return true;
   }
 }

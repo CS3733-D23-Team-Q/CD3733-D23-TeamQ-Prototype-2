@@ -10,7 +10,7 @@ public class Edge {
   private Node startNode;
   private Node endNode;
 
-  Edge(int edgeID, Node startNode, Node endNode) {
+  public Edge(int edgeID, Node startNode, Node endNode) {
     this.edgeID = edgeID;
     this.startNode = startNode;
     this.endNode = endNode;

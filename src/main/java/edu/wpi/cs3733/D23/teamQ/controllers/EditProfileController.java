@@ -41,7 +41,8 @@ public class EditProfileController {
     private File filePath;
 
     @FXML
-    private void initialize() {
+    private void initialize()
+    {
         this.ProfilePage_Done_Button.setOnMouseClicked(
                 event -> Navigation.navigate(Screen.PROFILE_PAGE));
     }

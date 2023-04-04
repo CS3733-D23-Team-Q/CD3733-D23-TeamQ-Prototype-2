@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.PersonDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import javafx.fxml.FXML;
@@ -7,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class ProfilePageController {
+    PersonDaoImpl dao = new PersonDaoImpl();
     @FXML private Button Edit_Profile;
 
     @FXML private Label Email_Display;
@@ -26,14 +29,18 @@ public class ProfilePageController {
     @FXML
     private void initialize() {
         // DO ONE FOR THE IMAGE AS WELL NEXT TIME
-        this.Title_Display.setText(Title_Display.getText());
+        String username = Account.getUsername();
+        this.Title_Display.setText(PersonDaoImpl.getTitle(1));
+
         this.ID_Number_Display.setText(ID_Number_Display.getText());
         this.First_Name_Display.setText(First_Name_Display.getText());
         this.Last_Name_Display.setText(Last_Name_Display.getText());
-        this.Last_Name_Display.setText(Last_Name_Display.getText());
-        this.Username_Display.setText(Username_Display.getText());
         this.Email_Display.setText(Email_Display.getText());
         this.Phone_Number_Display.setText(Phone_Number_Display.getText());
+        this.Username_Display.setText(Username_Display.getText());
+
+
+        Title_Display.getText().add(dao.getTitle().get(0));
 
         this.Edit_Profile.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
     }

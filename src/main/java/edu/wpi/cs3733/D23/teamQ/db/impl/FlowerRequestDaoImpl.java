@@ -10,7 +10,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
   private List<FlowerRequest> flowerRequests = new ArrayList<FlowerRequest>();
   int nextID = 0;
 
-  public FlowerRequestDaoImpl() throws SQLException {
+  public FlowerRequestDaoImpl() {
     populate();
     if (flowerRequests.size() != 0) {
       nextID = flowerRequests.get(flowerRequests.size() - 1).getRequestID() + 1;
@@ -97,7 +97,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
   }
 
   @Override
-  public boolean populate() throws SQLException {
+  public boolean populate() {
     try {
       Connection conn = GenDao.connect();
       PreparedStatement pst = conn.prepareStatement("SELECT * FROM \"flowerRequest\"");

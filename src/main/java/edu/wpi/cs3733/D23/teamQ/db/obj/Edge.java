@@ -1,14 +1,17 @@
 package edu.wpi.cs3733.D23.teamQ.db.obj;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
-public class Edge{
+public class Edge {
   private int edgeID;
   private Node startNode;
   private Node endNode;
+
 
   Edge(int edgeID, Node startNode, Node endNode) {
     this.edgeID = edgeID;
@@ -16,17 +19,19 @@ public class Edge{
     this.endNode = endNode;
   }
 
-  public Edge() {
-  }
+
+  public Edge() {}
+
 
   public String edgeToString() {
     return "edgeID: "
-        + this.edgeID
-        + ", startNode: "
-        + this.startNode
-        + ", endNode: "
-        + this.endNode;
+            + this.edgeID
+            + ", startNode: "
+            + this.startNode
+            + ", endNode: "
+            + this.endNode;
   }
+
 
   public int getWeight() {
     int xDist = this.getStartNode().getXCoord() - this.getEndNode().getXCoord();
@@ -34,7 +39,5 @@ public class Edge{
     int weight = (int) Math.sqrt(xDist * xDist + yDist * yDist);
     return weight;
   }
-
-
-
 }
+

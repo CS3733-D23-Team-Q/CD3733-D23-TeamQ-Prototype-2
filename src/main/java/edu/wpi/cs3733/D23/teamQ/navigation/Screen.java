@@ -18,7 +18,10 @@ public enum Screen {
   OFFICE_SUPPLIES_REQUEST("views/OfficeSuppliesRequest.fxml", "Office Supplies Request"),
   FURNITURE_REQUEST("views/FurnitureDeliveryRequest.fxml", "Furniture Request"),
   LIST_REQUESTS("views/ListServiceRequests.fxml", "List of Service Requests"),
-  PATIENT_TRANSPORT_REQUEST("views/PatientTransportRequest.fxml", "Patient Transport Request");
+  PATIENT_TRANSPORT_REQUEST("views/PatientTransportRequest.fxml", "Patient Transport Request"),
+  EDIT_PROFILE("views/EditProfile.fxml", "Edit Profile Page"),
+  PROFILE_PAGE("views/ProfilePage.fxml", "Profile Page");
+
 
   private final String filename;
   private final String title;

@@ -45,28 +45,30 @@ public class EditProfileController {
         this.ProfilePage_Done_Button.setOnMouseClicked(
                 event -> Navigation.navigate(Screen.PROFILE_PAGE));
     }
+//FUNCTION TO EDIT IMAGE FOR THE PROFILE
 
-//    public void ChangeProfileImage(ActionEvent event) {
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//
-//        fileChooser = new FileChooser();
-//        fileChooser.setTitle("Open image");
-//
-//        String userDirectoryString = System.getProperty("user.home") + "\\Pictures";
-//        File userDirectory = new File(userDirectoryString);
-//
-//        if (!userDirectory.canRead()) userDirectory = new File("c:/");
-//
-//        fileChooser.setInitialDirectory(userDirectory);
-//        this.filePath = fileChooser.showOpenDialog(stage);
-//
-//        try {
-//            BufferedImage bufferedImage = ImageIO.read(filePath);
-//            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-//            ProfilePage_Profile_Image.setImage(image);
-//            //        photo.setImage(ProfilePage_Profile_Image.getImage());
-//        } catch (IOException e) {
-//            System.err.println(e.getMessage());
-//        }
-//    }
+ /*   public void ChangeProfileImage(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open image");
+
+        String userDirectoryString = System.getProperty("user.home") + "\\Pictures";
+        File userDirectory = new File(userDirectoryString);
+
+        if (!userDirectory.canRead()) userDirectory = new File("c:/");
+
+        fileChooser.setInitialDirectory(userDirectory);
+        this.filePath = fileChooser.showOpenDialog(stage);
+
+        try {
+            BufferedImage bufferedImage = ImageIO.read(filePath);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            ProfilePage_Profile_Image.setImage(image);
+            //        photo.setImage(ProfilePage_Profile_Image.getImage());
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+  */
 }

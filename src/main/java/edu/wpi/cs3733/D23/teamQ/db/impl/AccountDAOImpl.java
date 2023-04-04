@@ -317,7 +317,12 @@ public class AccountDAOImpl {
         int q2 = 0;
         String a1 = "";
         String a2 = "";
-        Account a = new Account(username, pass, uname, q1, q2, a1, a2);
+        String FN = "";
+        String LN = "";
+        String t = "";
+        int ID = 0;
+        int PN = 0;
+        Account a = new Account(username, pass, uname, q1, q2, a1, a2, FN, LN, t, ID, PN);
         a.setUsername(rs.getString(1));
         a.setPassword(rs.getString(2));
         a.setEmail(rs.getString(3));
@@ -325,6 +330,12 @@ public class AccountDAOImpl {
         a.setSecurityQuestion2(rs.getInt(5));
         a.setSecurityAnswer1(rs.getString(6));
         a.setSecurityAnswer2(rs.getString(7));
+        a.setFirstName(rs.getString(8));
+        a.setLastName(rs.getString(9));
+        a.setTitle(rs.getString(10));
+        a.setIDNum(rs.getInt(11));
+        a.setPhoneNumber(rs.getInt(12));
+
         as.add(a);
         con.close();
         pst.close();

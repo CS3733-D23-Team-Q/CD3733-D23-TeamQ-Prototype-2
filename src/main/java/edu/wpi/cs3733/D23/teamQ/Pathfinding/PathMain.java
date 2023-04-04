@@ -9,7 +9,7 @@ public class PathMain {
   public static void main(String[] args) {
 
     Node head = new Node(0, 0);
-    head.g = 0;
+    head.setG(0);
 
     Node n1 = new Node(0, 0);
     //    Node n1 = new Node(1, 0);

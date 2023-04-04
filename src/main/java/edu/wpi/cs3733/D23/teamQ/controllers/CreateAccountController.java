@@ -109,7 +109,12 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     switch (validUsername(username)) {
       case 0:
@@ -117,7 +122,8 @@ public class CreateAccountController extends SecondaryStage {
         break;
       case 1:
         alert.clearLabelAlert(usernameAlert, usernameAlertImage);
-        emailReact(username, email, password, repassword, question1, question2, answer1, answer2);
+        emailReact(username, email, password, repassword, question1, question2, answer1, answer2,
+                firstName, lastName, title, IDNum, phoneNumber);
         break;
       case 2:
         alert.setLabelAlert(
@@ -140,7 +146,12 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     switch (validEmail(email)) {
       case 0:
@@ -149,7 +160,8 @@ public class CreateAccountController extends SecondaryStage {
       case 1:
         alert.clearLabelAlert(emailAlert, emailAlertImage);
         passwordReact(
-            username, email, password, repassword, question1, question2, answer1, answer2);
+            username, email, password, repassword, question1, question2, answer1, answer2,
+                firstName, lastName, title, IDNum, phoneNumber);
         break;
       case 2:
         alert.setLabelAlert("Invalid email address", emailAlert, emailAlertImage);
@@ -165,7 +177,12 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     switch (validPassword(password)) {
       case 0:
@@ -174,7 +191,8 @@ public class CreateAccountController extends SecondaryStage {
       case 1:
         alert.clearLabelAlert(passwordAlert, passwordAlertImage);
         repasswordReact(
-            username, email, password, repassword, question1, question2, answer1, answer2);
+            username, email, password, repassword, question1, question2, answer1, answer2,
+                firstName, lastName, title, IDNum, phoneNumber);
         break;
       case 2:
         alert.setLabelAlert(
@@ -193,12 +211,18 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     if (password.equals(repassword)) {
       alert.clearLabelAlert(CPAlert, CPAlertImage);
       securityQReact1(
-          username, email, password, repassword, question1, question2, answer1, answer2);
+          username, email, password, repassword, question1, question2, answer1, answer2,
+              firstName, lastName, title, IDNum, phoneNumber);
     } else {
       alert.setLabelAlert("Password doesn't match", CPAlert, CPAlertImage);
     }
@@ -212,13 +236,19 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     if (questionChoice1.getSelectionModel().isEmpty()) {
       alert.alertBox("Failed to create an account", "Please select a question.");
     } else {
       securityAReact1(
-          username, email, password, repassword, question1, question2, answer1, answer2);
+          username, email, password, repassword, question1, question2, answer1, answer2,
+              firstName, lastName, title, IDNum, phoneNumber);
     }
   }
 
@@ -230,14 +260,20 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     if (answer1.length() < 1) {
       alert.setLabelAlert("Please enter a answer", a1Alert, a1AlertImage);
     } else {
       alert.clearLabelAlert(a1Alert, a1AlertImage);
       securityQReact2(
-          username, email, password, repassword, question1, question2, answer1, answer2);
+          username, email, password, repassword, question1, question2, answer1, answer2,
+              firstName, lastName, title, IDNum, phoneNumber);
     }
   }
 

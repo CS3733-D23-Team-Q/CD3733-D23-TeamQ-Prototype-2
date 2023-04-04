@@ -75,6 +75,7 @@ public class ListServiceRequestController {
       conferenceRequest =
           conferenceRequestDao.retrieveRow(
               tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+      System.out.println(conferenceRequest.getRequestID());
       Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST_DISPLAY);
     }
   }

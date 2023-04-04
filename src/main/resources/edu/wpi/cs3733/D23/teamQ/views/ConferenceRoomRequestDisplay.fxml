@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -118,10 +116,30 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MFXTextField fx:id="specialInstructionsField" prefHeight="20.0" prefWidth="250.0" promptText="Special Instructions" GridPane.rowIndex="3" />
-            <MFXTextField fx:id="roomNumberField" prefHeight="20.0" prefWidth="250.0" promptText="Room Number" />
-            <MFXTextField fx:id="dateTimeField" prefHeight="20.0" prefWidth="250.0" promptText="Date/Time" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="foodField" prefWidth="150.0" GridPane.rowIndex="2" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" text="Room Number: " />
+                  <Label fx:id="roomNumberField" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="CENTER" text="Date/Time: " />
+                  <Label fx:id="dateTimeField" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Label alignment="CENTER" text="Food: " />
+                  <Label fx:id="foodField" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Label alignment="CENTER" text="Special Instructions: " />
+                  <Label fx:id="specialInstructionsField" />
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </children>

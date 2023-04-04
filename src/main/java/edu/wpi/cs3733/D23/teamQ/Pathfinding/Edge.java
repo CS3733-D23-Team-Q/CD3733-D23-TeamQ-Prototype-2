@@ -77,4 +77,8 @@ public class Edge extends newNode {
   public void setNode(newNode newNode) {
     this.newNode = newNode;
   }
+
+  public newNode getStartNode() {
+    return this;
+  }
 }

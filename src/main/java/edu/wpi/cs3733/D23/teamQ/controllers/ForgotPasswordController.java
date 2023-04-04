@@ -4,16 +4,20 @@ import edu.wpi.cs3733.D23.teamQ.Alert;
 import edu.wpi.cs3733.D23.teamQ.Confirm;
 import edu.wpi.cs3733.D23.teamQ.SecondaryStage;
 import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.QuestionDAOImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Question;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.io.IOException;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 public class ForgotPasswordController extends SecondaryStage {
-  AccountDAOImpl dao = new AccountDAOImpl();
+  AccountDAOImpl adao = new AccountDAOImpl();
+  QuestionDAOImpl qdao = new QuestionDAOImpl();
   CreateAccountController CAController = new CreateAccountController();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();
@@ -38,16 +42,15 @@ public class ForgotPasswordController extends SecondaryStage {
 
   @FXML
   public void initialize() {
-    questionChoice1.getItems().add(dao.getQuestions().get(0));
-    questionChoice1.getItems().add(dao.getQuestions().get(1));
-    questionChoice1.getItems().add(dao.getQuestions().get(2));
-    questionChoice1.getItems().add(dao.getQuestions().get(3));
-    questionChoice1.getItems().add(dao.getQuestions().get(4));
-    questionChoice2.getItems().add(dao.getQuestions().get(0));
-    questionChoice2.getItems().add(dao.getQuestions().get(1));
-    questionChoice2.getItems().add(dao.getQuestions().get(2));
-    questionChoice2.getItems().add(dao.getQuestions().get(3));
-    questionChoice2.getItems().add(dao.getQuestions().get(4));
+    List<Question> questions = qdao.getAllRows();
+    for (int i = 0; i < questions.size(); i++) {
+      String question = questions.get(i).getQuestion();
+      questionChoice1.getItems().add(question);
+    }
+    for (int i = 0; i < questions.size(); i++) {
+      String question = questions.get(i).getQuestion();
+      questionChoice2.getItems().add(question);
+    }
   }
 
   public void newPasswordReact(
@@ -59,7 +62,7 @@ public class ForgotPasswordController extends SecondaryStage {
       String answer1,
       String answer2)
       throws IOException {
-    Account a = dao.retrieveRow(username);
+    Account a = adao.retrieveRow(username);
     String oldPassword = a.getPassword();
     if (oldPassword.equals(newPassword)) {
       alert.setLabelAlert(
@@ -122,7 +125,7 @@ public class ForgotPasswordController extends SecondaryStage {
       String answer1,
       String answer2)
       throws IOException {
-    Account a = dao.retrieveRow(username);
+    Account a = adao.retrieveRow(username);
     int actualq1 = a.getSecurityQuestion1();
     int actualq2 = a.getSecurityQuestion2();
     String actuala1 = a.getSecurityAnswer1();
@@ -134,7 +137,7 @@ public class ForgotPasswordController extends SecondaryStage {
       answer1Field.setStyle(null);
       answer2Field.setStyle(null);
       a.setPassword(newPassword);
-      dao.updateRow(username, a);
+      adao.updateRow(username, a);
       Navigation.navigate(Screen.LOGIN);
       super.stage.setScene(
           confirm.getScene(super.stage, "Confirmation", "Password reset successful!"));
@@ -150,11 +153,11 @@ public class ForgotPasswordController extends SecondaryStage {
     String username = usernameField.getText();
     String newPassword = NPField.getText();
     String repassword = CPField.getText();
-    int question1 = dao.getQuestionId((String) questionChoice1.getValue());
-    int question2 = dao.getQuestionId((String) questionChoice2.getValue());
+    int question1 = qdao.retrieveRow((String) questionChoice1.getValue()).getId();
+    int question2 = qdao.retrieveRow((String) questionChoice2.getValue()).getId();
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
-    if (dao.getIndex(username) != -1) {
+    if (adao.getIndex(username) != -1) {
       alert.clearLabelAlert(usernameAlert, usernameAlertImage);
       newPasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {

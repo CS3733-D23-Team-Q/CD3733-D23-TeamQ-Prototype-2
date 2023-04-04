@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.LocationDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.MoveDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.NodeDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
@@ -66,38 +68,36 @@ public class MapEditorController {
   }
 
   /** used to get Locations from database */
-
-  /*
-  public ObservableList<Location> locations(){
+  public ObservableList<Location> locations() {
     ObservableList<Location> location = FXCollections.observableArrayList();
-    for(int i = 0; i< LocationDaoImpl.getAllRows().size(); i++){
-      location.add(LocationDaoImpl.getAllRows().get(i));
+
+    LocationDaoImpl locationlist = new LocationDaoImpl();
+    for (int i = 0; i < locationlist.getAllRows().size(); i++) {
+      location.add(locationlist.getAllRows().get(i));
     }
     return location;
   }
 
-   */
-
   /** used to get Move from database */
-
-  /*
-  public ObservableList<Move> moves(){
+  public ObservableList<Move> moves() {
     ObservableList<Move> move = FXCollections.observableArrayList();
-    for(int i=0; i< MoveDaoImpl.getAllRows().size(); i++){
-      move.add(MoveDaoImpl.getAllRows().get(i));
+
+    MoveDaoImpl movelist = new MoveDaoImpl();
+    for (int i = 0; i < movelist.getAllRows().size(); i++) {
+      move.add(movelist.getAllRows().get(i));
     }
     return move;
   }
 
-   */
-
   /** used to get Edge from database */
 
   /*
-  public ObservableList<Edge> edges(){
+  public ObservableList<Edge> edges() {
     ObservableList<Edge> edge = FXCollections.observableArrayList();
-    for(int i=0; i< EdgeDaoImpl.getAllRows().size(); i++){
-      edge.add(EdgeDaoImpl.getAllRows().get(i));
+
+    EdgeDaoImpl edgelist = new EdgeDaoImpl();
+    for (int i = 0; i < edgelist.getAllRows().size(); i++) {
+      edge.add(edgelist.getAllRows().get(i));
     }
     return edge;
   }
@@ -201,7 +201,7 @@ public class MapEditorController {
         });
 
     /** set the location tableview */
-    //  locationname.setItems(locations());
+    locationname.setItems(locations());
 
     // This part below is all about move
 
@@ -216,7 +216,7 @@ public class MapEditorController {
         });
 
     /** set the move tableview */
-    //  move.setItems(moves());
+    move.setItems(moves());
 
     // This part below is all about edge
 
@@ -243,7 +243,6 @@ public class MapEditorController {
         });
 
     /** set the edge tableview */
-    //  edge.setItems(edges());
-
+    //   edge.setItems(edges());
   }
 }

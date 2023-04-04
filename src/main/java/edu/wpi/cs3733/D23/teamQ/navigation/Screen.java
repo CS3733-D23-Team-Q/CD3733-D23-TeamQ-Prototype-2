@@ -5,7 +5,7 @@ public enum Screen {
   HOME("views/Home.fxml"),
   SIGNAGE("views/Signage.fxml"),
   SERVICE_REQUEST("views/ServiceRequest.fxml"),
-  CONFERENCE_ROOM_REQUEST("views/ConferenceRoomRequest.fxml"),
+  CONFERENCE_ROOM_REQUEST("views/MapEditor.fxml"),
   HELP("views/Help.fxml"),
   FLOWER_REQUEST("views/FlowerRequest.fxml"),
   FLOWER_REQUEST_SUBMISSION("views/FlowerRequestSubmission.fxml");

@@ -10,8 +10,8 @@ import java.util.List;
 public class NodeDaoImpl implements GenDao<Node, Integer> {
   private List<Node> nodes;
 
-  NodeDaoImpl(List<Node> nodes) {
-    this.nodes = nodes;
+  public NodeDaoImpl() {
+    populate();
   }
 
   /**
@@ -58,6 +58,11 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    */
   public boolean addRow(Node n) {
     return nodes.add(n);
+  }
+
+  @Override
+  public boolean populate() {
+    return false;
   }
 
   /**

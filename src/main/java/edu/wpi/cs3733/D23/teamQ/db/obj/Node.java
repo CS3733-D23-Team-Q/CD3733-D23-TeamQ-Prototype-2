@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Node extends javafx.scene.Node {
+public class Node {
   private int nodeID;
   private int xCoord;
   private int yCoord;
@@ -53,9 +53,5 @@ public class Node extends javafx.scene.Node {
         + this.edges
         + ", location: "
         + this.location;
-  }
-
-  public String getBuilding() {
-    return building;
   }
 }

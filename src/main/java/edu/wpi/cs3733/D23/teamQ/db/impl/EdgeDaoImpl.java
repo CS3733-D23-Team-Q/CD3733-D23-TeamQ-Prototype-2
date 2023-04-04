@@ -11,7 +11,7 @@ import java.util.List;
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   private List<Edge> edges;
 
-  EdgeDaoImpl(LinkedList<Edge> edges) {
+  public EdgeDaoImpl(LinkedList<Edge> edges) {
     this.edges = edges;
   }
   /**
@@ -56,6 +56,12 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   public boolean addRow(Edge e) {
     return edges.add(e);
   }
+
+  @Override
+  public boolean populate() {
+    return false;
+  }
+
   /**
    * gets index of given edgeID in the list of edges
    *

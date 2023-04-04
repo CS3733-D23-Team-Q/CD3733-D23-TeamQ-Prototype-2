@@ -249,7 +249,12 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     if (questionChoice2.getSelectionModel().isEmpty()) {
       alert.alertBox("Failed to create an account", "Please select a question.");
@@ -257,7 +262,7 @@ public class CreateAccountController extends SecondaryStage {
       alert.alertBox("Failed to create an account", "Please choose a different question.");
     } else {
       securityAReact2(
-          username, email, password, repassword, question1, question2, answer1, answer2);
+          username, email, password, repassword, question1, question2, answer1, answer2, firstName, lastName, title, IDNum, phoneNumber);
     }
   }
 
@@ -269,7 +274,12 @@ public class CreateAccountController extends SecondaryStage {
       String question1,
       String question2,
       String answer1,
-      String answer2)
+      String answer2,
+      String firstName,
+      String lastName,
+      String title,
+      int IDNum,
+      int phoneNumber)
       throws IOException {
     if (answer2.length() < 1) {
       alert.setLabelAlert("Please enter a answer", a2Alert, a2AlertImage);
@@ -282,7 +292,12 @@ public class CreateAccountController extends SecondaryStage {
           dao.getQuestionId(question1),
           dao.getQuestionId(question2),
           answer1,
-          answer2);
+          answer2,
+              firstName,
+              lastName,
+              title,
+              IDNum,
+              phoneNumber);
       super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
       stage.centerOnScreen();
     }

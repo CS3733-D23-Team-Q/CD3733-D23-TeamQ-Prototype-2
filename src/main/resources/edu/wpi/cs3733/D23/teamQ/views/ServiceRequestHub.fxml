@@ -34,7 +34,7 @@
       <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="56.000030517578125" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1000.0" spacing="380.0" style="-fx-background-color: #142A53;" GridPane.columnSpan="10">
+      <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="31.0" prefWidth="1000.0" spacing="380.0" style="-fx-background-color: #142A53;" GridPane.columnSpan="10">
          <children>
             <Label text="Service Request Hub" textFill="#f1f1f1">
                <font>

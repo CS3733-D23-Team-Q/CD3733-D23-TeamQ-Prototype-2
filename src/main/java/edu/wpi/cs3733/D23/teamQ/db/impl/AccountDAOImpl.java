@@ -7,6 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDAOImpl implements GenDao<Account, String> {
+  static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
+  static final String user = "teamq";
+  static final String password = "teamq140";
+
+  public static Connection connect() {
+    Connection con = null;
+    try {
+      Class.forName("org.postgresql.Driver");
+      con = DriverManager.getConnection(url, user, password);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return con;
+  }
   private List<Account> accounts = new ArrayList<Account>();
 
   public Account retrieveRow(String uname) {

@@ -2,10 +2,15 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
+import java.sql.*;
 import java.util.List;
 
 public class LocationDaoImpl implements GenDao<Location, Integer> {
   private List<Location> locations;
+
+  public LocationDaoImpl() {
+    populate();
+  }
 
   /**
    * returns a location given a nodeID
@@ -26,6 +31,9 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
    * @return true if successful
    */
   public boolean updateRow(Integer nodeID, Location newLocation) {
+    deleteRow(nodeID);
+    addRow(newLocation);
+
     int index = this.getIndex(nodeID);
     locations.set(index, newLocation);
     return true;
@@ -38,8 +46,19 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
    * @return true if successfully deleted
    */
   public boolean deleteRow(Integer nodeID) {
+    try (Connection connection = GenDao.connect();
+        PreparedStatement st =
+            connection.prepareStatement(
+                "DELETE FROM \"conferenceRequest\" WHERE \"requestID\" = ?")) {;
+      st.setInt(1, nodeID);
+      st.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
     int index = this.getIndex(nodeID);
     locations.remove(index);
+
     return true;
   }
 
@@ -50,12 +69,38 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
    * @return true if successful
    */
   public boolean addRow(Location l) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO \"conferenceRequest\"(\"nodeID\", \"longName\", \"shortName\", \"nodeType\") VALUES (?, ?, ?, ?)")) {
+      stmt.setInt(1, l.getNode().getNodeID());
+      stmt.setString(2, l.getLongName());
+      stmt.setString(3, l.getShortName());
+      stmt.setString(4, l.getNodeType());
+      stmt.executeUpdate();
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
     return locations.add(l);
   }
 
-  @Override
   public boolean populate() {
-    return false;
+    try {
+      Connection conn = GenDao.connect();
+      Statement stm = conn.createStatement();
+      ResultSet rst = stm.executeQuery("Select * From \"locationName\"");
+      while (rst.next()) {
+        locations.add(
+            new Location(
+                rst.getInt("nodeID"),
+                rst.getString("longName"),
+                rst.getString("shortName"),
+                rst.getString("nodeType")));
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return true;
   }
 
   /**

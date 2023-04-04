@@ -76,4 +76,12 @@ public class Node {
     return Double.compare(this.f, n.f);
   }
 
+  public void addBranch(Node target, int targetID) {
+    Edge branch = new Edge(targetID, this, target);
+    //    Edge inverseEdge = new Edge(weight, this);
+
+    edges.add(branch);
+    //    neighbors.add(inverseEdge);
+  }
+
 }

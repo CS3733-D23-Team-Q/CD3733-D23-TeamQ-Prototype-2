@@ -39,12 +39,6 @@ public class Edge{
     return weight;
   }
 
-  public void addBranch(Node node1, Node node2) {
-    Edge branch = new Edge(this.getEdgeID(), node1, node2);
-    //    Edge inverseEdge = new Edge(weight, this);
-    branch.set
-    edges.add(branch);
-    //    neighbors.add(inverseEdge);
-  }
+
 
 }

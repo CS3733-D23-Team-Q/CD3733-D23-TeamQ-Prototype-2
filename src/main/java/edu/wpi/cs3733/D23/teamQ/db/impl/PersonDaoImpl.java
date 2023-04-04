@@ -31,15 +31,7 @@ public class PersonDaoImpl implements GenDao<Account, String>{
         return People.get(index);
     }
 
-    public List<Person> retrieveRows(String email) {
-        populate();
-        List<Account> as = new ArrayList<Account>();
-        List<Integer> index = this.getIndexes(email);
-        for (int i : index) {
-            as.add(accounts.get(i));
-        }
-        return as;
-    }
+
 
     public boolean updateRow(String uname, Account accountWithNewChanges) {
         populate();

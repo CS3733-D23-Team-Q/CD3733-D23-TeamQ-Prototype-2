@@ -112,16 +112,18 @@
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MFXTextField fx:id="specialInstructionsField" prefHeight="20.0" prefWidth="250.0" promptText="Special Instructions" GridPane.rowIndex="3" />
-            <MFXTextField fx:id="roomNumberField" prefHeight="20.0" prefWidth="250.0" promptText="Room Number" />
-            <MFXTextField fx:id="dateTimeField" prefHeight="20.0" prefWidth="250.0" promptText="Date/Time" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="foodField" prefWidth="150.0" GridPane.rowIndex="2" />
+            <MFXTextField fx:id="specialInstructionsField" prefHeight="20.0" prefWidth="250.0" promptText="Special Instructions" GridPane.rowIndex="4" />
+            <MFXTextField fx:id="roomNumberField" prefHeight="20.0" prefWidth="250.0" promptText="Room Number" GridPane.rowIndex="1" />
+            <MFXTextField fx:id="dateTimeField" prefHeight="20.0" prefWidth="250.0" promptText="Date/Time" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="foodField" prefWidth="150.0" GridPane.rowIndex="3" />
+            <MFXTextField fx:id="assigneeField" prefHeight="20.0" prefWidth="250.0" promptText="Assignee" />
          </children>
       </GridPane>
    </children>

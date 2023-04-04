@@ -37,7 +37,7 @@ public class star extends Node {
         double totalWeight = n.getG() + edge.getWeight();
 
         if (!openList.contains(m) && !closedList.contains(m)) {
-          m.parent = n;
+          m.setParent(n);
           m.setG(totalWeight);
           m.setF(m.getG() + calculateHeuristic(m, target));
           openList.add(m);
@@ -69,10 +69,10 @@ public class star extends Node {
     List<Integer> ids = new ArrayList<>();
 
     while (n.getParent() != null) {
-      ids.add(n.getId());
-      n = (Node) n.parent;
+      ids.add(n.getNodeID());
+      n = (Node) n.getParent();
     }
-    ids.add(n.getId());
+    ids.add(n.getNodeID());
     Collections.reverse(ids);
 
     for (int id : ids) {

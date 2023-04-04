@@ -3,9 +3,12 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceRequestDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerRequestDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.ServiceRequestDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
+import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import java.sql.SQLException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,8 +16,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.sql.SQLException;
 
 public class ListServiceRequestController {
   @FXML Button homeButton;
@@ -30,14 +31,17 @@ public class ListServiceRequestController {
 
   @FXML Button selectButton;
 
+  FlowerRequest flowerRequest;
+  ConferenceRequest conferenceRequest;
+
   ServiceRequestDaoImpl serviceRequestDao = new ServiceRequestDaoImpl();
 
   FlowerRequestDaoImpl flowerRequestDao = new FlowerRequestDaoImpl();
 
   ConferenceRequestDaoImpl conferenceRequestDao = new ConferenceRequestDaoImpl();
 
-  public ListServiceRequestController() throws SQLException {
-  }
+  public ListServiceRequestController() throws SQLException {}
+
   @FXML
   public void initialize() {
     requestID.setCellValueFactory(new PropertyValueFactory<ServiceRequest, Integer>("requestID"));
@@ -58,11 +62,20 @@ public class ListServiceRequestController {
 
   @FXML
   public void selectButtonClicked() {
-    if(flowerRequestDao.retrieveRow(tableView.getSelectionModel().getSelectedItems().get(0).getRequestID()) != null){
-
-    }
-    else if(conferenceRequestDao.retrieveRow(tableView.getSelectionModel().getSelectedItems().get(0).getRequestID()) != null){
-
+    if (flowerRequestDao.retrieveRow(
+            tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
+        != null) {
+      flowerRequest =
+          flowerRequestDao.retrieveRow(
+              tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+      Navigation.navigate(Screen.FLOWER_REQUEST_DISPLAY);
+    } else if (conferenceRequestDao.retrieveRow(
+            tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
+        != null) {
+      conferenceRequest =
+          conferenceRequestDao.retrieveRow(
+              tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+      Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST_DISPLAY);
     }
   }
 
@@ -74,5 +87,13 @@ public class ListServiceRequestController {
   @FXML
   public void exitItemClicked() {
     Platform.exit();
+  }
+
+  public ConferenceRequest getConferenceRequest() {
+    return conferenceRequest;
+  }
+
+  public FlowerRequest getFlowerRequest() {
+    return flowerRequest;
   }
 }

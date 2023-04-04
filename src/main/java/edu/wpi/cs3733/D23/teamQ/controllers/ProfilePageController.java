@@ -28,7 +28,7 @@ public class ProfilePageController {
 
     @FXML
     private void initialize() {
-        // DO ONE FOR THE IMAGE AS WELL NEXT TIME
+        // DO ONE FOR PROFILE IMAGE AS WELL NEXT TIME
         String username = Account.getUsername();
         this.Title_Display.setText(PersonDaoImpl.getTitle(1));
 

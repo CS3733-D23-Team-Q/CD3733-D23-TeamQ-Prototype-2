@@ -1,12 +1,9 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
-
 import static edu.wpi.cs3733.D23.teamQ.Pathfinding.star.aStar;
 import static edu.wpi.cs3733.D23.teamQ.Pathfinding.star.printPath;
 
-
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
-
 
 public class PathMain {
   public static void main(String[] args) {
@@ -47,4 +44,3 @@ public class PathMain {
     printPath(res);
   }
 }
-

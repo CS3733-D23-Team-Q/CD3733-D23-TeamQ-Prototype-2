@@ -17,7 +17,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
   private List<Move> moves;
   private int nextID = 0;
 
-  public MoveDaoImpl() throws SQLException {
+  public MoveDaoImpl() {
     populate();
     if(moves.size() != 0) {
       nextID = moves.get(moves.size() - 1).getMoveID() + 1;
@@ -95,7 +95,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
   }
 
   @Override
-  public boolean populate() throws SQLException {
+  public boolean populate() {
     try {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();

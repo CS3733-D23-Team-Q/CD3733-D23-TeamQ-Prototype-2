@@ -5,15 +5,13 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   private List<Edge> edges;
 
-  EdgeDaoImpl(LinkedList<Edge> edges) {
-    this.edges = edges;
-  }
+  public EdgeDaoImpl() {}
+
   /**
    * returns a edge given a edgeID
    *

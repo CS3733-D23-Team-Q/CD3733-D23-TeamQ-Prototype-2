@@ -5,10 +5,11 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
-  private List<Edge> edges;
+  private List<Edge> edges = new ArrayList<>();
 
   public EdgeDaoImpl() {}
 
@@ -22,6 +23,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     int index = this.getIndex(edgeID);
     return edges.get(index);
   }
+
   /**
    * updates edge in linked list with a new edge
    *
@@ -34,6 +36,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     edges.set(index, newEdge);
     return true;
   }
+
   /**
    * deletes edges from list of edges
    *
@@ -45,6 +48,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     edges.remove(index);
     return true;
   }
+
   /**
    * adds a edge to the linked list
    *

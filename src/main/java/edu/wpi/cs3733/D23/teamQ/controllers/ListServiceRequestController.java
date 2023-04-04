@@ -48,9 +48,20 @@ public class ListServiceRequestController {
 
   @FXML
   public void selectButtonClicked() {
-    System.out.println(tableView.getSelectionModel().getSelectedItems().get(0));
-
-  };
+    System.out.println(
+        "ID: " + tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+    System.out.println(
+        "Progress: " + tableView.getSelectionModel().getSelectedItems().get(0).getProgress());
+    System.out.println(
+        "Requester: " + tableView.getSelectionModel().getSelectedItems().get(0).getRequester());
+    System.out.println(
+        "Assignee: " + tableView.getSelectionModel().getSelectedItems().get(0).getAssignee());
+    System.out.println(
+        "Room Number: " + tableView.getSelectionModel().getSelectedItems().get(0).getRoomNumber());
+    System.out.println(
+        "Special Instructions: "
+            + tableView.getSelectionModel().getSelectedItems().get(0).getSpecialInstructions());
+  }
 
   @FXML
   public void homeItemClicked() {

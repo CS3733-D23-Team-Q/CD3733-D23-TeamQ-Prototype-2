@@ -4,13 +4,13 @@ public class Edge extends newNode {
   private int weight;
   private newNode newNode;
 
-  Edge(int weight, newNode newNode) {
+  Edge(int weight, newNode newNode) { //MOVE THIS?
 
     this.setWeight(weight);
     this.newNode = newNode;
   }
 
-  public int getWeight() {
+  public int getWeight() { //MOVE THIS TO EDGE
     int xDist = this.getNode().getNeighbors().get(0).getXCoord() - this.getNode().getXCoord();
     int yDist = this.getNode().getNeighbors().get(0).getXCoord() - this.getNode().getyCoord();
     // int yDist = getGoal().getYCoord() - this.getyCoord();

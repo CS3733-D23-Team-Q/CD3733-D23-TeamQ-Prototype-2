@@ -179,7 +179,18 @@ public class AccountDAOImpl {
    */
 
   public boolean addUser(
-      String uname, String pass, String email, int q1, int q2, String a1, String a2, String FN, String LN, String t, int ID, int PN) {
+      String uname,
+      String pass,
+      String email,
+      int q1,
+      int q2,
+      String a1,
+      String a2,
+      String FN,
+      String LN,
+      String t,
+      int ID,
+      int PN) {
     boolean result = false;
     Connection con = connect();
     try {

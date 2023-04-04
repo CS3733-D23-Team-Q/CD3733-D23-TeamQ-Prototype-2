@@ -122,8 +122,20 @@ public class CreateAccountController extends SecondaryStage {
         break;
       case 1:
         alert.clearLabelAlert(usernameAlert, usernameAlertImage);
-        emailReact(username, email, password, repassword, question1, question2, answer1, answer2,
-                firstName, lastName, title, IDNum, phoneNumber);
+        emailReact(
+            username,
+            email,
+            password,
+            repassword,
+            question1,
+            question2,
+            answer1,
+            answer2,
+            firstName,
+            lastName,
+            title,
+            IDNum,
+            phoneNumber);
         break;
       case 2:
         alert.setLabelAlert(
@@ -160,8 +172,19 @@ public class CreateAccountController extends SecondaryStage {
       case 1:
         alert.clearLabelAlert(emailAlert, emailAlertImage);
         passwordReact(
-            username, email, password, repassword, question1, question2, answer1, answer2,
-                firstName, lastName, title, IDNum, phoneNumber);
+            username,
+            email,
+            password,
+            repassword,
+            question1,
+            question2,
+            answer1,
+            answer2,
+            firstName,
+            lastName,
+            title,
+            IDNum,
+            phoneNumber);
         break;
       case 2:
         alert.setLabelAlert("Invalid email address", emailAlert, emailAlertImage);
@@ -191,8 +214,19 @@ public class CreateAccountController extends SecondaryStage {
       case 1:
         alert.clearLabelAlert(passwordAlert, passwordAlertImage);
         repasswordReact(
-            username, email, password, repassword, question1, question2, answer1, answer2,
-                firstName, lastName, title, IDNum, phoneNumber);
+            username,
+            email,
+            password,
+            repassword,
+            question1,
+            question2,
+            answer1,
+            answer2,
+            firstName,
+            lastName,
+            title,
+            IDNum,
+            phoneNumber);
         break;
       case 2:
         alert.setLabelAlert(
@@ -221,8 +255,19 @@ public class CreateAccountController extends SecondaryStage {
     if (password.equals(repassword)) {
       alert.clearLabelAlert(CPAlert, CPAlertImage);
       securityQReact1(
-          username, email, password, repassword, question1, question2, answer1, answer2,
-              firstName, lastName, title, IDNum, phoneNumber);
+          username,
+          email,
+          password,
+          repassword,
+          question1,
+          question2,
+          answer1,
+          answer2,
+          firstName,
+          lastName,
+          title,
+          IDNum,
+          phoneNumber);
     } else {
       alert.setLabelAlert("Password doesn't match", CPAlert, CPAlertImage);
     }
@@ -247,8 +292,19 @@ public class CreateAccountController extends SecondaryStage {
       alert.alertBox("Failed to create an account", "Please select a question.");
     } else {
       securityAReact1(
-          username, email, password, repassword, question1, question2, answer1, answer2,
-              firstName, lastName, title, IDNum, phoneNumber);
+          username,
+          email,
+          password,
+          repassword,
+          question1,
+          question2,
+          answer1,
+          answer2,
+          firstName,
+          lastName,
+          title,
+          IDNum,
+          phoneNumber);
     }
   }
 
@@ -272,8 +328,19 @@ public class CreateAccountController extends SecondaryStage {
     } else {
       alert.clearLabelAlert(a1Alert, a1AlertImage);
       securityQReact2(
-          username, email, password, repassword, question1, question2, answer1, answer2,
-              firstName, lastName, title, IDNum, phoneNumber);
+          username,
+          email,
+          password,
+          repassword,
+          question1,
+          question2,
+          answer1,
+          answer2,
+          firstName,
+          lastName,
+          title,
+          IDNum,
+          phoneNumber);
     }
   }
 
@@ -298,7 +365,19 @@ public class CreateAccountController extends SecondaryStage {
       alert.alertBox("Failed to create an account", "Please choose a different question.");
     } else {
       securityAReact2(
-          username, email, password, repassword, question1, question2, answer1, answer2, firstName, lastName, title, IDNum, phoneNumber);
+          username,
+          email,
+          password,
+          repassword,
+          question1,
+          question2,
+          answer1,
+          answer2,
+          firstName,
+          lastName,
+          title,
+          IDNum,
+          phoneNumber);
     }
   }
 
@@ -329,11 +408,11 @@ public class CreateAccountController extends SecondaryStage {
           dao.getQuestionId(question2),
           answer1,
           answer2,
-              firstName,
-              lastName,
-              title,
-              IDNum,
-              phoneNumber);
+          firstName,
+          lastName,
+          title,
+          IDNum,
+          phoneNumber);
       super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
       stage.centerOnScreen();
     }

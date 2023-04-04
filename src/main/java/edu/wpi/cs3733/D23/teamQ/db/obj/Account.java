@@ -15,7 +15,6 @@ public class Account {
   private int IDNum;
   private int phoneNumber;
 
-
   public Account(
       String username,
       String password,
@@ -98,15 +97,44 @@ public class Account {
   public void setSecurityAnswer2(String securityAnswer2) {
     this.securityAnswer2 = securityAnswer2;
   }
-  public String getFirstName(){return firstName;}
-  public void setFirstName(String FN){this.firstName = FN;}
-  public String getLastName(){return lastName;}
-  public void setLastName(String LN){this.lastName = LN;}
-  public String getTitle(){return title;}
-  public void setTitle(String title){this.title = title;}
-  public int getIDNum(){return IDNum;}
-  public void setIDNum(int ID){this.IDNum = ID;}
-  public int getPhoneNumber(){return phoneNumber;}
-  public void setPhoneNumber(int PN){this.phoneNumber = PN;}
-}
 
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String FN) {
+    this.firstName = FN;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String LN) {
+    this.lastName = LN;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public int getIDNum() {
+    return IDNum;
+  }
+
+  public void setIDNum(int ID) {
+    this.IDNum = ID;
+  }
+
+  public int getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(int PN) {
+    this.phoneNumber = PN;
+  }
+}

@@ -179,14 +179,14 @@ public class AccountDAOImpl {
    */
 
   public boolean addUser(
-      String uname, String pass, String email, int q1, int q2, String a1, String a2) {
+      String uname, String pass, String email, int q1, int q2, String a1, String a2, String FN, String LN, String t, int ID, int PN) {
     boolean result = false;
     Connection con = connect();
     try {
       String query =
           "INSERT INTO account"
-              + "(username, password, email, security_question_1, security_question_2, security_answer_1, security_answer_2)"
-              + "VALUES(?,?,?,?,?,?,?)";
+              + "(username, password, email, security_question_1, security_question_2, security_answer_1, security_answer_2, firstName, lastName, title, IDNum, PhoneNumber)"
+              + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
       PreparedStatement pst = con.prepareStatement(query);
       pst.setString(1, uname);
       pst.setString(2, pass);
@@ -195,6 +195,11 @@ public class AccountDAOImpl {
       pst.setInt(5, q2);
       pst.setString(6, a1);
       pst.setString(7, a2);
+      pst.setString(8, FN);
+      pst.setString(9, LN);
+      pst.setString(10, t);
+      pst.setInt(11, ID);
+      pst.setInt(12, PN);
       int rs = pst.executeUpdate();
       if (rs == 1) {
         result = true;
@@ -262,7 +267,12 @@ public class AccountDAOImpl {
     int q2 = 0;
     String a1 = "";
     String a2 = "";
-    Account a = new Account(uname, pass, email, q1, q2, a1, a2);
+    String FN = "";
+    String LN = "";
+    String t = "";
+    int ID = 0;
+    int PN = 0;
+    Account a = new Account(uname, pass, email, q1, q2, a1, a2, FN, LN, t, ID, PN);
     Connection con = connect();
     try {
       String query = "SELECT * FROM account WHERE username = ?";
@@ -277,6 +287,11 @@ public class AccountDAOImpl {
         a.setSecurityQuestion2(rs.getInt(5));
         a.setSecurityAnswer1(rs.getString(6));
         a.setSecurityAnswer2(rs.getString(7));
+        a.setFirstName(rs.getString(8));
+        a.setLastName(rs.getString(9));
+        a.setTitle(rs.getString(10));
+        a.setIDNum(rs.getInt(11));
+        a.setPhoneNumber(rs.getInt(12));
       }
       con.close();
       pst.close();

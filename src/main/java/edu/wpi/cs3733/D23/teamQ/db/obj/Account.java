@@ -101,7 +101,7 @@ public class Account {
   public String getFirstName(){return firstName;}
   public void setFirstName(String FN){this.firstName = FN;}
   public String getLastName(){return lastName;}
-  public void setLastName(String LN){this.lasttName = LN;}
+  public void setLastName(String LN){this.lastName = LN;}
   public String getTitle(){return title;}
   public void setTitle(String title){this.title = title;}
   public int getIDNum(){return IDNum;}

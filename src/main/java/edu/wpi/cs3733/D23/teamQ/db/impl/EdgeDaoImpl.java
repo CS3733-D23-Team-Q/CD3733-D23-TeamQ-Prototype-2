@@ -2,23 +2,20 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   private List<Edge> edges;
 
-  EdgeDaoImpl(LinkedList<Edge> edges) {
-    this.edges = edges;
-  }
+  public EdgeDaoImpl() {}
+
   /**
    * returns a edge given a edgeID
    *

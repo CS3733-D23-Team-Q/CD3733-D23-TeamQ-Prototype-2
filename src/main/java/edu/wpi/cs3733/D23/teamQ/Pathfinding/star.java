@@ -43,10 +43,10 @@ public class star extends Edge {
           m.setF(m.getG() + calculateHeuristic(m, target));
           openList.add(m);
         } else {
-          if (totalWeight < m.getG()) {
+          if (totalWeight < m.getWeight()) {
             m.setParent(n);
             m.setG(totalWeight);
-            m.setF(m.getG() + calculateHeuristic(m, target));
+            m.setF(m.getWeight() + calculateHeuristic(m, target));
 
             if (closedList.contains(m)) {
               closedList.remove(m);

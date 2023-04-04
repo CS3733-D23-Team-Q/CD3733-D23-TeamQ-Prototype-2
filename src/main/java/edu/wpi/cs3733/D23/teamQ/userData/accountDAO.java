@@ -108,13 +108,13 @@ public class accountDAO {
         if (rs < 0) {
           System.out.println("Failed to create an account.");
         } else {
-          System.out.println("Account created successful!");
+          System.out.println("Account created successfully!");
         }
       } catch (Exception e) {
         System.out.println(e.getMessage());
       }
     } else {
-      System.out.println("Username already exist. Try another one.");
+      System.out.println("Username already exists. Try another one.");
     }
   }
 

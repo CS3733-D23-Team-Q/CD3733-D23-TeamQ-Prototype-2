@@ -1,15 +1,20 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
+
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class star extends Node {
+public class star extends Edge {
 
+  public star() {
+    super();
+  }
 
   public static double calculateHeuristic(Node n, Node target) {
     int dx = Math.abs(n.getXCoord() - target.getYCoord());

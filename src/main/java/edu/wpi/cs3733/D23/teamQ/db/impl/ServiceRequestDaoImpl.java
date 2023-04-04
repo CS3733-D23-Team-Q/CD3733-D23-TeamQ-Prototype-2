@@ -8,8 +8,17 @@ import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
+  ObservableList<ServiceRequest> serviceRequests;
+
+  public ServiceRequestDaoImpl() {
+    this.serviceRequests = getAllRows();
+  }
 
   public ObservableList<ServiceRequest> getAllRows() {
     ObservableList<ServiceRequest> srL = FXCollections.observableArrayList();

@@ -7,11 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MoveDaoImpl implements GenDao<Move, Integer> {
-  private List<Move> moves;
+  private List<Move> moves = new ArrayList<Move>();
   private int nextID = 0;
 
   public MoveDaoImpl() {

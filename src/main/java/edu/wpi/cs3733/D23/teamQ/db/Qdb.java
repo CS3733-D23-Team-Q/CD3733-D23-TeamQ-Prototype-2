@@ -1,27 +1,26 @@
 package edu.wpi.cs3733.D23.teamQ.db;
 
-import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceRequestDaoImpl;
-import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerRequestDaoImpl;
-import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
-import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
-import java.sql.SQLException;
+import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
+import edu.wpi.cs3733.D23.teamQ.db.impl.*;
+import edu.wpi.cs3733.D23.teamQ.db.obj.*;
 
 public class Qdb {
-  public static void main(String[] args) throws SQLException {
-    ConferenceRequestDaoImpl requestC = new ConferenceRequestDaoImpl();
-    FlowerRequestDaoImpl requestF = new FlowerRequestDaoImpl();
-    ConferenceRequest conferenceRequest =
-        new ConferenceRequest("test", 0, "test", "test", "test", "test", "test");
-    FlowerRequest flowerRequest =
-        new FlowerRequest("test", 0, "test", "test", "test", "test", "test", 1);
+  public GenDao<Account, String> accountTable = new AccountDAOImpl();
+  public GenDao<ServiceRequest, Integer> serviceRequestTable = new ServiceRequestDaoImpl();
+  public GenDao<ConferenceRequest, Integer> conferenceRequestTable = new ConferenceRequestDaoImpl();
+  public GenDao<FlowerRequest, Integer> flowerRequestTable = new FlowerRequestDaoImpl();
+  public GenDao<Node, Integer> nodeTable = new NodeDaoImpl();
+  public GenDao<Edge, Integer> edgeTable = new EdgeDaoImpl();
+  public GenDao<Move, Integer> moveTable = new MoveDaoImpl();
+  public GenDao<Location, Integer> locationTable = new LocationDaoImpl();
 
-    requestC.addRow(conferenceRequest);
-    requestF.addRow(flowerRequest);
+  private static Qdb single_instance = null;
 
-    // System.out.println(request.getAllRows().size());
+  private Qdb() {}
 
-    // List<ConferenceRequest> list = request.getAllRows();
+  public static synchronized Qdb getInstance() {
+    if (single_instance == null) single_instance = new Qdb();
 
-    // request.deleteRow(5);
+    return single_instance;
   }
 }

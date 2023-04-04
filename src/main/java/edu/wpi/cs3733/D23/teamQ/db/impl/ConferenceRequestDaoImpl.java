@@ -56,7 +56,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
    * @param requestID of conferenceRequest being deleted
    * @return true if successfully deleted
    */
-  public boolean deleteRow(Integer requestID) throws SQLException {
+  public boolean deleteRow(Integer requestID) {
     try (Connection connection = GenDao.connect();
         PreparedStatement st =
             connection.prepareStatement(
@@ -97,8 +97,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     }
     request.setRequestID(nextID);
     nextID++;
-    conferenceRequests.add(request);
-    return true;
+    return conferenceRequests.add(request);
   }
 
   @Override

@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Move {
+  private int moveID;
   private Node node;
   private String longName;
   private String date;
@@ -17,7 +18,9 @@ public class Move {
   }
 
   public String toString() {
-    return "node: "
+    return "moveID: "
+        + this.moveID
+        + "node: "
         + this.node.getNodeID()
         + ", longName: "
         + this.longName

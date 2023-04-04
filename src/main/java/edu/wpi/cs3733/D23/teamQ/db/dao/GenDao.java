@@ -11,14 +11,14 @@ public interface GenDao<T, G> {
   static final String password = "teamq140";
 
   public static Connection connect() {
-    Connection conn = null;
+    Connection con = null;
     try {
-      conn = DriverManager.getConnection(url, user, password);
-    } catch (SQLException e) {
+      Class.forName("org.postgresql.Driver");
+      con = DriverManager.getConnection(url, user, password);
+    } catch (Exception e) {
       System.out.println(e.getMessage());
     }
-
-    return conn;
+    return con;
   }
 
   public List<T> getAllRows();

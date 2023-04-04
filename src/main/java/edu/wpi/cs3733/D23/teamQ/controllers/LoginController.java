@@ -62,14 +62,14 @@ public class LoginController {
     String username = usernameField.getText();
     String enteredPassword = passwordField.getText();
     String actualPassword = "";
-    if (dao.usernameExist(username)) {
+    if (dao.getIndex(username) != -1) {
       alert.clearLabelAlert(loginAlert, alertImage);
-      Account a = dao.getAccountFromUsername(username);
+      Account a = dao.retrieveRow(username);
       actualPassword = a.getPassword();
       passwordReact(enteredPassword, actualPassword);
-    } else if (dao.emailExist(username)) {
+    } else if (!dao.getIndexes(username).isEmpty()) {
       alert.clearLabelAlert(loginAlert, alertImage);
-      List<Account> as = dao.getAccountFromEmail(username);
+      List<Account> as = dao.retrieveRows(username);
       for (Account a : as) {
         actualPassword = a.getPassword();
         passwordReact(enteredPassword, actualPassword);

@@ -35,7 +35,7 @@ public class HomeController {
   /** Navigate to the flower delivery request page when the FDRequestButton is clicked. */
   @FXML
   public void ListRequestsButtonClicked() {
-    Navigation.navigate(Screen.FLOWER_REQUEST);
+    Navigation.navigate(Screen.LIST_REQUESTS);
   }
 
   /** Navigate to the signage page when the SPButton is clicked. */

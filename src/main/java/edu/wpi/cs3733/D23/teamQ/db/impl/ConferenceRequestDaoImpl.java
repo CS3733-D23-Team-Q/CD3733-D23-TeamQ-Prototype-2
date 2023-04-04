@@ -10,7 +10,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   private List<ConferenceRequest> conferenceRequests = new ArrayList<ConferenceRequest>();
   private int nextID = 0;
 
-  public ConferenceRequestDaoImpl() throws SQLException {
+  public ConferenceRequestDaoImpl() {
     populate();
     if (conferenceRequests.size() != 0) {
       nextID = conferenceRequests.get(conferenceRequests.size() - 1).getRequestID() + 1;
@@ -101,7 +101,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   }
 
   @Override
-  public boolean populate() throws SQLException {
+  public boolean populate() {
     try {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();

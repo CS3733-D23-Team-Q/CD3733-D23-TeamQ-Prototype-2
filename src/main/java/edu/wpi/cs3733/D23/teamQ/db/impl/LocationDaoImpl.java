@@ -10,7 +10,7 @@ import java.util.List;
 public class LocationDaoImpl implements GenDao<Location, Integer> {
   private List<Location> locations;
 
-  public LocationDaoImpl() throws SQLException {
+  public LocationDaoImpl() {
     populate();
   }
 

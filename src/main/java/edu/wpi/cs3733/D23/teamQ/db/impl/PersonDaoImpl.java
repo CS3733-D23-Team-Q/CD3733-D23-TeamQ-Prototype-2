@@ -106,17 +106,19 @@ public class PersonDaoImpl implements GenDao<Account, String>{
         String LastName = a.getLastName();
         String Title = a.getTitle();
         int PhoneNumber = a.getPhoneNumber();
+        String username = a.getUsername();
         boolean result = false;
         Connection con = GenDao.connect();
         try {
             String query =
-                    "INSERT INTO person (IDNum, FirstName, LastName, Title, PhoneNumber) VALUES(?,?,?,?,?)";
+                    "INSERT INTO person (IDNum, FirstName, LastName, Title, PhoneNumber, username) VALUES(?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setInt(1, IDNum);
             pst.setString(2, FirstName);
             pst.setString(3, LastName);
             pst.setString(4, Title);
             pst.setInt(5, PhoneNumber);
+            pst.setString(6, username);
             int rs = pst.executeUpdate();
             if (rs == 1) {
                 result = true;

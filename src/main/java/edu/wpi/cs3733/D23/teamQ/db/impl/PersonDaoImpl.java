@@ -176,16 +176,6 @@ public class PersonDaoImpl implements GenDao<Account, String>{
         return -1;
     }
 
-    public List<Integer> getIndexes(String email) {
-        populate();
-        List<Integer> is = new ArrayList<Integer>();
-        for (int i = 0; i < accounts.size(); i++) {
-            Account a = accounts.get(i);
-            if (a.getEmail().equals(email)) {
-                is.add(i);
-            }
-        }
-        return is;
-    }
+
 
 }

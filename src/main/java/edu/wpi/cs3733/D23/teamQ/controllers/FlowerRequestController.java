@@ -59,6 +59,9 @@ public class FlowerRequestController {
 
   @FXML
   public void submitButtonClicked() {
+    if (((String) bouquetChoiceField.getValue()).equals("Number of Bouquets")) {
+      bouquetChoiceField.setValue("0");
+    }
     FlowerRequest newFR =
         new FlowerRequest(
             "temp user",
@@ -68,7 +71,7 @@ public class FlowerRequestController {
             specialInstructionsField.getText(),
             noteField.getText(),
             (String) flowerChoiceField.getValue(),
-            Integer.parseInt((String)bouquetChoiceField.getValue()));
+            Integer.parseInt((String) bouquetChoiceField.getValue()));
     FlowerDaoSingleton.Connection.getDaoFR().addRow(newFR);
     Navigation.navigate(Screen.HOME);
   }

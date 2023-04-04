@@ -16,20 +16,21 @@ public class Node {
   private List<Edge> edges;
   private Location location;
   private int locID;
+
   private double f = Double.MAX_VALUE;
   private double g = Double.MAX_VALUE;
   private static int idCounter = 0;
   private int weight;
   Node parent = null;
 
-  public Node(
-          int nodeID,
-          int xCoord,
-          int yCoord,
-          String floor,
-          String building,
-          List<Edge> edges,
-          Location location) {
+  Node(
+      int nodeID,
+      int xCoord,
+      int yCoord,
+      String floor,
+      String building,
+      ArrayList<Edge> edges,
+      Location location) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
@@ -45,8 +46,9 @@ public class Node {
   }
 
   public Node(int xCoord, int yCoord) {
-    this.nodeID = idCounter++;
-    this.edges = new ArrayList<>();
+    this.setXCoord(xCoord);
+    this.setYCoord(yCoord);
+    this.edges = new ArrayList<Edge>();
   }
 
   public String nodeToString() {
@@ -70,7 +72,7 @@ public class Node {
     Edge branch = new Edge(targetID, this, target);
     //    Edge inverseEdge = new Edge(weight, this);
 
-    edges.add(branch);
+    this.edges.add(branch);
     //    neighbors.add(inverseEdge);
   }
 }

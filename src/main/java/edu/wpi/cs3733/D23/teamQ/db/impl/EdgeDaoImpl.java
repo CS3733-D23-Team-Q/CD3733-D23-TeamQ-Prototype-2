@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
-  private List<Edge> edges;
+  private List<Edge> edges = new ArrayList<>();
 
   public EdgeDaoImpl() {}
 
@@ -26,6 +26,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     int index = this.getIndex(edgeID);
     return edges.get(index);
   }
+
   /**
    * updates edge in linked list with a new edge
    *
@@ -38,6 +39,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     edges.set(index, newEdge);
     return true;
   }
+
   /**
    * deletes edges from list of edges
    *
@@ -49,6 +51,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     edges.remove(index);
     return true;
   }
+
   /**
    * adds a edge to the linked list
    *

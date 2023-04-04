@@ -20,7 +20,7 @@ public class Home2Controller extends HomeController {
 
   @FXML
   public void MEButtonClicked() {
-    // Navigation.navigate("Screen.MAP_EDITOR");
+    Navigation.navigate(Screen.MAP_EDITOR);
   }
 
   @FXML

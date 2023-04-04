@@ -7,11 +7,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class NodeDaoImpl implements GenDao<Node, Integer> {
-  private List<Node> nodes;
+  private List<Node> nodes = new ArrayList<>();
 
   public NodeDaoImpl() {
     populate();

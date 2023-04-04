@@ -49,9 +49,7 @@ public class Node {
     this.edges = new ArrayList<>();
     this.weight = weight;
   }
-
-  public Node() {}
-
+  
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID

@@ -5,7 +5,6 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class star extends Edge {
 
@@ -21,14 +20,14 @@ public class star extends Edge {
   }
 
   public static Node aStar(Node start, Node target) {
-    PriorityQueue<Node> closedList = new PriorityQueue<>();
-    PriorityQueue<Node> openList = new PriorityQueue<>();
+    ArrayList<Node> closedList = new ArrayList<Node>();
+    ArrayList<Node> openList = new ArrayList<Node>();
 
     start.setF(start.getG() + calculateHeuristic(start, target));
     openList.add(start);
 
     while (!openList.isEmpty()) {
-      Node n = openList.peek();
+      Node n = openList.get(0);
       if (n == target) {
         return n;
       }

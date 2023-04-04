@@ -10,9 +10,6 @@ import java.util.List;
 public class NodeDaoImpl implements GenDao<Node, Integer> {
   private List<Node> nodes;
 
-  // Change
-  public NodeDaoImpl() {};
-
   NodeDaoImpl(List<Node> nodes) {
     this.nodes = nodes;
   }

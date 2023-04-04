@@ -11,8 +11,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class HomeController {
-  @FXML Button CRReservationButton;
-  @FXML Button FDRequestButton;
+  @FXML Button ServiceHubButton;
+  @FXML Button ListRequestsButton;
   @FXML Button SPButton;
   @FXML Button LMButton;
 
@@ -22,25 +22,20 @@ public class HomeController {
   @FXML MenuItem logout;
   @FXML Button settingButton;
   @FXML TextField searchField;
-  @FXML TextField usernameField;
-  @FXML TextField passwordField;
-  @FXML Button loginButton;
-  @FXML Button FUButton;
-  @FXML Button FPButton;
 
   @FXML
   public void initialize() {}
 
   /** Navigate to the conference room request page when the CRReservationButton is clicked. */
   @FXML
-  public void CRReservationButtonClicked() {
-    Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST);
+  public void ServiceHubButtonClicked() {
+    Navigation.navigate(Screen.SERVICE_REQUEST_HUB);
   }
 
   /** Navigate to the flower delivery request page when the FDRequestButton is clicked. */
   @FXML
-  public void FDRequestButtonClicked() {
-    Navigation.navigate(Screen.FLOWER_REQUEST);
+  public void ListRequestsButtonClicked() {
+    Navigation.navigate(Screen.LIST_REQUESTS);
   }
 
   /** Navigate to the signage page when the SPButton is clicked. */

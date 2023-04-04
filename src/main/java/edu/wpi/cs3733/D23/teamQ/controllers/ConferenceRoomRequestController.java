@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceDaoSingleton;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -34,8 +35,7 @@ public class ConferenceRoomRequestController {
           specialInstructionsField.clear();
           foodField.setValue("No food");
         });
-    this.backButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
+    this.backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST_HUB));
     this.submitButton.setOnMouseClicked(
         event -> {
           ConferenceRequest newCCR =
@@ -48,7 +48,7 @@ public class ConferenceRoomRequestController {
                   specialInstructionsField.getText(),
                   dateTimeField.getText(),
                   (String) foodField.getValue());
-          System.out.println(newCCR);
+          ConferenceDaoSingleton.Connection.getDaoCCR().addRow(newCCR);
           Navigation.navigate(Screen.HOME);
         });
   }

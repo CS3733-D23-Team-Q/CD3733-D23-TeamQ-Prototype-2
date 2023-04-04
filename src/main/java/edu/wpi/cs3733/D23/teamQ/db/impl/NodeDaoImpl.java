@@ -1,11 +1,14 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class NodeDaoImpl implements GenDao<Node, Integer> {
   private List<Node> nodes;
@@ -129,5 +132,23 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
       e.printStackTrace();
       return false;
     }
+
+  }
+
+  public boolean importCSV(String filename) {
+    try {
+      File f = new File(filename);
+      Scanner myReader = new Scanner(f);
+      while (myReader.hasNextLine()) {
+        String row = myReader.nextLine();
+        String[] vars = row.split(",");
+        //Node m = new Node(Integer.parseInt(vars[0]), Integer.parseInt(vars[1]), Integer.parseInt(vars[2]), vars[3], vars[4], vars[5], vars[6]);
+        //addRow(m);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+    return true;
   }
 }

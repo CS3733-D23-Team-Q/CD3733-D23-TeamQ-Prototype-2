@@ -13,7 +13,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   public ConferenceRequestDaoImpl() throws SQLException {
     populate();
     if (conferenceRequests.size() != 0) {
-      nextID = conferenceRequests.get(-1).getRequestID() + 1;
+      nextID = conferenceRequests.get(conferenceRequests.size() - 1).getRequestID() + 1;
     }
   }
   /**
@@ -111,12 +111,12 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
         conferenceRequests.add(
             new ConferenceRequest(
                 rst.getInt("requestID"),
-                rst.getString("progress"),
-                rst.getInt("requester"),
+                rst.getString("requester"),
+                rst.getInt("progress"),
                 rst.getString("assignee"),
                 rst.getString("roomNum"),
                 rst.getString("specialInstructions"),
-                rst.getString("date/time"),
+                rst.getString("time"),
                 rst.getString("foodChoice")));
       }
     } catch (Exception e) {

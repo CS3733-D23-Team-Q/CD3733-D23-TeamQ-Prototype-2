@@ -12,6 +12,8 @@ public class Qdb {
 
     request.addRow(conferenceRequest);
 
+    System.out.println(request.getAllRows().size());
+
     // List<ConferenceRequest> list = request.getAllRows();
 
     // request.deleteRow(5);

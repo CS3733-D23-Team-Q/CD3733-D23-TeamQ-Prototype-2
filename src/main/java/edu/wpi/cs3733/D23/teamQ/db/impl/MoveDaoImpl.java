@@ -1,10 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
-import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -19,7 +16,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
 
   public MoveDaoImpl() {
     populate();
-    if(moves.size() != 0) {
+    if (moves.size() != 0) {
       nextID = moves.get(moves.size() - 1).getMoveID() + 1;
     }
   }
@@ -54,11 +51,10 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
    * @param moveID of move being deleted
    * @return true if successfully deleted
    */
-  public boolean deleteRow(Integer moveID){
+  public boolean deleteRow(Integer moveID) {
     try (Connection connection = GenDao.connect();
-         PreparedStatement st =
-                 connection.prepareStatement(
-                         "DELETE FROM move WHERE \"moveID\" = ?")) {;
+        PreparedStatement st =
+            connection.prepareStatement("DELETE FROM move WHERE \"moveID\" = ?")) {;
       st.setInt(1, moveID);
       st.executeUpdate();
     } catch (SQLException e) {
@@ -79,9 +75,9 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
    */
   public boolean addRow(Move m) {
     try (Connection conn = GenDao.connect();
-         PreparedStatement stmt =
-                 conn.prepareStatement(
-                         "INSERT INTO move(\"nodeID\", \"longName\", \"date\") VALUES (?, ?, ?)")) {
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO move(\"nodeID\", \"longName\", \"date\") VALUES (?, ?, ?)")) {
       stmt.setInt(2, m.getNode().getNodeID());
       stmt.setString(3, m.getLongName());
       stmt.setString(4, m.getDate());
@@ -102,14 +98,15 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       ResultSet rst = stm.executeQuery("Select * From move");
       NodeDaoImpl nodeDao = new NodeDaoImpl();
 
-      while(rst.next()) {
-        moves.add(new Move(
+      while (rst.next()) {
+        moves.add(
+            new Move(
                 nodeDao.retrieveRow(rst.getInt("nodeID")),
                 rst.getString("longName"),
                 rst.getString("date")));
       }
 
-    } catch(SQLException e) {
+    } catch (SQLException e) {
       e.printStackTrace();
     }
 
@@ -151,14 +148,14 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       for (int i = 0; i < moves.size(); i++) {
         Move m = moves.get(i);
         myWriter.write(
-                m.getMoveID()
-                        + ','
-                        + m.getNode().getNodeID()
-                        + ','
-                        + m.getLongName()
-                        + ','
-                        + m.getDate()
-                        + "\n");
+            m.getMoveID()
+                + ','
+                + m.getNode().getNodeID()
+                + ','
+                + m.getLongName()
+                + ','
+                + m.getDate()
+                + "\n");
       }
       myWriter.close();
       System.out.println("Successfully wrote to the file.");
@@ -178,11 +175,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       while (myReader.hasNextLine()) {
         String row = myReader.nextLine();
         String[] vars = row.split(",");
-        Move m =
-                new Move(
-                        nodeDao.retrieveRow(Integer.parseInt(vars[1])),
-                        vars[2],
-                        vars[3]);
+        Move m = new Move(nodeDao.retrieveRow(Integer.parseInt(vars[1])), vars[2], vars[3]);
         addRow(m);
         return true;
       }

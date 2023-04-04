@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDAOImpl implements GenDao<Account, String> {
-
   static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
   static final String user = "teamq";
   static final String password = "teamq140";
@@ -22,7 +21,6 @@ public class AccountDAOImpl implements GenDao<Account, String> {
     }
     return con;
   }
-
   private List<Account> accounts = new ArrayList<Account>();
 
   public Account retrieveRow(String uname) {
@@ -206,7 +204,7 @@ public class AccountDAOImpl implements GenDao<Account, String> {
 
   public int getQuestionId(String question) {
     int q = 0;
-    Connection con = connect();
+    Connection con = GenDao.connect();
     try {
       String query = "SELECT id FROM security_question WHERE question = ?";
       PreparedStatement pst = con.prepareStatement(query);
@@ -220,22 +218,5 @@ public class AccountDAOImpl implements GenDao<Account, String> {
       System.out.println(e.getMessage());
     }
     return q;
-  }
-
-  public List<String> getQuestions() {
-    List<String> questions = new ArrayList<String>();
-    Connection con = connect();
-    try {
-      String query = "SELECT * FROM security_question";
-      Statement st = con.createStatement();
-      ResultSet rs = st.executeQuery(query);
-      while (rs.next()) {
-        String question = rs.getString("question");
-        questions.add(question);
-      }
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-    return questions;
   }
 }

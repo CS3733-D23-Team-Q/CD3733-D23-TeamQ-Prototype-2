@@ -47,9 +47,8 @@ public class Node {
   public Node(int xCoord, int yCoord) {
     this.nodeID = idCounter++;
     this.edges = new ArrayList<>();
-    this.weight = weight;
   }
-  
+
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID

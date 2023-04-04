@@ -93,6 +93,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
 
   /**
    * Populates list of moves from database
+   *
    * @return true if list populated
    * @throws SQLException
    */
@@ -146,10 +147,10 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
 
   /**
    * Exports database table of moves into a CSV file of a given name
+   *
    * @param filename name of file being exported
    * @return true if successfully exported, false otherwise
    */
-
   public boolean toCSV(String filename) {
     try {
       File myObj = new File(filename);
@@ -181,6 +182,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
 
   /**
    * Imports moves from csv file into database and local storage
+   *
    * @param filename name of file being imported from
    * @return true if successfully imported, false otherwise
    */

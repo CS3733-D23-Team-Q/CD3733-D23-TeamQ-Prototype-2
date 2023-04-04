@@ -6,6 +6,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -35,6 +36,7 @@ public class App extends Application {
     App.rootPane = root;
     final Scene scene = new Scene(root);
     primaryStage.setScene(scene);
+    primaryStage.setFullScreenExitKeyCombination(KeyCombination.keyCombination("F5"));
     scene
         .getStylesheets()
         .add(

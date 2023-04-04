@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D23.teamQ.App;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 public class Navigation {
@@ -29,6 +30,7 @@ public class Navigation {
       primaryStage.setTitle(title);
       primaryStage.setFullScreen(true);
       primaryStage.setFullScreenExitHint("");
+      primaryStage.setFullScreenExitKeyCombination(KeyCombination.keyCombination("F5"));
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

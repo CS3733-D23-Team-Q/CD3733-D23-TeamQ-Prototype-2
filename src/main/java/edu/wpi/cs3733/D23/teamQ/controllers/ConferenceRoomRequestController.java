@@ -1,14 +1,17 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceDaoSingleton;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.MenuItem;
 
 public class ConferenceRoomRequestController implements IController {
   ObservableList<String> foodOptionsList =
@@ -19,37 +22,55 @@ public class ConferenceRoomRequestController implements IController {
   @FXML private ChoiceBox foodField;
   @FXML private MFXTextField specialInstructionsField;
 
-  @FXML private MFXButton resetButton;
-  @FXML private MFXButton backButton;
-  @FXML private MFXButton submitButton;
+  @FXML Button resetButton;
+  @FXML Button backButton;
+  @FXML Button submitButton;
+
+  @FXML MenuItem homeItem;
+  @FXML MenuItem exitItem;
 
   @FXML
   public void initialize() {
     this.foodField.setValue("Select Food Option");
     this.foodField.setItems(foodOptionsList);
-    this.resetButton.setOnMouseClicked(
-        event -> {
-          roomNumberField.clear();
-          dateTimeField.clear();
-          specialInstructionsField.clear();
-          foodField.setValue("No food");
-        });
-    this.backButton.setOnMouseClicked(
-        event -> Navigation.navigate(Screen.SERVICE_REQUEST_SELECTOR));
-    this.submitButton.setOnMouseClicked(
-        event -> {
-          ConferenceRequest newCCR =
-              new ConferenceRequest(
-                  0,
-                  0,
-                  "temp user",
-                  "temp assignee",
-                  roomNumberField.getText(),
-                  specialInstructionsField.getText(),
-                  dateTimeField.getText(),
-                  (String) foodField.getValue());
-          System.out.println(newCCR);
-          Navigation.navigate(Screen.HOME);
-        });
+  }
+
+  @FXML
+  public void resetButtonClicked() {
+    roomNumberField.clear();
+    dateTimeField.clear();
+    specialInstructionsField.clear();
+    foodField.setValue("No food");
+  }
+
+  @FXML
+  public void backButtonClicked() {
+    Navigation.navigate(Screen.SERVICE_REQUEST_HUB);
+  }
+
+  @FXML
+  public void submitButtonClicked() {
+    ConferenceRequest newCCR =
+        new ConferenceRequest(
+            0,
+            "temp user",
+            0,
+            "temp assignee",
+            roomNumberField.getText(),
+            specialInstructionsField.getText(),
+            dateTimeField.getText(),
+            (String) foodField.getValue());
+    ConferenceDaoSingleton.Connection.getDaoCCR().addRow(newCCR);
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void homeItemClicked() {
+    Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void exitItemClicked() {
+    Platform.exit();
   }
 }

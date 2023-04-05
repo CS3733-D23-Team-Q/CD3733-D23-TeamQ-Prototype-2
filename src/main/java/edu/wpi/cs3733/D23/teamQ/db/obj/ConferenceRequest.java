@@ -11,6 +11,32 @@ public class ConferenceRequest extends ServiceRequest {
 
   public ConferenceRequest(
       int requestID,
+      String requester,
+      int progress,
+      String assignee,
+      String roomNumber,
+      String specialInstructions,
+      String dateTime,
+      String foodChoice) {
+    super(requestID, requester, progress, assignee, roomNumber, specialInstructions);
+    this.dateTime = dateTime;
+    this.foodChoice = foodChoice;
+  }
+
+  public ConferenceRequest(
+      String requester,
+      int progress,
+      String assignee,
+      String roomNumber,
+      String specialInstructions,
+      String dateTime,
+      String foodChoice) {
+    super(0, requester, progress, assignee, roomNumber, specialInstructions);
+    this.dateTime = dateTime;
+    this.foodChoice = foodChoice;
+  }
+
+  public ConferenceRequest(
       int progress,
       String requester,
       String assignee,
@@ -18,7 +44,7 @@ public class ConferenceRequest extends ServiceRequest {
       String specialInstructions,
       String dateTime,
       String foodChoice) {
-    super(requestID, progress, requester, assignee, roomNumber, specialInstructions);
+    super(0, requester, progress, assignee, roomNumber, specialInstructions);
     this.dateTime = dateTime;
     this.foodChoice = foodChoice;
   }

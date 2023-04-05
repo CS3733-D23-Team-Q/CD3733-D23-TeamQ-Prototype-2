@@ -29,6 +29,8 @@ public class LoginController {
 
   @Getter
   private static String loginUsername;
+  @Getter
+  private static String loginEmail;
 
   public void initialize() {}
 
@@ -58,6 +60,7 @@ public class LoginController {
       alert.clearLabelAlert(loginAlert, alertImage);
       Navigation.navigate(Screen.HOME);
       loginUsername=usernameField.getText();
+      loginEmail=dao.retrieveRow(loginUsername).getEmail();
     } else {
       alert.setLabelAlert("Wrong password", loginAlert, alertImage);
     }

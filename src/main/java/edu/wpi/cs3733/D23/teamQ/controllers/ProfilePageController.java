@@ -30,12 +30,13 @@ public class ProfilePageController {
     private void initialize() {
         // DO ONE FOR PROFILE IMAGE AS WELL NEXT TIME
         String username = LoginController.getLoginUsername();
+        String email = LoginController.getLoginEmail();
         this.Title_Display.setText(dao.getPersonWithUsername(username).getTitle();
 
         this.ID_Number_Display.setText(String.valueOf(dao.getPersonWithUsername(username).getIDNum()));
         this.First_Name_Display.setText(dao.getPersonWithUsername(username).getFirstName());
         this.Last_Name_Display.setText(dao.getPersonWithUsername(username).getLastName());
-        this.Email_Display.setText();
+        this.Email_Display.setText(email);
         this.Title_Display.setText(dao.getPersonWithUsername(username).getTitle());
         this.Phone_Number_Display.setText(Phone_Number_Display.getText());
         this.Username_Display.setText(Username_Display.getText());

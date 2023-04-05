@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceRequestDaoImpl;
-import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerRequestDaoImpl;
-import edu.wpi.cs3733.D23.teamQ.db.impl.ServiceRequestDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.Qdb;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
@@ -10,6 +8,7 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.sql.SQLException;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
@@ -34,11 +33,7 @@ public class ListServiceRequestController {
   private static FlowerRequest flowerRequest;
   private static ConferenceRequest conferenceRequest;
 
-  ServiceRequestDaoImpl serviceRequestDao = new ServiceRequestDaoImpl();
-
-  FlowerRequestDaoImpl flowerRequestDao = new FlowerRequestDaoImpl();
-
-  ConferenceRequestDaoImpl conferenceRequestDao = new ConferenceRequestDaoImpl();
+  Qdb qdb = Qdb.getInstance();
 
   public ListServiceRequestController() throws SQLException {}
 
@@ -52,7 +47,7 @@ public class ListServiceRequestController {
     specialInstructions.setCellValueFactory(
         new PropertyValueFactory<ServiceRequest, String>("specialInstructions"));
 
-    tableView.setItems(serviceRequestDao.getAllRows());
+    tableView.setItems((ObservableList<ServiceRequest>) qdb.serviceRequestTable.getAllRows());
   }
 
   @FXML
@@ -62,20 +57,19 @@ public class ListServiceRequestController {
 
   @FXML
   public void selectButtonClicked() {
-    if (flowerRequestDao.retrieveRow(
+    if (qdb.flowerRequestTable.retrieveRow(
             tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
         != null) {
       flowerRequest =
-          flowerRequestDao.retrieveRow(
+          qdb.flowerRequestTable.retrieveRow(
               tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
       Navigation.navigate(Screen.FLOWER_REQUEST_DISPLAY);
-    } else if (conferenceRequestDao.retrieveRow(
+    } else if (qdb.conferenceRequestTable.retrieveRow(
             tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
         != null) {
       conferenceRequest =
-          conferenceRequestDao.retrieveRow(
+          qdb.conferenceRequestTable.retrieveRow(
               tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
-      System.out.println(conferenceRequest.getRequestID());
       Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST_DISPLAY);
     }
   }

@@ -113,10 +113,16 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <MFXTextField fx:id="endNodeField" prefHeight="20.0" prefWidth="250.0" promptText="Ending Node" GridPane.rowIndex="1" />
             <MFXTextField fx:id="startNodeField" prefHeight="20.0" prefWidth="250.0" promptText="Starting node" />
+            <Label fx:id="textualPath" alignment="CENTER" minWidth="250.0" prefHeight="20.0" prefWidth="1000.0" text="Textual Path Display will load on submission..." textFill="#3966af" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>

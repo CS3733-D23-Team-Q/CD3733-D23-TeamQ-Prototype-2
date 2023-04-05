@@ -16,8 +16,8 @@ public class ServiceRequest {
 
   public ServiceRequest(
       int requestID,
-      int progress,
       String requester,
+      int progress,
       String assignee,
       String roomNumber,
       String specialInstructions) {

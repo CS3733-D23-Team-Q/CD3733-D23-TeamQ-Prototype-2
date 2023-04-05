@@ -10,13 +10,14 @@ public enum Screen {
 
   SIGNAGE("views/Signage.fxml", "Signage"),
   HELP("views/Help.fxml", "Help"),
-  SERVICE_REQUEST_SELECTOR("views/ServiceRequestSelector.fxml", "Selector"),
+  SERVICE_REQUEST_HUB("views/ServiceRequestHub.fxml", "Selector"),
   CONFERENCE_ROOM_REQUEST("views/ConferenceRoomRequest.fxml", "Conference Room Request"),
   FLOWER_REQUEST("views/FlowerRequest.fxml", "Flower Request"),
   FLOWER_REQUEST_SUBMISSION("views.FlowerRequestSubmission.fxml", "Flower Request Submission"),
   MEAL_REQUEST("views/MealDeliveryRequest.fxml", "Meal Request"),
   OFFICE_SUPPLIES_REQUEST("views/OfficeSuppliesRequest.fxml", "Office Supplies Request"),
   FURNITURE_REQUEST("views/FurnitureDeliveryRequest.fxml", "Furniture Request"),
+  LIST_REQUESTS("views/ListServiceRequests.fxml", "List of Service Requests"),
   PATIENT_TRANSPORT_REQUEST("views/PatientTransportRequest.fxml", "Patient Transport Request");
 
   private final String filename;

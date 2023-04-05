@@ -13,10 +13,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+<<<<<<< HEAD
 public class HomeController implements IController {
   AccountDAOImpl adao = new AccountDAOImpl();
   @FXML Button CRReservationButton;
   @FXML Button FDRequestButton;
+=======
+public class HomeController {
+  @FXML Button ServiceHubButton;
+  @FXML Button ListRequestsButton;
+>>>>>>> cbd5865f238f4b1381f35986eba203e470687788
   @FXML Button SPButton;
   @FXML Button LMButton;
 
@@ -32,14 +38,14 @@ public class HomeController implements IController {
 
   /** Navigate to the conference room request page when the CRReservationButton is clicked. */
   @FXML
-  public void CRReservationButtonClicked() {
-    Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST);
+  public void ServiceHubButtonClicked() {
+    Navigation.navigate(Screen.SERVICE_REQUEST_HUB);
   }
 
   /** Navigate to the flower delivery request page when the FDRequestButton is clicked. */
   @FXML
-  public void FDRequestButtonClicked() {
-    Navigation.navigate(Screen.FLOWER_REQUEST);
+  public void ListRequestsButtonClicked() {
+    Navigation.navigate(Screen.LIST_REQUESTS);
   }
 
   /** Navigate to the signage page when the SPButton is clicked. */

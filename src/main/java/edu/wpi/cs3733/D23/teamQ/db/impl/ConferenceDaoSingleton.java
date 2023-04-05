@@ -6,7 +6,6 @@ import lombok.Getter;
 public enum ConferenceDaoSingleton {
   Connection;
   @Getter private final ConferenceRequestDaoImpl DaoCCR;
-
   {
     DaoCCR = (ConferenceRequestDaoImpl) Qdb.getInstance().conferenceRequestTable;
   }

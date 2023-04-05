@@ -14,11 +14,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
 
 public class ConferenceRoomRequestController {
+  @FXML private MFXTextField assigneeField;
+  @FXML private MFXTextField roomNumberField;
+  @FXML private MFXTextField dateTimeField;
   ObservableList<String> foodOptionsList =
       FXCollections.observableArrayList(
           "Brunch spread", "Dinner spread", "Snack spread", "No food");
-  @FXML private MFXTextField roomNumberField;
-  @FXML private MFXTextField dateTimeField;
   @FXML private ChoiceBox foodField;
   @FXML private MFXTextField specialInstructionsField;
 
@@ -55,7 +56,7 @@ public class ConferenceRoomRequestController {
             0,
             "temp user",
             0,
-            "temp assignee",
+            assigneeField.getText(),
             roomNumberField.getText(),
             specialInstructionsField.getText(),
             dateTimeField.getText(),

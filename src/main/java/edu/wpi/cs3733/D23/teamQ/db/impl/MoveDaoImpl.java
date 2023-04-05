@@ -125,7 +125,8 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
+    int index = this.getIndex(moveID);
+    moves.remove(index);
     return true;
   }
 

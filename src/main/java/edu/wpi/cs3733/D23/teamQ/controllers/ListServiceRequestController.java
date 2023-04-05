@@ -1,5 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceRequestDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerRequestDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.ServiceRequestDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
+import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import edu.wpi.cs3733.D23.teamQ.db.Qdb;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
@@ -28,6 +33,9 @@ public class ListServiceRequestController {
 
   @FXML Button selectButton;
 
+  FlowerRequest flowerRequest;
+  ConferenceRequest conferenceRequest;
+
   Qdb qdb = Qdb.getInstance();
 
   public ListServiceRequestController() throws SQLException {}
@@ -55,11 +63,17 @@ public class ListServiceRequestController {
     if (qdb.flowerRequestTable.retrieveRow(
             tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
         != null) {
-
+      flowerRequest =
+          qdb.flowerRequestTable.retrieveRow(
+              tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+      Navigation.navigate(Screen.FLOWER_REQUEST_DISPLAY);
     } else if (qdb.conferenceRequestTable.retrieveRow(
             tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
         != null) {
-
+      conferenceRequest =
+          qdb.conferenceRequestTable.retrieveRow(
+              tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+      Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST_DISPLAY);
     }
   }
 
@@ -71,5 +85,13 @@ public class ListServiceRequestController {
   @FXML
   public void exitItemClicked() {
     Platform.exit();
+  }
+
+  public ConferenceRequest getConferenceRequest() {
+    return conferenceRequest;
+  }
+
+  public FlowerRequest getFlowerRequest() {
+    return flowerRequest;
   }
 }

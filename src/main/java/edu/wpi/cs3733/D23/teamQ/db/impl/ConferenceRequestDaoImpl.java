@@ -9,6 +9,7 @@ import java.util.List;
 public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integer> {
   private List<ConferenceRequest> conferenceRequests = new ArrayList<ConferenceRequest>();
   private int nextID = 0;
+
   private static ConferenceRequestDaoImpl single_instance = null;
 
   public static synchronized ConferenceRequestDaoImpl getInstance() {

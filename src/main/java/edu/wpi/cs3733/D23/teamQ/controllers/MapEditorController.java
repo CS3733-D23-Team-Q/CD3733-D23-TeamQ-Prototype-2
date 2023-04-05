@@ -8,17 +8,23 @@ import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
 public class MapEditorController {
+
+  @FXML private MenuItem exitItem;
+
+  @FXML private MenuItem homeItem;
 
   @FXML private MFXButton BackHomeBTN;
 
@@ -53,6 +59,7 @@ public class MapEditorController {
   @FXML private TableView<Node> node;
 
   // these bugs will be solved after the database group set getAllRows() to static
+
   /** used to get Nodes from database */
   public ObservableList<Node> nodes() {
     ObservableList<Node> node = FXCollections.observableArrayList();
@@ -91,6 +98,7 @@ public class MapEditorController {
 
   @FXML
   public void initialize() {
+
     /** Navigate to homepage after click on the button */
     BackHomeBTN.setOnMouseClicked((event -> Navigation.navigate(Screen.HOME)));
 
@@ -232,5 +240,13 @@ public class MapEditorController {
 
     /** set the edge tableview */
     edge.setItems(edges());
+  }
+
+  public void homeItemClicked(javafx.event.ActionEvent actionEvent) {
+    Navigation.navigate(Screen.HOME);
+  }
+
+  public void exitItemClicked(javafx.event.ActionEvent actionEvent) {
+    Platform.exit();
   }
 }

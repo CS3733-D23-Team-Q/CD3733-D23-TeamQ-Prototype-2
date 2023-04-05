@@ -16,7 +16,6 @@ import java.util.Scanner;
 
 public class NodeDaoImpl implements GenDao<Node, Integer> {
   private List<Node> nodes = new ArrayList<>();
-
   private static NodeDaoImpl single_instance = null;
 
   private NodeDaoImpl() {
@@ -50,7 +49,6 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
   public boolean updateRow(Integer nodeID, Node newNode) {
     deleteRow(nodeID);
     addRow(newNode);
-
     int index = this.getIndex(nodeID);
     nodes.set(index, newNode);
     return true;
@@ -116,6 +114,7 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
       }
       conn.close();
       pst.close();
+
       return true;
     } catch (Exception e) {
       System.out.println(e.getMessage());

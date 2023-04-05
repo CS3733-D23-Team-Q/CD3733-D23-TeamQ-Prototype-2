@@ -32,18 +32,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     return single_instance;
   }
 
-  /**
-   * returns a edge given a edgeID
-   *
-   * @param edgeID of node being retrieved
-   * @return a edge with the given edgeID
-   */
-  public Edge retrieveRow(Integer edgeID) {
-    int index = this.getIndex(edgeID);
-    return edges.get(index);
-  }
-
-  /**
+ /**
    * updates edge in linked list with a new edge
    *
    * @param edgeID edgeID of edge being replaced

@@ -42,6 +42,8 @@ public class ForgotPasswordController extends SecondaryStage {
 
   @FXML
   public void initialize() {
+    adao.populate();
+    qdao.populate();
     List<Question> questions = qdao.getAllRows();
     for (int i = 0; i < questions.size(); i++) {
       String question = questions.get(i).getQuestion();

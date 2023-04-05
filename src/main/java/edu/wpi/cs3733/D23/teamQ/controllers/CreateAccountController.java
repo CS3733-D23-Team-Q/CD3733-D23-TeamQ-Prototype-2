@@ -50,6 +50,8 @@ public class CreateAccountController extends SecondaryStage {
 
   @FXML
   public void initialize() {
+    qdao.populate();
+    adao.populate();
     List<Question> questions = qdao.getAllRows();
     for (int i = 0; i < questions.size(); i++) {
       String question = questions.get(i).getQuestion();

@@ -11,7 +11,9 @@ public class Home2Controller extends HomeController {
   @FXML Button PFButton;
 
   @FXML
-  public void initialize() {}
+  public void initialize() {
+    dao.populate();
+  }
 
   @FXML
   public void previousButtonClicked() {

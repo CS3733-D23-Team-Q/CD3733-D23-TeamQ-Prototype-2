@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import javafx.application.Platform;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class HomeController {
+  AccountDaoImpl dao = new AccountDaoImpl();
   @FXML Button ServiceHubButton;
   @FXML Button ListRequestsButton;
   @FXML Button SPButton;
@@ -24,7 +26,9 @@ public class HomeController {
   @FXML TextField searchField;
 
   @FXML
-  public void initialize() {}
+  public void initialize() {
+    dao.populate();
+  }
 
   /** Navigate to the conference room request page when the CRReservationButton is clicked. */
   @FXML

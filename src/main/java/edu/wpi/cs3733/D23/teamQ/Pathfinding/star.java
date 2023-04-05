@@ -82,4 +82,25 @@ public class star extends Edge {
     }
     System.out.println("");
   }
+
+  public static String returnPath(Node target) {
+    Node n = target;
+    String pathText = "";
+
+    if (n == null) return null;
+
+    List<Integer> ids = new ArrayList<>();
+
+    while (n.getParent() != null) {
+      ids.add(n.getNodeID());
+      n = n.getParent();
+    }
+    ids.add(n.getNodeID());
+    Collections.reverse(ids);
+
+    for (int id : ids) {
+      pathText += id + " ";
+    }
+    return pathText;
+  }
 }

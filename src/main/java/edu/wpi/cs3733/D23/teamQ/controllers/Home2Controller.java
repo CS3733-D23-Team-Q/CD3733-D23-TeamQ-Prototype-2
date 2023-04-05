@@ -25,6 +25,6 @@ public class Home2Controller extends HomeController {
 
   @FXML
   public void PFButtonClicked() {
-    // Navigation.navigate("Screen.PATHFINDING");
+    Navigation.navigate(Screen.PATH_TEXT);
   }
 }

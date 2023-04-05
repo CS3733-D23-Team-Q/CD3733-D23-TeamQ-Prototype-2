@@ -21,35 +21,46 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
   }
 
   public ObservableList<ServiceRequest> getAllRows() {
-    ObservableList<ServiceRequest> srL = FXCollections.observableArrayList();
-    FlowerRequestDaoImpl requestF = new FlowerRequestDaoImpl();
-    ConferenceRequestDaoImpl requestC = new ConferenceRequestDaoImpl();
-    List<FlowerRequest> flowerRequests = requestF.getAllRows();
-    List<ConferenceRequest> conferenceRequests = requestC.getAllRows();
+    // need method to get active user's username
+    String username = "";
+    try {
+      ObservableList<ServiceRequest> srL = FXCollections.observableArrayList();
+      FlowerRequestDaoImpl requestF = new FlowerRequestDaoImpl();
+      ConferenceRequestDaoImpl requestC = new ConferenceRequestDaoImpl();
+      List<FlowerRequest> flowerRequests = requestF.getAllRows();
+      List<ConferenceRequest> conferenceRequests = requestC.getAllRows();
 
-    for (int i = 0; i < flowerRequests.size(); i++) {
-      FlowerRequest fr = flowerRequests.get(i);
-      ServiceRequest s =
-          new ServiceRequest(
-              fr.getRequestID(),
-              fr.getRequester(),
-              fr.getProgress(),
-              fr.getAssignee(),
-              fr.getRoomNumber(),
-              fr.getSpecialInstructions());
-      srL.add(s);
-    }
-    for (int i = 0; i < conferenceRequests.size(); i++) {
-      ConferenceRequest cr = conferenceRequests.get(i);
-      ServiceRequest s =
-          new ServiceRequest(
-              cr.getRequestID(),
-              cr.getRequester(),
-              cr.getProgress(),
-              cr.getAssignee(),
-              cr.getRoomNumber(),
-              cr.getSpecialInstructions());
-      srL.add(s);
+      for (int i = 0; i < flowerRequests.size(); i++) {
+        FlowerRequest fr = flowerRequests.get(i);
+        if(fr.getRequester().equals(username)) {
+          ServiceRequest s =
+                  new ServiceRequest(
+                          fr.getRequestID(),
+                          fr.getRequester(),
+                          fr.getProgress(),
+                          fr.getAssignee(),
+                          fr.getRoomNumber(),
+                          fr.getSpecialInstructions());
+          srL.add(s);
+        }
+      }
+      for (int i = 0; i < conferenceRequests.size(); i++) {
+        ConferenceRequest cr = conferenceRequests.get(i);
+        if(cr.getRequester().equals(username)) {
+          ServiceRequest s =
+                  new ServiceRequest(
+                          cr.getRequestID(),
+                          cr.getRequester(),
+                          cr.getProgress(),
+                          cr.getAssignee(),
+                          cr.getRoomNumber(),
+                          cr.getSpecialInstructions());
+          srL.add(s);
+        }
+      }
+      return srL;
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
     return srL;
   }

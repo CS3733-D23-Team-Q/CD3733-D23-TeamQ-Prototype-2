@@ -81,9 +81,9 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
              PreparedStatement stmt =
                      conn.prepareStatement(
                              "INSERT INTO move(\"nodeID\", \"longName\", \"date\") VALUES (?, ?, ?)")) {
-            stmt.setInt(2, m.getNode().getNodeID());
-            stmt.setString(3, m.getLongName());
-            stmt.setString(4, m.getDate());
+            stmt.setInt(1, m.getNode().getNodeID());
+            stmt.setString(2, m.getLongName());
+            stmt.setString(3, m.getDate());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

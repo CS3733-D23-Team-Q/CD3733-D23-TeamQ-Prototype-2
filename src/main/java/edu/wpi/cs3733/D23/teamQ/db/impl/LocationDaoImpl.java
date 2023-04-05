@@ -98,6 +98,7 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
                 rst.getString("shortName"),
                 rst.getString("nodeType")));
       }
+      conn.close();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

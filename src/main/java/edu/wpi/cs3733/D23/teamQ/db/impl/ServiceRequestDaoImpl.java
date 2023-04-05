@@ -14,18 +14,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
-  ObservableList<ServiceRequest> serviceRequests;
+  ObservableList<ServiceRequest> serviceRequests = FXCollections.observableArrayList();
+  GenDao conferenceRequestTable;
+  GenDao flowerRequestsTable;
 
-  public ServiceRequestDaoImpl() {
+  public ServiceRequestDaoImpl(GenDao conferenceRequestTable, GenDao flowerRequestsTable) {
+    this.conferenceRequestTable = conferenceRequestTable;
+    this.flowerRequestsTable = flowerRequestsTable;
     this.serviceRequests = getAllRows();
   }
 
   public ObservableList<ServiceRequest> getAllRows() {
     ObservableList<ServiceRequest> srL = FXCollections.observableArrayList();
-    FlowerRequestDaoImpl requestF = new FlowerRequestDaoImpl();
-    ConferenceRequestDaoImpl requestC = new ConferenceRequestDaoImpl();
-    List<FlowerRequest> flowerRequests = requestF.getAllRows();
-    List<ConferenceRequest> conferenceRequests = requestC.getAllRows();
+    List<FlowerRequest> flowerRequests = flowerRequestsTable.getAllRows();
+    List<ConferenceRequest> conferenceRequests = conferenceRequestTable.getAllRows();
 
     for (int i = 0; i < flowerRequests.size(); i++) {
       FlowerRequest fr = flowerRequests.get(i);
@@ -55,7 +57,7 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
   }
 
   @Override
-  public ServiceRequest retrieveRow(Integer ID) throws SQLException {
+  public ServiceRequest retrieveRow(Integer ID) {
     return null;
   }
 

@@ -25,7 +25,7 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   private List<Account> accounts = new ArrayList<Account>();
 
   public Account retrieveRow(String uname) {
-    populate();
+    // populate();
     int index = this.getIndex(uname);
     return accounts.get(index);
   }
@@ -43,14 +43,13 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   public boolean updateRow(String uname, Account accountWithNewChanges) {
     populate();
     boolean result = false;
-    Connection con = GenDao.connect();
     String newPass = accountWithNewChanges.getPassword();
     String newEmail = accountWithNewChanges.getEmail();
     int newq1 = accountWithNewChanges.getSecurityQuestion1();
     int newq2 = accountWithNewChanges.getSecurityQuestion2();
     String newa1 = accountWithNewChanges.getSecurityAnswer1();
     String newa2 = accountWithNewChanges.getSecurityAnswer2();
-    try {
+    try (Connection con = GenDao.connect(); ) {
       String query =
           "UPDATE account SET password = ?, email = ?, security_question_1 = ?, security_question_2 = ?, security_answer_1 = ?, security_answer_2 = ? WHERE username = ?";
       PreparedStatement pst = con.prepareStatement(query);

@@ -112,7 +112,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
                 rst.getString("longName"),
                 rst.getString("date")));
       }
-
+      conn.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }

@@ -13,7 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
 
+
 public class FlowerRequestController extends ServiceRequestController implements IController {
+  @FXML private MFXTextField assigneeField;
   @FXML private MFXTextField roomNumberField;
   @FXML private MFXTextField noteField;
   @FXML private MFXTextField specialInstructionsField;
@@ -66,7 +68,7 @@ public class FlowerRequestController extends ServiceRequestController implements
         new FlowerRequest(
             "temp user",
             0,
-            "temp assignee",
+            assigneeField.getText(),
             roomNumberField.getText(),
             specialInstructionsField.getText(),
             noteField.getText(),

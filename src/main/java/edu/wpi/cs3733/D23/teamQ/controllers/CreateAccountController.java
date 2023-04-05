@@ -3,7 +3,7 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 import edu.wpi.cs3733.D23.teamQ.Alert;
 import edu.wpi.cs3733.D23.teamQ.Confirm;
 import edu.wpi.cs3733.D23.teamQ.SecondaryStage;
-import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.QuestionDAOImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Question;

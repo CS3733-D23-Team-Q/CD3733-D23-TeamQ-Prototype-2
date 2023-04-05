@@ -7,11 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MoveDaoImpl implements GenDao<Move, Integer> {
-  private List<Move> moves;
+  private List<Move> moves = new ArrayList<>();
   private int nextID = 0;
 
   public MoveDaoImpl() {
@@ -90,6 +91,12 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     return moves.add(m);
   }
 
+  /**
+   * Populates list of moves from database
+   *
+   * @return true if list populated
+   * @throws SQLException
+   */
   @Override
   public boolean populate() {
     try {
@@ -114,19 +121,19 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
   }
 
   /**
-   * gets index of given nodeID in the list of moves
+   * gets index of given moveID in the list of moves
    *
-   * @param nodeID nodeID being checked
+   * @param moveID moveID being checked
    * @return value of index
    */
-  private int getIndex(Integer nodeID) {
+  private int getIndex(Integer moveID) {
     for (int i = 0; i < moves.size(); i++) {
       Move m = moves.get(i);
-      if (m.getNode().getNodeID() == nodeID) {
+      if (m.getMoveID() == moveID) {
         return i;
       }
     }
-    throw new RuntimeException("No move found with ID " + nodeID);
+    throw new RuntimeException("No move found with ID " + moveID);
   }
 
   /**
@@ -138,6 +145,12 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     return moves;
   }
 
+  /**
+   * Exports database table of moves into a CSV file of a given name
+   *
+   * @param filename name of file being exported
+   * @return true if successfully exported, false otherwise
+   */
   public boolean toCSV(String filename) {
     try {
       File myObj = new File(filename);
@@ -167,6 +180,12 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     }
   }
 
+  /**
+   * Imports moves from csv file into database and local storage
+   *
+   * @param filename name of file being imported from
+   * @return true if successfully imported, false otherwise
+   */
   public boolean importCSV(String filename) {
     NodeDaoImpl nodeDao = new NodeDaoImpl();
     try {
@@ -175,14 +194,13 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       while (myReader.hasNextLine()) {
         String row = myReader.nextLine();
         String[] vars = row.split(",");
-        Move m = new Move(nodeDao.retrieveRow(Integer.parseInt(vars[1])), vars[2], vars[3]);
+        Move m = new Move(nodeDao.retrieveRow(Integer.parseInt(vars[0])), vars[1], vars[2]);
         addRow(m);
-        return true;
       }
       myReader.close();
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    return false;
+    return true;
   }
 }

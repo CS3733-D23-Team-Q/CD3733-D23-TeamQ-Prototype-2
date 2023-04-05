@@ -15,19 +15,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.MapEditorController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1350.0" style="-fx-background-color: #F1F1F1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.MapEditorController">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="614.0" minWidth="10.0" prefWidth="130.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="447.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="614.0" minWidth="10.0" prefWidth="114.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="740.0" minWidth="10.0" prefWidth="463.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="667.0" minWidth="10.0" prefWidth="316.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="3.0" prefWidth="137.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="253.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="67.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="3.0" prefWidth="110.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="240.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="107.0" />
     </columnConstraints>
     <rowConstraints>
-      <RowConstraints maxHeight="594.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="635.0" minHeight="10.0" prefHeight="586.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="344.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="594.0" minHeight="10.0" prefHeight="39.0" vgrow="NEVER" />
+        <RowConstraints maxHeight="635.0" minHeight="10.0" prefHeight="548.0" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="344.0" minHeight="10.0" prefHeight="113.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
       <TableView fx:id="edge" prefHeight="552.0" prefWidth="393.0" translateY="10.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -72,18 +72,18 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" text="Back" translateX="150.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" rippleColor="#f1f1f1" style="-fx-background-color: #F1F1F1;" styleClass="mfx-button" text="Home" textFill="#3966af" translateX="130.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font size="16.0" />
          </font>
       </MFXButton>
-      <HBox prefHeight="32.0" prefWidth="447.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="1" />
-      <MenuBar prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: #142A53;">
+      <HBox prefHeight="40.0" prefWidth="447.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="1" />
+      <MenuBar prefHeight="32.0" prefWidth="130.0" styleClass="button-menu" stylesheets="@styles/Home.css">
         <menus>
           <Menu mnemonicParsing="false" text="Menu">
             <items>
-              <MenuItem mnemonicParsing="false" text="Home" />
-                  <MenuItem mnemonicParsing="false" text="Exit" />
+              <MenuItem fx:id="homeItem" mnemonicParsing="false" onAction="#homeItemClicked" text="Home" />
+                  <MenuItem fx:id="exitItem" mnemonicParsing="false" onAction="#exitItemClicked" text="Exit" />
             </items>
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -95,9 +95,14 @@
           </Menu>
         </menus>
       </MenuBar>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="2" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="2" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="3" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="4" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="5" />
+      <ImageView fitHeight="56.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" translateX="80.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <image>
+            <Image url="@../../../../../../../../../../CD3733-D23-TeamQ-Prototype-2/src/main/resources/Home.png" />
+         </image>
+      </ImageView>
     </children>
 </GridPane>

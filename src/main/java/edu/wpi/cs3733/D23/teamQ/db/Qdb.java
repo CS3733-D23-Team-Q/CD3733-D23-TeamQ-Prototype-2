@@ -18,6 +18,10 @@ public class Qdb {
 
   private Qdb() {}
 
+  public void addFlowerRequest(FlowerRequest req) {
+    this.flowerRequestTable.addRow(req);
+  }
+
   public static synchronized Qdb getInstance() {
     if (single_instance == null) single_instance = new Qdb();
 

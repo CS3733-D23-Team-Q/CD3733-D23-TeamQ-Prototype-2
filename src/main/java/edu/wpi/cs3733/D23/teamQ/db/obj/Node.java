@@ -13,7 +13,7 @@ public class Node {
   private int yCoord;
   private String floor;
   private String building;
-  private List<Edge> edges;
+  private List<Edge> edges = new ArrayList<>();
   private Location location;
   private int locID;
 
@@ -23,21 +23,12 @@ public class Node {
   private int weight;
   Node parent = null;
 
-  Node(
-      int nodeID,
-      int xCoord,
-      int yCoord,
-      String floor,
-      String building,
-      ArrayList<Edge> edges,
-      Location location) {
+  public Node(int nodeID, int xCoord, int yCoord, String floor, String building) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.floor = floor;
     this.building = building;
-    this.edges = edges;
-    this.location = location;
 
     String x = Integer.toString(xCoord);
     String y = Integer.toString(yCoord);

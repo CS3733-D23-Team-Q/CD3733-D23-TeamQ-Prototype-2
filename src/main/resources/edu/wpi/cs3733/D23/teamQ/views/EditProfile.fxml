@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="675.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.ProfileEditPageController">
+<BorderPane prefHeight="675.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D23.teamQ.controllers.EditProfileController">
     <top>
         <ImageView fx:id="ProfilePage_Profile_Image" fitHeight="116.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" translateY="5.0" BorderPane.alignment="TOP_CENTER">
             <image>

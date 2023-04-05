@@ -13,43 +13,43 @@
             <children>
                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
                             <children>
                         <Label text="Title: " />
                                 <Label fx:id="Title_Display" text="Label" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                             <children>
                         <Label text="ID Number: " />
                                 <Label fx:id="ID_Number_Display" text="Label" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                             <children>
                         <Label text="First Name: " />
                                 <Label fx:id="First_Name_Display" text="Label" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                             <children>
                         <Label text="Last Name: " />
                                 <Label fx:id="Last_Name_Display" text="Label" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                             <children>
                         <Label text="Username: " />
                                 <Label fx:id="Username_Display" text="Label" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                             <children>
                         <Label text="Email: " />
                                 <Label fx:id="Email_Display" text="Label" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
                             <children>
                         <Label text="Phone Number: " />
                                 <Label fx:id="Phone_Number_Display" text="Label" />

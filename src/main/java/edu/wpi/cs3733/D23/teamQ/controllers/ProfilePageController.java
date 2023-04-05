@@ -34,26 +34,27 @@ public class ProfilePageController {
     String email = LoginController.getLoginEmail();
 
     this.ID_Number_Display.setText(String.valueOf(dao.getPersonWithUsername(username).getIDNum()));
-    if(dao.getPersonWithUsername(username).getFirstName()== null){
-      this.First_Name_Display.setText("Insert First Name");
-    }else{
+    if (dao.getPersonWithUsername(username).getFirstName() == null) {
+      this.First_Name_Display.setText("empty");
+    } else {
       this.First_Name_Display.setText(dao.getPersonWithUsername(username).getFirstName());
     }
-    if(dao.getPersonWithUsername(username).getLastName()==null){
-      this.Last_Name_Display.setText("Insert Last Name");
-    }else{
+    if (dao.getPersonWithUsername(username).getLastName() == null) {
+      this.Last_Name_Display.setText("empty");
+    } else {
       this.Last_Name_Display.setText(dao.getPersonWithUsername(username).getLastName());
     }
     this.Email_Display.setText(email);
-    if (dao.getPersonWithUsername(username).getTitle()==null){
-      this.Title_Display.setText("Insert Title");
-    }else{
+    if (dao.getPersonWithUsername(username).getTitle() == null) {
+      this.Title_Display.setText("empty");
+    } else {
       this.Title_Display.setText(dao.getPersonWithUsername(username).getTitle());
     }
-    if(dao.getPersonWithUsername(username).getPhoneNumber() ==0){
-      this.Phone_Number_Display.setText("Insert Phone Number");
-    }else{
-      this.Phone_Number_Display.setText(String.valueOf(dao.getPersonWithUsername(username).getPhoneNumber()));
+    if (dao.getPersonWithUsername(username).getPhoneNumber() == 0) {
+      this.Phone_Number_Display.setText("empty");
+    } else {
+      this.Phone_Number_Display.setText(
+          String.valueOf(dao.getPersonWithUsername(username).getPhoneNumber()));
     }
 
     this.Username_Display.setText(username);

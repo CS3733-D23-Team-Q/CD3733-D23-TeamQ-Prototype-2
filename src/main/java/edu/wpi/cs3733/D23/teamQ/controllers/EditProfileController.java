@@ -13,6 +13,7 @@ public class EditProfileController {
   @FXML private MFXButton ProfilePage_ChangePic_Button;
 
   @FXML private MFXButton ProfilePage_Done_Button;
+  @FXML private MFXButton ProfileEditPage_Done_Button;
 
   @FXML private MFXTextField ProfilePage_Email_TextField;
 
@@ -34,7 +35,7 @@ public class EditProfileController {
 
   @FXML
   private void initialize() {
-    this.ProfilePage_Done_Button.setOnMouseClicked(
+    this.ProfileEditPage_Done_Button.setOnMouseClicked(
         event -> Navigation.navigate(Screen.PROFILE_PAGE));
   }
   // FUNCTION TO EDIT IMAGE FOR THE PROFILE

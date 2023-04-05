@@ -11,7 +11,9 @@ public class Home2Controller extends HomeController implements IController {
   @FXML Button PFButton;
 
   @FXML
-  public void initialize() {}
+  public void initialize() {
+    adao.populate();
+  }
 
   @FXML
   public void previousButtonClicked() {

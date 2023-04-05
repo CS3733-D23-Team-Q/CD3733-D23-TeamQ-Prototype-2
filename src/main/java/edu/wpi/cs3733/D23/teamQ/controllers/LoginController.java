@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
 import edu.wpi.cs3733.D23.teamQ.Alert;
-import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -17,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 
 public class LoginController implements IController {
   static String user;
-  AccountDAOImpl dao = new AccountDAOImpl();
+  AccountDaoImpl dao = new AccountDaoImpl();
   Alert alert = new Alert();
   @FXML Label loginAlert;
   @FXML ImageView alertImage;
@@ -27,7 +27,9 @@ public class LoginController implements IController {
   @FXML Button FPButton;
   @FXML Button CAButton;
 
-  public void initialize() {}
+  public void initialize() {
+    dao.populate();
+  }
 
   /**
    * Whenever the Enter key is pressed inside the username textfield, change the focus to the

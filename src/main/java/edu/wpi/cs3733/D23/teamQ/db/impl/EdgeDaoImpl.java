@@ -64,8 +64,8 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
    */
   public boolean deleteRow(Integer edgeID) {
     try (Connection conn = GenDao.connect();
-         PreparedStatement stmt =
-                 conn.prepareStatement("DELETE FROM \"edge\" WHERE \"edgeID\" = ?")) {
+        PreparedStatement stmt =
+            conn.prepareStatement("DELETE FROM \"edge\" WHERE \"edgeID\" = ?")) {
       stmt.setInt(1, edgeID);
       stmt.executeUpdate();
     } catch (SQLException e) {
@@ -84,9 +84,9 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
    */
   public boolean addRow(Edge e) {
     try (Connection conn = GenDao.connect();
-         PreparedStatement stmt =
-                 conn.prepareStatement(
-                         "INSERT INTO edge(\"edgeID\", \"startNode\", \"endNode\") VALUES (?, ?, ?)")) {
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO edge(\"edgeID\", \"startNode\", \"endNode\") VALUES (?, ?, ?)")) {
       stmt.setInt(1, edges.get(edges.size() - 1).getEdgeID() + 1);
       stmt.setInt(2, e.getStartNode().getNodeID());
       stmt.setInt(3, e.getEndNode().getNodeID());

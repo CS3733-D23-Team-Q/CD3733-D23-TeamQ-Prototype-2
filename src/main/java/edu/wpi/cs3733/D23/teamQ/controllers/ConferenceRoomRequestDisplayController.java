@@ -2,7 +2,6 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
-import java.sql.SQLException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,23 +26,21 @@ public class ConferenceRoomRequestDisplayController {
 
   @FXML MenuItem homeItem;
   @FXML MenuItem exitItem;
-  ListServiceRequestController listServiceRequestController = new ListServiceRequestController();
-
-  public ConferenceRoomRequestDisplayController() throws SQLException {}
 
   @FXML
   public void initialize() {
-    // roomNumberField.setText(listServiceRequestController.getConferenceRequest().getRoomNumber());
-    // System.out.println(listServiceRequestController.getConferenceRequest().getRoomNumber());
-    // dateTimeField.setText(listServiceRequestController.getConferenceRequest().getDateTime());
-    // foodField.setText(listServiceRequestController.getConferenceRequest().getFoodChoice());
-    // assigneeField.setText(listServiceRequestController.getConferenceRequest().getAssignee());
-    // specialInstructionsField.setText(
-    //  listServiceRequestController.getConferenceRequest().getSpecialInstructions());
+    roomNumberField.setText(ListServiceRequestController.getConferenceRequest().getRoomNumber());
+    dateTimeField.setText(ListServiceRequestController.getConferenceRequest().getDateTime());
+    foodField.setText(ListServiceRequestController.getConferenceRequest().getFoodChoice());
+    assigneeField.setText(ListServiceRequestController.getConferenceRequest().getAssignee());
+    specialInstructionsField.setText(
+        ListServiceRequestController.getConferenceRequest().getSpecialInstructions());
   }
 
   @FXML
-  public void resetButtonClicked() {}
+  public void resetButtonClicked() {
+    Navigation.navigate(Screen.LIST_REQUESTS);
+  }
 
   @FXML
   public void backButtonClicked() {

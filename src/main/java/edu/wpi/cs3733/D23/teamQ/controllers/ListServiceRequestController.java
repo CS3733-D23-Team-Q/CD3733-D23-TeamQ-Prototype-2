@@ -30,8 +30,8 @@ public class ListServiceRequestController {
 
   @FXML Button selectButton;
 
-  FlowerRequest flowerRequest;
-  ConferenceRequest conferenceRequest;
+  private static FlowerRequest flowerRequest;
+  private static ConferenceRequest conferenceRequest;
 
   Qdb qdb = Qdb.getInstance();
 
@@ -84,11 +84,11 @@ public class ListServiceRequestController {
     Platform.exit();
   }
 
-  public ConferenceRequest getConferenceRequest() {
+  public static ConferenceRequest getConferenceRequest() {
     return conferenceRequest;
   }
 
-  public FlowerRequest getFlowerRequest() {
+  public static FlowerRequest getFlowerRequest() {
     return flowerRequest;
   }
 }

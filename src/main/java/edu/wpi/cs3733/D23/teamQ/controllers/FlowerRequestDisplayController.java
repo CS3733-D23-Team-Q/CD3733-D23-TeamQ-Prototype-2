@@ -2,7 +2,6 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
-import java.sql.SQLException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,22 +27,23 @@ public class FlowerRequestDisplayController {
 
   @FXML MenuItem homeItem;
   @FXML MenuItem exitItem;
-  ListServiceRequestController listServiceRequestController = new ListServiceRequestController();
-
-  public FlowerRequestDisplayController() throws SQLException {}
 
   @FXML
   public void initialize() {
-    // roomNumberField.setText(listServiceRequestController.getFlowerRequest().getRoomNumber());
-    // flowerNoteField.setText(listServiceRequestController.getFlowerRequest().getNote());
-    // flowerChoiceField.setText(listServiceRequestController.getFlowerRequest().getFlowerType());
-    // numberBouquetField.setText(String.valueOf(listServiceRequestController.getFlowerRequest().getNumberOfBouquets()));
-    // assigneeField.setText(listServiceRequestController.getConferenceRequest().getAssignee());
-    // specialInstructionsField.setText(listServiceRequestController.getConferenceRequest().getSpecialInstructions());
+    roomNumberField.setText(ListServiceRequestController.getFlowerRequest().getRoomNumber());
+    flowerNoteField.setText(ListServiceRequestController.getFlowerRequest().getNote());
+    flowerChoiceField.setText(ListServiceRequestController.getFlowerRequest().getFlowerType());
+    numberBouquetField.setText(
+        String.valueOf(ListServiceRequestController.getFlowerRequest().getNumberOfBouquets()));
+    assigneeField.setText(ListServiceRequestController.getFlowerRequest().getAssignee());
+    specialInstructionsField.setText(
+        ListServiceRequestController.getFlowerRequest().getSpecialInstructions());
   }
 
   @FXML
-  public void resetButtonClicked() {}
+  public void resetButtonClicked() {
+    Navigation.navigate(Screen.LIST_REQUESTS);
+  }
 
   @FXML
   public void backButtonClicked() {

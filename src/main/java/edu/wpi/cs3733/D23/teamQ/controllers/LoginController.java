@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lombok.Getter;
 
 public class LoginController {
   AccountDAOImpl dao = new AccountDAOImpl();
@@ -25,6 +26,9 @@ public class LoginController {
   @FXML Button loginButton;
   @FXML Button FPButton;
   @FXML Button CAButton;
+
+  @Getter
+  private static String loginUsername;
 
   public void initialize() {}
 
@@ -38,6 +42,7 @@ public class LoginController {
   public void usernameFieldEntered(KeyEvent e) {
     if (e.getCode().equals(KeyCode.ENTER)) {
       passwordField.requestFocus();
+
     }
   }
 
@@ -52,6 +57,7 @@ public class LoginController {
     if (enteredPassword.equals(actualPassword)) {
       alert.clearLabelAlert(loginAlert, alertImage);
       Navigation.navigate(Screen.HOME);
+      loginUsername=usernameField.getText();
     } else {
       alert.setLabelAlert("Wrong password", loginAlert, alertImage);
     }

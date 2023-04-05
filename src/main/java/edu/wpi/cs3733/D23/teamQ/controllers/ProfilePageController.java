@@ -29,10 +29,10 @@ public class ProfilePageController {
     @FXML
     private void initialize() {
         // DO ONE FOR PROFILE IMAGE AS WELL NEXT TIME
-        String username = Account.getUsername();
-        this.Title_Display.setText(PersonDaoImpl.getTitle(1));
+        String username = LoginController.getLoginUsername();
+        this.Title_Display.setText();
 
-        this.ID_Number_Display.setText(ID_Number_Display.getText());
+        this.ID_Number_Display.setText();
         this.First_Name_Display.setText(First_Name_Display.getText());
         this.Last_Name_Display.setText(Last_Name_Display.getText());
         this.Email_Display.setText(Email_Display.getText());

@@ -22,7 +22,10 @@ public class SignageController {
                   new EventHandler<KeyEvent>() {
                     @Override
                     public void handle(KeyEvent event) {
-                      if (event.getCharacter().equals("\u001b")) Navigation.navigate(Screen.HOME);
+                      if (event.getCharacter().equals("\u001b")) {
+                        signageRoot.getScene().removeEventHandler(KeyEvent.KEY_TYPED, this);
+                        Navigation.navigate(Screen.HOME);
+                      }
                     }
                   });
         });

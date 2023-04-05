@@ -24,6 +24,7 @@ public class ProfilePageController {
   @FXML private Label Title_Display;
 
   @FXML private Label Username_Display;
+  @FXML private Button ProfilePage_Home_Button;
 
   @FXML
   private void initialize() {
@@ -42,6 +43,7 @@ public class ProfilePageController {
         String.valueOf(dao.getPersonWithUsername(username).getPhoneNumber()));
     this.Username_Display.setText(username);
 
-    this.Edit_Profile.setOnMouseClicked(event -> Navigation.navigate(Screen.PROFILE_PAGE));
+    this.Edit_Profile.setOnMouseClicked(event -> Navigation.navigate(Screen.EDIT_PROFILE));
+    this.ProfilePage_Home_Button.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }

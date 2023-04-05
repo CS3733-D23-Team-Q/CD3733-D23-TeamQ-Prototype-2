@@ -15,36 +15,43 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
+                        <Label text="Title: " />
                                 <Label fx:id="Title_Display" text="Label" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
+                        <Label text="ID Number: " />
                                 <Label fx:id="ID_Number_Display" text="Label" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
+                        <Label text="First Name: " />
                                 <Label fx:id="First_Name_Display" text="Label" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
+                        <Label text="Last Name: " />
                                 <Label fx:id="Last_Name_Display" text="Label" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
+                        <Label text="Username: " />
                                 <Label fx:id="Username_Display" text="Label" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
+                        <Label text="Email: " />
                                 <Label fx:id="Email_Display" text="Label" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
+                        <Label text="Phone Number: " />
                                 <Label fx:id="Phone_Number_Display" text="Label" />
                             </children>
                         </HBox>
@@ -56,9 +63,10 @@
     <bottom>
         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="518.0" BorderPane.alignment="CENTER">
             <children>
+            <Button fx:id="ProfilePage_Home_Button" mnemonicParsing="false" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Home" textFill="WHITE" />
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Button fx:id="Edit_Profile" alignment="CENTER" mnemonicParsing="false" text="Edit Profile" />
+                        <Button fx:id="Edit_Profile" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Edit Profile" textFill="WHITE" />
                     </children>
                 </VBox>
             </children>

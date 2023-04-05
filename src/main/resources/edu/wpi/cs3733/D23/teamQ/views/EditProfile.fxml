@@ -28,37 +28,37 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                             <children>
-                                <MFXTextField fx:id="ProfilePage_Title_TextField" prefHeight="49.0" prefWidth="141.0" promptText="Title" />
+                                <MFXTextField fx:id="ProfileEditPage_Title_TextField" prefHeight="49.0" prefWidth="141.0" promptText="Title" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <MFXTextField fx:id="ProfilePage_IDNumber_TextField" prefHeight="49.0" prefWidth="140.0" promptText="ID Number" />
+                                <MFXTextField fx:id="ProfileEditPage_IDNumber_TextField" prefHeight="49.0" prefWidth="140.0" promptText="ID Number" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <MFXTextField fx:id="ProfilePage_FirstName_TextField" prefHeight="49.0" prefWidth="140.0" promptText="First Name" />
+                                <MFXTextField fx:id="ProfileEditPage_FirstName_TextField" prefHeight="49.0" prefWidth="140.0" promptText="First Name" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <MFXTextField fx:id="ProfilePage_LastName_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Last Name" />
+                                <MFXTextField fx:id="ProfileEditPage_LastName_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Last Name" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <MFXTextField fx:id="ProfilePage_Username_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Username" />
+                                <MFXTextField fx:id="ProfileEditPage_Username_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Username" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <MFXTextField fx:id="ProfilePage_Email_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Email" />
+                                <MFXTextField fx:id="ProfileEditPage_Email_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Email" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <MFXTextField fx:id="ProfilePage_PhoneNumber_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Phone Number" />
+                                <MFXTextField fx:id="ProfileEditPage_PhoneNumber_TextField" prefHeight="49.0" prefWidth="140.0" promptText="Phone Number" />
                             </children>
                         </HBox>
                     </children>
@@ -73,7 +73,8 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <MFXButton fx:id="ProfilePage_Done_Button" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Done" textFill="WHITE" />
+                                <MFXButton fx:id="ProfileEditPage_Home_Button" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Home" textFill="WHITE" />
+                        <MFXButton fx:id="ProfileEditPage_Done_Button" style="-fx-background-color: #002d59; -fx-background-radius: 10;" text="Done" textFill="WHITE" />
                             </children>
                         </HBox>
                     </children>

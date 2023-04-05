@@ -23,6 +23,8 @@ public class ConferenceRoomRequestDisplayController {
 
   @FXML Label specialInstructionsField;
 
+  @FXML Label assigneeField;
+
   @FXML MenuItem homeItem;
   @FXML MenuItem exitItem;
   ListServiceRequestController listServiceRequestController = new ListServiceRequestController();
@@ -35,6 +37,7 @@ public class ConferenceRoomRequestDisplayController {
     // System.out.println(listServiceRequestController.getConferenceRequest().getRoomNumber());
     // dateTimeField.setText(listServiceRequestController.getConferenceRequest().getDateTime());
     // foodField.setText(listServiceRequestController.getConferenceRequest().getFoodChoice());
+    // assigneeField.setText(listServiceRequestController.getConferenceRequest().getAssignee());
     // specialInstructionsField.setText(
     //  listServiceRequestController.getConferenceRequest().getSpecialInstructions());
   }

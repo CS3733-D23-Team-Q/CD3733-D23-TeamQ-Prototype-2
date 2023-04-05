@@ -3,10 +3,12 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   private List<Edge> edges = new ArrayList<>();
@@ -120,5 +122,43 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
       e.printStackTrace();
       return false;
     }
+  }
+
+  public boolean importCSV(String filename) {
+    NodeDaoImpl nodeDao = new NodeDaoImpl();
+    try {
+      File f = new File(filename);
+      Scanner myReader = new Scanner(f);
+      while (myReader.hasNextLine()) {
+        String row = myReader.nextLine();
+        String[] vars = row.split(",");
+        Edge e =
+            new Edge(
+                Integer.parseInt(vars[1]),
+                nodeDao.retrieveRow(Integer.parseInt(vars[2])),
+                nodeDao.retrieveRow(Integer.parseInt(vars[2])));
+        addRow(e);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+    return true;
+  }
+
+  /**
+   * return a list of a given nodeID's edges
+   *
+   * @param nodeID
+   * @return
+   */
+  public List<Edge> getEdges(int nodeID) {
+    List<Edge> edgeList = new ArrayList<>();
+    for (Edge edge : edges) {
+      if (edge.getStartNode().getNodeID() == nodeID || edge.getStartNode().getNodeID() == nodeID) {
+        edgeList.add(edge);
+      }
+    }
+    return edgeList;
   }
 }

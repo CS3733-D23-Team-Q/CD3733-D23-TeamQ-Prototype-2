@@ -33,7 +33,8 @@ public class star extends Edge {
       }
 
       for (Edge edge : n.getEdges()) {
-        Node m = edge.getStartNode();
+        Node m = edge.getStartNode(); // "current node"
+        Node next = edge.getEndNode();
         // double totalWeight = n.getG() + edge.getWeight();
         int totalWeight = edge.getWeight();
 
@@ -80,5 +81,26 @@ public class star extends Edge {
       System.out.print(id + " ");
     }
     System.out.println("");
+  }
+
+  public static String returnPath(Node target) {
+    Node n = target;
+    String pathText = "";
+
+    if (n == null) return null;
+
+    List<Integer> ids = new ArrayList<>();
+
+    while (n.getParent() != null) {
+      ids.add(n.getNodeID());
+      n = n.getParent();
+    }
+    ids.add(n.getNodeID());
+    Collections.reverse(ids);
+
+    for (int id : ids) {
+      pathText += id + " ";
+    }
+    return pathText;
   }
 }

@@ -13,7 +13,7 @@ public class Node {
   private int yCoord;
   private String floor;
   private String building;
-  private List<Edge> edges;
+  private List<Edge> edges = new ArrayList<>();
   private Location location;
   private int locID;
 
@@ -23,21 +23,12 @@ public class Node {
   private int weight;
   Node parent = null;
 
-  Node(
-      int nodeID,
-      int xCoord,
-      int yCoord,
-      String floor,
-      String building,
-      List<Edge> edges,
-      Location location) {
+  public Node(int nodeID, int xCoord, int yCoord, String floor, String building) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
     this.floor = floor;
     this.building = building;
-    this.edges = edges;
-    this.location = location;
 
     String x = Integer.toString(xCoord);
     String y = Integer.toString(yCoord);
@@ -46,8 +37,9 @@ public class Node {
   }
 
   public Node(int xCoord, int yCoord) {
-    this.nodeID = idCounter++;
-    this.edges = new ArrayList<>();
+    this.setXCoord(xCoord);
+    this.setYCoord(yCoord);
+    this.edges = new ArrayList<Edge>();
   }
 
   public String nodeToString() {
@@ -71,7 +63,7 @@ public class Node {
     Edge branch = new Edge(targetID, this, target);
     //    Edge inverseEdge = new Edge(weight, this);
 
-    edges.add(branch);
+    this.edges.add(branch);
     //    neighbors.add(inverseEdge);
   }
 }

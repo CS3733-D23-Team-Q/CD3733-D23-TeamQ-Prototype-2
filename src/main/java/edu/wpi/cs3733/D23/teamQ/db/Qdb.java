@@ -5,7 +5,7 @@ import edu.wpi.cs3733.D23.teamQ.db.impl.*;
 import edu.wpi.cs3733.D23.teamQ.db.obj.*;
 
 public class Qdb {
-  public GenDao<Account, String> accountTable = new AccountDAOImpl();
+  public GenDao<Account, String> accountTable = new AccountDaoImpl();
   public GenDao<ServiceRequest, Integer> serviceRequestTable = new ServiceRequestDaoImpl();
   public GenDao<ConferenceRequest, Integer> conferenceRequestTable = new ConferenceRequestDaoImpl();
   public GenDao<FlowerRequest, Integer> flowerRequestTable = new FlowerRequestDaoImpl();
@@ -17,6 +17,10 @@ public class Qdb {
   private static Qdb single_instance = null;
 
   private Qdb() {}
+
+  public void addFlowerRequest(FlowerRequest req) {
+    this.flowerRequestTable.addRow(req);
+  }
 
   public static synchronized Qdb getInstance() {
     if (single_instance == null) single_instance = new Qdb();

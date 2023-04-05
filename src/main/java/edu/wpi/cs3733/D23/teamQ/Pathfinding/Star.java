@@ -57,7 +57,7 @@ public class Star extends Edge {
           next.getStartNode().setG(nextWeight);
           next.getStartNode()
               .setF(next.getStartNode().getG() + calculateHeuristic(next.getStartNode(), target));
-          openList.add(next.getStartNode());
+          openList.add(next.getEndNode());
         } else {
           if (totalWeight > nextWeight
               && next != null

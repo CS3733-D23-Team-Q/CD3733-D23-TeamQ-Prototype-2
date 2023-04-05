@@ -10,7 +10,7 @@ public class Qdb {
     public GenDao<ConferenceRequest, Integer> conferenceRequestTable = new ConferenceRequestDaoImpl();
     public GenDao<FlowerRequest, Integer> flowerRequestTable = new FlowerRequestDaoImpl();
     public GenDao<Node, Integer> nodeTable = new NodeDaoImpl();
-    public GenDao<Edge, Integer> edgeTable = new EdgeDaoImpl();
+    public GenDao<Edge, Integer> edgeTable = new EdgeDaoImpl(nodeTable);
     public GenDao<Move, Integer> moveTable = new MoveDaoImpl();
     public GenDao<Location, Integer> locationTable = new LocationDaoImpl();
 

@@ -4,6 +4,7 @@ import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,8 +18,10 @@ import java.util.Scanner;
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     private List<Edge> edges = new ArrayList<>();
     private int nextID = 0;
+    private GenDao<Node, Integer> nodeTable;
 
-    public EdgeDaoImpl() {
+    public EdgeDaoImpl(GenDao<Node, Integer> nodeTable) {
+        this.nodeTable = nodeTable;
         populate();
         if (edges.size() != 0) {
             nextID = edges.get(edges.size() - 1).getEdgeID() + 1;
@@ -98,6 +101,9 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
                                 nodeDao.retrieveRow(rst.getInt("endNode"))
                         )
                 );
+                Node startNode = nodeTable.retrieveRow(rst.getInt("startNode"));
+                Node endNode = nodeTable.retrieveRow(rst.getInt("endNode"));
+                startNode.addBranch(endNode, rst.getInt("edgeID"));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

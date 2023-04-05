@@ -51,8 +51,6 @@ public class Node {
     this.edges = new ArrayList<Edge>();
   }
 
-
-
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID

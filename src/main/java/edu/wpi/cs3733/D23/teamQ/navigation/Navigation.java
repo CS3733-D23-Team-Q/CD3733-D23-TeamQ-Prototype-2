@@ -1,8 +1,12 @@
 package edu.wpi.cs3733.D23.teamQ.navigation;
 
 import edu.wpi.cs3733.D23.teamQ.App;
+import edu.wpi.cs3733.D23.teamQ.controllers.IController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
@@ -34,5 +38,13 @@ public class Navigation {
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
+  }
+
+  public static IController getController(final Screen screen) throws IOException {
+    final String filename = screen.getFilename();
+    final var loader = new FXMLLoader(App.class.getResource(filename));
+    final Parent layout = loader.load();
+    final IController controller = loader.getController();
+    return controller;
   }
 }

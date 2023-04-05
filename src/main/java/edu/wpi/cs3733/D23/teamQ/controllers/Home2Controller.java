@@ -5,7 +5,7 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class Home2Controller extends HomeController {
+public class Home2Controller extends HomeController implements IController {
   @FXML Button previousButton;
   @FXML Button MEButton;
   @FXML Button PFButton;

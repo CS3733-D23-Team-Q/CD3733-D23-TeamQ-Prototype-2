@@ -18,8 +18,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class CreateAccountController extends SecondaryStage {
-  AccountDaoImpl adao = new AccountDaoImpl();
+public class CreateAccountController extends SecondaryStage implements IController {
+  AccountDAOImpl adao = new AccountDAOImpl();
   QuestionDAOImpl qdao = new QuestionDAOImpl();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();
@@ -287,7 +287,8 @@ public class CreateAccountController extends SecondaryStage {
               qdao.retrieveRow(question1).getId(),
               qdao.retrieveRow(question2).getId(),
               answer1,
-              answer2);
+              answer2,
+              false);
       adao.addRow(a);
       super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
       stage.centerOnScreen();

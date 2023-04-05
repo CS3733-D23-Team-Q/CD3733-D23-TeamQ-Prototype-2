@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
 import edu.wpi.cs3733.D23.teamQ.db.Qdb;
+import edu.wpi.cs3733.D23.teamQ.db.impl.MoveDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
@@ -52,6 +53,8 @@ public class MapEditorController {
 
   @FXML private TableView<Node> node;
 
+
+
   // these bugs will be solved after the database group set getAllRows() to static
   /** used to get Nodes from database */
   public ObservableList<Node> nodes() {
@@ -91,6 +94,7 @@ public class MapEditorController {
 
   @FXML
   public void initialize() {
+
     /** Navigate to homepage after click on the button */
     BackHomeBTN.setOnMouseClicked((event -> Navigation.navigate(Screen.HOME)));
 

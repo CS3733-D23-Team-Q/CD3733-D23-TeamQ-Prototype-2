@@ -13,11 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
 
-<<<<<<< HEAD
-public class FlowerRequestController extends ServiceRequestController implements IController {
-=======
-public class FlowerRequestController {
->>>>>>> cbd5865f238f4b1381f35986eba203e470687788
+public class FlowerRequestController implements IController {
   @FXML private MFXTextField roomNumberField;
   @FXML private MFXTextField noteField;
   @FXML private MFXTextField specialInstructionsField;

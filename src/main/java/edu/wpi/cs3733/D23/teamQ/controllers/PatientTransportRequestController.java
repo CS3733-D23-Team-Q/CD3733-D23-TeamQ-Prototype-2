@@ -5,12 +5,7 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
-<<<<<<< HEAD
-public class PatientTransportRequestController extends ServiceRequestController
-    implements IController {
-=======
-public class PatientTransportRequestController {
->>>>>>> cbd5865f238f4b1381f35986eba203e470687788
+public class PatientTransportRequestController implements IController {
   @FXML private MFXButton navigateFromPTButton;
 
   public void initialize() {

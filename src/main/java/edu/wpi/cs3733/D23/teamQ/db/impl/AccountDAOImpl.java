@@ -21,6 +21,7 @@ public class AccountDAOImpl implements GenDao<Account, String> {
     }
     return con;
   }
+
   private List<Account> accounts = new ArrayList<Account>();
 
   public Account retrieveRow(String uname) {

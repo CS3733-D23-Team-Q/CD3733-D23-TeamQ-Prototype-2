@@ -13,16 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-<<<<<<< HEAD
 public class HomeController implements IController {
   AccountDAOImpl adao = new AccountDAOImpl();
   @FXML Button CRReservationButton;
   @FXML Button FDRequestButton;
-=======
-public class HomeController {
-  @FXML Button ServiceHubButton;
-  @FXML Button ListRequestsButton;
->>>>>>> cbd5865f238f4b1381f35986eba203e470687788
   @FXML Button SPButton;
   @FXML Button LMButton;
 

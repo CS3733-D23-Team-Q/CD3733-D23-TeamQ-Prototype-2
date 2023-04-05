@@ -166,7 +166,7 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
   }
 
   public Person getPersonWithUsername(String UN){
-    for(int i= 0; i< this.; i++){
+    for(int i= 0; i< People.size(); i++){
 
     }
   }

@@ -7,25 +7,25 @@ import lombok.Setter;
 @Setter
 public class ServiceRequest {
 
-    private int requestID;
-    private int progress;
-    private String requester;
-    private String assignee;
-    private String roomNumber;
-    private String specialInstructions;
+  private int requestID;
+  private int progress;
+  private String requester;
+  private String assignee;
+  private String roomNumber;
+  private String specialInstructions;
 
-    public ServiceRequest(
-            int requestID,
-            String requester,
-            int progress,
-            String assignee,
-            String roomNumber,
-            String specialInstructions) {
-        this.requestID = requestID;
-        this.progress = progress;
-        this.requester = requester;
-        this.assignee = assignee;
-        this.roomNumber = roomNumber;
-        this.specialInstructions = specialInstructions;
-    }
+  public ServiceRequest(
+      int requestID,
+      String requester,
+      int progress,
+      String assignee,
+      String roomNumber,
+      String specialInstructions) {
+    this.requestID = requestID;
+    this.progress = progress;
+    this.requester = requester;
+    this.assignee = assignee;
+    this.roomNumber = roomNumber;
+    this.specialInstructions = specialInstructions;
+  }
 }

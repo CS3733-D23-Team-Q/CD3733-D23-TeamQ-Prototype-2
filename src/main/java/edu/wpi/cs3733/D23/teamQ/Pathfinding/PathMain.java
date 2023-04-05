@@ -1,27 +1,27 @@
 package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 
 import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Star.aStar;
-import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Star.printPath;
 
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
+import java.util.ArrayList;
 
 public class PathMain {
   public static void main(String[] args) {
-    Node head = new Node(0, 0);
+    Node head = new Node(0, 0, 0);
     head.setG(0);
-    Node n1 = new Node(1, 2);
-    Node n2 = new Node(3, 1);
-    Node n3 = new Node(2, 2);
-    Node n4 = new Node(3, 3);
-    Node n5 = new Node(4, 3);
-    Node n6 = new Node(4, 1);
-    Node n7 = new Node(5, 2);
-    Node n8 = new Node(5, 1);
-    Node n9 = new Node(2, 3);
-    Node n10 = new Node(3, 4);
-    Node n11 = new Node(4, 4);
-    Node n12 = new Node(5, 5);
-    Node n13 = new Node(6, 4);
+    Node n1 = new Node(1, 2, 1);
+    Node n2 = new Node(3, 1, 2);
+    Node n3 = new Node(2, 2, 3);
+    Node n4 = new Node(3, 3, 4);
+    Node n5 = new Node(4, 3, 5);
+    Node n6 = new Node(4, 1, 6);
+    Node n7 = new Node(5, 2, 7);
+    Node n8 = new Node(5, 1, 8);
+    Node n9 = new Node(2, 3, 9);
+    Node n10 = new Node(3, 4, 10);
+    Node n11 = new Node(4, 4, 11);
+    Node n12 = new Node(5, 5, 12);
+    Node n13 = new Node(6, 4, 13);
     Node goal = n8;
     head.addBranch(n1, 1);
     head.addBranch(n2, 2);
@@ -40,7 +40,17 @@ public class PathMain {
     n5.addBranch(n7, 7);
     n6.addBranch(n8, 8);
     n7.addBranch(n8, 8);
-    Node res = aStar(n1, goal);
-    printPath(res);
+    ArrayList<Node> these = aStar(head, goal);
+    ArrayList<Integer> toPrint = new ArrayList<Integer>();
+    for (Node thisOne : these) {
+      if (!toPrint.contains(thisOne.getNodeID())) {
+        toPrint.add(thisOne.getNodeID());
+      }
+    }
+    for (int id : toPrint) {
+      System.out.println(id);
+    }
+    /* Node res = aStar(n1, goal);
+    printPath(res);*/
   }
 }

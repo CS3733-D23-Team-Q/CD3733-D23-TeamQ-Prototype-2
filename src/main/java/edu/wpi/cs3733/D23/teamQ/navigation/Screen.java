@@ -7,6 +7,8 @@ public enum Screen {
   LOGIN("views/LoginPage.fxml", "Login"),
   CREATE_ACCOUNT("views/CreateAccount.fxml", "Create Account"),
   FORGOT_PASSWORD("views/ForgotPassword.fxml", "Reset Password"),
+  MAP_EDITOR("views/MapEditor.fxml", "Map Editor"),
+  PATH_TEXT("views/PathText.fxml", "Textual Path"),
 
   SIGNAGE("views/Signage.fxml", "Signage"),
   HELP("views/Help.fxml", "Help"),

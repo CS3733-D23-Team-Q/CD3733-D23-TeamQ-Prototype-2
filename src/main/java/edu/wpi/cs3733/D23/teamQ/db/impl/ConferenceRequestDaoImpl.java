@@ -10,12 +10,13 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
   private List<ConferenceRequest> conferenceRequests = new ArrayList<ConferenceRequest>();
   private int nextID = 0;
 
-  public ConferenceRequestDaoImpl() throws SQLException {
+  public ConferenceRequestDaoImpl() {
     populate();
     if (conferenceRequests.size() != 0) {
       nextID = conferenceRequests.get(conferenceRequests.size() - 1).getRequestID() + 1;
     }
   }
+
   /**
    * returns a conferenceRequest given a requestID
    *
@@ -56,7 +57,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
    * @param requestID of conferenceRequest being deleted
    * @return true if successfully deleted
    */
-  public boolean deleteRow(Integer requestID) throws SQLException {
+  public boolean deleteRow(Integer requestID) {
     try (Connection connection = GenDao.connect();
         PreparedStatement st =
             connection.prepareStatement(
@@ -97,12 +98,11 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
     }
     request.setRequestID(nextID);
     nextID++;
-    conferenceRequests.add(request);
-    return true;
+    return conferenceRequests.add(request);
   }
 
   @Override
-  public boolean populate() throws SQLException {
+  public boolean populate() {
     try {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();

@@ -8,8 +8,17 @@ import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
+  ObservableList<ServiceRequest> serviceRequests;
+
+  public ServiceRequestDaoImpl() {
+    this.serviceRequests = getAllRows();
+  }
 
   public ObservableList<ServiceRequest> getAllRows() {
     // need method to get active user's username
@@ -53,6 +62,7 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
+    return srL;
   }
 
   @Override

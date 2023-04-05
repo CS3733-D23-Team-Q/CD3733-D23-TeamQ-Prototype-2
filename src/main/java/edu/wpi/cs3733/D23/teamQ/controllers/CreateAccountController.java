@@ -3,10 +3,13 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 import edu.wpi.cs3733.D23.teamQ.Alert;
 import edu.wpi.cs3733.D23.teamQ.Confirm;
 import edu.wpi.cs3733.D23.teamQ.SecondaryStage;
-import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDAOImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.impl.QuestionDAOImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Question;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -16,7 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 public class CreateAccountController extends SecondaryStage {
-  AccountDAOImpl dao = new AccountDAOImpl();
+  AccountDaoImpl adao = new AccountDaoImpl();
+  QuestionDAOImpl qdao = new QuestionDAOImpl();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();
   @FXML ChoiceBox<String> questionChoice1 = new ChoiceBox<>();
@@ -46,16 +50,15 @@ public class CreateAccountController extends SecondaryStage {
 
   @FXML
   public void initialize() {
-    questionChoice1.getItems().add(dao.getQuestions().get(0));
-    questionChoice1.getItems().add(dao.getQuestions().get(1));
-    questionChoice1.getItems().add(dao.getQuestions().get(2));
-    questionChoice1.getItems().add(dao.getQuestions().get(3));
-    questionChoice1.getItems().add(dao.getQuestions().get(4));
-    questionChoice2.getItems().add(dao.getQuestions().get(0));
-    questionChoice2.getItems().add(dao.getQuestions().get(1));
-    questionChoice2.getItems().add(dao.getQuestions().get(2));
-    questionChoice2.getItems().add(dao.getQuestions().get(3));
-    questionChoice2.getItems().add(dao.getQuestions().get(4));
+    List<Question> questions = qdao.getAllRows();
+    for (int i = 0; i < questions.size(); i++) {
+      String question = questions.get(i).getQuestion();
+      questionChoice1.getItems().add(question);
+    }
+    for (int i = 0; i < questions.size(); i++) {
+      String question = questions.get(i).getQuestion();
+      questionChoice2.getItems().add(question);
+    }
   }
 
   public static int validEmail(String email) {
@@ -281,11 +284,11 @@ public class CreateAccountController extends SecondaryStage {
               username,
               password,
               email,
-              dao.getQuestionId(question1),
-              dao.getQuestionId(question2),
+              qdao.retrieveRow(question1).getId(),
+              qdao.retrieveRow(question2).getId(),
               answer1,
               answer2);
-      dao.addRow(a);
+      adao.addRow(a);
       super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
       stage.centerOnScreen();
     }
@@ -302,7 +305,7 @@ public class CreateAccountController extends SecondaryStage {
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
 
-    if (dao.getIndex(username) == -1) {
+    if (adao.getIndex(username) == -1) {
       alert.clearLabelAlert(usernameAlert, usernameAlertImage);
       usernameReact(username, email, password, repassword, question1, question2, answer1, answer2);
     } else {

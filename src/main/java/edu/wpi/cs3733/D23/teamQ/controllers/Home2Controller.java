@@ -20,11 +20,11 @@ public class Home2Controller extends HomeController {
 
   @FXML
   public void MEButtonClicked() {
-    // Navigation.navigate("Screen.MAP_EDITOR");
+    Navigation.navigate(Screen.MAP_EDITOR);
   }
 
   @FXML
   public void PFButtonClicked() {
-    // Navigation.navigate("Screen.PATHFINDING");
+    Navigation.navigate(Screen.PATH_TEXT);
   }
 }

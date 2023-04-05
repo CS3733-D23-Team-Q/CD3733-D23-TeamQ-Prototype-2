@@ -15,10 +15,20 @@ import lombok.Setter;
 @Setter
 public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
   ObservableList<ServiceRequest> serviceRequests = FXCollections.observableArrayList();
-  GenDao conferenceRequestTable;
-  GenDao flowerRequestsTable;
+  private GenDao conferenceRequestTable;
+  private GenDao flowerRequestsTable;
 
-  public ServiceRequestDaoImpl(GenDao conferenceRequestTable, GenDao flowerRequestsTable) {
+  private static ServiceRequestDaoImpl single_instance = null;
+
+  public static synchronized ServiceRequestDaoImpl getInstance(
+      ConferenceRequestDaoImpl conferenceRequestTable, FlowerRequestDaoImpl flowerRequestTable) {
+    if (single_instance == null)
+      single_instance = new ServiceRequestDaoImpl(conferenceRequestTable, flowerRequestTable);
+
+    return single_instance;
+  }
+
+  private ServiceRequestDaoImpl(GenDao conferenceRequestTable, GenDao flowerRequestsTable) {
     this.conferenceRequestTable = conferenceRequestTable;
     this.flowerRequestsTable = flowerRequestsTable;
     this.serviceRequests = getAllRows();

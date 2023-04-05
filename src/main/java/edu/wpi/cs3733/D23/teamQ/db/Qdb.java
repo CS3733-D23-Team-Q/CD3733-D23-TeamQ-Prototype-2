@@ -5,15 +5,18 @@ import edu.wpi.cs3733.D23.teamQ.db.impl.*;
 import edu.wpi.cs3733.D23.teamQ.db.obj.*;
 
 public class Qdb {
-  public GenDao<Account, String> accountTable = new AccountDaoImpl();
-  public GenDao<ConferenceRequest, Integer> conferenceRequestTable = new ConferenceRequestDaoImpl();
-  public GenDao<FlowerRequest, Integer> flowerRequestTable = new FlowerRequestDaoImpl();
+  public GenDao<Account, String> accountTable = AccountDaoImpl.getInstance();
+  public GenDao<ConferenceRequest, Integer> conferenceRequestTable =
+      ConferenceRequestDaoImpl.getInstance();
+  public GenDao<FlowerRequest, Integer> flowerRequestTable = FlowerRequestDaoImpl.getInstance();
   public GenDao<ServiceRequest, Integer> serviceRequestTable =
-      new ServiceRequestDaoImpl(conferenceRequestTable, flowerRequestTable);
-  public GenDao<Node, Integer> nodeTable = new NodeDaoImpl();
-  public GenDao<Edge, Integer> edgeTable = new EdgeDaoImpl(nodeTable);
-  public GenDao<Move, Integer> moveTable = new MoveDaoImpl();
-  public GenDao<Location, Integer> locationTable = new LocationDaoImpl();
+      ServiceRequestDaoImpl.getInstance(
+          (ConferenceRequestDaoImpl) conferenceRequestTable,
+          (FlowerRequestDaoImpl) flowerRequestTable);
+  public GenDao<Node, Integer> nodeTable = NodeDaoImpl.getInstance();
+  public GenDao<Edge, Integer> edgeTable = EdgeDaoImpl.getInstance((NodeDaoImpl) nodeTable);
+  public GenDao<Move, Integer> moveTable = MoveDaoImpl.getInstance((NodeDaoImpl) nodeTable);
+  public GenDao<Location, Integer> locationTable = LocationDaoImpl.getInstance();
 
   private static Qdb single_instance = null;
 

@@ -16,7 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class LoginController {
-  AccountDaoImpl dao = new AccountDaoImpl();
+  AccountDaoImpl dao = AccountDaoImpl.getInstance();
   Alert alert = new Alert();
   @FXML Label loginAlert;
   @FXML ImageView alertImage;

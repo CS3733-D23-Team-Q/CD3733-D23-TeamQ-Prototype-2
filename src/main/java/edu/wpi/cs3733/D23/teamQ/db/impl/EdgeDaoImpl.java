@@ -16,13 +16,20 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   private List<Edge> edges = new ArrayList<>();
   private int nextID = 0;
   private GenDao<Node, Integer> nodeTable;
+  private static EdgeDaoImpl single_instance = null;
 
-  public EdgeDaoImpl(GenDao<Node, Integer> nodeTable) {
+  private EdgeDaoImpl(GenDao<Node, Integer> nodeTable) {
     this.nodeTable = nodeTable;
     populate();
     if (edges.size() != 0) {
       nextID = edges.get(edges.size() - 1).getEdgeID() + 1;
     }
+  }
+
+  public static synchronized EdgeDaoImpl getInstance(NodeDaoImpl nodeTable) {
+    if (single_instance == null) single_instance = new EdgeDaoImpl(nodeTable);
+
+    return single_instance;
   }
 
   /**
@@ -84,7 +91,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
 
   @Override
   public boolean populate() {
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
+    NodeDaoImpl nodeDao = NodeDaoImpl.getInstance();
     try {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();
@@ -166,7 +173,6 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   }
 
   public boolean importCSV(String filename) {
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
     try {
       File f = new File(filename);
       Scanner myReader = new Scanner(f);
@@ -176,8 +182,8 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
         Edge e =
             new Edge(
                 Integer.parseInt(vars[1]),
-                nodeDao.retrieveRow(Integer.parseInt(vars[2])),
-                nodeDao.retrieveRow(Integer.parseInt(vars[2])));
+                nodeTable.retrieveRow(Integer.parseInt(vars[2])),
+                nodeTable.retrieveRow(Integer.parseInt(vars[2])));
         addRow(e);
       }
       myReader.close();

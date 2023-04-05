@@ -13,8 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 
-import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Astar.aStar;
-
 public class PathTextController {
   @FXML Button resetButton;
   @FXML Button backButton;

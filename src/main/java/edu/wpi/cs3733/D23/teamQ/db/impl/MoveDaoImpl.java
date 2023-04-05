@@ -116,6 +116,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       while (rst.next()) {
         moves.add(
             new Move(
+                rst.getInt("moveID"),
                 nodeTable.retrieveRow(rst.getInt("nodeID")),
                 rst.getString("longName"),
                 rst.getString("date")));
@@ -125,8 +126,6 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    int index = this.getIndex(moveID);
-    moves.remove(index);
     return true;
   }
 

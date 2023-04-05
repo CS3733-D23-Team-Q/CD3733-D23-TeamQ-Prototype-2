@@ -14,6 +14,16 @@ public class Account {
   private String securityAnswer1;
   private String securityAnswer2;
 
+  /**
+   * constructor to create an Account object
+   * @param username
+   * @param password
+   * @param email
+   * @param securityQuestion1
+   * @param securityQuestion2
+   * @param securityAnswer1
+   * @param securityAnswer2
+   */
   public Account(
       String username,
       String password,

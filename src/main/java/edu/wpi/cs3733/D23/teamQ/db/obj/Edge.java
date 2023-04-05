@@ -10,6 +10,12 @@ public class Edge {
   private Node startNode;
   private Node endNode;
 
+  /**
+   * constructor to create an Edge object
+   * @param edgeID
+   * @param startNode
+   * @param endNode
+   */
   public Edge(int edgeID, Node startNode, Node endNode) {
     this.edgeID = edgeID;
     this.startNode = startNode;
@@ -23,6 +29,10 @@ public class Edge {
 
   public Edge() {}
 
+  /**
+   * Creates a string to display information on a given edge
+   * @return a String with edge information
+   */
   public String edgeToString() {
     return "edgeID: "
         + this.edgeID
@@ -32,6 +42,11 @@ public class Edge {
         + this.endNode;
   }
 
+  /**
+   * Gets weight of an edge using coordinates of
+   * an edges start and end node
+   * @return calculated weight
+   */
   public int getWeight() {
     int xDist = Math.abs(this.getStartNode().getXCoord() - this.getEndNode().getXCoord());
     int yDist = Math.abs(this.getStartNode().getYCoord() - this.getEndNode().getYCoord());

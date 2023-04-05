@@ -14,6 +14,15 @@ public class ServiceRequest {
   private String roomNumber;
   private String specialInstructions;
 
+  /**
+   * constructor to create a ServiceRequest object
+   * @param requestID
+   * @param requester
+   * @param progress
+   * @param assignee
+   * @param roomNumber
+   * @param specialInstructions
+   */
   public ServiceRequest(
       int requestID,
       String requester,

@@ -11,6 +11,12 @@ public class Move {
   private String longName;
   private String date;
 
+  /**
+   * constructor to create a Move object
+   * @param node
+   * @param longName
+   * @param date
+   */
   public Move(Node node, String longName, String date) {
     this.node = node;
     this.longName = longName;
@@ -23,6 +29,10 @@ public class Move {
     this.date = date;
   }
 
+  /**
+   * Creates a string to display information on a given Move
+   * @return a String with move information
+   */
   public String toString() {
     return "moveID: "
         + this.moveID

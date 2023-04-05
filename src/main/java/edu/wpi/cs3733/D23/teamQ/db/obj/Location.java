@@ -11,6 +11,13 @@ public class Location {
   private String shortName;
   private String nodeType;
 
+  /**
+   * constructor to create a Location object
+   * @param nodeID
+   * @param longName
+   * @param shortName
+   * @param nodeType
+   */
   public Location(int nodeID, String longName, String shortName, String nodeType) {
     this.nodeID = nodeID;
     this.longName = longName;
@@ -18,6 +25,10 @@ public class Location {
     this.nodeType = nodeType;
   }
 
+  /**
+   * Creates a string to display information on a given location
+   * @return a String with location information
+   */
   public String toString() {
     return "node: "
         + this.nodeID

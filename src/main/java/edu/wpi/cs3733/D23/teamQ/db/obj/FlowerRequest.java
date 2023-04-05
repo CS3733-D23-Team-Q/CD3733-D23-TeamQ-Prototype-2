@@ -10,6 +10,18 @@ public class FlowerRequest extends ServiceRequest {
   private String flowerType;
   private int numberOfBouquets;
 
+  /**
+   * constructor to create a FlowerRequest object
+   * @param requestID
+   * @param requester
+   * @param progress
+   * @param assignee
+   * @param roomNumber
+   * @param specialInstructions
+   * @param note
+   * @param flowerType
+   * @param numberOfBouquets
+   */
   public FlowerRequest(
       int requestID,
       String requester,

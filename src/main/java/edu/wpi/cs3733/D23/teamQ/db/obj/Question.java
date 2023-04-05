@@ -4,6 +4,11 @@ public class Question {
   private int id;
   private String question;
 
+  /**
+   * constructor to create a Question object
+   * @param id
+   * @param question
+   */
   public Question(int id, String question) {
     this.id = id;
     this.question = question;

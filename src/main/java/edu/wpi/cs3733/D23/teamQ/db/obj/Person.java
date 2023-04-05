@@ -8,6 +8,15 @@ public class Person {
   private int PhoneNumber;
   private String username;
 
+  /**
+   * constructor to create a Person object
+   * @param IDNum
+   * @param Firstname
+   * @param LastName
+   * @param Title
+   * @param PhoneNumber
+   * @param username
+   */
   public Person(
       int IDNum,
       String Firstname,

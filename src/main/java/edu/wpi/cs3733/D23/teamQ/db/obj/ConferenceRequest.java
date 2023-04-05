@@ -9,6 +9,17 @@ public class ConferenceRequest extends ServiceRequest {
   private String dateTime;
   private String foodChoice;
 
+  /**
+   * constructor to create a ConferenceRequest object
+   * @param requestID
+   * @param requester
+   * @param progress
+   * @param assignee
+   * @param roomNumber
+   * @param specialInstructions
+   * @param dateTime
+   * @param foodChoice
+   */
   public ConferenceRequest(
       int requestID,
       String requester,

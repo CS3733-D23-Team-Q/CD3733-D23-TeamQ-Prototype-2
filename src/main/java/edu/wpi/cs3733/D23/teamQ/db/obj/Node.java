@@ -23,6 +23,14 @@ public class Node {
   private int weight;
   Node parent = null;
 
+  /**
+   * constructor to create a Node object
+   * @param nodeID
+   * @param xCoord
+   * @param yCoord
+   * @param floor
+   * @param building
+   */
   public Node(int nodeID, int xCoord, int yCoord, String floor, String building) {
     this.nodeID = nodeID;
     this.xCoord = xCoord;
@@ -42,6 +50,10 @@ public class Node {
     this.edges = new ArrayList<Edge>();
   }
 
+  /**
+   * Creates a string to display information on a given node
+   * @return a String with node information
+   */
   public String nodeToString() {
     return "nodeID: "
         + this.nodeID
@@ -59,6 +71,11 @@ public class Node {
         + this.location;
   }
 
+  /**
+   * Creates an edge between current node and a target node
+   * @param target
+   * @param targetID
+   */
   public void addBranch(Node target, int targetID) {
     Edge branch = new Edge(targetID, this, target);
     //    Edge inverseEdge = new Edge(weight, this);

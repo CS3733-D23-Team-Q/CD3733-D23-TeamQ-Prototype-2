@@ -17,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 import lombok.Getter;
 
 public class LoginController {
-  AccountDaoImpl dao = new AccountDaoImpl();
+  AccountDaoImpl dao = AccountDaoImpl.getInstance();
   Alert alert = new Alert();
   @FXML Label loginAlert;
   @FXML ImageView alertImage;

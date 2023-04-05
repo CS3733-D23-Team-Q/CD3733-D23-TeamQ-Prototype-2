@@ -14,8 +14,17 @@ import java.util.Scanner;
 public class MoveDaoImpl implements GenDao<Move, Integer> {
   private List<Move> moves = new ArrayList<>();
   private int nextID = 0;
+  private NodeDaoImpl nodeTable;
+  private static MoveDaoImpl single_instance = null;
 
-  public MoveDaoImpl() {
+  public static synchronized MoveDaoImpl getInstance(NodeDaoImpl nodeTable) {
+    if (single_instance == null) single_instance = new MoveDaoImpl(nodeTable);
+
+    return single_instance;
+  }
+
+  private MoveDaoImpl(NodeDaoImpl nodeTable) {
+    this.nodeTable = nodeTable;
     populate();
     if (moves.size() != 0) {
       nextID = moves.get(moves.size() - 1).getMoveID() + 1;
@@ -79,9 +88,9 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
         PreparedStatement stmt =
             conn.prepareStatement(
                 "INSERT INTO move(\"nodeID\", \"longName\", \"date\") VALUES (?, ?, ?)")) {
-      stmt.setInt(2, m.getNode().getNodeID());
-      stmt.setString(3, m.getLongName());
-      stmt.setString(4, m.getDate());
+      stmt.setInt(1, m.getNode().getNodeID());
+      stmt.setString(2, m.getLongName());
+      stmt.setString(3, m.getDate());
       stmt.executeUpdate();
     } catch (SQLException ex) {
       ex.printStackTrace();
@@ -103,20 +112,21 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();
       ResultSet rst = stm.executeQuery("Select * From move");
-      NodeDaoImpl nodeDao = new NodeDaoImpl();
 
       while (rst.next()) {
         moves.add(
             new Move(
-                nodeDao.retrieveRow(rst.getInt("nodeID")),
+                nodeTable.retrieveRow(rst.getInt("nodeID")),
                 rst.getString("longName"),
                 rst.getString("date")));
       }
-
+      conn.close();
+      stm.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
+    int index = this.getIndex(moveID);
+    moves.remove(index);
     return true;
   }
 
@@ -187,7 +197,7 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
    * @return true if successfully imported, false otherwise
    */
   public boolean importCSV(String filename) {
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
+    NodeDaoImpl nodeDao = NodeDaoImpl.getInstance();
     try {
       File f = new File(filename);
       Scanner myReader = new Scanner(f);

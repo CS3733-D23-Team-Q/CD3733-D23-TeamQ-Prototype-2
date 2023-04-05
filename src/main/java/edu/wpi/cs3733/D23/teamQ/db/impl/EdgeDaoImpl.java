@@ -2,31 +2,37 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   private List<Edge> edges = new ArrayList<>();
+  private int nextID = 0;
+  private GenDao<Node, Integer> nodeTable;
+  private static EdgeDaoImpl single_instance = null;
 
-  public EdgeDaoImpl() {}
-
-  /**
-   * returns a edge given a edgeID
-   *
-   * @param edgeID of node being retrieved
-   * @return a edge with the given edgeID
-   */
-  public Edge retrieveRow(Integer edgeID) {
-    int index = this.getIndex(edgeID);
-    return edges.get(index);
+  private EdgeDaoImpl(GenDao<Node, Integer> nodeTable) {
+    this.nodeTable = nodeTable;
+    populate();
+    if (edges.size() != 0) {
+      nextID = edges.get(edges.size() - 1).getEdgeID() + 1;
+    }
   }
 
-  /**
+  public static synchronized EdgeDaoImpl getInstance(NodeDaoImpl nodeTable) {
+    if (single_instance == null) single_instance = new EdgeDaoImpl(nodeTable);
+
+    return single_instance;
+  }
+
+ /**
    * updates edge in linked list with a new edge
    *
    * @param edgeID edgeID of edge being replaced
@@ -46,6 +52,14 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
    * @return true if successfully deleted
    */
   public boolean deleteRow(Integer edgeID) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement("DELETE FROM \"edge\" WHERE \"edgeID\" = ?")) {
+      stmt.setInt(1, edgeID);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     int index = this.getIndex(edgeID);
     edges.remove(index);
     return true;
@@ -58,12 +72,44 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
    * @return true if successful
    */
   public boolean addRow(Edge e) {
+    try (Connection conn = GenDao.connect();
+        PreparedStatement stmt =
+            conn.prepareStatement(
+                "INSERT INTO edge(\"edgeID\", \"startNode\", \"endNode\") VALUES (?, ?, ?)")) {
+      stmt.setInt(1, edges.get(edges.size() - 1).getEdgeID() + 1);
+      stmt.setInt(2, e.getStartNode().getNodeID());
+      stmt.setInt(3, e.getEndNode().getNodeID());
+      stmt.executeUpdate();
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+    e.setEdgeID(edges.get(edges.size() - 1).getEdgeID() + 1);
     return edges.add(e);
   }
 
   @Override
   public boolean populate() {
-    return false;
+    NodeDaoImpl nodeDao = NodeDaoImpl.getInstance();
+    try {
+      Connection conn = GenDao.connect();
+      Statement stm = conn.createStatement();
+      ResultSet rst = stm.executeQuery("Select * From \"edge\"");
+      while (rst.next()) {
+        edges.add(
+            new Edge(
+                rst.getInt("edgeID"),
+                nodeDao.retrieveRow(rst.getInt("startNode")),
+                nodeDao.retrieveRow(rst.getInt("endNode"))));
+        Node startNode = nodeTable.retrieveRow(rst.getInt("startNode"));
+        Node endNode = nodeTable.retrieveRow(rst.getInt("endNode"));
+        startNode.addBranch(endNode, rst.getInt("edgeID"));
+      }
+      conn.close();
+      stm.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return true;
   }
 
   /**
@@ -125,7 +171,6 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
   }
 
   public boolean importCSV(String filename) {
-    NodeDaoImpl nodeDao = new NodeDaoImpl();
     try {
       File f = new File(filename);
       Scanner myReader = new Scanner(f);
@@ -135,8 +180,8 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
         Edge e =
             new Edge(
                 Integer.parseInt(vars[1]),
-                nodeDao.retrieveRow(Integer.parseInt(vars[2])),
-                nodeDao.retrieveRow(Integer.parseInt(vars[2])));
+                nodeTable.retrieveRow(Integer.parseInt(vars[2])),
+                nodeTable.retrieveRow(Integer.parseInt(vars[2])));
         addRow(e);
       }
       myReader.close();

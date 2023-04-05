@@ -56,6 +56,14 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
    * @return true if successfully deleted
    */
   public boolean deleteRow(Integer edgeID) {
+    try (Connection conn = GenDao.connect();
+         PreparedStatement stmt =
+                 conn.prepareStatement("DELETE FROM \"edge\" WHERE \"edgeID\" = ?")) {
+      stmt.setInt(1, edgeID);
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     int index = this.getIndex(edgeID);
     edges.remove(index);
     return true;
@@ -69,16 +77,17 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
    */
   public boolean addRow(Edge e) {
     try (Connection conn = GenDao.connect();
-        PreparedStatement stmt =
-            conn.prepareStatement("INSERT INTO edge(\"startNode\", \"endNode\") VALUES (?, ?)")) {
-      stmt.setInt(1, e.getStartNode().getNodeID());
-      stmt.setInt(2, e.getEndNode().getNodeID());
+         PreparedStatement stmt =
+                 conn.prepareStatement(
+                         "INSERT INTO edge(\"edgeID\", \"startNode\", \"endNode\") VALUES (?, ?, ?)")) {
+      stmt.setInt(1, edges.get(edges.size() - 1).getEdgeID() + 1);
+      stmt.setInt(2, e.getStartNode().getNodeID());
+      stmt.setInt(3, e.getEndNode().getNodeID());
       stmt.executeUpdate();
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
-    e.setEdgeID(nextID);
-    nextID++;
+    e.setEdgeID(edges.get(edges.size() - 1).getEdgeID() + 1);
     return edges.add(e);
   }
 

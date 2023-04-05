@@ -23,7 +23,6 @@ public enum Screen {
   EDIT_PROFILE("views/EditProfile.fxml", "Edit Profile Page"),
   PROFILE_PAGE("views/ProfilePage.fxml", "Profile Page");
 
-
   private final String filename;
   private final String title;
 

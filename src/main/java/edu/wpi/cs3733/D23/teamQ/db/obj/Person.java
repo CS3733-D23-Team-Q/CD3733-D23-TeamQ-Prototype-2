@@ -22,12 +22,8 @@ public class Person {
     this.PhoneNumber = PhoneNumber;
     this.username = username;
   }
-  public Person(
-          String Firstname,
-          String LastName,
-          String Title,
-          int PhoneNumber,
-          String username) {
+
+  public Person(String Firstname, String LastName, String Title, int PhoneNumber, String username) {
 
     this.FirstName = FirstName;
     this.LastName = LastName;

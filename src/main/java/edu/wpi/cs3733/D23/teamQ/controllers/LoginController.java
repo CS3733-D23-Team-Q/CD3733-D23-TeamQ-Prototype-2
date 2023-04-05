@@ -27,10 +27,8 @@ public class LoginController {
   @FXML Button FPButton;
   @FXML Button CAButton;
 
-  @Getter
-  private static String loginUsername;
-  @Getter
-  private static String loginEmail;
+  @Getter private static String loginUsername;
+  @Getter private static String loginEmail;
 
   public void initialize() {}
 
@@ -44,7 +42,6 @@ public class LoginController {
   public void usernameFieldEntered(KeyEvent e) {
     if (e.getCode().equals(KeyCode.ENTER)) {
       passwordField.requestFocus();
-
     }
   }
 
@@ -59,8 +56,8 @@ public class LoginController {
     if (enteredPassword.equals(actualPassword)) {
       alert.clearLabelAlert(loginAlert, alertImage);
       Navigation.navigate(Screen.HOME);
-      loginUsername=usernameField.getText();
-      loginEmail=dao.retrieveRow(loginUsername).getEmail();
+      loginUsername = usernameField.getText();
+      loginEmail = dao.retrieveRow(loginUsername).getEmail();
     } else {
       alert.setLabelAlert("Wrong password", loginAlert, alertImage);
     }

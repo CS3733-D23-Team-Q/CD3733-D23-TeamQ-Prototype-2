@@ -42,7 +42,7 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
 
     try {
       String query =
-              "UPDATE person SET firstName = ?, lastName = ?, title = ?, phoneNumber= ?, username=? WHERE IDNum = ?";
+          "UPDATE person SET firstName = ?, lastName = ?, title = ?, phoneNumber= ?, username=? WHERE IDNum = ?";
       PreparedStatement pst = con.prepareStatement(query);
       pst.setString(1, newFN);
       pst.setString(2, newLN);
@@ -108,7 +108,7 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
     Connection con = GenDao.connect();
     try {
       String query =
-              "INSERT INTO person (IDNum, FirstName, LastName, Title, PhoneNumber, username) VALUES(?,?,?,?,?,?)";
+          "INSERT INTO person (IDNum, FirstName, LastName, Title, PhoneNumber, username) VALUES(?,?,?,?,?,?)";
       PreparedStatement pst = con.prepareStatement(query);
       pst.setInt(1, IDNum);
       pst.setString(2, FirstName);
@@ -147,13 +147,13 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
       while (rs.next()) {
         Person a;
         a =
-                new Person(
-                        rs.getInt("IDNumber"),
-                        rs.getString("FirstName"),
-                        rs.getString("LastName"),
-                        rs.getString("Title"),
-                        rs.getInt("PhoneNumber"),
-                        rs.getString("username"));
+            new Person(
+                rs.getInt("IDNumber"),
+                rs.getString("FirstName"),
+                rs.getString("LastName"),
+                rs.getString("Title"),
+                rs.getInt("PhoneNumber"),
+                rs.getString("username"));
         People.add(a);
       }
       con.close();
@@ -165,7 +165,6 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
     return false;
   }
 
-
   public Person getPersonWithUsername(String UN) {
     populate();
     Person b = new Person(null, null, null, 0, UN);
@@ -174,8 +173,6 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
       if (a.getUsername() == UN) {
         return a;
       }
-
-
     }
     return b;
   }

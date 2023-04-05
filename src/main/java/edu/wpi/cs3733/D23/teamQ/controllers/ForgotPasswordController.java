@@ -21,8 +21,8 @@ public class ForgotPasswordController extends SecondaryStage {
   CreateAccountController CAController = new CreateAccountController();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();
-  @FXML ChoiceBox questionChoice1;
-  @FXML ChoiceBox questionChoice2;
+  @FXML ChoiceBox<String> questionChoice1;
+  @FXML ChoiceBox<String> questionChoice2;
   @FXML TextField usernameField;
   @FXML Label usernameAlert;
   @FXML ImageView usernameAlertImage;
@@ -153,13 +153,16 @@ public class ForgotPasswordController extends SecondaryStage {
     String username = usernameField.getText();
     String newPassword = NPField.getText();
     String repassword = CPField.getText();
-    int question1 = qdao.retrieveRow((String) questionChoice1.getValue()).getId();
-    int question2 = qdao.retrieveRow((String) questionChoice2.getValue()).getId();
+    String question1 = questionChoice1.getValue();
+    String question2 = questionChoice2.getValue();
+    int question1id = qdao.retrieveRow(question1).getId();
+    int question2id = qdao.retrieveRow(question2).getId();
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
     if (adao.getIndex(username) != -1) {
       alert.clearLabelAlert(usernameAlert, usernameAlertImage);
-      newPasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
+      newPasswordReact(
+          username, newPassword, repassword, question1id, question2id, answer1, answer2);
     } else {
       alert.setLabelAlert("Username doesn't exist", usernameAlert, usernameAlertImage);
     }

@@ -35,9 +35,10 @@ public class AccountDAOImpl implements GenDao<Account, String> {
     int newq2 = accountWithNewChanges.getSecurityQuestion2();
     String newa1 = accountWithNewChanges.getSecurityAnswer1();
     String newa2 = accountWithNewChanges.getSecurityAnswer2();
+    boolean newActive = accountWithNewChanges.isActive();
     try {
       String query =
-          "UPDATE account SET password = ?, email = ?, security_question_1 = ?, security_question_2 = ?, security_answer_1 = ?, security_answer_2 = ? WHERE username = ?";
+          "UPDATE account SET password = ?, email = ?, security_question_1 = ?, security_question_2 = ?, security_answer_1 = ?, security_answer_2 = ?, active = ? WHERE username = ?";
       PreparedStatement pst = con.prepareStatement(query);
       pst.setString(1, newPass);
       pst.setString(2, newEmail);
@@ -45,7 +46,8 @@ public class AccountDAOImpl implements GenDao<Account, String> {
       pst.setInt(4, newq2);
       pst.setString(5, newa1);
       pst.setString(6, newa2);
-      pst.setString(7, uname);
+      pst.setBoolean(7, newActive);
+      pst.setString(8, uname);
       int rs = pst.executeUpdate();
       if (rs == 1) {
         result = true;
@@ -56,6 +58,7 @@ public class AccountDAOImpl implements GenDao<Account, String> {
         accounts.get(index).setSecurityQuestion2(newq2);
         accounts.get(index).setSecurityAnswer1(newa1);
         accounts.get(index).setSecurityAnswer1(newa2);
+        accounts.get(index).setActive(newActive);
         System.out.println("Password updated successful!");
       } else {
         System.out.println("Failed to update your password.");
@@ -153,7 +156,8 @@ public class AccountDAOImpl implements GenDao<Account, String> {
                 rs.getInt("security_question_1"),
                 rs.getInt("security_question_2"),
                 rs.getString("security_answer_1"),
-                rs.getString("security_answer_2"));
+                rs.getString("security_answer_2"),
+                rs.getBoolean("active"));
         accounts.add(a);
       }
       con.close();
@@ -186,23 +190,5 @@ public class AccountDAOImpl implements GenDao<Account, String> {
       }
     }
     return is;
-  }
-
-  public int getQuestionId(String question) {
-    int q = 0;
-    Connection con = GenDao.connect();
-    try {
-      String query = "SELECT id FROM security_question WHERE question = ?";
-      PreparedStatement pst = con.prepareStatement(query);
-      pst.setString(1, question);
-      ResultSet rs = pst.executeQuery();
-      rs.next();
-      q = rs.getInt(1);
-      con.close();
-      pst.close();
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-    return q;
   }
 }

@@ -5,7 +5,7 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class SignageController {
+public class SignageController implements IController {
 
   @FXML private Button BackHomeBTN;
 

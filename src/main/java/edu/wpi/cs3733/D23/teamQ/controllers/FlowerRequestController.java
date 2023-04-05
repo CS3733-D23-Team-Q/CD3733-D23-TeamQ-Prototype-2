@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 
-public class FlowerRequestController extends ServiceRequestController {
+public class FlowerRequestController extends ServiceRequestController implements IController {
   @FXML private MFXTextField roomNumberField;
   @FXML private MFXTextField noteField;
   @FXML private MFXTextField specialInstructionsField;

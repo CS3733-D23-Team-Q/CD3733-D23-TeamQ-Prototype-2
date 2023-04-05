@@ -7,7 +7,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 
-public class ServiceRequestController {
+public class ServiceRequestController implements IController {
   @FXML private BorderPane serviceBorderPane;
 
   @FXML private MFXButton resetButton;

@@ -15,7 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class LoginController {
+public class LoginController implements IController {
+  static String user;
   AccountDAOImpl dao = new AccountDAOImpl();
   Alert alert = new Alert();
   @FXML Label loginAlert;
@@ -48,15 +49,6 @@ public class LoginController {
     }
   }
 
-  public void passwordReact(String enteredPassword, String actualPassword) {
-    if (enteredPassword.equals(actualPassword)) {
-      alert.clearLabelAlert(loginAlert, alertImage);
-      Navigation.navigate(Screen.HOME);
-    } else {
-      alert.setLabelAlert("Wrong password", loginAlert, alertImage);
-    }
-  }
-
   @FXML
   public void loginButtonClicked() throws IOException {
     String username = usernameField.getText();
@@ -77,6 +69,24 @@ public class LoginController {
     } else {
       alert.setLabelAlert("User doesn't exist", loginAlert, alertImage);
     }
+  }
+
+  public void passwordReact(String enteredPassword, String actualPassword) {
+    String username = usernameField.getText();
+    if (enteredPassword.equals(actualPassword)) {
+      user = username;
+      Account a = dao.retrieveRow(username);
+      a.setActive(true);
+      dao.updateRow(username, a);
+      alert.clearLabelAlert(loginAlert, alertImage);
+      Navigation.navigate(Screen.HOME);
+    } else {
+      alert.setLabelAlert("Wrong password", loginAlert, alertImage);
+    }
+  }
+
+  public String getUsername() {
+    return user;
   }
 
   @FXML

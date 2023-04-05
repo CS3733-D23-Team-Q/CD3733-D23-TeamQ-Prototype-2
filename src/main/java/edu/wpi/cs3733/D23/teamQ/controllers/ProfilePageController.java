@@ -32,15 +32,30 @@ public class ProfilePageController {
     String username = LoginController.getLoginUsername();
 
     String email = LoginController.getLoginEmail();
-    this.Title_Display.setText(dao.getPersonWithUsername(username).getTitle());
 
     this.ID_Number_Display.setText(String.valueOf(dao.getPersonWithUsername(username).getIDNum()));
-    this.First_Name_Display.setText(dao.getPersonWithUsername(username).getFirstName());
-    this.Last_Name_Display.setText(dao.getPersonWithUsername(username).getLastName());
+    if(dao.getPersonWithUsername(username).getFirstName()== null){
+      this.First_Name_Display.setText("Insert First Name");
+    }else{
+      this.First_Name_Display.setText(dao.getPersonWithUsername(username).getFirstName());
+    }
+    if(dao.getPersonWithUsername(username).getLastName()==null){
+      this.Last_Name_Display.setText("Insert Last Name");
+    }else{
+      this.Last_Name_Display.setText(dao.getPersonWithUsername(username).getLastName());
+    }
     this.Email_Display.setText(email);
-    this.Title_Display.setText(dao.getPersonWithUsername(username).getTitle());
-    this.Phone_Number_Display.setText(
-        String.valueOf(dao.getPersonWithUsername(username).getPhoneNumber()));
+    if (dao.getPersonWithUsername(username).getTitle()==null){
+      this.Title_Display.setText("Insert Title");
+    }else{
+      this.Title_Display.setText(dao.getPersonWithUsername(username).getTitle());
+    }
+    if(dao.getPersonWithUsername(username).getPhoneNumber() ==0){
+      this.Phone_Number_Display.setText("Insert Phone Number");
+    }else{
+      this.Phone_Number_Display.setText(String.valueOf(dao.getPersonWithUsername(username).getPhoneNumber()));
+    }
+
     this.Username_Display.setText(username);
 
     this.Edit_Profile.setOnMouseClicked(event -> Navigation.navigate(Screen.EDIT_PROFILE));

@@ -8,9 +8,16 @@ import java.util.List;
 
 public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
   private List<FlowerRequest> flowerRequests = new ArrayList<FlowerRequest>();
-  int nextID = 0;
+  private int nextID = 0;
+  private static FlowerRequestDaoImpl single_instance = null;
 
-  public FlowerRequestDaoImpl() {
+  public static synchronized FlowerRequestDaoImpl getInstance() {
+    if (single_instance == null) single_instance = new FlowerRequestDaoImpl();
+
+    return single_instance;
+  }
+
+  private FlowerRequestDaoImpl() {
     populate();
     if (flowerRequests.size() != 0) {
       nextID = flowerRequests.get(flowerRequests.size() - 1).getRequestID() + 1;
@@ -116,6 +123,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
                 rs.getInt("bouquetSize")));
       }
       conn.close();
+      pst.close();
       return true;
     } catch (Exception e) {
       System.out.println(e.getMessage());

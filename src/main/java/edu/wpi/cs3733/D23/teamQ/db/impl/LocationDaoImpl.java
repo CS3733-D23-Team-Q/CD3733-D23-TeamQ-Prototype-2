@@ -8,9 +8,16 @@ import java.util.List;
 
 public class LocationDaoImpl implements GenDao<Location, Integer> {
   private List<Location> locations = new ArrayList<Location>();
+  private static LocationDaoImpl single_instance = null;
 
-  public LocationDaoImpl() {
+  private LocationDaoImpl() {
     populate();
+  }
+
+  public static synchronized LocationDaoImpl getInstance() {
+    if (single_instance == null) single_instance = new LocationDaoImpl();
+
+    return single_instance;
   }
 
   /**
@@ -74,7 +81,7 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
         PreparedStatement stmt =
             conn.prepareStatement(
                 "INSERT INTO \"conferenceRequest\"(\"nodeID\", \"longName\", \"shortName\", \"nodeType\") VALUES (?, ?, ?, ?)")) {
-      stmt.setInt(1, l.getNode().getNodeID());
+      stmt.setInt(1, l.getNodeID());
       stmt.setString(2, l.getLongName());
       stmt.setString(3, l.getShortName());
       stmt.setString(4, l.getNodeType());
@@ -98,6 +105,8 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
                 rst.getString("shortName"),
                 rst.getString("nodeType")));
       }
+      conn.close();
+      stm.close();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -113,7 +122,7 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
   private int getIndex(Integer nodeID) {
     for (int i = 0; i < locations.size(); i++) {
       Location l = locations.get(i);
-      if (l.getNode().getNodeID() == nodeID) {
+      if (l.getNodeID() == nodeID) {
         return i;
       }
     }

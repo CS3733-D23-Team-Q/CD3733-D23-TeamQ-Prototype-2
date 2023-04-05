@@ -31,10 +31,6 @@ public class Navigation {
       AnchorPane.setLeftAnchor(n, 0.0);
       AnchorPane.setRightAnchor(n, 0.0);
       AnchorPane.setBottomAnchor(n, 0.0);
-      //      primaryStage.setTitle(title);
-      //      primaryStage.setFullScreen(true);
-      //      primaryStage.setFullScreenExitHint("");
-      //      primaryStage.setFullScreenExitKeyCombination(KeyCombination.keyCombination("F5"));
     } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }

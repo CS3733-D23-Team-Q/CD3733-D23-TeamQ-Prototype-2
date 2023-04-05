@@ -58,6 +58,7 @@ public class LoginController {
       Navigation.navigate(Screen.HOME);
       loginUsername = usernameField.getText();
       loginEmail = dao.retrieveRow(loginUsername).getEmail();
+
     } else {
       alert.setLabelAlert("Wrong password", loginAlert, alertImage);
     }

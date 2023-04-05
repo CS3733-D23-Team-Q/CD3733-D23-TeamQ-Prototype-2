@@ -1,5 +1,8 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.Pathfinding.Astar;
+import edu.wpi.cs3733.D23.teamQ.db.Qdb;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -9,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+
+import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Astar.aStar;
 
 public class PathTextController {
   @FXML Button resetButton;
@@ -41,12 +46,11 @@ public class PathTextController {
     if ((startNodeField.getText()).equals("") || (endNodeField.getText()).equals("")) {
       textualPath.setText("Please enter two valid Node IDs");
     } else {
-      //    Qdb qdb = Qdb.getInstance();
-      //    Node start = qdb.nodeTable.retrieveRow(Integer.parseInt(startNodeField.getText()));
-      //    Node end = qdb.nodeTable.retrieveRow(Integer.parseInt(endNodeField.getText()));
-      //    String textPath = Astar.returnPath(aStar(start, end));
-      //    textualPath.setText(textPath);
-      textualPath.setText(startNodeField.getText() + " " + endNodeField.getText());
+      Qdb qdb = Qdb.getInstance();
+      Node start = qdb.nodeTable.retrieveRow(Integer.parseInt(startNodeField.getText()));
+      Node end = qdb.nodeTable.retrieveRow(Integer.parseInt(endNodeField.getText()));
+      String textPath = Astar.returnPath(Astar.aStar(start, end));
+      textualPath.setText(textPath);
     }
   }
 

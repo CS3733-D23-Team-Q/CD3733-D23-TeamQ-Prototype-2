@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import static edu.wpi.cs3733.D23.teamQ.Pathfinding.star.aStar;
-
-import edu.wpi.cs3733.D23.teamQ.Pathfinding.star;
+import edu.wpi.cs3733.D23.teamQ.Pathfinding.Astar;
 import edu.wpi.cs3733.D23.teamQ.db.Qdb;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
@@ -12,7 +10,10 @@ import java.sql.SQLException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+
+import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Astar.aStar;
 
 public class PathTextController {
   @FXML Button resetButton;
@@ -24,6 +25,7 @@ public class PathTextController {
 
   @FXML MFXTextField startNodeField;
   @FXML MFXTextField endNodeField;
+  @FXML Label textualPath;
 
   @FXML
   public void initialize() {}
@@ -41,12 +43,15 @@ public class PathTextController {
 
   @FXML
   public void submitButtonClicked() throws SQLException {
-    Qdb qdb = Qdb.getInstance();
-    Node start = qdb.nodeTable.retrieveRow(Integer.parseInt(startNodeField.getText()));
-    Node end = qdb.nodeTable.retrieveRow(Integer.parseInt(endNodeField.getText()));
-    String textPath = star.returnPath(aStar(start, end));
-    System.out.println(textPath);
-    Navigation.navigate(Screen.HOME);
+    if ((startNodeField.getText()).equals("") || (endNodeField.getText()).equals("")) {
+      textualPath.setText("Please enter two valid Node IDs");
+    } else {
+      Qdb qdb = Qdb.getInstance();
+      Node start = qdb.nodeTable.retrieveRow(Integer.parseInt(startNodeField.getText()));
+      Node end = qdb.nodeTable.retrieveRow(Integer.parseInt(endNodeField.getText()));
+      String textPath = Astar.returnPath(Astar.aStar(start, end));
+      textualPath.setText(textPath);
+    }
   }
 
   @FXML

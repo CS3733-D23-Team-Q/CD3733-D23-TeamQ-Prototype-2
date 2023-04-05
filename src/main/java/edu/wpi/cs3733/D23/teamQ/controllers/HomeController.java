@@ -19,6 +19,14 @@ public class HomeController {
   @FXML Button nextButton;
 
   @FXML MenuItem exit;
+
+  @FXML MenuItem serviceRequestHubMenu;
+
+  @FXML MenuItem listServiceRequestMenu;
+
+  @FXML MenuItem signagePageMenu;
+
+  @FXML MenuItem learnMoreMenu;
   @FXML MenuItem logout;
   @FXML Button settingButton;
   @FXML TextField searchField;

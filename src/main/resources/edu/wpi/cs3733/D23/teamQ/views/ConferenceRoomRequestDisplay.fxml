@@ -88,12 +88,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="resetButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#resetButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Reset" textFill="#3966af">
+            <Button fx:id="resetButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#resetButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Back" textFill="#3966af">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="submitButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#submitButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Re-Submit" textFill="#3966af" GridPane.columnIndex="2">
+            <Button fx:id="submitButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#submitButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Edit" textFill="#3966af" GridPane.columnIndex="2">
                <font>
                   <Font size="16.0" />
                </font>

@@ -41,7 +41,9 @@ public class FlowerRequestDisplayController {
   }
 
   @FXML
-  public void resetButtonClicked() {}
+  public void resetButtonClicked() {
+    Navigation.navigate(Screen.LIST_REQUESTS);
+  }
 
   @FXML
   public void backButtonClicked() {

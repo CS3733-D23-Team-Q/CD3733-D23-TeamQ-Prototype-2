@@ -40,7 +40,7 @@ public class PathMain {
     n5.addBranch(n7, 7);
     n6.addBranch(n8, 8);
     n7.addBranch(n8, 8);
-    Node res = aStar(head, goal);
+    Node res = aStar(n1, goal);
     printPath(res);
   }
 }

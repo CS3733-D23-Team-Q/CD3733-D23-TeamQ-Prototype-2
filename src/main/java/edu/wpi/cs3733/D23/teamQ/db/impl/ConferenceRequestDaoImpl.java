@@ -120,6 +120,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
                 rst.getString("foodChoice")));
       }
       conn.close();
+      stm.close();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

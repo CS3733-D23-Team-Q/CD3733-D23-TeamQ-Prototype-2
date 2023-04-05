@@ -116,6 +116,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
                 rs.getInt("bouquetSize")));
       }
       conn.close();
+      pst.close();
       return true;
     } catch (Exception e) {
       System.out.println(e.getMessage());

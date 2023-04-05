@@ -99,6 +99,7 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
                 rst.getString("nodeType")));
       }
       conn.close();
+      stm.close();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

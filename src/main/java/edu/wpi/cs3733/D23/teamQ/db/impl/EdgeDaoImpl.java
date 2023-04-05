@@ -100,6 +100,7 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
         startNode.addBranch(endNode, rst.getInt("edgeID"));
       }
       conn.close();
+      stm.close();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

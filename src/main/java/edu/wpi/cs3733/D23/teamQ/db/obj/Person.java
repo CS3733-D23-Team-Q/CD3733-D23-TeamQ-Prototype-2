@@ -22,6 +22,19 @@ public class Person {
     this.PhoneNumber = PhoneNumber;
     this.username = username;
   }
+  public Person(
+          String Firstname,
+          String LastName,
+          String Title,
+          int PhoneNumber,
+          String username) {
+
+    this.FirstName = FirstName;
+    this.LastName = LastName;
+    this.Title = Title;
+    this.PhoneNumber = PhoneNumber;
+    this.username = username;
+  }
 
   public int getIDNum() {
     return IDNum;

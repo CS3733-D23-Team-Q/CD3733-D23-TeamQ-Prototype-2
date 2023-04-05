@@ -165,10 +165,17 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
     return false;
   }
 
-  public Person getPersonWithUsername(String UN){
-    for(int i= 0; i< this.; i++){
-
+  public Person getPersonWithUsername(String UN) {
+    populate();
+    Person b = new Person(null, null, null, 0, UN);
+    for(int i= 0; i< People.size(); i++){
+      Person a = People.get(i);
+      if(a.getUsername() == UN){
+        return a;
+      }
     }
+    return b;
+
   }
 
   public int getIndex(int IDNum) {

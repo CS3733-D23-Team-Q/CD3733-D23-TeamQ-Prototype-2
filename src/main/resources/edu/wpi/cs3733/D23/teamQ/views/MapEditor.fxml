@@ -72,7 +72,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" rippleColor="#f1f1f1" style="-fx-background-color: #F1F1F1;" styleClass="mfx-button" text="Home" textFill="#3966af" translateX="130.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" rippleColor="#f1f1f1" style="-fx-background-color: #F1F1F1;" styleClass="mfx-button" text="Home" textFill="#3966af" translateX="110.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <font>
             <Font size="16.0" />
          </font>
@@ -99,7 +99,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="3" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="4" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="5" />
-      <ImageView fitHeight="56.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" translateX="80.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <ImageView fitHeight="56.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" translateX="70.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <image>
             <Image url="@../../../../../../../../../../CD3733-D23-TeamQ-Prototype-2/src/main/resources/Home.png" />
          </image>

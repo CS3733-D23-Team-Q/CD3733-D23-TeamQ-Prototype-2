@@ -57,6 +57,11 @@ public class HomeController {
   public void exitMenuClicked() {
     Platform.exit();
   }
+  /** Navigates to profile page * */
+  @FXML
+  public void Home_ProfileButton_Clicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
+  }
 
   @FXML
   public void nextButtonClicked() {

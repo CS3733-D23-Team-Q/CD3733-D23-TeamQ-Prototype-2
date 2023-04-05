@@ -16,11 +16,16 @@ public enum Screen {
   CONFERENCE_ROOM_REQUEST("views/ConferenceRoomRequest.fxml", "Conference Room Request"),
   FLOWER_REQUEST("views/FlowerRequest.fxml", "Flower Request"),
   FLOWER_REQUEST_SUBMISSION("views.FlowerRequestSubmission.fxml", "Flower Request Submission"),
+  CONFERENCE_ROOM_REQUEST_DISPLAY(
+      "views/ConferenceRoomRequestDisplay.fxml", "Conference Room Request Display"),
+  FLOWER_REQUEST_DISPLAY("views/FlowerRequestDisplay.fxml", "Flower Request Display"),
   MEAL_REQUEST("views/MealDeliveryRequest.fxml", "Meal Request"),
   OFFICE_SUPPLIES_REQUEST("views/OfficeSuppliesRequest.fxml", "Office Supplies Request"),
   FURNITURE_REQUEST("views/FurnitureDeliveryRequest.fxml", "Furniture Request"),
   LIST_REQUESTS("views/ListServiceRequests.fxml", "List of Service Requests"),
-  PATIENT_TRANSPORT_REQUEST("views/PatientTransportRequest.fxml", "Patient Transport Request");
+  PATIENT_TRANSPORT_REQUEST("views/PatientTransportRequest.fxml", "Patient Transport Request"),
+  EDIT_PROFILE("views/EditProfile.fxml", "Edit Profile Page"),
+  PROFILE_PAGE("views/ProfilePage.fxml", "Profile Page");
 
   private final String filename;
   private final String title;

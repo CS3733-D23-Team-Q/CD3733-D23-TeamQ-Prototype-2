@@ -3,6 +3,8 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceRequestDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.FlowerRequestDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.ServiceRequestDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
+import edu.wpi.cs3733.D23.teamQ.db.obj.FlowerRequest;
 import edu.wpi.cs3733.D23.teamQ.db.obj.ServiceRequest;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -28,6 +30,9 @@ public class ListServiceRequestController {
   @FXML TableColumn<ServiceRequest, String> specialInstructions;
 
   @FXML Button selectButton;
+
+  FlowerRequest flowerRequest;
+  ConferenceRequest conferenceRequest;
 
   ServiceRequestDaoImpl serviceRequestDao = new ServiceRequestDaoImpl();
 
@@ -60,11 +65,18 @@ public class ListServiceRequestController {
     if (flowerRequestDao.retrieveRow(
             tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
         != null) {
-
+      flowerRequest =
+          flowerRequestDao.retrieveRow(
+              tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+      Navigation.navigate(Screen.FLOWER_REQUEST_DISPLAY);
     } else if (conferenceRequestDao.retrieveRow(
             tableView.getSelectionModel().getSelectedItems().get(0).getRequestID())
         != null) {
-
+      conferenceRequest =
+          conferenceRequestDao.retrieveRow(
+              tableView.getSelectionModel().getSelectedItems().get(0).getRequestID());
+      System.out.println(conferenceRequest.getRequestID());
+      Navigation.navigate(Screen.CONFERENCE_ROOM_REQUEST_DISPLAY);
     }
   }
 
@@ -76,5 +88,13 @@ public class ListServiceRequestController {
   @FXML
   public void exitItemClicked() {
     Platform.exit();
+  }
+
+  public ConferenceRequest getConferenceRequest() {
+    return conferenceRequest;
+  }
+
+  public FlowerRequest getFlowerRequest() {
+    return flowerRequest;
   }
 }

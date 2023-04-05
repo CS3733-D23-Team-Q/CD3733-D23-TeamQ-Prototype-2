@@ -1,20 +1,28 @@
 package edu.wpi.cs3733.D23.teamQ.db.impl;
 
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
+import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Move;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EdgeDaoImpl implements GenDao<Edge, Integer> {
     private List<Edge> edges = new ArrayList<>();
+    private int nextID = 0;
 
     public EdgeDaoImpl() {
+        populate();
+        if (edges.size() != 0) {
+            nextID = edges.get(edges.size() - 1).getEdgeID() + 1;
+        }
     }
 
     /**
@@ -60,12 +68,41 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
      * @return true if successful
      */
     public boolean addRow(Edge e) {
+        try (Connection conn = GenDao.connect();
+             PreparedStatement stmt =
+                     conn.prepareStatement(
+                             "INSERT INTO edge(\"startNode\", \"endNode\") VALUES (?, ?)")) {
+            stmt.setInt(1, e.getStartNode().getNodeID());
+            stmt.setInt(2, e.getEndNode().getNodeID());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        e.setEdgeID(nextID);
+        nextID++;
         return edges.add(e);
     }
 
     @Override
     public boolean populate() {
-        return false;
+        NodeDaoImpl nodeDao = new NodeDaoImpl();
+        try {
+            Connection conn = GenDao.connect();
+            Statement stm = conn.createStatement();
+            ResultSet rst = stm.executeQuery("Select * From \"edge\"");
+            while (rst.next()) {
+                edges.add(
+                        new Edge(
+                                rst.getInt("edgeID"),
+                                nodeDao.retrieveRow(rst.getInt("startNode")),
+                                nodeDao.retrieveRow(rst.getInt("endNode"))
+                        )
+                );
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
     }
 
     /**

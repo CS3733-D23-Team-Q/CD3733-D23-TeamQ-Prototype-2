@@ -13,6 +13,7 @@ public class Account {
   private int securityQuestion2;
   private String securityAnswer1;
   private String securityAnswer2;
+  private boolean active;
 
   public Account(
       String username,
@@ -21,7 +22,8 @@ public class Account {
       int securityQuestion1,
       int securityQuestion2,
       String securityAnswer1,
-      String securityAnswer2) {
+      String securityAnswer2,
+      boolean active) {
     this.username = username;
     this.password = password;
     this.email = email;
@@ -29,5 +31,6 @@ public class Account {
     this.securityQuestion2 = securityQuestion2;
     this.securityAnswer1 = securityAnswer1;
     this.securityAnswer2 = securityAnswer2;
+    this.active = active;
   }
 }

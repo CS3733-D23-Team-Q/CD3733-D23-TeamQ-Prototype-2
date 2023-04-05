@@ -53,7 +53,7 @@ public class AccountDaoImpl implements GenDao<Account, String> {
     boolean newActive = accountWithNewChanges.isActive();
     try {
       String query =
-          "UPDATE account SET password = ?, email = ?, security_question_1 = ?, security_question_2 = ?, security_answer_1 = ?, security_answer_2 = ?, active = ? WHERE username = ?";
+          "UPDATE account SET password = ?, email = ?, security_question_1 = ?, security_question_2 = ?, security_answer_1 = ?, security_answer_2 = ?, active = ? WHERE username= ?";
       PreparedStatement pst = con.prepareStatement(query);
       pst.setString(1, newPass);
       pst.setString(2, newEmail);
@@ -124,7 +124,7 @@ public class AccountDaoImpl implements GenDao<Account, String> {
     Connection con = GenDao.connect();
     try {
       String query =
-          "INSERT INTO account (username, password, email, security_question_1, security_question_2, security_answer_1, security_answer_2) VALUES(?,?,?,?,?,?,?)";
+          "INSERT INTO account (username, password, email, security_question_1,security_question_2, security_answer_1, security_answer_2) VALUES(?,?,?,?,?,?,?)";
       PreparedStatement pst = con.prepareStatement(query);
       pst.setString(1, uname);
       pst.setString(2, pass);

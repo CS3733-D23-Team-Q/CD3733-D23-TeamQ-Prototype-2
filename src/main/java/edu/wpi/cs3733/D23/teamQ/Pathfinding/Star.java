@@ -15,7 +15,7 @@ public class Star extends Edge {
   public static double calculateHeuristic(Node n, Node target) {
     int dx = Math.abs(n.getXCoord() - target.getYCoord());
     int dy = Math.abs(n.getYCoord() - target.getYCoord());
-    int D = Math.abs(dx + dy);
+    int D = Math.max(dx, dy);
     return D;
   }
 
@@ -45,7 +45,7 @@ public class Star extends Edge {
           Node nextStart = n.getEdges().get(i).getStartNode();
           Node nextEnd = n.getEdges().get(i).getEndNode();
         }
-        // double totalWeight = n.getG() + edge.getWeight();
+        //         double totalWeight = n.getG() + edge.getWeight();
         int totalWeight = m.getWeight(); // first weight
         if (next != null) {
           nextWeight = next.getWeight();
@@ -60,6 +60,9 @@ public class Star extends Edge {
           next.getStartNode()
               .setF(next.getStartNode().getG() + calculateHeuristic(next.getStartNode(), target));
           openList.add(next.getEndNode());
+          //              .setF(next.getStartNode().getG() + calculateHeuristic(next.getStartNode(),
+          // target));
+          //          openList.add(next.getEndNode());
           if (closedList.size() != 0) {
             //  System.out.println(closedList.get(closedList.size() - 1).getNodeID());
           }
@@ -86,7 +89,9 @@ public class Star extends Edge {
           }
         }
       }
-      if (!closedList.contains(m.getEndNode())) {
+      //      if (!closedList.contains(m.getEndNode())) {
+      if (!closedList.contains(m.getStartNode())) {
+        //        openList.add(m.getStartNode());
         openList.add(m.getEndNode());
       }
       openList.remove(n);

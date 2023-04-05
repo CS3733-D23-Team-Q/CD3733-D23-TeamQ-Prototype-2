@@ -287,7 +287,8 @@ public class CreateAccountController extends SecondaryStage {
               qdao.retrieveRow(question1).getId(),
               qdao.retrieveRow(question2).getId(),
               answer1,
-              answer2);
+              answer2,
+              false);
       adao.addRow(a);
       super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
       stage.centerOnScreen();

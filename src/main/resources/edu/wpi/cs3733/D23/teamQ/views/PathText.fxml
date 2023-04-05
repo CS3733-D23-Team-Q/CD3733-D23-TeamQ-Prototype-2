@@ -94,7 +94,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="submitButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#submitButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Submit" textFill="#3966af" GridPane.columnIndex="2">
+            <Button fx:id="submitButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#submitButtonClicked" prefHeight="43.0" prefWidth="98.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Get Path" textFill="#3966af" GridPane.columnIndex="2">
                <font>
                   <Font size="16.0" />
                </font>

@@ -13,12 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
 
-
-public class ConferenceRoomRequestController implements IController {
+public class ConferenceRoomRequestController {
   @FXML private MFXTextField assigneeField;
   @FXML private MFXTextField roomNumberField;
   @FXML private MFXTextField dateTimeField;
-  
   ObservableList<String> foodOptionsList =
       FXCollections.observableArrayList(
           "Brunch spread", "Dinner spread", "Snack spread", "No food");

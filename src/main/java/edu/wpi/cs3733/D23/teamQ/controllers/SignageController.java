@@ -8,8 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
-public class SignageController implements IController {
+public class SignageController {
   @FXML GridPane signageRoot;
+
   @FXML
   public void initialize() {
     Platform.runLater(

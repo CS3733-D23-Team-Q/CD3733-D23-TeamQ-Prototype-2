@@ -32,29 +32,29 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
 
       for (int i = 0; i < flowerRequests.size(); i++) {
         FlowerRequest fr = flowerRequests.get(i);
-        if(fr.getRequester().equals(username)) {
+        if (fr.getRequester().equals(username)) {
           ServiceRequest s =
-                  new ServiceRequest(
-                          fr.getRequestID(),
-                          fr.getRequester(),
-                          fr.getProgress(),
-                          fr.getAssignee(),
-                          fr.getRoomNumber(),
-                          fr.getSpecialInstructions());
+              new ServiceRequest(
+                  fr.getRequestID(),
+                  fr.getRequester(),
+                  fr.getProgress(),
+                  fr.getAssignee(),
+                  fr.getRoomNumber(),
+                  fr.getSpecialInstructions());
           srL.add(s);
         }
       }
       for (int i = 0; i < conferenceRequests.size(); i++) {
         ConferenceRequest cr = conferenceRequests.get(i);
-        if(cr.getRequester().equals(username)) {
+        if (cr.getRequester().equals(username)) {
           ServiceRequest s =
-                  new ServiceRequest(
-                          cr.getRequestID(),
-                          cr.getRequester(),
-                          cr.getProgress(),
-                          cr.getAssignee(),
-                          cr.getRoomNumber(),
-                          cr.getSpecialInstructions());
+              new ServiceRequest(
+                  cr.getRequestID(),
+                  cr.getRequester(),
+                  cr.getProgress(),
+                  cr.getAssignee(),
+                  cr.getRoomNumber(),
+                  cr.getSpecialInstructions());
           srL.add(s);
         }
       }

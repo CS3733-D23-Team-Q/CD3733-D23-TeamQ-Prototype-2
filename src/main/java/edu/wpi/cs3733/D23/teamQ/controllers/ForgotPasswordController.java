@@ -15,14 +15,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
-public class ForgotPasswordController extends SecondaryStage implements IController {
-  AccountDaoImpl adao = new AccountDaoImpl();
+public class ForgotPasswordController extends SecondaryStage {
+  AccountDaoImpl adao = AccountDaoImpl.getInstance();
   QuestionDAOImpl qdao = new QuestionDAOImpl();
   CreateAccountController CAController = new CreateAccountController();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();
-  @FXML ChoiceBox<String> questionChoice1;
-  @FXML ChoiceBox<String> questionChoice2;
+  @FXML ChoiceBox questionChoice1;
+  @FXML ChoiceBox questionChoice2;
   @FXML TextField usernameField;
   @FXML Label usernameAlert;
   @FXML ImageView usernameAlertImage;
@@ -42,8 +42,6 @@ public class ForgotPasswordController extends SecondaryStage implements IControl
 
   @FXML
   public void initialize() {
-    adao.populate();
-    qdao.populate();
     List<Question> questions = qdao.getAllRows();
     for (int i = 0; i < questions.size(); i++) {
       String question = questions.get(i).getQuestion();
@@ -56,7 +54,13 @@ public class ForgotPasswordController extends SecondaryStage implements IControl
   }
 
   public void newPasswordReact(
-      String username, String newPassword, String repassword, String answer1, String answer2)
+      String username,
+      String newPassword,
+      String repassword,
+      int question1,
+      int question2,
+      String answer1,
+      String answer2)
       throws IOException {
     Account a = adao.retrieveRow(username);
     String oldPassword = a.getPassword();
@@ -65,12 +69,18 @@ public class ForgotPasswordController extends SecondaryStage implements IControl
           "Please enter a different password from the old one", NPAlert, NPAlertImage);
     } else {
       alert.clearLabelAlert(NPAlert, NPAlertImage);
-      passwordReact(username, newPassword, repassword, answer1, answer2);
+      passwordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     }
   }
 
   public void passwordReact(
-      String username, String newPassword, String repassword, String answer1, String answer2)
+      String username,
+      String newPassword,
+      String repassword,
+      int question1,
+      int question2,
+      String answer1,
+      String answer2)
       throws IOException {
     switch (CAController.validPassword(newPassword)) {
       case 0:
@@ -78,7 +88,7 @@ public class ForgotPasswordController extends SecondaryStage implements IControl
         break;
       case 1:
         alert.clearLabelAlert(NPAlert, NPAlertImage);
-        repasswordReact(username, newPassword, repassword, answer1, answer2);
+        repasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
         break;
       case 2:
         alert.setLabelAlert(
@@ -90,30 +100,38 @@ public class ForgotPasswordController extends SecondaryStage implements IControl
   }
 
   public void repasswordReact(
-      String username, String newPassword, String repassword, String answer1, String answer2)
+      String username,
+      String newPassword,
+      String repassword,
+      int question1,
+      int question2,
+      String answer1,
+      String answer2)
       throws IOException {
     if (newPassword.equals(repassword)) {
       alert.clearLabelAlert(CPAlert, CPAlertImage);
-      securityQAReact(username, newPassword, repassword, answer1, answer2);
+      securityQAReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {
       alert.setLabelAlert("Password doesn't match", CPAlert, CPAlertImage);
     }
   }
 
   public void securityQAReact(
-      String username, String newPassword, String repassword, String answer1, String answer2)
+      String username,
+      String newPassword,
+      String repassword,
+      int question1,
+      int question2,
+      String answer1,
+      String answer2)
       throws IOException {
-    String question1 = questionChoice1.getValue();
-    String question2 = questionChoice2.getValue();
-    int question1id = qdao.retrieveRow(question1).getId();
-    int question2id = qdao.retrieveRow(question2).getId();
     Account a = adao.retrieveRow(username);
     int actualq1 = a.getSecurityQuestion1();
     int actualq2 = a.getSecurityQuestion2();
     String actuala1 = a.getSecurityAnswer1();
     String actuala2 = a.getSecurityAnswer2();
-    if (question1id == actualq1
-        && question2id == actualq2
+    if (question1 == actualq1
+        && question2 == actualq2
         && answer1.equals(actuala1)
         && answer2.equals(actuala2)) {
       answer1Field.setStyle(null);
@@ -135,11 +153,13 @@ public class ForgotPasswordController extends SecondaryStage implements IControl
     String username = usernameField.getText();
     String newPassword = NPField.getText();
     String repassword = CPField.getText();
+    int question1 = qdao.retrieveRow((String) questionChoice1.getValue()).getId();
+    int question2 = qdao.retrieveRow((String) questionChoice2.getValue()).getId();
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
     if (adao.getIndex(username) != -1) {
       alert.clearLabelAlert(usernameAlert, usernameAlertImage);
-      newPasswordReact(username, newPassword, repassword, answer1, answer2);
+      newPasswordReact(username, newPassword, repassword, question1, question2, answer1, answer2);
     } else {
       alert.setLabelAlert("Username doesn't exist", usernameAlert, usernameAlertImage);
     }

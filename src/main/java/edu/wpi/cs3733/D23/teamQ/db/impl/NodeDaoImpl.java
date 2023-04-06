@@ -3,29 +3,15 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class NodeDaoImpl implements GenDao<Node, Integer> {
-  private List<Node> nodes = new ArrayList<>();
-  private static NodeDaoImpl single_instance = null;
+  private List<Node> nodes;
 
-  private NodeDaoImpl() {
+  public NodeDaoImpl() {
     populate();
-  }
-
-  public static synchronized NodeDaoImpl getInstance() {
-    if (single_instance == null) single_instance = new NodeDaoImpl();
-
-    return single_instance;
   }
 
   /**
@@ -47,8 +33,6 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    * @return true if successful
    */
   public boolean updateRow(Integer nodeID, Node newNode) {
-    deleteRow(nodeID);
-    addRow(newNode);
     int index = this.getIndex(nodeID);
     nodes.set(index, newNode);
     return true;
@@ -61,14 +45,6 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    * @return true if successfully deleted
    */
   public boolean deleteRow(Integer nodeID) {
-    try (Connection conn = GenDao.connect();
-        PreparedStatement stmt =
-            conn.prepareStatement("DELETE FROM \"node\" WHERE \"nodeID\" = ?")) {
-      stmt.setInt(1, nodeID);
-      stmt.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
     int index = this.getIndex(nodeID);
     nodes.remove(index);
     return true;
@@ -81,44 +57,11 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    * @return true if successful
    */
   public boolean addRow(Node n) {
-    try (Connection conn = GenDao.connect();
-        PreparedStatement stmt =
-            conn.prepareStatement(
-                "INSERT INTO \"flowerRequest\"(\"nodeID\", xcoord, ycoord, floor, building) VALUES (?, ?, ?, ?, ?)")) {
-      stmt.setInt(1, n.getNodeID());
-      stmt.setInt(2, n.getXCoord());
-      stmt.setInt(3, n.getYCoord());
-      stmt.setString(4, n.getFloor());
-      stmt.setString(5, n.getBuilding());
-      stmt.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
     return nodes.add(n);
   }
 
   @Override
   public boolean populate() {
-    try {
-      Connection conn = GenDao.connect();
-      PreparedStatement pst = conn.prepareStatement("SELECT * FROM \"node\"");
-      ResultSet rs = pst.executeQuery();
-      while (rs.next()) {
-        nodes.add(
-            new Node(
-                rs.getInt("nodeID"),
-                rs.getInt("xcoord"),
-                rs.getInt("ycoord"),
-                rs.getString("floor"),
-                rs.getString("building")));
-      }
-      conn.close();
-      pst.close();
-
-      return true;
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
     return false;
   }
 
@@ -186,23 +129,5 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
       e.printStackTrace();
       return false;
     }
-  }
-
-  public boolean importCSV(String filename) {
-    try {
-      File f = new File(filename);
-      Scanner myReader = new Scanner(f);
-      while (myReader.hasNextLine()) {
-        String row = myReader.nextLine();
-        String[] vars = row.split(",");
-        // Node m = new Node(Integer.parseInt(vars[0]), Integer.parseInt(vars[1]),
-        // Integer.parseInt(vars[2]), vars[3], vars[4], vars[5], vars[6]);
-        // addRow(m);
-      }
-      myReader.close();
-    } catch (FileNotFoundException e) {
-      throw new RuntimeException(e);
-    }
-    return true;
   }
 }

@@ -1,7 +1,10 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDaoImpl;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,29 +13,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class HomeController {
-  @FXML Button ServiceHubButton;
-  @FXML Button ListRequestsButton;
+public class HomeController implements IController {
+  AccountDaoImpl adao = new AccountDaoImpl();
+  @FXML Button CRReservationButton;
+  @FXML Button FDRequestButton;
   @FXML Button SPButton;
   @FXML Button LMButton;
 
   @FXML Button nextButton;
 
   @FXML MenuItem exit;
-
-  @FXML MenuItem serviceRequestHubMenu;
-
-  @FXML MenuItem listServiceRequestMenu;
-
-  @FXML MenuItem signagePageMenu;
-
-  @FXML MenuItem learnMoreMenu;
   @FXML MenuItem logout;
   @FXML Button settingButton;
   @FXML TextField searchField;
 
   @FXML
-  public void initialize() {}
+  public void initialize() {
+    adao.populate();
+  }
 
   /** Navigate to the conference room request page when the CRReservationButton is clicked. */
   @FXML
@@ -49,7 +47,6 @@ public class HomeController {
   /** Navigate to the signage page when the SPButton is clicked. */
   @FXML
   public void SPButtonClicked() {
-
     Navigation.navigate(Screen.SIGNAGE);
   }
 
@@ -64,11 +61,6 @@ public class HomeController {
   @FXML
   public void exitMenuClicked() {
     Platform.exit();
-  }
-  /** Navigates to profile page * */
-  @FXML
-  public void Home_ProfileButton_Clicked() {
-    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 
   @FXML
@@ -90,7 +82,12 @@ public class HomeController {
   }
 
   @FXML
-  public void logout() {
+  public void logout() throws IOException {
+    LoginController lc = (LoginController) Navigation.getController(Screen.LOGIN);
+    String username = lc.getUsername();
+    Account a = adao.retrieveRow(username);
+    a.setActive(false);
+    adao.updateRow(username, a);
     Navigation.navigate(Screen.LOGIN);
   }
 }

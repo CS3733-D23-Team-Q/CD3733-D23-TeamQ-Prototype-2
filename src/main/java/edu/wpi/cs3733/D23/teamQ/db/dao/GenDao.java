@@ -23,7 +23,7 @@ public interface GenDao<T, G> {
 
   public List<T> getAllRows();
 
-  public T retrieveRow(G ID);
+  public T retrieveRow(G ID) throws SQLException;
 
   public boolean updateRow(G ID, T x) throws SQLException;
 

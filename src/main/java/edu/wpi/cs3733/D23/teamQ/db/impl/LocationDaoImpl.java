@@ -3,21 +3,13 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LocationDaoImpl implements GenDao<Location, Integer> {
-  private List<Location> locations = new ArrayList<Location>();
-  private static LocationDaoImpl single_instance = null;
+  private List<Location> locations;
 
-  private LocationDaoImpl() {
+  public LocationDaoImpl() {
     populate();
-  }
-
-  public static synchronized LocationDaoImpl getInstance() {
-    if (single_instance == null) single_instance = new LocationDaoImpl();
-
-    return single_instance;
   }
 
   /**
@@ -81,7 +73,7 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
         PreparedStatement stmt =
             conn.prepareStatement(
                 "INSERT INTO \"conferenceRequest\"(\"nodeID\", \"longName\", \"shortName\", \"nodeType\") VALUES (?, ?, ?, ?)")) {
-      stmt.setInt(1, l.getNodeID());
+      stmt.setInt(1, l.getNode().getNodeID());
       stmt.setString(2, l.getLongName());
       stmt.setString(3, l.getShortName());
       stmt.setString(4, l.getNodeType());
@@ -105,8 +97,6 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
                 rst.getString("shortName"),
                 rst.getString("nodeType")));
       }
-      conn.close();
-      stm.close();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -122,7 +112,7 @@ public class LocationDaoImpl implements GenDao<Location, Integer> {
   private int getIndex(Integer nodeID) {
     for (int i = 0; i < locations.size(); i++) {
       Location l = locations.get(i);
-      if (l.getNodeID() == nodeID) {
+      if (l.getNode().getNodeID() == nodeID) {
         return i;
       }
     }

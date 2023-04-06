@@ -7,24 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MoveDaoImpl implements GenDao<Move, Integer> {
-  private List<Move> moves = new ArrayList<>();
+  private List<Move> moves;
   private int nextID = 0;
-  private NodeDaoImpl nodeTable;
-  private static MoveDaoImpl single_instance = null;
 
-  public static synchronized MoveDaoImpl getInstance(NodeDaoImpl nodeTable) {
-    if (single_instance == null) single_instance = new MoveDaoImpl(nodeTable);
-
-    return single_instance;
-  }
-
-  private MoveDaoImpl(NodeDaoImpl nodeTable) {
-    this.nodeTable = nodeTable;
+  public MoveDaoImpl() {
     populate();
     if (moves.size() != 0) {
       nextID = moves.get(moves.size() - 1).getMoveID() + 1;
@@ -88,9 +78,9 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
         PreparedStatement stmt =
             conn.prepareStatement(
                 "INSERT INTO move(\"nodeID\", \"longName\", \"date\") VALUES (?, ?, ?)")) {
-      stmt.setInt(1, m.getNode().getNodeID());
-      stmt.setString(2, m.getLongName());
-      stmt.setString(3, m.getDate());
+      stmt.setInt(2, m.getNode().getNodeID());
+      stmt.setString(3, m.getLongName());
+      stmt.setString(4, m.getDate());
       stmt.executeUpdate();
     } catch (SQLException ex) {
       ex.printStackTrace();
@@ -100,49 +90,43 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     return moves.add(m);
   }
 
-  /**
-   * Populates list of moves from database
-   *
-   * @return true if list populated
-   * @throws SQLException
-   */
   @Override
   public boolean populate() {
     try {
       Connection conn = GenDao.connect();
       Statement stm = conn.createStatement();
       ResultSet rst = stm.executeQuery("Select * From move");
+      NodeDaoImpl nodeDao = new NodeDaoImpl();
 
       while (rst.next()) {
         moves.add(
             new Move(
-                rst.getInt("moveID"),
-                nodeTable.retrieveRow(rst.getInt("nodeID")),
+                nodeDao.retrieveRow(rst.getInt("nodeID")),
                 rst.getString("longName"),
                 rst.getString("date")));
       }
-      conn.close();
-      stm.close();
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
+
     return true;
   }
 
   /**
-   * gets index of given moveID in the list of moves
+   * gets index of given nodeID in the list of moves
    *
-   * @param moveID moveID being checked
+   * @param nodeID nodeID being checked
    * @return value of index
    */
-  private int getIndex(Integer moveID) {
+  private int getIndex(Integer nodeID) {
     for (int i = 0; i < moves.size(); i++) {
       Move m = moves.get(i);
-      if (m.getMoveID() == moveID) {
+      if (m.getNode().getNodeID() == nodeID) {
         return i;
       }
     }
-    throw new RuntimeException("No move found with ID " + moveID);
+    throw new RuntimeException("No move found with ID " + nodeID);
   }
 
   /**
@@ -154,12 +138,6 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     return moves;
   }
 
-  /**
-   * Exports database table of moves into a CSV file of a given name
-   *
-   * @param filename name of file being exported
-   * @return true if successfully exported, false otherwise
-   */
   public boolean toCSV(String filename) {
     try {
       File myObj = new File(filename);
@@ -189,27 +167,22 @@ public class MoveDaoImpl implements GenDao<Move, Integer> {
     }
   }
 
-  /**
-   * Imports moves from csv file into database and local storage
-   *
-   * @param filename name of file being imported from
-   * @return true if successfully imported, false otherwise
-   */
   public boolean importCSV(String filename) {
-    NodeDaoImpl nodeDao = NodeDaoImpl.getInstance();
+    NodeDaoImpl nodeDao = new NodeDaoImpl();
     try {
       File f = new File(filename);
       Scanner myReader = new Scanner(f);
       while (myReader.hasNextLine()) {
         String row = myReader.nextLine();
         String[] vars = row.split(",");
-        Move m = new Move(nodeDao.retrieveRow(Integer.parseInt(vars[0])), vars[1], vars[2]);
+        Move m = new Move(nodeDao.retrieveRow(Integer.parseInt(vars[1])), vars[2], vars[3]);
         addRow(m);
+        return true;
       }
       myReader.close();
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
-    return true;
+    return false;
   }
 }

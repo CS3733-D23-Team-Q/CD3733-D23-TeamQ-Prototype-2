@@ -113,17 +113,19 @@
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MFXTextField fx:id="roomNumberField" prefHeight="49.0" prefWidth="173.0" promptText="Room Number" />
-            <MFXTextField fx:id="noteField" prefHeight="49.0" prefWidth="173.0" promptText="Note on Flower" GridPane.rowIndex="1" />
-            <MFXTextField fx:id="specialInstructionsField" prefHeight="60.0" prefWidth="173.0" promptText="Special Instructions" GridPane.rowIndex="4" />
-            <ChoiceBox fx:id="bouquetChoiceField" prefHeight="49.0" prefWidth="173.0" GridPane.rowIndex="3" />
-            <ChoiceBox fx:id="flowerChoiceField" minWidth="-Infinity" prefHeight="49.0" prefWidth="157.0" GridPane.rowIndex="2" />
+            <MFXTextField fx:id="roomNumberField" prefHeight="49.0" prefWidth="173.0" promptText="Room Number" GridPane.rowIndex="1" />
+            <MFXTextField fx:id="noteField" prefHeight="49.0" prefWidth="173.0" promptText="Note on Flower" GridPane.rowIndex="2" />
+            <MFXTextField fx:id="specialInstructionsField" prefHeight="60.0" prefWidth="173.0" promptText="Special Instructions" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="bouquetChoiceField" prefHeight="49.0" prefWidth="173.0" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="flowerChoiceField" minWidth="-Infinity" prefHeight="49.0" prefWidth="157.0" GridPane.rowIndex="3" />
+            <MFXTextField fx:id="assigneeField" prefHeight="49.0" prefWidth="173.0" promptText="Assignee" />
          </children>
       </GridPane>
    </children>

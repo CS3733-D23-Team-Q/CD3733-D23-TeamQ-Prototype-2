@@ -128,6 +128,8 @@
          <menus>
             <Menu mnemonicParsing="false" text="Menu">
                <items>
+                  <MenuItem fx:id="mapEditorMenu" mnemonicParsing="false" onAction="#MEButtonClicked" text="Map Editor" />
+                  <MenuItem fx:id="pathfindingMenu" mnemonicParsing="false" onAction="#PFButtonClicked" text="Pathfinding" />
                   <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exitMenuClicked" text="Exit" />
                </items>
                <graphic>
@@ -145,7 +147,6 @@
             <Menu mnemonicParsing="false">
                <items>
                   <MenuItem mnemonicParsing="false" text="Profile" />
-                  <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
                </items>
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

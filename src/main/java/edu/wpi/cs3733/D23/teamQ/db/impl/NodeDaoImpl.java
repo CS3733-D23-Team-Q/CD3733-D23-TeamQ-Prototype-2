@@ -35,8 +35,12 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
    * @return a node with the given nodeID
    */
   public Node retrieveRow(Integer nodeID) {
-    int index = this.getIndex(nodeID);
-    return nodes.get(index);
+    try {
+      int index = this.getIndex(nodeID);
+      return nodes.get(index);
+    } catch (Exception e) {
+      return null;
+    }
   }
 
   /**

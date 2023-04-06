@@ -29,7 +29,8 @@ public class FlowerRequestController {
   @FXML Button submitButton;
 
   @FXML MenuItem homeItem;
-  @FXML MenuItem exitItem;
+
+  @FXML MenuItem profileItem;
 
   /**
    * Initializes the Flower Request Choice Box's Switches screens to the Home page when Cancel
@@ -85,5 +86,10 @@ public class FlowerRequestController {
   @FXML
   public void exitItemClicked() {
     Platform.exit();
+  }
+
+  @FXML
+  public void profileItemClicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 }

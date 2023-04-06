@@ -3,8 +3,6 @@ package edu.wpi.cs3733.D23.teamQ.Pathfinding;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Edge;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Star extends Edge {
 
@@ -91,40 +89,25 @@ public class Star extends Edge {
         }
       }
       //      if (!closedList.contains(m.getEndNode())) {
-      if (!closedList.contains(m.getStartNode())
+      if (m != null
+          && !closedList.contains(m.getStartNode())
           && m.getWeight() < n.getEdges().get(0).getWeight()) {
         //        openList.add(m.getStartNode());
         openList.add(m.getEndNode());
-      } else if (!openList.contains(m.getEndNode()) && !closedList.contains(m.getEndNode())) {
+      } else if (m != null
+          && !openList.contains(m.getEndNode())
+          && !closedList.contains(m.getEndNode())) {
         openList.add(m.getEndNode());
       } else if (n.equals(start)) {
         openList.add(n.getEdges().get(0).getEndNode());
       }
       openList.remove(n);
-      n.setWeight(n.getEdges().get(0).getWeight());
+      /*if (n.getEdges() != null) {
+        n.setWeight(n.getEdges().get(0).getWeight());
+      }*/
       closedList.add(n);
     }
 
     return closedList;
-  }
-
-  public static void printPath(Node target) {
-    Node n = target;
-
-    if (n == null) return;
-
-    List<Integer> ids = new ArrayList<>();
-
-    while (n.getParent() != null) {
-      ids.add(n.getNodeID());
-      n = n.getParent();
-    }
-    ids.add(n.getNodeID());
-    Collections.reverse(ids);
-
-    for (int id : ids) {
-      System.out.print(id + " ");
-    }
-    System.out.println("");
   }
 }

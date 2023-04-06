@@ -23,23 +23,7 @@ public class PathMain {
     Node n12 = new Node(4, 2, 12);
     Node n13 = new Node(5, 2, 13);
     Node goal = n8;
-    head.addBranch(n1, 1);
-    head.addBranch(n2, 2);
-    n1.addBranch(n3, 3);
-    n2.addBranch(n3, 3);
-    n2.addBranch(n9, 9);
-    n9.addBranch(n10, 10);
-    n10.addBranch(n11, 11);
-    n10.addBranch(n3, 3);
-    n3.addBranch(n4, 4);
-    n4.addBranch(n11, 11);
-    n11.addBranch(n12, 12);
-    n12.addBranch(n13, 13);
-    n12.addBranch(n5, 5);
-    n5.addBranch(n6, 6);
-    n5.addBranch(n7, 7);
-    n6.addBranch(n8, 8);
-    n7.addBranch(n8, 8);
+
     ArrayList<Node> these = aStar(head, goal);
     ArrayList<Integer> toPrint = new ArrayList<Integer>();
     double avg = 0;

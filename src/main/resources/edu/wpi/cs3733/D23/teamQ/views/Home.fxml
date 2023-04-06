@@ -98,7 +98,7 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </TextField>
-      <Button fx:id="ServiceHubButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ServiceHubButtonClicked" prefHeight="43.0" prefWidth="252.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Service Request Hub" textFill="#3966af" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <Button fx:id="ServiceHubButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ServiceHubButtonClicked" prefHeight="43.0" prefWidth="191.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="Service Request Hub" textFill="#3966af" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <font>
             <Font size="16.0" />
          </font>
@@ -108,12 +108,12 @@
             <Image url="@../../../../../../Services.png" />
          </image>
       </ImageView>
-      <Button fx:id="ListRequestsButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ListRequestsButtonClicked" prefHeight="44.0" prefWidth="213.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="List Service Requests" textFill="#3966af" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <Button fx:id="ListRequestsButton" graphicTextGap="17.0" mnemonicParsing="false" onAction="#ListRequestsButtonClicked" prefHeight="44.0" prefWidth="178.0" styleClass="button-navigate" stylesheets="@styles/Home.css" text="List Service Requests" textFill="#3966af" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <ImageView fx:id="listImage" fitHeight="81.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <ImageView fx:id="listImage" fitHeight="95.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <image>
             <Image url="@../../../../../../ServicesList.png" />
          </image>

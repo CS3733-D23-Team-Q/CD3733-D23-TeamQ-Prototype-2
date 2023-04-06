@@ -60,11 +60,7 @@ public class Node {
         + this.location;
   }
 
-  public void addBranch(Node target, int targetID) {
-    Edge branch = new Edge(targetID, this, target);
-    //    Edge inverseEdge = new Edge(weight, this);
-
-    this.edges.add(branch);
-    //    neighbors.add(inverseEdge);
+  public void addBranch(Edge e) {
+    this.edges.add(e);
   }
 }

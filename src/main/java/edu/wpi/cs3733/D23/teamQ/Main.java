@@ -20,6 +20,8 @@ public class Main {
 
     // System.out.println(dao.retrieveRow("admin").getUsername());
 
+    // dao.populate();
+
     /*
     for (Account a : dao.retrieveRows("liukelu1@gmail.com")) {
       System.out.println(a.getUsername());
@@ -31,8 +33,6 @@ public class Main {
     System.out.println(qdao.getIndex(""));
     System.out.println(qdao.retrieveRow("What is your favorite color?").getId());
      */
-
-    // dao.populate();
 
     /*
     for (Integer i : dao.getIndexes("liukelu1@gmail.com")) {

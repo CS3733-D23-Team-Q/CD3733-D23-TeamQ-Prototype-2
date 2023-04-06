@@ -60,21 +60,21 @@ public class LoginController implements IController {
       alert.clearLabelAlert(loginAlert, alertImage);
       Account a = dao.retrieveRow(username);
       actualPassword = a.getPassword();
-      passwordReact(enteredPassword, actualPassword);
+      passwordReact(username, enteredPassword, actualPassword);
     } else if (!dao.getIndexes(username).isEmpty()) {
       alert.clearLabelAlert(loginAlert, alertImage);
       List<Account> as = dao.retrieveRows(username);
       for (Account a : as) {
         actualPassword = a.getPassword();
-        passwordReact(enteredPassword, actualPassword);
+        username = a.getUsername();
+        passwordReact(username, enteredPassword, actualPassword);
       }
     } else {
       alert.setLabelAlert("User doesn't exist", loginAlert, alertImage);
     }
   }
 
-  public void passwordReact(String enteredPassword, String actualPassword) {
-    String username = usernameField.getText();
+  public void passwordReact(String username, String enteredPassword, String actualPassword) {
     if (enteredPassword.equals(actualPassword)) {
       user = username;
       Account a = dao.retrieveRow(username);

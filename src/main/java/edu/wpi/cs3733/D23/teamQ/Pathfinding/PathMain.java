@@ -41,7 +41,7 @@ public class PathMain {
     n6.addBranch(n8, 8);
     n7.addBranch(n8, 8);
 
-   /* ArrayList<Node> these = aStar(head, goal);
+    ArrayList<Node> these = aStar(head, goal);
     ArrayList<Integer> toPrint = new ArrayList<Integer>();
     double avg = 0;
     for (Node thisOne : these) {
@@ -55,7 +55,7 @@ public class PathMain {
       } else if (!toPrint.contains(thatOne.getNodeID())) {
         toPrint.add(thatOne.getNodeID());
       }
-    }*/
+    }
 
     /* Node res = aStar(n1, goal);
     printPath(res);*/

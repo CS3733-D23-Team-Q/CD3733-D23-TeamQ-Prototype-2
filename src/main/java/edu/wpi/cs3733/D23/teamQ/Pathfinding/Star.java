@@ -89,17 +89,22 @@ public class Star extends Edge {
         }
       }
       //      if (!closedList.contains(m.getEndNode())) {
-      if (!closedList.contains(m.getStartNode())
+      if (m != null
+          && !closedList.contains(m.getStartNode())
           && m.getWeight() < n.getEdges().get(0).getWeight()) {
         //        openList.add(m.getStartNode());
         openList.add(m.getEndNode());
-      } else if (!openList.contains(m.getEndNode()) && !closedList.contains(m.getEndNode())) {
+      } else if (m != null
+          && !openList.contains(m.getEndNode())
+          && !closedList.contains(m.getEndNode())) {
         openList.add(m.getEndNode());
       } else if (n.equals(start)) {
         openList.add(n.getEdges().get(0).getEndNode());
       }
       openList.remove(n);
-      n.setWeight(n.getEdges().get(0).getWeight());
+      /*if (n.getEdges() != null) {
+        n.setWeight(n.getEdges().get(0).getWeight());
+      }*/
       closedList.add(n);
     }
 

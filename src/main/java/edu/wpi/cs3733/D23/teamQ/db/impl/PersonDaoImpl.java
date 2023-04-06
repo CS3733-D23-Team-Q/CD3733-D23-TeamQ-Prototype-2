@@ -7,31 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDaoImpl implements GenDao<Person, Integer> {
-  static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
-  static final String user = "teamq";
-  static final String password = "teamq140";
-
-  public static Connection connect() {
-    Connection con = null;
-    try {
-      Class.forName("org.postgresql.Driver");
-      con = DriverManager.getConnection(url, user, password);
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-    return con;
-  }
 
   private List<Person> People = new ArrayList<Person>();
 
-  public Person retrieveRow(Integer IDNum) {
+  private static PersonDaoImpl single_instance = null;
+
+  public static synchronized PersonDaoImpl getInstance() {
+    if (single_instance == null) single_instance = new PersonDaoImpl();
+
+    return single_instance;
+  }
+
+  private PersonDaoImpl() {
     populate();
+  }
+
+  public Person retrieveRow(Integer IDNum) {
     int index = this.getIndex(IDNum);
     return People.get(index);
   }
 
   public boolean updateRow(Integer IDNum, Person personWithNewChanges) {
-    populate();
     boolean result = false;
     Connection con = GenDao.connect();
     String newFN = personWithNewChanges.getFirstName();
@@ -72,7 +68,6 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
   }
 
   public boolean deleteRow(Integer IDNum) {
-    populate();
     boolean result = false;
     Connection con = GenDao.connect();
     try {
@@ -97,7 +92,6 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
   }
 
   public boolean addRow(Person a) {
-    populate();
     int IDNum = a.getIDNum();
     String FirstName = a.getFirstName();
     String LastName = a.getLastName();
@@ -134,7 +128,6 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
 
   @Override
   public List<Person> getAllRows() {
-    populate();
     return People;
   }
 
@@ -166,7 +159,6 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
   }
 
   public Person getPersonWithUsername(String UN) {
-    populate();
     Person b = new Person(null, null, null, 0, UN);
     for (int i = 0; i < People.size(); i++) {
       Person a = People.get(i);
@@ -177,8 +169,9 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
     return b;
   }
 
+  public void test() {}
+
   public int getIndex(int IDNum) {
-    populate();
     for (int i = 0; i < People.size(); i++) {
       Person a = People.get(i);
       if (a.getIDNum() == (IDNum)) {

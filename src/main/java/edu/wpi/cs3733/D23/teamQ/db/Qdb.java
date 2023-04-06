@@ -5,6 +5,7 @@ import edu.wpi.cs3733.D23.teamQ.db.impl.*;
 import edu.wpi.cs3733.D23.teamQ.db.obj.*;
 
 public class Qdb {
+  public GenDao<Person, Integer> personTable = PersonDaoImpl.getInstance();
   public GenDao<Account, String> accountTable = AccountDaoImpl.getInstance();
   public GenDao<ConferenceRequest, Integer> conferenceRequestTable =
       ConferenceRequestDaoImpl.getInstance();

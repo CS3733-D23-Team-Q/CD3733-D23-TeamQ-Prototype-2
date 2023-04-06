@@ -18,8 +18,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class CreateAccountController extends SecondaryStage implements IController {
-  AccountDaoImpl adao = new AccountDaoImpl();
+
+public class CreateAccountController extends SecondaryStage {
+  AccountDaoImpl adao = AccountDaoImpl.getInstance();
+
   QuestionDAOImpl qdao = new QuestionDAOImpl();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();

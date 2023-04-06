@@ -15,8 +15,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
-public class ForgotPasswordController extends SecondaryStage implements IController {
-  AccountDaoImpl adao = new AccountDaoImpl();
+
+public class ForgotPasswordController extends SecondaryStage {
+  AccountDaoImpl adao = AccountDaoImpl.getInstance();
+
   QuestionDAOImpl qdao = new QuestionDAOImpl();
   CreateAccountController CAController = new CreateAccountController();
   Alert alert = new Alert();

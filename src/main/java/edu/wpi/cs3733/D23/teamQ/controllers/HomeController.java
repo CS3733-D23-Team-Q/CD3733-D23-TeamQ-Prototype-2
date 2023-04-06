@@ -23,6 +23,14 @@ public class HomeController implements IController {
   @FXML Button nextButton;
 
   @FXML MenuItem exit;
+
+  @FXML MenuItem serviceRequestHubMenu;
+
+  @FXML MenuItem listServiceRequestMenu;
+
+  @FXML MenuItem signagePageMenu;
+
+  @FXML MenuItem learnMoreMenu;
   @FXML MenuItem logout;
   @FXML Button settingButton;
   @FXML TextField searchField;
@@ -61,6 +69,11 @@ public class HomeController implements IController {
   @FXML
   public void exitMenuClicked() {
     Platform.exit();
+  }
+  /** Navigates to profile page * */
+  @FXML
+  public void Home_ProfileButton_Clicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 
   @FXML

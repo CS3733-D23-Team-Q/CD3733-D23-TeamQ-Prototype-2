@@ -18,7 +18,7 @@ public class NodeDaoImpl implements GenDao<Node, Integer> {
   private List<Node> nodes = new ArrayList<>();
   private static NodeDaoImpl single_instance = null;
 
-  public NodeDaoImpl() {
+  private NodeDaoImpl() {
     populate();
   }
 

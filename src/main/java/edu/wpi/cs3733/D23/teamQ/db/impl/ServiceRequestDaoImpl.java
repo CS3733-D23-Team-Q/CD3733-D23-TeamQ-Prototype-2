@@ -8,36 +8,15 @@ import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
-  ObservableList<ServiceRequest> serviceRequests = FXCollections.observableArrayList();
-  private GenDao conferenceRequestTable;
-  private GenDao flowerRequestsTable;
-
-  private static ServiceRequestDaoImpl single_instance = null;
-
-  public static synchronized ServiceRequestDaoImpl getInstance(
-      ConferenceRequestDaoImpl conferenceRequestTable, FlowerRequestDaoImpl flowerRequestTable) {
-    if (single_instance == null)
-      single_instance = new ServiceRequestDaoImpl(conferenceRequestTable, flowerRequestTable);
-
-    return single_instance;
-  }
-
-  private ServiceRequestDaoImpl(GenDao conferenceRequestTable, GenDao flowerRequestsTable) {
-    this.conferenceRequestTable = conferenceRequestTable;
-    this.flowerRequestsTable = flowerRequestsTable;
-    this.serviceRequests = getAllRows();
-  }
 
   public ObservableList<ServiceRequest> getAllRows() {
     ObservableList<ServiceRequest> srL = FXCollections.observableArrayList();
-    List<FlowerRequest> flowerRequests = flowerRequestsTable.getAllRows();
-    List<ConferenceRequest> conferenceRequests = conferenceRequestTable.getAllRows();
+    FlowerRequestDaoImpl requestF = new FlowerRequestDaoImpl();
+    ConferenceRequestDaoImpl requestC = new ConferenceRequestDaoImpl();
+    List<FlowerRequest> flowerRequests = requestF.getAllRows();
+    List<ConferenceRequest> conferenceRequests = requestC.getAllRows();
 
     for (int i = 0; i < flowerRequests.size(); i++) {
       FlowerRequest fr = flowerRequests.get(i);
@@ -45,7 +24,7 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
           new ServiceRequest(
               fr.getRequestID(),
               fr.getRequester(),
-              fr.progressToInt(fr.getProgress()),
+              fr.getProgress(),
               fr.getAssignee(),
               fr.getRoomNumber(),
               fr.getSpecialInstructions());
@@ -57,7 +36,7 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
           new ServiceRequest(
               cr.getRequestID(),
               cr.getRequester(),
-              cr.progressToInt(cr.getProgress()),
+              cr.getProgress(),
               cr.getAssignee(),
               cr.getRoomNumber(),
               cr.getSpecialInstructions());
@@ -67,7 +46,7 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
   }
 
   @Override
-  public ServiceRequest retrieveRow(Integer ID) {
+  public ServiceRequest retrieveRow(Integer ID) throws SQLException {
     return null;
   }
 

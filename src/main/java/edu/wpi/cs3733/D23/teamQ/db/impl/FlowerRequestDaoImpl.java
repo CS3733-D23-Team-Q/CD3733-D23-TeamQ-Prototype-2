@@ -8,16 +8,9 @@ import java.util.List;
 
 public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
   private List<FlowerRequest> flowerRequests = new ArrayList<FlowerRequest>();
-  private int nextID = 0;
-  private static FlowerRequestDaoImpl single_instance = null;
+  int nextID = 0;
 
-  public static synchronized FlowerRequestDaoImpl getInstance() {
-    if (single_instance == null) single_instance = new FlowerRequestDaoImpl();
-
-    return single_instance;
-  }
-
-  private FlowerRequestDaoImpl() {
+  public FlowerRequestDaoImpl() {
     populate();
     if (flowerRequests.size() != 0) {
       nextID = flowerRequests.get(flowerRequests.size() - 1).getRequestID() + 1;
@@ -87,7 +80,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
             conn.prepareStatement(
                 "INSERT INTO \"flowerRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setString(1, request.getRequester());
-      stmt.setInt(2, request.progressToInt(request.getProgress()));
+      stmt.setInt(2, request.getProgress());
       stmt.setString(3, request.getAssignee());
       stmt.setString(4, request.getSpecialInstructions());
       stmt.setString(5, request.getNote());
@@ -123,7 +116,6 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
                 rs.getInt("bouquetSize")));
       }
       conn.close();
-      pst.close();
       return true;
     } catch (Exception e) {
       System.out.println(e.getMessage());

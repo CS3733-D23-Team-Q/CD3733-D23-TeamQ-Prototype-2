@@ -10,18 +10,11 @@ public class Edge {
   private Node startNode;
   private Node endNode;
 
-  public Edge(int edgeID, Node startNode, Node endNode) {
+  Edge(int edgeID, Node startNode, Node endNode) {
     this.edgeID = edgeID;
     this.startNode = startNode;
     this.endNode = endNode;
   }
-
-  public Edge(Node startNode, Node endNode) {
-    this.startNode = startNode;
-    this.endNode = endNode;
-  }
-
-  public Edge() {}
 
   public String edgeToString() {
     return "edgeID: "
@@ -30,12 +23,5 @@ public class Edge {
         + this.startNode
         + ", endNode: "
         + this.endNode;
-  }
-
-  public int getWeight() {
-    int xDist = Math.abs(this.getStartNode().getXCoord() - this.getEndNode().getXCoord());
-    int yDist = Math.abs(this.getStartNode().getYCoord() - this.getEndNode().getYCoord());
-    int weight = (int) Math.sqrt(xDist * xDist + yDist * yDist);
-    return weight;
   }
 }

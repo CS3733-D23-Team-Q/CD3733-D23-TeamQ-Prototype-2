@@ -40,14 +40,4 @@ public class FlowerRequest extends ServiceRequest {
     this.flowerType = flowerType;
     this.numberOfBouquets = numberOfBouquets;
   }
-
-  public int progressToInt(Progress progress) {
-    if (progress == Progress.BLANK) {
-      return 0;
-    } else if (progress == Progress.PROCESSING) {
-      return 1;
-    } else {
-      return 2;
-    }
-  }
 }

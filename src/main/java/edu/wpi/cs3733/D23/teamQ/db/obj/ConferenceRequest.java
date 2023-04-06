@@ -36,13 +36,16 @@ public class ConferenceRequest extends ServiceRequest {
     this.foodChoice = foodChoice;
   }
 
-  public int progressToInt(Progress progress) {
-    if (progress == Progress.BLANK) {
-      return 0;
-    } else if (progress == Progress.PROCESSING) {
-      return 1;
-    } else {
-      return 2;
-    }
+  public ConferenceRequest(
+      int progress,
+      String requester,
+      String assignee,
+      String roomNumber,
+      String specialInstructions,
+      String dateTime,
+      String foodChoice) {
+    super(0, requester, progress, assignee, roomNumber, specialInstructions);
+    this.dateTime = dateTime;
+    this.foodChoice = foodChoice;
   }
 }

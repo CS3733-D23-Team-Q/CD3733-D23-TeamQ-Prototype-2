@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AccountDAOTest {
   /*
-  AccountDAOImpl dao = new AccountDAOImpl();
+  AccountDaoImpl dao = new AccountDaoImpl();
 
   public boolean samePropertyValueAs(Account a) {
       boolean result = false;

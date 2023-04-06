@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class star extends Edge {
+public class Astar extends Edge {
 
-  public star() {
+  public Astar() {
     super();
   }
 

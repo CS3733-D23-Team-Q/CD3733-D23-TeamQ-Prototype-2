@@ -68,6 +68,7 @@
                   <Font size="9.0" />
                </font>
             </Button>
+            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButtonClicked" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #0f3d99ff;" styleClass="button-login" stylesheets="@styles/Home.css" text="Quit" textFill="WHITE" translateY="250.0" />
          </children>
       </VBox>
    </children>

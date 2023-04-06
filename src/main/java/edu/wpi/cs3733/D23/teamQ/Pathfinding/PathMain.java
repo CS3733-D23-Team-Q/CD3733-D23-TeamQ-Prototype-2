@@ -44,19 +44,17 @@ public class PathMain {
     ArrayList<Integer> toPrint = new ArrayList<Integer>();
     double avg = 0;
     for (Node thisOne : these) {
-
-
       avg += thisOne.getWeight();
     }
     avg = avg / these.size();
     for(Node thatOne : these){
       if (thatOne.getWeight() > avg){
-        these.remove(thatOne);
+        continue;
+      }
+      else {
+        toPrint.add(thatOne.getNodeID());
       }
     }
-    for (Node thisOne : these) {
-    if (!toPrint.contains(thisOne.getNodeID())) {
-      toPrint.add(thisOne.getNodeID());}
     for (int id : toPrint) {
 
       System.out.println(id);
@@ -64,4 +62,4 @@ public class PathMain {
     /* Node res = aStar(n1, goal);
     printPath(res);*/
   }
-}}
+}

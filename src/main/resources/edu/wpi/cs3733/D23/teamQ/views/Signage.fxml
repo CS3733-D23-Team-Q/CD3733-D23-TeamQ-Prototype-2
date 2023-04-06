@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -24,18 +28,11 @@
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="563.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="32.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="514.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="564.3333358764648" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1000.0" spacing="380.0" style="-fx-background-color: #142A53;" GridPane.columnSpan="10">
-         <children>
-            <Label text="Starting April 2023" textFill="#f1f1f1">
-               <font>
-                  <Font name="System Italic" size="18.0" />
-               </font>
-            </Label>
-         </children></HBox>
       <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="322.0" prefWidth="562.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <columnConstraints>
             <ColumnConstraints hgrow="NEVER" maxWidth="350.0" minWidth="10.0" prefWidth="150.0" />
@@ -279,5 +276,53 @@
             </Label>
          </children>
       </GridPane>
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="32.0" prefWidth="77.0" style="-fx-background-color: #f1f1f1;" stylesheets="@styles/Home.css" text="Back" textFill="#142a53" GridPane.columnIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="61.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" translateX="320.0">
+               <image>
+                  <Image url="@../../../../../../../../../../CD3733-D23-TeamQ-Prototype-2/src/main/resources/Home.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="1">
+         <children>
+            <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="793.0" text="Starting April 2023" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="2" />
+      <MenuBar style="-fx-background-color: #142A53;" styleClass="button-menu" stylesheets="@styles/Home.css">
+        <menus>
+          <Menu mnemonicParsing="false" text="Menu">
+            <items>
+              <MenuItem fx:id="homeItem" mnemonicParsing="false" onAction="#homeItemClicked" text="Back" />
+                  <MenuItem fx:id="exitItem" mnemonicParsing="false" onAction="#exitItemClicked" text="Exit" />
+            </items>
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../CD3733-D23-TeamQ-Prototype-2/src/main/resources/Menu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </GridPane>

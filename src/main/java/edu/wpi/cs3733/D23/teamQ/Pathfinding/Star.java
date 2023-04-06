@@ -54,7 +54,8 @@ public class Star extends Edge {
         if (next != null
             && !openList.contains(next.getEndNode())
             && !closedList.contains(next)
-            && nextWeight != 0) {
+            && nextWeight != 0
+            && nextWeight < totalWeight) {
           next.getStartNode().setParent(m.getEndNode());
           next.getStartNode().setG(nextWeight);
           next.getStartNode()
@@ -67,7 +68,7 @@ public class Star extends Edge {
             //  System.out.println(closedList.get(closedList.size() - 1).getNodeID());
           }
         } else {
-          if (totalWeight < nextWeight
+          if (totalWeight > nextWeight
               && next != null
               && nextWeight != 0
               && !closedList.contains(next)) { // make this next edge used to be <
@@ -90,11 +91,17 @@ public class Star extends Edge {
         }
       }
       //      if (!closedList.contains(m.getEndNode())) {
-      if (!closedList.contains(m.getStartNode())) {
+      if (!closedList.contains(m.getStartNode())
+          && m.getWeight() < n.getEdges().get(0).getWeight()) {
         //        openList.add(m.getStartNode());
         openList.add(m.getEndNode());
+      } else if (!openList.contains(m.getEndNode()) && !closedList.contains(m.getEndNode())) {
+        openList.add(m.getEndNode());
+      } else if (n.equals(start)) {
+        openList.add(n.getEdges().get(0).getEndNode());
       }
       openList.remove(n);
+      n.setWeight(n.getEdges().get(0).getWeight());
       closedList.add(n);
     }
 

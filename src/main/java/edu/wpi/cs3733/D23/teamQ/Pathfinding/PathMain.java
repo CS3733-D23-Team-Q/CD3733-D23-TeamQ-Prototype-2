@@ -47,11 +47,10 @@ public class PathMain {
       avg += thisOne.getWeight();
     }
     avg = avg / these.size();
-    for(Node thatOne : these){
-      if (thatOne.getWeight() > avg){
+    for (Node thatOne : these) {
+      if (thatOne.getWeight() > avg) {
         continue;
-      }
-      else {
+      } else {
         toPrint.add(thatOne.getNodeID());
       }
     }

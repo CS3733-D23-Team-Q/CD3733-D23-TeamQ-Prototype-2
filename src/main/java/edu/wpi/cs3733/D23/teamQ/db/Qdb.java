@@ -17,6 +17,7 @@ public class Qdb {
   public GenDao<Edge, Integer> edgeTable = EdgeDaoImpl.getInstance((NodeDaoImpl) nodeTable);
   public GenDao<Move, Integer> moveTable = MoveDaoImpl.getInstance((NodeDaoImpl) nodeTable);
   public GenDao<Location, Integer> locationTable = LocationDaoImpl.getInstance();
+  public GenDao<Question, Integer> questionTable = QuestionDAOImpl.getInstance();
 
   private static Qdb single_instance = null;
 

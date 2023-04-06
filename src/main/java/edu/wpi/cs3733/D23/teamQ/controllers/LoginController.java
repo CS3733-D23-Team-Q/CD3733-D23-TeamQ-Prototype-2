@@ -20,6 +20,7 @@ import lombok.Getter;
 public class LoginController {
   AccountDaoImpl dao = AccountDaoImpl.getInstance();
   Alert alert = new Alert();
+  static String user;
   @FXML Label loginAlert;
   @FXML ImageView alertImage;
   @FXML TextField usernameField;
@@ -61,12 +62,14 @@ public class LoginController {
   }
 
   public void passwordReact(String enteredPassword, String actualPassword) {
+    String username = usernameField.getText();
     if (enteredPassword.equals(actualPassword)) {
+      user = username;
+      Account a = dao.retrieveRow(username);
+      a.setActive(true);
+      dao.updateRow(username, a);
       alert.clearLabelAlert(loginAlert, alertImage);
       Navigation.navigate(Screen.HOME);
-      loginUsername = usernameField.getText();
-      loginEmail = dao.retrieveRow(loginUsername).getEmail();
-
     } else {
       alert.setLabelAlert("Wrong password", loginAlert, alertImage);
     }
@@ -92,6 +95,10 @@ public class LoginController {
     } else {
       alert.setLabelAlert("User doesn't exist", loginAlert, alertImage);
     }
+  }
+
+  public String getUsername() {
+    return user;
   }
 
   @FXML

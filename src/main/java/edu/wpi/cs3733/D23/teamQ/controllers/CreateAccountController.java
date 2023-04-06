@@ -3,6 +3,7 @@ package edu.wpi.cs3733.D23.teamQ.controllers;
 import edu.wpi.cs3733.D23.teamQ.Alert;
 import edu.wpi.cs3733.D23.teamQ.Confirm;
 import edu.wpi.cs3733.D23.teamQ.SecondaryStage;
+import edu.wpi.cs3733.D23.teamQ.db.Qdb;
 import edu.wpi.cs3733.D23.teamQ.db.impl.AccountDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.db.impl.QuestionDAOImpl;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
@@ -18,9 +19,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class CreateAccountController extends SecondaryStage {
-  AccountDaoImpl adao = AccountDaoImpl.getInstance();
-  QuestionDAOImpl qdao = new QuestionDAOImpl();
+public class CreateAccountController extends SecondaryStage implements IController {
+  Qdb qdb = Qdb.getInstance();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();
   @FXML ChoiceBox<String> questionChoice1 = new ChoiceBox<>();
@@ -50,7 +50,8 @@ public class CreateAccountController extends SecondaryStage {
 
   @FXML
   public void initialize() {
-    List<Question> questions = qdao.getAllRows();
+
+    List<Question> questions = qdb.questionTable.getAllRows();
     for (int i = 0; i < questions.size(); i++) {
       String question = questions.get(i).getQuestion();
       questionChoice1.getItems().add(question);
@@ -275,6 +276,7 @@ public class CreateAccountController extends SecondaryStage {
       String answer1,
       String answer2)
       throws IOException {
+    QuestionDAOImpl questionTable1 = (QuestionDAOImpl) qdb.questionTable;
     if (answer2.length() < 1) {
       alert.setLabelAlert("Please enter a answer", a2Alert, a2AlertImage);
     } else {
@@ -284,11 +286,12 @@ public class CreateAccountController extends SecondaryStage {
               username,
               password,
               email,
-              qdao.retrieveRow(question1).getId(),
-              qdao.retrieveRow(question2).getId(),
+              questionTable1.retrieveRow(question1).getId(),
+              questionTable1.retrieveRow(question2).getId(),
               answer1,
-              answer2);
-      adao.addRow(a);
+              answer2,
+              false);
+      qdb.accountTable.addRow(a);
       super.stage.setScene(confirm.getScene(stage, "Confirmation", "Account created successful!"));
       stage.centerOnScreen();
     }
@@ -305,7 +308,8 @@ public class CreateAccountController extends SecondaryStage {
     String answer1 = answer1Field.getText();
     String answer2 = answer2Field.getText();
 
-    if (adao.getIndex(username) == -1) {
+    AccountDaoImpl accountTable1 = (AccountDaoImpl) qdb.accountTable;
+    if (accountTable1.getIndex(username) == -1) {
       alert.clearLabelAlert(usernameAlert, usernameAlertImage);
       usernameReact(username, email, password, repassword, question1, question2, answer1, answer2);
     } else {

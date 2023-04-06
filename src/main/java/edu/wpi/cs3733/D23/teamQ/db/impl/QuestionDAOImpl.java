@@ -8,21 +8,29 @@ import java.util.List;
 
 public class QuestionDAOImpl implements GenDao<Question, Integer> {
   private List<Question> questions = new ArrayList<Question>();
+  private static QuestionDAOImpl single_instance = null;
+
+  public static synchronized QuestionDAOImpl getInstance() {
+    if (single_instance == null) single_instance = new QuestionDAOImpl();
+    return single_instance;
+  }
+
+  private QuestionDAOImpl() {
+    populate();
+  }
 
   public Question retrieveRow(Integer id) {
-    populate();
     int index = this.getIndex(id);
     return questions.get(index);
   }
 
   public Question retrieveRow(String question) {
-    populate();
     int index = this.getIndex(question);
     return questions.get(index);
   }
 
   public boolean updateRow(Integer id, Question questionWithNewChanges) {
-    populate();
+
     boolean result = false;
     Connection con = GenDao.connect();
     String question = questionWithNewChanges.getQuestion();
@@ -49,7 +57,7 @@ public class QuestionDAOImpl implements GenDao<Question, Integer> {
   }
 
   public boolean deleteRow(Integer id) {
-    populate();
+
     boolean result = false;
     Connection con = GenDao.connect();
     try {
@@ -75,12 +83,11 @@ public class QuestionDAOImpl implements GenDao<Question, Integer> {
 
   @Override
   public List<Question> getAllRows() {
-    populate();
     return questions;
   }
 
   public boolean addRow(Question q) {
-    populate();
+
     String question = q.getQuestion();
     boolean result = false;
     Connection con = GenDao.connect();
@@ -125,7 +132,7 @@ public class QuestionDAOImpl implements GenDao<Question, Integer> {
   }
 
   public int getIndex(int id) {
-    populate();
+
     for (int i = 0; i < questions.size(); i++) {
       Question q = questions.get(i);
       if (q.getId() == id) {
@@ -136,7 +143,7 @@ public class QuestionDAOImpl implements GenDao<Question, Integer> {
   }
 
   public int getIndex(String question) {
-    populate();
+
     for (int i = 0; i < questions.size(); i++) {
       Question q = questions.get(i);
       if (q.getQuestion() == question) {

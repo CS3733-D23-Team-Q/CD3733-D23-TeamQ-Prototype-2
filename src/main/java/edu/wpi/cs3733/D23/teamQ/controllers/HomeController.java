@@ -1,7 +1,11 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.Qdb;
+import edu.wpi.cs3733.D23.teamQ.db.obj.Account;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import java.io.IOException;
+import java.sql.SQLException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +15,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class HomeController {
+
+  Qdb qdb = Qdb.getInstance();
+
   @FXML Button ServiceHubButton;
   @FXML Button ListRequestsButton;
   @FXML Button SPButton;
@@ -90,7 +97,12 @@ public class HomeController {
   }
 
   @FXML
-  public void logout() {
+  public void logout() throws IOException, SQLException {
+    LoginController lc = (LoginController) Navigation.getController(Screen.LOGIN);
+    String username = lc.getUsername();
+    Account a = qdb.accountTable.retrieveRow(username);
+    a.setActive(false);
+    qdb.accountTable.updateRow(username, a);
     Navigation.navigate(Screen.LOGIN);
   }
 }

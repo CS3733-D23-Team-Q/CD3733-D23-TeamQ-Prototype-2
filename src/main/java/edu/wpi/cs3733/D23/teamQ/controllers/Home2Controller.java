@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 
-public class Home2Controller extends HomeController implements IController {
+public class Home2Controller extends HomeController {
   @FXML Button previousButton;
   @FXML Button MEButton;
   @FXML Button PFButton;
@@ -16,9 +16,7 @@ public class Home2Controller extends HomeController implements IController {
   @FXML MenuItem pathfindingMenu;
 
   @FXML
-  public void initialize() {
-    adao.populate();
-  }
+  public void initialize() {}
 
   @FXML
   public void previousButtonClicked() {

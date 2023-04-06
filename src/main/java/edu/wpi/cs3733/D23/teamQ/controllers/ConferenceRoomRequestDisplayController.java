@@ -29,14 +29,12 @@ public class ConferenceRoomRequestDisplayController {
 
   @FXML
   public void initialize() {
-
     roomNumberField.setText(ListServiceRequestController.getConferenceRequest().getRoomNumber());
     dateTimeField.setText(ListServiceRequestController.getConferenceRequest().getDateTime());
     foodField.setText(ListServiceRequestController.getConferenceRequest().getFoodChoice());
     assigneeField.setText(ListServiceRequestController.getConferenceRequest().getAssignee());
     specialInstructionsField.setText(
         ListServiceRequestController.getConferenceRequest().getSpecialInstructions());
-
   }
 
   @FXML

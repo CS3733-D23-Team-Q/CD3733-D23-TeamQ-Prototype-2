@@ -17,11 +17,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lombok.Getter;
 
-
 public class LoginController {
-  static String user;
   AccountDaoImpl dao = AccountDaoImpl.getInstance();
-
   Alert alert = new Alert();
   @FXML Label loginAlert;
   @FXML ImageView alertImage;
@@ -30,16 +27,13 @@ public class LoginController {
   @FXML Button loginButton;
   @FXML Button FPButton;
   @FXML Button CAButton;
+
   @FXML Button quitButton;
 
-  
   @Getter private static String loginUsername;
   @Getter private static String loginEmail;
-  
-  public void initialize() {
-    dao.populate();
-  }
 
+  public void initialize() {}
 
   @FXML
   public void quitButtonClicked() {
@@ -65,7 +59,6 @@ public class LoginController {
       loginButtonClicked();
     }
   }
-
 
   public void passwordReact(String enteredPassword, String actualPassword) {
     if (enteredPassword.equals(actualPassword)) {
@@ -99,24 +92,6 @@ public class LoginController {
     } else {
       alert.setLabelAlert("User doesn't exist", loginAlert, alertImage);
     }
-  }
-
-  public void passwordReact(String enteredPassword, String actualPassword) {
-    String username = usernameField.getText();
-    if (enteredPassword.equals(actualPassword)) {
-      user = username;
-      Account a = dao.retrieveRow(username);
-      a.setActive(true);
-      dao.updateRow(username, a);
-      alert.clearLabelAlert(loginAlert, alertImage);
-      Navigation.navigate(Screen.HOME);
-    } else {
-      alert.setLabelAlert("Wrong password", loginAlert, alertImage);
-    }
-  }
-
-  public String getUsername() {
-    return user;
   }
 
   @FXML

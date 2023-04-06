@@ -35,7 +35,6 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
   }
 
   public ObservableList<ServiceRequest> getAllRows() {
-
     ObservableList<ServiceRequest> srL = FXCollections.observableArrayList();
     List<FlowerRequest> flowerRequests = flowerRequestsTable.getAllRows();
     List<ConferenceRequest> conferenceRequests = conferenceRequestTable.getAllRows();
@@ -63,7 +62,6 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
               cr.getRoomNumber(),
               cr.getSpecialInstructions());
       srL.add(s);
-
     }
     return srL;
   }

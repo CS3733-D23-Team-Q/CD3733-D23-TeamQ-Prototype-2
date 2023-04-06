@@ -36,9 +36,10 @@ public class Node {
     this.locID = Integer.parseInt(xy);
   }
 
-  public Node(int xCoord, int yCoord) {
+  public Node(int xCoord, int yCoord, int nodeID) {
     this.setXCoord(xCoord);
     this.setYCoord(yCoord);
+    this.setNodeID(nodeID);
     this.edges = new ArrayList<Edge>();
   }
 

@@ -9,8 +9,15 @@ import java.util.List;
 public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integer> {
   private List<ConferenceRequest> conferenceRequests = new ArrayList<ConferenceRequest>();
   private int nextID = 0;
+  private static ConferenceRequestDaoImpl single_instance = null;
 
-  public ConferenceRequestDaoImpl() {
+  public static synchronized ConferenceRequestDaoImpl getInstance() {
+    if (single_instance == null) single_instance = new ConferenceRequestDaoImpl();
+
+    return single_instance;
+  }
+
+  private ConferenceRequestDaoImpl() {
     populate();
     if (conferenceRequests.size() != 0) {
       nextID = conferenceRequests.get(conferenceRequests.size() - 1).getRequestID() + 1;
@@ -86,7 +93,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
             conn.prepareStatement(
                 "INSERT INTO \"conferenceRequest\"(requester, progress, assignee, \"specialInstructions\", \"time\", \"foodChoice\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setString(1, request.getRequester());
-      stmt.setInt(2, request.getProgress());
+      stmt.setInt(2, request.progressToInt(request.getProgress()));
       stmt.setString(3, request.getAssignee());
       stmt.setString(4, request.getSpecialInstructions());
       stmt.setString(5, request.getDateTime());
@@ -119,6 +126,8 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
                 rst.getString("time"),
                 rst.getString("foodChoice")));
       }
+      conn.close();
+      stm.close();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

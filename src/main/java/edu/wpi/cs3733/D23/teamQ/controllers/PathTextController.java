@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-import edu.wpi.cs3733.D23.teamQ.Pathfinding.Astar;
 import edu.wpi.cs3733.D23.teamQ.db.Qdb;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Node;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
@@ -12,8 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-
-import static edu.wpi.cs3733.D23.teamQ.Pathfinding.Astar.aStar;
 
 public class PathTextController {
   @FXML Button resetButton;
@@ -49,8 +46,8 @@ public class PathTextController {
       Qdb qdb = Qdb.getInstance();
       Node start = qdb.nodeTable.retrieveRow(Integer.parseInt(startNodeField.getText()));
       Node end = qdb.nodeTable.retrieveRow(Integer.parseInt(endNodeField.getText()));
-      String textPath = Astar.returnPath(Astar.aStar(start, end));
-      textualPath.setText(textPath);
+      // String textPath = Star.returnPath(Astar.aStar(start, end));
+      // textualPath.setText(textPath);
     }
   }
 

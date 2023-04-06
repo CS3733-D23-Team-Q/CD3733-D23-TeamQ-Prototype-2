@@ -147,6 +147,10 @@
          <menus>
             <Menu mnemonicParsing="false" text="Menu">
                <items>
+                  <MenuItem fx:id="serviceRequestHubMenu" mnemonicParsing="false" onAction="#ServiceHubButtonClicked" text="Service Request Hub" />
+                  <MenuItem fx:id="listServiceRequestMenu" mnemonicParsing="false" onAction="#ListRequestsButtonClicked" text="List Service Request" />
+                  <MenuItem fx:id="signagePageMenu" mnemonicParsing="false" onAction="#SPButtonClicked" text="Signage Page" />
+                  <MenuItem fx:id="learnMoreMenu" mnemonicParsing="false" onAction="#LMButtonClicked" text="Learn More" />
                   <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exitMenuClicked" text="Exit" />
                </items>
                <graphic>

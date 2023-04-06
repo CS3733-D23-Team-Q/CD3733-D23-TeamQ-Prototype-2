@@ -35,4 +35,14 @@ public class ConferenceRequest extends ServiceRequest {
     this.dateTime = dateTime;
     this.foodChoice = foodChoice;
   }
+
+  public int progressToInt(Progress progress) {
+    if (progress == Progress.BLANK) {
+      return 0;
+    } else if (progress == Progress.PROCESSING) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
 }

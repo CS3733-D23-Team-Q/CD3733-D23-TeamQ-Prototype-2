@@ -87,7 +87,7 @@ public class FlowerRequestDaoImpl implements GenDao<FlowerRequest, Integer> {
             conn.prepareStatement(
                 "INSERT INTO \"flowerRequest\"(\"requester\", \"progress\", \"assignee\", \"specialInstructions\", \"note\", \"typeOfFlower\", \"bouquetSize\", \"roomNum\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
       stmt.setString(1, request.getRequester());
-      stmt.setInt(2, request.getProgress());
+      stmt.setInt(2, request.progressToInt(request.getProgress()));
       stmt.setString(3, request.getAssignee());
       stmt.setString(4, request.getSpecialInstructions());
       stmt.setString(5, request.getNote());

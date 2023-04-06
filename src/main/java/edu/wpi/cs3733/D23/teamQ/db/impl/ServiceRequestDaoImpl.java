@@ -45,7 +45,7 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
           new ServiceRequest(
               fr.getRequestID(),
               fr.getRequester(),
-              fr.getProgress(),
+              fr.progressToInt(fr.getProgress()),
               fr.getAssignee(),
               fr.getRoomNumber(),
               fr.getSpecialInstructions());
@@ -57,7 +57,7 @@ public class ServiceRequestDaoImpl implements GenDao<ServiceRequest, Integer> {
           new ServiceRequest(
               cr.getRequestID(),
               cr.getRequester(),
-              cr.getProgress(),
+              cr.progressToInt(cr.getProgress()),
               cr.getAssignee(),
               cr.getRoomNumber(),
               cr.getSpecialInstructions());

@@ -49,13 +49,17 @@ public class PathTextController {
       Qdb qdb = Qdb.getInstance();
       Node start = qdb.nodeTable.retrieveRow(Integer.parseInt(startNodeField.getText()));
       Node end = qdb.nodeTable.retrieveRow(Integer.parseInt(endNodeField.getText()));
-      List<Node> path = Star.aStar(start, end);
-      String sPath = "";
-      for (Node n : path) {
-        sPath = sPath + n.getNodeID() + " ";
+      if (start == null || end == null) {
+        textualPath.setText("Please enter two valid Node IDs");
+      } else {
+        List<Node> path = Star.aStar(start, end);
+        String sPath = "";
+        for (Node n : path) {
+          sPath = sPath + n.getNodeID() + " ";
+        }
+        //       String textPath = Star.returnPath(Astar.aStar(start, end));
+        textualPath.setText(sPath);
       }
-      //       String textPath = Star.returnPath(Astar.aStar(start, end));
-      textualPath.setText(sPath);
     }
   }
 

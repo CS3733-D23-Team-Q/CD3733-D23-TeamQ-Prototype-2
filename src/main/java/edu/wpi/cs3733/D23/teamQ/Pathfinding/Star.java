@@ -68,7 +68,7 @@ public class Star extends Edge {
             //  System.out.println(closedList.get(closedList.size() - 1).getNodeID());
           }
         } else {
-          if (totalWeight > nextWeight
+          if (totalWeight < nextWeight
               && next != null
               && nextWeight != 0
               && !closedList.contains(next)) { // make this next edge used to be <

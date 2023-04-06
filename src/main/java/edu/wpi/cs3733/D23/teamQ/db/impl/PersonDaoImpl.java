@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDaoImpl implements GenDao<Person, Integer> {
-  static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
-  static final String user = "teamq";
-  static final String password = "teamq140";
 
   private List<Person> People = new ArrayList<Person>();
 
@@ -171,6 +168,8 @@ public class PersonDaoImpl implements GenDao<Person, Integer> {
     }
     return b;
   }
+
+  public void test() {}
 
   public int getIndex(int IDNum) {
     for (int i = 0; i < People.size(); i++) {

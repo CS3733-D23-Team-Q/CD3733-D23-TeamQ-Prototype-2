@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
+import edu.wpi.cs3733.D23.teamQ.db.Qdb;
 import edu.wpi.cs3733.D23.teamQ.db.impl.PersonDaoImpl;
 import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
@@ -8,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class ProfilePageController {
-  PersonDaoImpl dao = new PersonDaoImpl();
+
+  Qdb qdb = Qdb.getInstance();
+
   @FXML private Button Edit_Profile;
 
   @FXML private Label Email_Display;
@@ -33,28 +36,31 @@ public class ProfilePageController {
 
     String email = LoginController.getLoginEmail();
 
-    this.ID_Number_Display.setText(String.valueOf(dao.getPersonWithUsername(username).getIDNum()));
-    if (dao.getPersonWithUsername(username).getFirstName() == null) {
+    PersonDaoImpl person = (PersonDaoImpl) qdb.personTable;
+
+    this.ID_Number_Display.setText(
+        String.valueOf(person.getPersonWithUsername(username).getIDNum()));
+    if (person.getPersonWithUsername(username).getFirstName() == null) {
       this.First_Name_Display.setText("empty");
     } else {
-      this.First_Name_Display.setText(dao.getPersonWithUsername(username).getFirstName());
+      this.First_Name_Display.setText(person.getPersonWithUsername(username).getFirstName());
     }
-    if (dao.getPersonWithUsername(username).getLastName() == null) {
+    if (person.getPersonWithUsername(username).getLastName() == null) {
       this.Last_Name_Display.setText("empty");
     } else {
-      this.Last_Name_Display.setText(dao.getPersonWithUsername(username).getLastName());
+      this.Last_Name_Display.setText(person.getPersonWithUsername(username).getLastName());
     }
     this.Email_Display.setText(email);
-    if (dao.getPersonWithUsername(username).getTitle() == null) {
+    if (person.getPersonWithUsername(username).getTitle() == null) {
       this.Title_Display.setText("empty");
     } else {
-      this.Title_Display.setText(dao.getPersonWithUsername(username).getTitle());
+      this.Title_Display.setText(person.getPersonWithUsername(username).getTitle());
     }
-    if (dao.getPersonWithUsername(username).getPhoneNumber() == 0) {
+    if (person.getPersonWithUsername(username).getPhoneNumber() == 0) {
       this.Phone_Number_Display.setText("empty");
     } else {
       this.Phone_Number_Display.setText(
-          String.valueOf(dao.getPersonWithUsername(username).getPhoneNumber()));
+          String.valueOf(person.getPersonWithUsername(username).getPhoneNumber()));
     }
 
     this.Username_Display.setText(username);

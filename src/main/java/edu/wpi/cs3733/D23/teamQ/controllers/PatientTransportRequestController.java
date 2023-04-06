@@ -5,12 +5,10 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 
-public class ServiceRequestController {
+public class PatientTransportRequestController {
+  @FXML private MFXButton navigateFromPTButton;
 
-  @FXML MFXButton backButton;
-
-  @FXML
   public void initialize() {
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    this.navigateFromPTButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }

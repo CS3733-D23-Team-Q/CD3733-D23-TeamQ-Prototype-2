@@ -100,7 +100,7 @@
          <children>
             <HBox prefHeight="41.0" prefWidth="388.0">
                <children>
-                  <Label prefHeight="41.0" prefWidth="387.0" text="Map Editor Map" textFill="WHITE" translateX="40.0">
+                  <Label prefHeight="41.0" prefWidth="411.0" text="Map Editor Map" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>

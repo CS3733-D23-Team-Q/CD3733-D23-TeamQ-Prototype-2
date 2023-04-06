@@ -18,7 +18,7 @@ public class AccountDaoImpl implements GenDao<Account, String> {
     return single_instance;
   }
 
-  private AccountDaoImpl() {
+  public AccountDaoImpl() {
     populate();
   }
 

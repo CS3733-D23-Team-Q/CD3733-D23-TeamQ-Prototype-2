@@ -100,14 +100,16 @@ public class EdgeDaoImpl implements GenDao<Edge, Integer> {
       Statement stm = conn.createStatement();
       ResultSet rst = stm.executeQuery("Select * From \"edge\"");
       while (rst.next()) {
-        edges.add(
-            new Edge(
+        Edge e = new Edge(
                 rst.getInt("edgeID"),
                 nodeDao.retrieveRow(rst.getInt("startNode")),
-                nodeDao.retrieveRow(rst.getInt("endNode"))));
+                nodeDao.retrieveRow(rst.getInt("endNode")));
+        edges.add(e);
+
         Node startNode = nodeTable.retrieveRow(rst.getInt("startNode"));
         Node endNode = nodeTable.retrieveRow(rst.getInt("endNode"));
-        startNode.addBranch(endNode, rst.getInt("edgeID"));
+        startNode.addBranch(e);
+        endNode.addBranch(e);
       }
       conn.close();
       stm.close();

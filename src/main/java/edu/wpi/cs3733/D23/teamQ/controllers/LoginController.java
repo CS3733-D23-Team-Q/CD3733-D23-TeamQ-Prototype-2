@@ -7,6 +7,7 @@ import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
 import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
 import java.io.IOException;
 import java.util.List;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,9 +15,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import lombok.Getter;
 
 public class LoginController {
-  AccountDaoImpl dao = new AccountDaoImpl();
+  AccountDaoImpl dao = AccountDaoImpl.getInstance();
   Alert alert = new Alert();
   @FXML Label loginAlert;
   @FXML ImageView alertImage;
@@ -26,7 +28,17 @@ public class LoginController {
   @FXML Button FPButton;
   @FXML Button CAButton;
 
+  @FXML Button quitButton;
+
+  @Getter private static String loginUsername;
+  @Getter private static String loginEmail;
+
   public void initialize() {}
+
+  @FXML
+  public void quitButtonClicked() {
+    Platform.exit();
+  }
 
   /**
    * Whenever the Enter key is pressed inside the username textfield, change the focus to the
@@ -52,6 +64,9 @@ public class LoginController {
     if (enteredPassword.equals(actualPassword)) {
       alert.clearLabelAlert(loginAlert, alertImage);
       Navigation.navigate(Screen.HOME);
+      loginUsername = usernameField.getText();
+      loginEmail = dao.retrieveRow(loginUsername).getEmail();
+
     } else {
       alert.setLabelAlert("Wrong password", loginAlert, alertImage);
     }

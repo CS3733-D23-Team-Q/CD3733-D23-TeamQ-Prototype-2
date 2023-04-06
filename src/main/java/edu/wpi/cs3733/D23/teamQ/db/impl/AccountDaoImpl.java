@@ -10,6 +10,17 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
   static final String user = "teamq";
   static final String password = "teamq140";
+  private static AccountDaoImpl single_instance = null;
+
+  public static synchronized AccountDaoImpl getInstance() {
+    if (single_instance == null) single_instance = new AccountDaoImpl();
+
+    return single_instance;
+  }
+
+  private AccountDaoImpl() {
+    populate();
+  }
 
   public static Connection connect() {
     Connection con = null;
@@ -25,13 +36,11 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   private List<Account> accounts = new ArrayList<Account>();
 
   public Account retrieveRow(String uname) {
-    populate();
     int index = this.getIndex(uname);
     return accounts.get(index);
   }
 
   public List<Account> retrieveRows(String email) {
-    populate();
     List<Account> as = new ArrayList<Account>();
     List<Integer> index = this.getIndexes(email);
     for (int i : index) {
@@ -41,7 +50,6 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   }
 
   public boolean updateRow(String uname, Account accountWithNewChanges) {
-    populate();
     boolean result = false;
     Connection con = GenDao.connect();
     String newPass = accountWithNewChanges.getPassword();
@@ -87,7 +95,6 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   }
 
   public boolean deleteRow(String uname) {
-    populate();
     boolean result = false;
     Connection con = GenDao.connect();
     try {
@@ -112,7 +119,6 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   }
 
   public boolean addRow(Account a) {
-    populate();
     String uname = a.getUsername();
     String pass = a.getPassword();
     String email = a.getEmail();
@@ -151,7 +157,6 @@ public class AccountDaoImpl implements GenDao<Account, String> {
 
   @Override
   public List<Account> getAllRows() {
-    populate();
     return accounts;
   }
 
@@ -185,7 +190,6 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   }
 
   public int getIndex(String uname) {
-    populate();
     for (int i = 0; i < accounts.size(); i++) {
       Account a = accounts.get(i);
       if (a.getUsername().equals(uname)) {
@@ -196,7 +200,6 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   }
 
   public List<Integer> getIndexes(String email) {
-    populate();
     List<Integer> is = new ArrayList<Integer>();
     for (int i = 0; i < accounts.size(); i++) {
       Account a = accounts.get(i);

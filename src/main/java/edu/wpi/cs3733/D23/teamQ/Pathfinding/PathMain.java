@@ -10,7 +10,7 @@ public class PathMain {
     Node head = new Node(0, 0, 0);
     head.setG(0);
     Node n1 = new Node(1, 2, 1);
-    Node n2 = new Node(13, 11, 2);
+    Node n2 = new Node(3, 1, 2);
     Node n3 = new Node(2, 2, 3);
     Node n4 = new Node(3, 3, 4);
     Node n5 = new Node(4, 3, 5);
@@ -50,7 +50,7 @@ public class PathMain {
     for (Node thatOne : these) {
       if (thatOne.getWeight() > avg) {
         continue;
-      } else {
+      } else if (!toPrint.contains(thatOne.getNodeID())) {
         toPrint.add(thatOne.getNodeID());
       }
     }

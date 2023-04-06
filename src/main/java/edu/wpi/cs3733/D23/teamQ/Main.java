@@ -8,9 +8,4 @@ public class Main {
     Qdb.getInstance();
     App.launch(App.class, args);
   }
-
-  // shortcut: psvm
-
-  /// ieruhguiergfhuigrfnirefjnietrfjnmioerjnrejigfhjreineuiojeriojegrio
-
 }

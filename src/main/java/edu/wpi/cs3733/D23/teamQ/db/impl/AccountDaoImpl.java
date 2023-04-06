@@ -10,6 +10,17 @@ public class AccountDaoImpl implements GenDao<Account, String> {
   static final String url = "jdbc:postgresql://database.cs.wpi.edu:5432/teamqdb";
   static final String user = "teamq";
   static final String password = "teamq140";
+  private static AccountDaoImpl single_instance = null;
+
+  public static synchronized AccountDaoImpl getInstance() {
+    if (single_instance == null) single_instance = new AccountDaoImpl();
+
+    return single_instance;
+  }
+
+  private AccountDaoImpl() {
+    populate();
+  }
 
   public static Connection connect() {
     Connection con = null;

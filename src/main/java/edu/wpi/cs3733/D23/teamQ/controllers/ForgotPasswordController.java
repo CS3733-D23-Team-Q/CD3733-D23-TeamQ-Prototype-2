@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 public class ForgotPasswordController extends SecondaryStage {
-  AccountDaoImpl adao = new AccountDaoImpl();
+  AccountDaoImpl adao = AccountDaoImpl.getInstance();
   QuestionDAOImpl qdao = new QuestionDAOImpl();
   CreateAccountController CAController = new CreateAccountController();
   Alert alert = new Alert();

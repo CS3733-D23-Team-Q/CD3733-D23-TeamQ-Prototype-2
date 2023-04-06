@@ -17,6 +17,12 @@ public class Move {
     this.date = date;
   }
 
+  public Move(int moveID, Node node, String longName, String date) {
+    this.node = node;
+    this.longName = longName;
+    this.date = date;
+  }
+
   public String toString() {
     return "moveID: "
         + this.moveID

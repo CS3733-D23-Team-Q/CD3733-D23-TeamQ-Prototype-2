@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 public class CreateAccountController extends SecondaryStage {
-  AccountDaoImpl adao = new AccountDaoImpl();
+  AccountDaoImpl adao = AccountDaoImpl.getInstance();
   QuestionDAOImpl qdao = new QuestionDAOImpl();
   Alert alert = new Alert();
   Confirm confirm = new Confirm();

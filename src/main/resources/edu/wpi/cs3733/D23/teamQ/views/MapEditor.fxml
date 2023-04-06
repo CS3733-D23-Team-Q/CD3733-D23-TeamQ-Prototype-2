@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -25,8 +26,8 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="107.0" />
     </columnConstraints>
     <rowConstraints>
-      <RowConstraints maxHeight="594.0" minHeight="10.0" prefHeight="39.0" vgrow="NEVER" />
-        <RowConstraints maxHeight="635.0" minHeight="10.0" prefHeight="548.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="594.0" minHeight="10.0" prefHeight="41.0" vgrow="NEVER" />
+        <RowConstraints maxHeight="635.0" minHeight="10.0" prefHeight="546.0" vgrow="ALWAYS" />
         <RowConstraints maxHeight="344.0" minHeight="10.0" prefHeight="113.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
@@ -72,7 +73,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" rippleColor="#f1f1f1" style="-fx-background-color: #F1F1F1;" styleClass="mfx-button" text="Home" textFill="#3966af" translateX="110.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <MFXButton fx:id="BackHomeBTN" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" rippleColor="#f1f1f1" style="-fx-background-color: #f1f1f1;" stylesheets="@styles/Home.css" text="Home" textFill="#3966af" translateX="110.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <font>
             <Font size="16.0" />
          </font>
@@ -95,7 +96,18 @@
           </Menu>
         </menus>
       </MenuBar>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="2" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="2">
+         <children>
+            <HBox prefHeight="41.0" prefWidth="388.0">
+               <children>
+                  <Label prefHeight="41.0" prefWidth="387.0" text="Map Editor Map" textFill="WHITE" translateX="40.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children></HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="3" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="4" />
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="5" />

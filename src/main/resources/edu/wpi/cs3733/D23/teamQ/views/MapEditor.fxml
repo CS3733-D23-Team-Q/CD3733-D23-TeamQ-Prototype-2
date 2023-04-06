@@ -77,7 +77,7 @@
             <Font size="16.0" />
          </font>
       </MFXButton>
-      <HBox prefHeight="40.0" prefWidth="447.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="1" />
+      <HBox minHeight="-Infinity" prefHeight="40.0" prefWidth="447.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="1" />
       <MenuBar prefHeight="32.0" prefWidth="130.0" styleClass="button-menu" stylesheets="@styles/Home.css">
         <menus>
           <Menu mnemonicParsing="false" text="Menu">
@@ -88,20 +88,20 @@
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../CD3733-D23-TeamQ-Prototype-2/src/main/resources/Menu.png" />
+                        <Image url="@../../../../../../Menu.png" />
                      </image>
                   </ImageView>
                </graphic>
           </Menu>
         </menus>
       </MenuBar>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="2" />
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="3" />
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="4" />
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="5" />
+      <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="2" />
+      <HBox minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="3" />
+      <HBox minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="4" />
+      <HBox minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #142A53;" GridPane.columnIndex="5" />
       <ImageView fitHeight="56.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" translateX="70.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <image>
-            <Image url="@../../../../../../../../../../CD3733-D23-TeamQ-Prototype-2/src/main/resources/Home.png" />
+            <Image url="@../../../../../../Home.png" />
          </image>
       </ImageView>
     </children>

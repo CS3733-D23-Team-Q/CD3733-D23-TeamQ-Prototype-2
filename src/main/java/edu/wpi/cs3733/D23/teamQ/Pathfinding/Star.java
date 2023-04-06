@@ -17,7 +17,7 @@ public class Star extends Edge {
     return D;
   }
 
-  public static ArrayList<Node> aStar(Node start, Node target) {
+  public static String aStar(Node start, Node target) {
     ArrayList<Node> closedList = new ArrayList<Node>();
     ArrayList<Node> openList = new ArrayList<Node>();
     int nextWeight = 0;
@@ -29,7 +29,25 @@ public class Star extends Edge {
       Node n = openList.get(0);
       if (n == target) {
         closedList.add(n);
-        return closedList;
+        ArrayList<Integer> toPrint = new ArrayList<Integer>();
+        int avg = 0;
+        for (Node thisOne : closedList) {
+          avg += thisOne.getWeight();
+          // System.out.println(thisOne.getNodeID());
+        }
+        avg = avg / closedList.size();
+        for (Node thatOne : closedList) {
+          if (thatOne.getWeight() > avg) {
+            continue;
+          } else if (!toPrint.contains(thatOne.getNodeID())) {
+            toPrint.add(thatOne.getNodeID());
+          }
+        }
+        String returnString = "";
+        for(int index : toPrint){
+          returnString = returnString + ", " + index;
+        }
+        return returnString;
       }
 
       Edge m = null;
@@ -102,7 +120,24 @@ public class Star extends Edge {
       n.setWeight(n.getEdges().get(0).getWeight());
       closedList.add(n);
     }
-
-    return closedList;
+    ArrayList<Integer> toPrint = new ArrayList<Integer>();
+    int avg = 0;
+    for (Node thisOne : closedList) {
+      avg += thisOne.getWeight();
+     // System.out.println(thisOne.getNodeID());
+    }
+    avg = avg / closedList.size();
+    for (Node thatOne : closedList) {
+      if (thatOne.getWeight() > avg) {
+        continue;
+      } else if (!toPrint.contains(thatOne.getNodeID())) {
+        toPrint.add(thatOne.getNodeID());
+      }
+    }
+    String returnString = "";
+    for(int index : toPrint){
+      returnString = returnString + ", " + index;
+    }
+    return returnString;
   }
 }

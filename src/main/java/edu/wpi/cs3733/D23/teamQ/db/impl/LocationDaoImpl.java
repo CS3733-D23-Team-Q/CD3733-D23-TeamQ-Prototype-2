@@ -3,10 +3,11 @@ package edu.wpi.cs3733.D23.teamQ.db.impl;
 import edu.wpi.cs3733.D23.teamQ.db.dao.GenDao;
 import edu.wpi.cs3733.D23.teamQ.db.obj.Location;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocationDaoImpl implements GenDao<Location, Integer> {
-  private List<Location> locations;
+  private List<Location> locations = new ArrayList<Location>();
 
   public LocationDaoImpl() {
     populate();

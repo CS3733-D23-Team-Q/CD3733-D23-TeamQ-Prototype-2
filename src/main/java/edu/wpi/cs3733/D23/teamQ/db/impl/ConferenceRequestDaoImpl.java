@@ -16,6 +16,7 @@ public class ConferenceRequestDaoImpl implements GenDao<ConferenceRequest, Integ
       nextID = conferenceRequests.get(conferenceRequests.size() - 1).getRequestID() + 1;
     }
   }
+
   /**
    * returns a conferenceRequest given a requestID
    *

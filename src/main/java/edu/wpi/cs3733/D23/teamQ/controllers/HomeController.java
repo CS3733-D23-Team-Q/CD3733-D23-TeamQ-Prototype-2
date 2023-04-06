@@ -15,8 +15,8 @@ import javafx.scene.input.KeyEvent;
 
 public class HomeController implements IController {
   AccountDaoImpl adao = new AccountDaoImpl();
-  @FXML Button CRReservationButton;
-  @FXML Button FDRequestButton;
+  @FXML Button ServiceHubButton;
+  @FXML Button ListRequestsButton;
   @FXML Button SPButton;
   @FXML Button LMButton;
 

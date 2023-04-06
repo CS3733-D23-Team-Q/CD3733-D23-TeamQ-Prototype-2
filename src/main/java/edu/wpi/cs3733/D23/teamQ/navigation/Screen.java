@@ -7,6 +7,8 @@ public enum Screen {
   LOGIN("views/LoginPage.fxml", "Login"),
   CREATE_ACCOUNT("views/CreateAccount.fxml", "Create Account"),
   FORGOT_PASSWORD("views/ForgotPassword.fxml", "Reset Password"),
+  MAP_EDITOR("views/MapEditor.fxml", "Map Editor"),
+  PATH_TEXT("views/PathText.fxml", "Textual Path"),
 
   SIGNAGE("views/Signage.fxml", "Signage"),
   HELP("views/Help.fxml", "Help"),
@@ -14,6 +16,9 @@ public enum Screen {
   CONFERENCE_ROOM_REQUEST("views/ConferenceRoomRequest.fxml", "Conference Room Request"),
   FLOWER_REQUEST("views/FlowerRequest.fxml", "Flower Request"),
   FLOWER_REQUEST_SUBMISSION("views.FlowerRequestSubmission.fxml", "Flower Request Submission"),
+  CONFERENCE_ROOM_REQUEST_DISPLAY(
+      "views/ConferenceRoomRequestDisplay.fxml", "Conference Room Request Display"),
+  FLOWER_REQUEST_DISPLAY("views/FlowerRequestDisplay.fxml", "Flower Request Display"),
   MEAL_REQUEST("views/MealDeliveryRequest.fxml", "Meal Request"),
   OFFICE_SUPPLIES_REQUEST("views/OfficeSuppliesRequest.fxml", "Office Supplies Request"),
   FURNITURE_REQUEST("views/FurnitureDeliveryRequest.fxml", "Furniture Request"),

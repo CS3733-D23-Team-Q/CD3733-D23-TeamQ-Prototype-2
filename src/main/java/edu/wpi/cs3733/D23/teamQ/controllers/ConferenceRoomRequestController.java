@@ -1,11 +1,22 @@
 package edu.wpi.cs3733.D23.teamQ.controllers;
 
-public class ConferenceRoomRequestController implements IController {
-  /*
+import edu.wpi.cs3733.D23.teamQ.db.impl.ConferenceDaoSingleton;
+import edu.wpi.cs3733.D23.teamQ.db.obj.ConferenceRequest;
+import edu.wpi.cs3733.D23.teamQ.navigation.Navigation;
+import edu.wpi.cs3733.D23.teamQ.navigation.Screen;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.MenuItem;
+
+public class ConferenceRoomRequestController {
   @FXML private MFXTextField assigneeField;
   @FXML private MFXTextField roomNumberField;
   @FXML private MFXTextField dateTimeField;
-
   ObservableList<String> foodOptionsList =
       FXCollections.observableArrayList(
           "Brunch spread", "Dinner spread", "Snack spread", "No food");
@@ -63,5 +74,4 @@ public class ConferenceRoomRequestController implements IController {
   public void exitItemClicked() {
     Platform.exit();
   }
-   */
 }

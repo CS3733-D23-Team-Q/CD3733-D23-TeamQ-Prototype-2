@@ -10,6 +10,7 @@ public class HelpController {
   @FXML Button homeButton;
   @FXML MenuItem homeItem;
   @FXML MenuItem exitItem;
+  @FXML MenuItem profileItem;
 
   @FXML
   public void initialize() {};
@@ -27,5 +28,10 @@ public class HelpController {
   @FXML
   public void exitItemClicked() {
     Navigation.navigate(Screen.HOME);
+  }
+
+  @FXML
+  public void profileItemClicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 }

@@ -19,6 +19,7 @@ public class ServiceRequestHubController {
 
   @FXML MenuItem homeItem;
   @FXML MenuItem exitItem;
+  @FXML MenuItem profileItem;
 
   @FXML
   public void initialize() {};
@@ -66,5 +67,10 @@ public class ServiceRequestHubController {
   @FXML
   public void exitItemClicked() {
     Platform.exit();
+  }
+
+  @FXML
+  public void profileItemClicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 }

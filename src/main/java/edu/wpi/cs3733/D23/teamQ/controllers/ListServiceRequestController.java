@@ -29,6 +29,7 @@ public class ListServiceRequestController {
   @FXML TableColumn<ServiceRequest, String> specialInstructions;
 
   @FXML Button selectButton;
+  @FXML MenuItem profileItem;
 
   private static FlowerRequest flowerRequest;
   private static ConferenceRequest conferenceRequest;
@@ -90,5 +91,10 @@ public class ListServiceRequestController {
 
   public static FlowerRequest getFlowerRequest() {
     return flowerRequest;
+  }
+
+  @FXML
+  public void profileItemClicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 }

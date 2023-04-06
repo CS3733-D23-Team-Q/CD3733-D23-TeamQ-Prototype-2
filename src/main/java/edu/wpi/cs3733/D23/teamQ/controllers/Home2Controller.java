@@ -14,6 +14,7 @@ public class Home2Controller extends HomeController {
   @FXML MenuItem mapEditorMenu;
 
   @FXML MenuItem pathfindingMenu;
+  @FXML MenuItem profileItem;
 
   @FXML
   public void initialize() {}
@@ -31,5 +32,10 @@ public class Home2Controller extends HomeController {
   @FXML
   public void PFButtonClicked() {
     Navigation.navigate(Screen.PATH_TEXT);
+  }
+
+  @FXML
+  public void profileItemClicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 }

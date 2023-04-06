@@ -25,6 +25,7 @@ public class PathTextController {
   @FXML MFXTextField startNodeField;
   @FXML MFXTextField endNodeField;
   @FXML Label textualPath;
+  @FXML MenuItem profileItem;
 
   @FXML
   public void initialize() {}
@@ -66,5 +67,10 @@ public class PathTextController {
   @FXML
   public void exitItemClicked() {
     Platform.exit();
+  }
+
+  @FXML
+  public void profileItemClicked() {
+    Navigation.navigate(Screen.PROFILE_PAGE);
   }
 }

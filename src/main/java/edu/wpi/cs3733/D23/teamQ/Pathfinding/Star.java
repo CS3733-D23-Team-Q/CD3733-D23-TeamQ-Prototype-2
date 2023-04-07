@@ -98,7 +98,7 @@ public class Star extends Edge {
           && !openList.contains(m.getEndNode())
           && !closedList.contains(m.getEndNode())) {
         openList.add(m.getEndNode());
-      } else if (n.equals(start)) {
+      } else if (n.getEdges().size() != 0 && n.equals(start)) {
         openList.add(n.getEdges().get(0).getEndNode());
       }
       openList.remove(n);
